@@ -17,7 +17,7 @@ variables:
 build-job:
   stage: build
   script:
-    - "mvn clean compile -f java/pom.xml $MAVEN_CLI_OPTS"
+    - "mvn clean compile -U -f java/pom.xml $MAVEN_CLI_OPTS"
 
 unittest-job:
   stage: test
@@ -32,4 +32,4 @@ integrationtest-job:
   dependencies:
     - build-job
   script:
-    - "mvn verify -f java/pom.xml $MAVEN_CLI_OPTS"
+    - "mvn verify -X -f java/pom.xml $MAVEN_CLI_OPTS"
