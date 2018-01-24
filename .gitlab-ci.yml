@@ -32,4 +32,4 @@ integrationtest-job:
   dependencies:
     - build-job
   script:
-    - "mvn verify -f java/pom.xml $MAVEN_CLI_OPTS"
+    - "mvn verify -e -x -f java/pom.xml $MAVEN_CLI_OPTS"
