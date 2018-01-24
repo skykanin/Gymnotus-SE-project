@@ -25,11 +25,11 @@ unittest-job:
     - build-job
   script:
     - "mvn package -f java/pom.xml $MAVEN_CLI_OPTS"
-    - "cat java/app.core/target/site/jacoco/index.html"
+      #- "cat java/app.core/target/site/jacoco/index.html" //uncomment when we have tests in app.core
 
 integrationtest-job:
   stage: test
   dependencies:
     - build-job
   script:
-    - "mvn verify -X -f java/pom.xml $MAVEN_CLI_OPTS"
+    - "mvn verify -f java/pom.xml $MAVEN_CLI_OPTS"
