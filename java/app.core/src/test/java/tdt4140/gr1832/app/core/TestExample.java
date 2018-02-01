@@ -1,4 +1,4 @@
-package tdt4140.gr18nn.app.core;
+package tdt4140.gr1832.app.core;
 
 import junit.framework.TestCase;
 
