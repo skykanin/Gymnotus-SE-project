@@ -1,5 +1,8 @@
-# Dependency directories
+*.swo
+*.swp
 node_modules/
-
-# Remove custom attributes file
-.DS_Store
+bower_components/
+.serve/
+dist/
+release/
+npm-debug.log
