@@ -16,4 +16,4 @@ TODO: explain more about the java project
 In the `32/java` folder use the following commands:
 
 1. Use `$ mvn clean install` to cleanly compile to source code
-2. TODO: how to run the program
+2. Use `$ mvn exec:java -Dexec.mainClass="tdt4140.gr1832.app.core.Main` to execute the program.
