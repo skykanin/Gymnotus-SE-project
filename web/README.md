@@ -1,4 +1,4 @@
-﻿# electron-npm-ject
+﻿# electron-react-jest
 This is the folder for the frontend, which is built using electron and react. To run the GUI you need to have node installed. You can download the latest lts from [here](https://nodejs.org/en/).
 
 ## Installation
