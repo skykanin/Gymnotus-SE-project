@@ -2,6 +2,7 @@ import React from 'react'
 import { shallow } from 'enzyme'
 import Welcome from './Welcome'
 
+//this part doesn't work
 /* test('Welcome component should render as expected', () => {
     const wrapper = shallow(<Welcome compiler="Javascript" framework="React" />);
     expect(wrapper.contains('Hello from Javascript and React!')).toBe(true);
