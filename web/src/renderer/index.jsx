@@ -1,9 +1,9 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
-import { Welcome } from "./components/Welcome/Welcome"
-import { Header } from "./components/Header/Header"
-import { Button } from "./components/Button/Button"
+import Welcome from "./components/Welcome/Welcome"
+import Header from "./components/Header/Header"
+import Button from "./components/Button/Button"
 
 const App = () => (
     <div>
