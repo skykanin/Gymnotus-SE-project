@@ -1,0 +1,3 @@
+# Remove IDE settings
+.idea/
+.vscode/
