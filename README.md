@@ -5,7 +5,6 @@ This is the repo for --SET_NAME™--, which is an infrastructure set up to gathe
 You will need:
  - [Maven](https://maven.apache.org/guides/getting-started/maven-in-five-minutes.html)
  - [Java 8](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)
- - [Node.js](https://nodejs.org/en/)
 
 ## Building
 We should here write a short guide on how to setup the project, for both deployment end development.
