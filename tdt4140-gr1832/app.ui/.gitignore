@@ -60,3 +60,4 @@ typings/
 #DS store mac
 .DS_Store
 
+/target/
