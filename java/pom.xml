@@ -13,7 +13,6 @@
 
 	<modules>
 		<module>app.core</module>
-		<module>app.ui</module>
 	</modules>
     <build>
         <plugins>
