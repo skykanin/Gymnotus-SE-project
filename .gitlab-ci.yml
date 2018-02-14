@@ -17,19 +17,19 @@ variables:
 build-job:
   stage: build
   script:
-    - "mvn clean compile -U -f java/pom.xml $MAVEN_CLI_OPTS"
+    - "mvn clean compile -U -f tdt4140-gr1832/pom.xml $MAVEN_CLI_OPTS"
 
 unittest-job:
   stage: test
   dependencies:
     - build-job
   script:
-    - "mvn package -f java/pom.xml $MAVEN_CLI_OPTS"
-      #- "cat java/app.core/target/site/jacoco/index.html" //uncomment when we have tests in app.core
+    - "mvn package -f tdt4140-gr1832/pom.xml $MAVEN_CLI_OPTS"
+      #- "cat tdt4140-gr1832/app.core/target/site/jacoco/index.html" //uncomment when we have tests in app.core
 
 integrationtest-job:
   stage: test
   dependencies:
     - build-job
   script:
-    - "mvn verify -f java/pom.xml $MAVEN_CLI_OPTS"
+    - "mvn verify -f tdt4140-gr1832/pom.xml $MAVEN_CLI_OPTS"
