@@ -13,6 +13,7 @@ public class FxApp extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("LoginScreen.fxml"));
         Scene scene = new Scene(root);
         stage.setScene(scene);
+        stage.setTitle("Login Screen");
         stage.show();
     }
 
