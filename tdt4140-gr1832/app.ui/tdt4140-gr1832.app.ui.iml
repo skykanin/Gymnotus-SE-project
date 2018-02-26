@@ -22,6 +22,9 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="inheritedJdk" />
     <orderEntry type="library" name="org.eclipse.m2e.MAVEN2_CLASSPATH_CONTAINER" level="application" />
+    <orderEntry type="library" name="Maven: com.jfoenix:jfoenix:8.0.1" level="project" />
+    <orderEntry type="library" name="Maven: org.controlsfx:controlsfx:9.0.0" level="project" />
+    <orderEntry type="library" name="Maven: de.jensd:fontawesomefx:8.9" level="project" />
     <orderEntry type="module" module-name="tdt4140-gr1832.app.core" />
     <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-core:2.9.3" level="project" />
     <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-databind:2.9.3" level="project" />
