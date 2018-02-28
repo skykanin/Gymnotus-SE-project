@@ -1,8 +1,6 @@
 package tdt4140.gr1832.web.server;
 
-import java.io.File;
 import java.io.IOException;
-import java.net.URL;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -66,7 +64,7 @@ public class ServerThread {
         serHol.setInitOrder(1);
         //Here we tell Jersey where to look for resources.
         serHol.setInitParameter("jersey.config.server.provider.packages", 
-        							"tdt4140.gr1832.web.api");
+        							"tdt4140.gr1832.web.data");
         System.out.println("[INFO] Spawning server on port: " + HTTP_PORT);
         System.out.println("[INFO] Spawning secure server on port: " + HTTPS_PORT);
 
@@ -95,6 +93,7 @@ public class ServerThread {
     }
     
     public static void main(String[] args) throws InterruptedException, IOException {
+    		DatabaseConnection.connectToDB();
         start();
 
         System.in.read();
