@@ -27,8 +27,27 @@ public class MemberInfoController extends Application {
 		
 		@FXML
 		JFXTextField restingHRField;
-		
 
+		@FXML
+		JFXTextField name;
+		
+		@FXML
+		JFXTextField username;
+		
+		@FXML
+		JFXTextField email;
+		
+		@FXML
+		JFXTextField tlf;
+		
+		@FXML
+		JFXTextField age;
+		
+		@FXML
+		JFXTextField gender;
+		
+		
+		
 		
 		
 		
