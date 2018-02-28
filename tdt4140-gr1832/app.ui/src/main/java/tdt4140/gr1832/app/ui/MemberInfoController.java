@@ -55,7 +55,7 @@ public class MemberInfoController extends Application {
 		public void start(Stage stage) throws Exception {
 			//launches from the fxml-file
 			Parent root = FXMLLoader.load(getClass().getResource("TrainerMemberInfo.fxml")); //Husk å endre til tilhørende fxml fil sitt navn.
-			Scene scene = new Scene(root, 400, 600);
+			Scene scene = new Scene(root, 1200, 660);
 	        stage.setTitle("MemberInfoView");
 	        stage.setScene(scene);
 	        stage.show();
