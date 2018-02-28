@@ -24,7 +24,7 @@
                   <Font size="15.0" />
                </font>
             </JFXPasswordField>
-            <JFXButton buttonType="FLAT" layoutX="864.0" layoutY="566.0" prefHeight="39.0" prefWidth="89.0" ripplerFill="WHITE" style="-fx-background-color: #2196F3;" text="Login" />
+            <JFXButton buttonType="FLAT" layoutX="864.0" layoutY="566.0" onAction="#TilDashboard" prefHeight="39.0" prefWidth="89.0" ripplerFill="WHITE" style="-fx-background-color: #2196F3;" text="Login" />
             <JFXButton buttonType="FLAT" layoutX="1047.0" layoutY="565.0" prefHeight="39.0" prefWidth="89.0" ripplerFill="WHITE" style="-fx-background-color: #2196F3;" text="Sign Up" />
             <FontAwesomeIconView glyphName="USER" layoutX="830.0" layoutY="236.0" size="35" text="" />
             <FontAwesomeIconView glyphName="LOCK" layoutX="833.0" layoutY="404.0" size="35" text="" />

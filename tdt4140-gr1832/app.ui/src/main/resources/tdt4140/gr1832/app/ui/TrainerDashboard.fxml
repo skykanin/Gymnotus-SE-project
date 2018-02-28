@@ -24,17 +24,17 @@
                               <Font size="16.0" />
                            </font>
                         </JFXButton>
-                        <JFXButton layoutX="-1.0" layoutY="223.0" prefHeight="47.0" prefWidth="237.0" style="-fx-alignment: left;" styleClass="VenstreMenyKnapp" text="    TRENINGSPROGRAM" textFill="WHITE">
+                        <JFXButton layoutX="-1.0" layoutY="223.0" onAction="#TilTreningsprogram" prefHeight="47.0" prefWidth="237.0" style="-fx-alignment: left;" styleClass="VenstreMenyKnapp" text="    TRENINGSPROGRAM" textFill="WHITE">
                            <font>
                               <Font size="16.0" />
                            </font>
                         </JFXButton>
-                        <JFXButton layoutX="-1.0" layoutY="270.0" prefHeight="47.0" prefWidth="237.0" style="-fx-alignment: left;" styleClass="VenstreMenyKnapp" text="    MEDLEMMER" textFill="WHITE">
+                        <JFXButton layoutX="-1.0" layoutY="270.0" onAction="#TilMedlemmer" prefHeight="47.0" prefWidth="237.0" style="-fx-alignment: left;" styleClass="VenstreMenyKnapp" text="    MEDLEMMER" textFill="WHITE">
                            <font>
                               <Font size="16.0" />
                            </font>
                         </JFXButton>
-                        <JFXButton layoutX="-1.0" layoutY="317.0" prefHeight="47.0" prefWidth="237.0" style="-fx-alignment: left;" styleClass="VenstreMenyKnapp" text="    INNSTILLINGER" textFill="WHITE">
+                        <JFXButton layoutX="-1.0" layoutY="317.0" onAction="#TilInnstillinger" prefHeight="47.0" prefWidth="237.0" style="-fx-alignment: left;" styleClass="VenstreMenyKnapp" text="    INNSTILLINGER" textFill="WHITE">
                            <font>
                               <Font size="16.0" />
                            </font>
