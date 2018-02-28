@@ -15,6 +15,16 @@ public class LoginScreenController {
     private void handleLoginButtonAction(ActionEvent event) {
         String uname = username.getText();
         String pword = password.getText();
+
+        System.out.println("Login button has been clicked");
+    }
+
+    @FXML
+    private void handleRegisterButtonAction(ActionEvent event) {
+        String uname = username.getText();
+        String pword = password.getText();
+
+        System.out.println("Login button has been clicked");
     }
 
 }
