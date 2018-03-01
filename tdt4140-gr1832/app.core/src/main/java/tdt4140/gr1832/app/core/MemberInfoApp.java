@@ -1,7 +1,7 @@
 package tdt4140.gr1832.app.core;
 
 public class MemberInfoApp {
-
+    //adding comment
 	public static String getHeight() {
 		// TODO Auto-generated method stub
 		return "182";
