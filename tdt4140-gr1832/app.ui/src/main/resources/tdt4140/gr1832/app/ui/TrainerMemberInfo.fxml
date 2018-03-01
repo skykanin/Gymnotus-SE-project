@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXDatePicker?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
@@ -98,6 +99,7 @@
                   <JFXTextField fx:id="stepsField" editable="false" focusColor="#405aa800" layoutX="125.0" layoutY="280.0" />
                   <JFXTextField fx:id="restingHRField" editable="false" focusColor="#405aa800" layoutX="125.0" layoutY="340.0" />
                   <JFXTextField fx:id="dateField" editable="false" focusColor="#405aa800" layoutX="125.0" layoutY="98.0" />
+                  <JFXDatePicker fx:id="datePickerField" defaultColor="#2588a1" layoutX="125.0" layoutY="435.0" onAction="#datePicker" />
                </children>
             </AnchorPane>
             <AnchorPane layoutX="800.0" layoutY="105.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="400.0">
