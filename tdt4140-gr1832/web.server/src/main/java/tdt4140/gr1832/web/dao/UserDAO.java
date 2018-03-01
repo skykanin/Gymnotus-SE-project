@@ -1,5 +1,6 @@
-package tdt4140.gr1832.web.data;
+package tdt4140.gr1832.web.dao;
 import tdt4140.gr1832.web.server.DatabaseConnection;
+import tdt4140.gr1832.web.dao.data.User;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.FormParam;
@@ -7,15 +8,19 @@ import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+
+import com.google.gson.Gson;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+
 
 @Path("user")
 public class UserDAO {
@@ -203,42 +208,75 @@ public class UserDAO {
 	}
 	
 	@GET
-	@Path("/{username}/email")
-	public Response getEmail(@PathParam("username") String username) {
-		String email = getStringColumnData(username.toLowerCase(), "email");
-		int status = email != null ? 200 : 404;
-		return Response.status(status).entity(email).build();
-	}
-	
-	@GET
-	@Path("/{username}/gender")
-	public Response getGender(@PathParam("username")String username) {
-		Integer gender = getIntegerColumnData(username.toLowerCase(), "gender");
-		int status = gender != null ? 200 : 404;
-		return Response.status(status).entity(gender).build();
-	}
+	@Path("/{username}/user_info")
+	@Produces(MediaType.APPLICATION_JSON)
+	public String getUserInfoByUsername(@PathParam("username") String username) {
+		Connection conn = DatabaseConnection.conn;
+		String query = "select userID, username, name, email, phoneumber, gender, age "
+				+ "from User where username=" + "'" + username + "'";
 		
-	@GET
-	@Path("/{username}/phone")
-	public Response getPhonenumber(@PathParam("username")String username) {
-		String phonenumber = getStringColumnData(username.toLowerCase(), "phoneumber");
-		int status = phonenumber != null ? 200 : 404;
-		return Response.status(status).entity(phonenumber).build();
+		User user = new User();
+		
+		Statement stmt;
+		try {
+			stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery(query);
+			while(rs.next()) {
+				user.setUserID(rs.getInt("userID"));
+				if(rs.wasNull()) {
+					user = null;
+					break;
+				}
+				user.setUsername(rs.getString("username"));
+				user.setName(rs.getString("name"));
+				user.setEmail(rs.getString("email"));
+				user.setPhone(rs.getString("phoneumber"));
+				user.setGender(rs.getInt("gender"));
+				user.setAge(rs.getInt("age"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		Gson gson = new Gson();
+		String json = gson.toJson(user);  
+		return json;
 	}
 	
 	@GET
-	@Path("/{username}/name")
-	public Response getName(@PathParam("username")String username) {
-		String name = getStringColumnData(username.toLowerCase(), "name");
-		int status = name != null ? 200 : 404;
-		return Response.status(status).entity(name).build();
+	@Path("/{id}/user_info_id")
+	@Produces(MediaType.APPLICATION_JSON)
+	public String getUserInfoByID(@PathParam("id") int id) {
+		Connection conn = DatabaseConnection.conn;
+		String query = "select userID, username, name, email, phoneumber, gender, age "
+				+ "from User where userID=" + Integer.toString(id);
+		
+		User user = new User();
+		
+		Statement stmt;
+		try {
+			stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery(query);
+			while(rs.next()) {
+				user.setUserID(rs.getInt("userID"));
+				if(rs.wasNull()) {
+					user = null;
+					break;
+				}
+				user.setUsername(rs.getString("username"));
+				user.setName(rs.getString("name"));
+				user.setEmail(rs.getString("email"));
+				user.setPhone(rs.getString("phoneumber"));
+				user.setGender(rs.getInt("gender"));
+				user.setAge(rs.getInt("age"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		Gson gson = new Gson();
+		String json = gson.toJson(user);  
+		return json;
 	}
-	
-	@GET
-	@Path("/{username}/age")
-	public Response getAge(@PathParam("username")String username) {
-		Integer age = getIntegerColumnData(username.toLowerCase(), "age");
-		int status = age != null ? 200 : 404;
-		return Response.status(status).entity(age).build();
-	}
+
 }

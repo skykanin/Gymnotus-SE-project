@@ -1,4 +1,4 @@
-package tdt4140.gr1832.web.data;
+package tdt4140.gr1832.web.dao;
 
 import java.sql.Connection;
 import java.sql.ResultSet;

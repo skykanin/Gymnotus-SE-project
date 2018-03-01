@@ -64,7 +64,7 @@ public class ServerThread {
         serHol.setInitOrder(1);
         //Here we tell Jersey where to look for resources.
         serHol.setInitParameter("jersey.config.server.provider.packages", 
-        							"tdt4140.gr1832.web.data");
+        							"tdt4140.gr1832.web.dao");
         System.out.println("[INFO] Spawning server on port: " + HTTP_PORT);
         System.out.println("[INFO] Spawning secure server on port: " + HTTPS_PORT);
 
