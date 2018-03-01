@@ -1,7 +1,8 @@
 CREATE TABLE User (
-  userID int UNIQUE NOT NULL PRIMARY KEY,
+  userID int UNIQUE NOT NULL PRIMARY KEY AUTO_INCREMENT,
   username VARCHAR(32),
   password VARCHAR(64),
+  name VARCHAR(64),
   email VARCHAR(64),
   phoneumber VARCHAR(16),
   gender INT,
@@ -16,7 +17,7 @@ CREATE TABLE Role (
 );
 
 CREATE TABLE UserHasRole (
-  userID int NOT NULL ,
+  userID int NOT NULL UNIQUE,
   roleID int NOT NULL,
   PRIMARY KEY (userID, roleID),
   FOREIGN KEY (userID) REFERENCES User(userID) ON DELETE CASCADE,
@@ -24,7 +25,7 @@ CREATE TABLE UserHasRole (
 );
 
 CREATE TABLE Feedback (
-  feedbackID int NOT NULL PRIMARY KEY,
+  feedbackID int NOT NULL PRIMARY KEY AUTO_INCREMENT,
   userID int NOT NULL,
   content VARCHAR(1024),
   date DATE,
@@ -32,12 +33,14 @@ CREATE TABLE Feedback (
 );
 
 CREATE TABLE HealthDataReport (
-  reportID INT NOT NULL PRIMARY KEY,
+  reportID INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
   userID INT NOT NULL,
   date DATE,
   bloodPressure INT,
   dailySteps INT,
   restingHeartRate INT,
+  height INT,
+  width INT,
   FOREIGN KEY (userID) REFERENCES User(userID) ON DELETE CASCADE
 );
 
@@ -48,7 +51,7 @@ CREATE TABLE ExerciseProgram (
 );
 
 CREATE TABLE Exercise (
-  exerciseID INT NOT NULL PRIMARY KEY,
+  exerciseID INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
   programID INT,
   description VARCHAR(1024),
   sets INT,
@@ -60,7 +63,7 @@ CREATE TABLE Exercise (
 );
 
 CREATE TABLE Result (
-  resultID INT NOT NULL PRIMARY KEY,
+  resultID INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
   userID INT NOT NULL,
   exerciseID INT NOT NULL,
   date DATE,
@@ -78,7 +81,9 @@ CREATE TABLE UserRegisteredForExercise (
 );
 
 CREATE TABLE UserCommentOnExerciseprogram (
-  commentID int NOT NULL PRIMARY KEY,
+  commentID int NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  userID int NOT NULL,
+  programID int NOT NULL,
   content VARCHAR(1024),
   date DATE,
   FOREIGN KEY (userID) REFERENCES User(userID),
