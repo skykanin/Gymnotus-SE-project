@@ -91,9 +91,9 @@ public class MemberInfoController extends Application {
 			
 		}
 
-//		public void handle() {
-//			System.out.println("jay");
-//		}
+		public void datePicker() {
+			System.out.println("jay");
+		}
 		
 		public static void main(String[] args) {
 			launch(MemberInfoController.class, args);
