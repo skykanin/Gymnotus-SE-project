@@ -92,7 +92,7 @@ public class MemberInfoController extends Application {
 		}
 
 		public void datePicker() {
-			System.out.println("jay");
+		return;
 		}
 		
 		public static void main(String[] args) {
