@@ -3,7 +3,6 @@ package tdt4140.gr1832.web.server;
 import java.io.Console;
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.Scanner;
 

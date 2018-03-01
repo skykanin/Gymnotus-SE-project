@@ -30,6 +30,8 @@ public class HealthDataReportDAO {
 		report.setDate(rs.getDate("date"));
 		report.setBloodPressure(rs.getInt("bloodPressure"));
 		report.setDailySteps(rs.getInt("dailySteps"));
+		report.setWeight(rs.getInt("weight"));
+		report.setHeight(rs.getInt("height"));
 		report.setRestingHeartRate(rs.getInt("restingHeartRate"));
 		return report;
 	}
