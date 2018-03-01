@@ -13,6 +13,7 @@ import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
 import com.google.gson.Gson;
@@ -81,6 +82,17 @@ public class HealthDataReportDAO {
 	@Path("/month/{month}")
 	public String getHealthDataReportByMonth(@PathParam("month")int month) {
 		String query = "select * from HealthDataReport where month(date)=" + Integer.toString(month);
+		String json = createHealthDataReportJson(query);
+		return json;
+	}
+	
+	// Get reports by month of year and user id
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
+	@Path("month_id")
+	public String getHealthDataReportByMonthAndID(@QueryParam("month")int month, @QueryParam("id") int id) {
+		String query = "select * from HealthDataReport where month(date)=" + Integer.toString(month) +
+				" and userID=" + Integer.toString(id);
 		String json = createHealthDataReportJson(query);
 		return json;
 	}
