@@ -7,6 +7,7 @@ import javafx.application.*;
 import javafx.fxml.*;
 import javafx.scene.*;
 import javafx.stage.*;
+import tdt4140.gr1832.app.core.MemberInfoApp;
 
 
 public class MemberInfoController extends Application {
@@ -17,7 +18,7 @@ public class MemberInfoController extends Application {
 		JFXTextField heightField;
 		
 		@FXML
-		JFXTextField DateField;
+		JFXTextField dateField;
 		
 		@FXML
 		JFXTextField weightField;
@@ -29,22 +30,22 @@ public class MemberInfoController extends Application {
 		JFXTextField restingHRField;
 
 		@FXML
-		JFXTextField name;
+		JFXTextField nameField;
 		
 		@FXML
-		JFXTextField username;
+		JFXTextField usernameField;
 		
 		@FXML
-		JFXTextField email;
+		JFXTextField emailField;
 		
 		@FXML
-		JFXTextField tlf;
+		JFXTextField tlfField;
 		
 		@FXML
-		JFXTextField age;
+		JFXTextField ageField;
 		
 		@FXML
-		JFXTextField gender;
+		JFXTextField genderField;
 		
 		
 		
@@ -64,16 +65,29 @@ public class MemberInfoController extends Application {
 		@FXML
 		public void initialize() {
 			
-			String height="1.80";
-			String date="02.03.2018";
-			String weight="70kg";
-			String steps="100";		
-			String restingHR="70";
+			String height=MemberInfoApp.getHeight();
+			String date=MemberInfoApp.getDate();
+			String weight=MemberInfoApp.getWeight();
+			String steps=MemberInfoApp.getSteps();		
+			String restingHR=MemberInfoApp.getRestingHR();
+			String name = MemberInfoApp.getName();
+			String username = MemberInfoApp.getUsername();
+			String email = MemberInfoApp.getEmail();
+			String tlf = MemberInfoApp.getTlf();
+			String age = MemberInfoApp.getAge();
+			String gender = MemberInfoApp.getGender();
+			
 			heightField.setText(height);
-			DateField.setText(date);		
+			dateField.setText(date);		
 			weightField.setText(weight);
 			stepsField.setText(steps);
 			restingHRField.setText(restingHR);
+			nameField.setText(name);
+			usernameField.setText(username);		
+			emailField.setText(email);
+			tlfField.setText(tlf);
+			ageField.setText(age);
+			genderField.setText(gender);
 			
 		}
 

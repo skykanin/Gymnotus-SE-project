@@ -97,7 +97,7 @@
                   <JFXTextField fx:id="weightField" editable="false" focusColor="#405aa800" layoutX="125.0" layoutY="220.0" />
                   <JFXTextField fx:id="stepsField" editable="false" focusColor="#405aa800" layoutX="125.0" layoutY="280.0" />
                   <JFXTextField fx:id="restingHRField" editable="false" focusColor="#405aa800" layoutX="125.0" layoutY="340.0" />
-                  <JFXTextField fx:id="DateField" editable="false" focusColor="#405aa800" layoutX="125.0" layoutY="98.0" />
+                  <JFXTextField fx:id="dateField" editable="false" focusColor="#405aa800" layoutX="125.0" layoutY="98.0" />
                </children>
             </AnchorPane>
             <AnchorPane layoutX="800.0" layoutY="105.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="400.0">
@@ -107,31 +107,31 @@
                         <Font name="System Bold Italic" size="18.0" />
                      </font>
                   </Label>
-                  <JFXTextField fx:id="username" editable="false" focusColor="#4d4d4d00" layoutX="146.0" layoutY="151.0" prefHeight="27.0" prefWidth="190.0" style="-jfx-disable-animation: 1;" unFocusColor="#4d4d4d" />
+                  <JFXTextField fx:id="usernameField" editable="false" focusColor="#4d4d4d00" layoutX="146.0" layoutY="151.0" prefHeight="27.0" prefWidth="190.0" style="-jfx-disable-animation: 1;" unFocusColor="#4d4d4d" />
                   <Label layoutX="63.0" layoutY="213.0" text="Epost" textFill="#2196f3">
                      <font>
                         <Font name="System Bold Italic" size="18.0" />
                      </font>
                   </Label>
-                  <JFXTextField fx:id="email" editable="false" focusColor="#4d4d4d00" layoutX="147.0" layoutY="211.0" prefHeight="27.0" prefWidth="190.0" styleClass="jf" />
+                  <JFXTextField fx:id="emailField" editable="false" focusColor="#4d4d4d00" layoutX="147.0" layoutY="211.0" prefHeight="27.0" prefWidth="190.0" styleClass="jf" />
                   <Label layoutX="75.0" layoutY="267.0" text="Tlf" textFill="#2196f3">
                      <font>
                         <Font name="System Bold Italic" size="18.0" />
                      </font>
                   </Label>
-                  <JFXTextField fx:id="tlf" editable="false" focusColor="#4d4d4d00" layoutX="147.0" layoutY="265.0" prefHeight="27.0" prefWidth="190.0" />
+                  <JFXTextField fx:id="tlfField" editable="false" focusColor="#4d4d4d00" layoutX="147.0" layoutY="265.0" prefHeight="27.0" prefWidth="190.0" />
                   <Label layoutX="61.0" layoutY="97.0" text="Navn" textFill="#2196f2">
                      <font>
                         <Font name="System Bold Italic" size="18.0" />
                      </font>
                   </Label>
-                  <JFXTextField fx:id="age" editable="false" focusColor="#4d4d4d00" layoutX="147.0" layoutY="324.0" prefHeight="27.0" prefWidth="190.0" />
+                  <JFXTextField fx:id="ageField" editable="false" focusColor="#4d4d4d00" layoutX="147.0" layoutY="324.0" prefHeight="27.0" prefWidth="190.0" />
                   <Label layoutX="68.0" layoutY="383.0" text="Kjønn" textFill="#2196f3">
                      <font>
                         <Font name="System Bold Italic" size="18.0" />
                      </font>
                   </Label>
-                  <JFXTextField fx:id="gender" editable="false" focusColor="#4d4d4d00" layoutX="147.0" layoutY="381.0" prefHeight="27.0" prefWidth="190.0" />
+                  <JFXTextField fx:id="genderField" editable="false" focusColor="#4d4d4d00" layoutX="147.0" layoutY="381.0" prefHeight="27.0" prefWidth="190.0" />
                   <Label layoutX="68.0" layoutY="326.0" text="Alder" textFill="#2196f3">
                      <font>
                         <Font name="System Bold Italic" size="18.0" />
@@ -145,7 +145,7 @@
                         <Cursor fx:constant="TEXT" />
                      </cursor>
                   </Label>
-                  <JFXTextField fx:id="name" editable="false" focusColor="#405aa800" layoutX="147.0" layoutY="95.0" prefHeight="27.0" prefWidth="190.0" />
+                  <JFXTextField fx:id="nameField" editable="false" focusColor="#405aa800" layoutX="147.0" layoutY="95.0" prefHeight="27.0" prefWidth="190.0" />
                </children>
             </AnchorPane>
       </children>
