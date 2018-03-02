@@ -171,7 +171,7 @@ public class UserDAO {
 							   @FormParam("new_password") String new_password,
 							   @FormParam("new_name") String new_name,
 							   @FormParam("new_email") String new_email,
-							   @FormParam("new_phoneumber") String new_phone,
+							   @FormParam("new_phone") String new_phone,
 							   @FormParam("new_gender") int new_gender,
 							   @FormParam("new_age") int new_age)
 	{
