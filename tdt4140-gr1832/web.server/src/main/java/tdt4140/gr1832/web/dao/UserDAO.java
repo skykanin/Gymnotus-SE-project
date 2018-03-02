@@ -99,7 +99,7 @@ public class UserDAO {
 							  @FormParam("password") String password,
 							  @FormParam("name") String name,
 							  @FormParam("email") String email,
-							  @FormParam("phoneumber") String phone,
+							  @FormParam("phone") String phone,
 							  @FormParam("gender") int gender,
 							  @FormParam("age") int age
 							  ) 
