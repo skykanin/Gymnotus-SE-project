@@ -140,7 +140,7 @@
                     </execution>
                 </executions>
                 <configuration>
-                    <mainClass>tdt4140.gr1832.web.server.Main</mainClass>
+                    <mainClass>tdt4140.gr1832.web.server.ServerThread</mainClass>
                 </configuration>
             </plugin>
 		</plugins>
