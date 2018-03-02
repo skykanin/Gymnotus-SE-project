@@ -1,5 +1,6 @@
 package tdt4140.gr1832.app.ui;
 
+import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXTextField;
 
 import javafx.application.*;
@@ -46,6 +47,9 @@ public class MemberInfoController extends Application {
 		
 		@FXML
 		JFXTextField genderField;
+		
+		@FXML
+		JFXDatePicker datePickerField;
 		
 		
 		

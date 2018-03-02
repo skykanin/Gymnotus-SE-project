@@ -53,7 +53,8 @@ public class TrainerMemberInfoTest extends ApplicationTest{
 	
 	@Test
 	public void testFieldExist() {
-		
+		//Tester at feltene so skal være der finnes
+		Assert.assertTrue(lookup("#datePickerField").query() instanceof JFXDatePicker);
 		Assert.assertTrue(lookup("#dateField").query() instanceof JFXTextField);
 		Assert.assertTrue(lookup("#heightField").query() instanceof JFXTextField);
 		Assert.assertTrue(lookup("#weightField").query() instanceof JFXTextField);
