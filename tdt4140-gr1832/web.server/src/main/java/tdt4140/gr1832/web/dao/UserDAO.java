@@ -183,6 +183,7 @@ public class UserDAO {
 			if(new_gender != 0) updateColumn(username, "gender", new_gender, "int");
 			if(new_age != 0) updateColumn(username, "age", new_age, "int");
 			if(new_password != null) updateColumn(username, "password", new_password, "string");
+			status = 200;
 		}
 		return Response.status(status).build();
 	}
