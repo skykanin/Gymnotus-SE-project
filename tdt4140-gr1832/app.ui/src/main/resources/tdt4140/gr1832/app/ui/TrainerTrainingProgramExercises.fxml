@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox prefHeight="660.0" prefWidth="1200.0" stylesheets="@styles/main.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tdt4140.gr1832.app.ui.TrainerTrainingProgramExercisesController">
+  <children>
+    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="451.0" prefWidth="487.0" style="-fx-background-color: #FFFFFF;" stylesheets="@styles/main.css" VBox.vgrow="ALWAYS">
+      <children>
+            <VBox prefHeight="660.0" prefWidth="235.0" style="-fx-background-color: #0b87a1;">
+               <children>
+                  <AnchorPane prefHeight="667.0" prefWidth="245.0" stylesheets="@styles/main.css">
+                     <children>
+                        <Label layoutX="28.0" layoutY="98.0" styleClass="DosisCaps" text="GYMNOTUS" textFill="WHITE">
+                           <font>
+                              <Font size="28.0" />
+                           </font>
+                        </Label>
+                        <JFXButton fx:id="TilDashboard" layoutY="176.0" onAction="#TilDashboard" prefHeight="47.0" prefWidth="236.0" styleClass="VenstreMenyKnapp" text="    DASHBOARD" textFill="WHITE">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </JFXButton>
+                        <JFXButton fx:id="TilTreningsprogram" layoutY="223.0" onAction="#TilTreningsprogram" prefHeight="47.0" prefWidth="236.0" style="-fx-background-color: #01597f;" styleClass="VenstreMenyKnapp" text="    TRENINGSPROGRAM" textFill="WHITE">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </JFXButton>
+                        <JFXButton fx:id="TilMedlemmer" layoutY="270.0" onAction="#TilMedlemmer" prefHeight="47.0" prefWidth="236.0" styleClass="VenstreMenyKnapp" text="    MEDLEMMER" textFill="WHITE">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </JFXButton>
+                        <JFXButton fx:id="TilInnstillinger" layoutY="317.0" onAction="#TilInnstillinger" prefHeight="47.0" prefWidth="236.0" styleClass="VenstreMenyKnapp" text="    INNSTILLINGER" textFill="WHITE">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </JFXButton>
+                     </children>
+                  </AnchorPane>
+               </children>
+            </VBox>
+            <VBox layoutX="235.0" prefHeight="47.0" prefWidth="965.0" style="-fx-background-color: #01597f;">
+               <children>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0" stylesheets="@styles/main.css">
+                     <children>
+                        <JFXButton prefHeight="47.0" prefWidth="241.0" styleClass="ToppMenyKnapp" text="OVERSIKT" textFill="WHITE">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </JFXButton>
+                        <JFXButton layoutX="241.0" prefHeight="47.0" prefWidth="241.0" styleClass="ToppMenyKnapp" text="ØVELSER" textFill="WHITE">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </JFXButton>
+                        <JFXButton layoutX="482.0" prefHeight="47.0" prefWidth="241.0" styleClass="ToppMenyKnapp" text="KOMMENTAR" textFill="WHITE">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </JFXButton>
+                        <JFXButton layoutX="723.0" prefHeight="47.0" prefWidth="241.0" styleClass="ToppMenyKnapp" text="PÅMELDTE" textFill="WHITE">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </JFXButton>
+                     </children>
+                  </AnchorPane>
+               </children>
+            </VBox>
+      </children>
+    </AnchorPane>
+  </children>
+</VBox>
