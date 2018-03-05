@@ -2,7 +2,7 @@ package tdt4140.gr1832.app.ui;
 
 import org.junit.Assert;
 import org.junit.Before;
-
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.testfx.framework.junit.ApplicationTest;
 import com.jfoenix.controls.JFXTextField;
@@ -18,6 +18,13 @@ public class TrainerSettingsTest extends ApplicationTest {
 	
 	private TrainerSettingsController testController;
 	
+    @BeforeClass
+    public static void headless() {
+    		if (Boolean.valueOf(System.getProperty("gitlab-ci", "false"))) {
+    			GitlabCISupport.headless();
+    		}
+    }
+    
 	@Before
 	public void setupTestController() {
 		testController.ageField.setText("33");
