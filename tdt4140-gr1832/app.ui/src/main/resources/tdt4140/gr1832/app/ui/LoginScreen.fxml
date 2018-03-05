@@ -37,7 +37,7 @@
                <image>
                   <Image url="@images/gymBlur.jpg" />
                </image></ImageView>
-            <Label fx:id="errorMessage" layoutX="964.0" layoutY="452.0" textFill="RED">
+            <Label fx:id="errorMessage" alignment="CENTER" contentDisplay="CENTER" layoutX="861.0" layoutY="459.0" prefHeight="35.0" prefWidth="268.0" textFill="RED">
                <font>
                   <Font size="18.0" />
                </font>

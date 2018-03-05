@@ -3,9 +3,6 @@ package tdt4140.gr1832.app.ui;
 import org.junit.Test;
 import org.testfx.framework.junit.ApplicationTest;
 import org.junit.BeforeClass;
-import static org.junit.Assert.*;
-import static org.testfx.api.FxAssert.verifyThat;
-import static org.testfx.matcher.base.NodeMatchers.hasText;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;

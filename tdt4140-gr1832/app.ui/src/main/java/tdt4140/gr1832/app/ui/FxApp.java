@@ -17,6 +17,7 @@ public class FxApp extends Application {
         stage.setScene(scene);
         stage.setTitle("Login Screen");
         stage.show();
+
     }
 
     public static void main(String[] args) {
