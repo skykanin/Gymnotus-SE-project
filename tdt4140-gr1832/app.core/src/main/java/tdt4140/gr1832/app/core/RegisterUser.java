@@ -1,164 +1,59 @@
 package tdt4140.gr1832.app.core;
 
+import javax.ws.rs.client.WebTarget;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.MultivaluedHashMap;
+import javax.ws.rs.core.MultivaluedMap;
+import javax.ws.rs.core.Response;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import javax.ws.rs.client.Client;
+import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.client.Entity;
+
+import com.google.gson.Gson;
+
 public class RegisterUser {
-
-	private String name;
-	private String username;
-	private int age;
-	private int gender;
-	private String password; 
-	private String userID; //lag metoder
-	private String email; //lag metoder
 	
-	public RegisterUser(){
+	User user = new User();
+	String baseURI = "http://146.185.153.244:8080/api/";
+	
+	public void registerUser(User u) {
+		this.user= u;
 		
+		Map<String, String> telefonliste= new HashMap();
 		
-	}
 	
-//name:
-	public void setName(String name){ //ingen tall
-		for (int i=0; i<name.length(); i++) {
-			if (Character.isDigit(name.charAt(i))) {
-				throw new IllegalArgumentException("Name cannot contain any digits");
-			}
-			this.name=name;
-
-		}
-	}
-	public String getName() {
-		return this.name;
-	}
-	public String toString() {
-		return this.name;
-	}
-
-//username:
-	
-	public void setUsername(String username) {
-		 for (int i = 0; i < username.length(); i++) {
-		        if (Character.isWhitespace(username.charAt(i))) {
-					throw new IllegalArgumentException("Username cannot have spaces");
-	}
-		        else {
-		        	this.username=username;
-		        }
-		 }
-	}
-	public String getUsername() {
-		return this.username;
-	}
-	
-			//AGE
-	public void setAge(int age) {	
-		String stringAge=Integer.toString(age);
-		int lengde=stringAge.length();
-		if (stringAge.length() < (1) || stringAge.length() >(2)) {
-			throw new IllegalArgumentException("age must be a 1 or 2- digit number");
-		}
-		for ( int i=0; i<lengde;i++) {
-			char c= stringAge.charAt(i);
-			if (!(Character.isDigit(c))) {
-				throw new IllegalArgumentException("age can only consist of digits");
-			}
-			}
-		this.age=age;
-		}
-	
-	public int getAge() {
-		return this.age;
-	}
-//gender
-	public void setGender(int gender) {	
-		//0 mann
-		//1 kvinne
-		//2 ukjent
-		
-		if (gender == 0) {
-			this.gender=0;
-		}
-		if (gender == 1) {
-			this.gender=1;
-		}
-		if (gender ==2) {
-			this.gender=2;
-		}
-		else {
-			throw new IllegalArgumentException("gender must be either 0, 1, 2");
-		}
-	}
-	public int getGender() {
-		return this.gender;
-	}
-//password:
-	public void setPassword(String password) {			
-		if (password.length() <= 5) {
-			throw new IllegalArgumentException("password must be consist of 6 or more characters.");
-		}
-		else {
-			this.password=password;
-		}
+		Client client = ClientBuilder.newClient();
+	  WebTarget webTarget = client.target(baseURI + "user/create_user");
+	  
+	  //POST
+	  MultivaluedMap<String, String> formData = new MultivaluedHashMap<String, String>();
+	  formData.add("username", this.user.getUsername());
+	  formData.add("password", this.user.getPassword());
+	  formData.add("name", this.user.getName());
+	  formData.add("email", this.user.getEmail());
+	  formData.add("phone", this.user.getPhone());
+	  formData.add("gender",Integer.toString(this.user.getGender()));
+	  formData.add("age", Integer.toString(this.user.getAge()));
+	  
+	  Response response = webTarget.request().post(Entity.form(formData));
+	  
+	  System.out.println(response.getStatus());
 		
 	}
 	
-	public String getPassword() {
-		return this.password;
-		}
-//userID
-	public void setUserID(String userID) {			
-		this.userID=userID;	
-		}
-	public String getUserID() {
-		return this.userID;
 	
-		}
-//email
-	public void setEmail(String email) {
-		if (email == null)
-		{
-			this.email = null;
-			return;
-		}
-	String[] liste= {"ad", "ae", "af", "ag", "ai", "al", "am", "ao", "aq", "ar", "as", "at", "au", "aw", "ax", "az", "ba", "bb", "bd", "be", "bf", "bg", "bh", "bi", "bj", "bl", "bm", "bn", "bo", "bq", "br", "bs", "bt", "bv", "bw", "by", "bz", "ca", "cc", "cd", "cf", "cg", "ch", "ci", "ck", "cl", "cm", "cn", "co", "cr", "cu", "cv", "cw", "cx", "cy", "cz", "de", "dj", "dk", "dm", "do", "dz", "ec", "ee", "eg", "eh", "er", "es", "et", "fi", "fj", "fk", "fm", "fo", "fr", "ga", "gb", "gd", "ge", "gf", "gg", "gh", "gi", "gl", "gm", "gn", "gp", "gq", "gr", "gs", "gt", "gu", "gw", "gy", "hk", "hm", "hn", "hr", "ht", "hu", "id", "ie", "il", "im", "in", "io", "iq", "ir", "is", "it", "je", "jm", "jo", "jp", "ke", "kg", "kh", "ki", "km", "kn", "kp", "kr", "kw", "ky", "kz", "la", "lb", "lc", "li", "lk", "lr", "ls", "lt", "lu", "lv", "ly", "ma", "mc", "md", "me", "mf", "mg", "mh", "mk", "ml", "mm", "mn", "mo", "mp", "mq", "mr", "ms", "mt", "mu", "mv", "mw", "mx", "my", "mz", "na", "nc", "ne", "nf", "ng", "ni", "nl", "no", "np", "nr", "nu", "nz", "om", "pa", "pe", "pf", "pg", "ph", "pk", "pl", "pm", "pn", "pr", "ps", "pt", "pw", "py", "qa", "re", "ro", "rs", "ru", "rw", "sa", "sb", "sc", "sd", "se", "sg", "sh", "si", "sj", "sk", "sl", "sm", "sn", "so", "sr", "ss", "st", "sv", "sx", "sy", "sz", "tc", "td", "tf", "tg", "th", "tj", "tk", "tl", "tm", "tn", "to", "tr", "tt", "tv", "tw", "tz", "ua", "ug", "um", "us", "uy", "uz", "va", "vc", "ve", "vg", "vi", "vn", "vu", "wf", "ws", "ye", "yt", "za", "zm", "zw"};
-	String[] splitMail=email.split("\\.");
-	if (splitMail.length !=3) {
-		throw new IllegalArgumentException("Invalid email");
-		
-	}
-	String[] splitLastName=splitMail[1].split("@");
-
-	System.out.println(splitLastName.length);
-	if (splitLastName.length !=2) {
-		throw new IllegalArgumentException("Invalid email ");
-		
-	}
-			//sjekker landskoder:
-	for (int k=0;k<liste.length;k++) {
-		
-		if (splitMail[2].equals(liste[k])) {
-			this.email= email;
-			return;
-		}
-		
-	}
-	throw new IllegalArgumentException("Invalid email");
-	}
-
-	
-	public String getEmail() {
-		return this.email;
-	}
 	
 	
 public static void main(String[] args) {
+	
+	User u = new User("OlaN", "fortniteHhamstring","Ola Nordmann", 12, 0,  null, "41546593");
 	RegisterUser user1 = new RegisterUser();
-	//user1.setName("per9");
-	//user1.getName();
-	//System.out.println(user1.toString());
-	user1.setAge(55);
-	System.out.println(user1.getAge());
-	user1.setPassword("jajjajaj");
-	System.out.println(user1.getPassword());
-
+	
+	user1.registerUser(u);
 
 	}
 
