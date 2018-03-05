@@ -85,6 +85,7 @@
 				<version>2.20.1</version>
 				<configuration>
 					<skipTests>${skip-ui-tests}</skipTests>
+					<argLine>-Xmx1024m -XX:MaxPermSize=256m</argLine>
 				</configuration>
 			</plugin>
 		</plugins>
