@@ -2,6 +2,7 @@ package tdt4140.gr1832.app.ui;
 
 import java.io.IOException;
 
+import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 
 import javafx.application.Application;
@@ -30,6 +31,13 @@ public class TrainerSettingsController extends Application {
 	
 	@FXML
 	JFXTextField ageField;
+	
+	@FXML
+	JFXButton setOriginalInformation;
+	
+	@FXML
+	JFXButton submitChangesButton;
+	
 	
 //	@FXML
 //	JFXTextField genderField;

@@ -60,7 +60,7 @@
                   </AnchorPane>
                </children>
             </VBox>
-            <AnchorPane layoutX="318.0" layoutY="114.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="483.0" prefWidth="665.0">
+            <AnchorPane layoutX="293.0" layoutY="112.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="483.0" prefWidth="665.0">
                <children>
                   <Label layoutX="38.0" layoutY="153.0" style="-fx-alignment: #2196f3;" text="Brukernavn" textFill="#2196f3">
                      <font>
@@ -121,6 +121,8 @@
                         <Font size="15.0" />
                      </font>
                   </JFXRadioButton>
+                  <JFXButton fx:id="submitChangesButton" layoutX="266.0" layoutY="442.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="29.0" prefWidth="136.0" style="-fx-border-color: #2196f3; -fx-background-color: #e7e6e6;" text="Utfør endringer" />
+                  <JFXButton fx:id="setOriginalInformation" layoutX="111.0" layoutY="442.0" style="-fx-border-color: #2196f3; -fx-background-color: #e7e6e6;" text="Se nåværende info" />
                </children>
             </AnchorPane>
       </children>
