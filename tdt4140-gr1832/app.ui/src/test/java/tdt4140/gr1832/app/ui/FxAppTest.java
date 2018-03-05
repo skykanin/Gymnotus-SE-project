@@ -4,6 +4,8 @@ import org.junit.Test;
 import org.testfx.framework.junit.ApplicationTest;
 import org.junit.BeforeClass;
 import static org.junit.Assert.*;
+import static org.testfx.api.FxAssert.verifyThat;
+import static org.testfx.matcher.base.NodeMatchers.hasText;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -11,7 +13,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class FxAppTest extends ApplicationTest {
-    Parent root;
+    private Parent root;
 
     @BeforeClass
     public static void headless() {
@@ -22,17 +24,14 @@ public class FxAppTest extends ApplicationTest {
 
 	@Override
     public void start(Stage stage) throws Exception {
-        root = FXMLLoader.load(getClass().getResource("LoginScreen.fxml"));
+        root = FXMLLoader.load(getClass().getResource("FxApp.fxml"));
         Scene scene = new Scene(root);
-        
-        stage.setTitle("Login Screen");
+
         stage.setScene(scene);
         stage.show();
     }
 
     @Test
     public void testFxApp() {
-        assertEquals("failure - strings are not equal", "text", "text");
-
     }
 }
