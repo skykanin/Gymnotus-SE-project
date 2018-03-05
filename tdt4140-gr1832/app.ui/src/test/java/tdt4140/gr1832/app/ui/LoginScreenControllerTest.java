@@ -5,31 +5,21 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
-import org.junit.BeforeClass;
 import org.junit.Test;
-import org.testfx.framework.junit.ApplicationTest;
 
 import static org.testfx.api.FxAssert.verifyThat;
 import static org.testfx.matcher.base.NodeMatchers.hasText;
 
-public class LoginScreenControllerTest extends ApplicationTest {
-    private Parent root;
+public class LoginScreenControllerTest extends FxAppTest {
     private final String usernameFieldID = "#username";
     private final String passwordFieldID = "#password";
     private final String loginButtonID = "#loginButton";
     private final String registerButtonID = "#registerButton";
     private final String errorMessageID = "#errorMessage";
 
-    @BeforeClass
-    public static void headless() {
-        if (Boolean.valueOf(System.getProperty("gitlab-ci", "false"))) {
-            GitlabCISupport.headless();
-        }
-    }
-
     @Override
     public void start(Stage stage) throws Exception {
-        root = FXMLLoader.load(getClass().getResource("LoginScreen.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("LoginScreen.fxml"));
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
