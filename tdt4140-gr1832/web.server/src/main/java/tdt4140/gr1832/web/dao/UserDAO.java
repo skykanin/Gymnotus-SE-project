@@ -111,6 +111,7 @@ public class UserDAO {
 		String insertUserSQL = "insert into User "
 				+ "(username, password, name, email, phoneumber, gender, age)"
 				+ " VALUES (?,?,?,?,?,?,?)";
+		username = username.toLowerCase();
 		String userExists = userExists(username).getEntity().toString();
 		if(username != null && password != null && userExists.equals("false")) {
 			try {
