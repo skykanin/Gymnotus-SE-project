@@ -42,7 +42,16 @@ public class TrainerSettingsController extends Application {
 //	@FXML
 //	JFXTextField genderField;
 //	
-
+	@FXML
+	private void HandleSetOriginalInformation(ActionEvent event) throws IOException {
+		this.initialize();
+	}
+	
+	@FXML
+	private void HandleSubmitChangesButton(ActionEvent event) throws IOException {
+		//funksjonalitet for å sende felt til database
+	}
+	
 	
 	@FXML
 	public void initialize() {
@@ -63,6 +72,21 @@ public class TrainerSettingsController extends Application {
 		
 	}
 	
+	
+	
+	@Override
+	public void start(Stage primaryStage) throws Exception {
+		Parent root = FXMLLoader.load(getClass().getResource("TrainerSettings.fxml")); //Husk å endre til tilhørende fxml fil sitt navn.
+		Scene scene = new Scene(root, 1200, 660);
+        primaryStage.setTitle("MemberInfoView");
+        primaryStage.setScene(scene);
+        primaryStage.show();
+		
+	}
+	
+	public static void main(String[] args) {
+		launch(TrainerSettingsController.class, args);
+	}
 	/*
 	  HENRIKs ARBEID START
 	 */
@@ -100,18 +124,6 @@ public class TrainerSettingsController extends Application {
 	 */
 	
 	
-	@Override
-	public void start(Stage primaryStage) throws Exception {
-		Parent root = FXMLLoader.load(getClass().getResource("TrainerSettings.fxml")); //Husk å endre til tilhørende fxml fil sitt navn.
-		Scene scene = new Scene(root, 1200, 660);
-        primaryStage.setTitle("MemberInfoView");
-        primaryStage.setScene(scene);
-        primaryStage.show();
-		
-	}
 	
-	public static void main(String[] args) {
-		launch(TrainerSettingsController.class, args);
-	}
 	
 }
