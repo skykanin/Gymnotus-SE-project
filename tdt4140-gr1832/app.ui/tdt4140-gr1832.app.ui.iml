@@ -39,6 +39,7 @@
     <orderEntry type="library" scope="TEST" name="Maven: org.testfx:testfx-core:4.0.10-alpha" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.testfx:testfx-internal-java8:4.0.10-alpha" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.testfx:testfx-junit:4.0.10-alpha" level="project" />
+    <orderEntry type="library" name="Maven: javax.validation:validation-api:2.0.1.Final" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.assertj:assertj-core:3.9.1" level="project" />
     <orderEntry type="library" name="Maven: com.jfoenix:jfoenix:8.0.1" level="project" />
     <orderEntry type="library" name="Maven: org.controlsfx:controlsfx:9.0.0" level="project" />
