@@ -9,7 +9,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.*;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import tdt4140.gr1832.app.core.MemberInfoApp;
+import tdt4140.gr1832.app.core.TrainerMemberInfoApp;
 
 public class TrainerMemberInfoController extends Application {
 	@FXML
@@ -66,17 +66,17 @@ public class TrainerMemberInfoController extends Application {
 	@FXML
 	public void initialize() {
 		
-		String height=MemberInfoApp.getHeight();
-		String date=MemberInfoApp.getDate();
-		String weight=MemberInfoApp.getWeight();
-		String steps=MemberInfoApp.getSteps();		
-		String restingHR=MemberInfoApp.getRestingHR();
-		String name = MemberInfoApp.getName();
-		String username = MemberInfoApp.getUsername();
-		String email = MemberInfoApp.getEmail();
-		String tlf = MemberInfoApp.getTlf();
-		String age = MemberInfoApp.getAge();
-		String gender = MemberInfoApp.getGender();
+		String height=TrainerMemberInfoApp.getHeight();
+		String date=TrainerMemberInfoApp.getDate();
+		String weight=TrainerMemberInfoApp.getWeight();
+		String steps=TrainerMemberInfoApp.getSteps();		
+		String restingHR=TrainerMemberInfoApp.getRestingHR();
+		String name = TrainerMemberInfoApp.getName();
+		String username = TrainerMemberInfoApp.getUsername();
+		String email = TrainerMemberInfoApp.getEmail();
+		String tlf = TrainerMemberInfoApp.getTlf();
+		String age = TrainerMemberInfoApp.getAge();
+		String gender = TrainerMemberInfoApp.getGender();
 		
 		heightField.setText(height);
 		dateField.setText(date);		
