@@ -19,7 +19,7 @@ import javafx.stage.Stage;
 public class TrainerMemberInfoTest extends ApplicationTest{
 
 
-	private MemberInfoController testController;
+	private TrainerMemberInfoController testController;
 	
 	@Before
 	public void setupTestController() {
