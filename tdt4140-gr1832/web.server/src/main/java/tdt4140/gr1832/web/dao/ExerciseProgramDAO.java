@@ -25,7 +25,7 @@ public class ExerciseProgramDAO {
 	
 	//utility for getting information about exercise program based on the ID
 	public static String getExerciseProgramDataJson(String query) {
-		Connection conn = DatabaseConnection.conn;
+		Connection conn = DatabaseConnection.getConnection();
 		
 		ExerciseProgram program = new ExerciseProgram();
 		
@@ -48,7 +48,7 @@ public class ExerciseProgramDAO {
 	}
 	
 	public static String getExerciseProgramListJson(String query) {
-		Connection conn = DatabaseConnection.conn;
+		Connection conn = DatabaseConnection.getConnection();
 		
 		List<ExerciseProgram> programs = new ArrayList<ExerciseProgram>();
 		
@@ -75,7 +75,7 @@ public class ExerciseProgramDAO {
 	@GET
 	@Path("/get_id")
 	public Response getExerciseProgramID(@QueryParam("name") String name) {
-		Connection conn = DatabaseConnection.conn;
+		Connection conn = DatabaseConnection.getConnection();
 		
 		String sql = "select programID from ExerciseProgram where name='" + name +"'";
 		Integer id = null;

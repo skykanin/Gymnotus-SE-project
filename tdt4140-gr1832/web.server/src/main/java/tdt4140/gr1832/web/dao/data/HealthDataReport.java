@@ -12,6 +12,24 @@ public class HealthDataReport {
 	Integer height;
 	Integer weight;
 	
+	public HealthDataReport() {
+		
+	}
+	
+	public HealthDataReport(int reportID, int userID,
+							Date date, int bloodPressure,
+							int dailySteps, int restingHeartRate,
+							int height, int weight) {
+		this.reportID = reportID;
+		this.userID = userID;
+		this.date = date;
+		this.bloodPressure = bloodPressure;
+		this.dailySteps = dailySteps;
+		this.restingHeartRate = restingHeartRate;
+		this.height = height;
+		this.weight = weight;
+	}
+	
 	public int getHeight() {
 		return height;
 	}

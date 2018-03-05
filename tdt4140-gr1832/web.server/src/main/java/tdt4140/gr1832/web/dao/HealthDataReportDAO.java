@@ -6,6 +6,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.PreparedStatement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,8 +23,7 @@ import tdt4140.gr1832.web.server.DatabaseConnection;
 
 @Path("/health_data")
 public class HealthDataReportDAO {
-	
-	private HealthDataReport createHealthDataReport(ResultSet rs) throws SQLException {
+	public static HealthDataReport createHealthDataReport(ResultSet rs) throws SQLException {
 		HealthDataReport report = new HealthDataReport();
 		report.setReportID(rs.getInt("reportID"));
 		report.setUserID(rs.getInt("userID"));
@@ -36,15 +36,15 @@ public class HealthDataReportDAO {
 		return report;
 	}
 	
-	private String createHealthDataReportJson(String query) {
-		Connection conn = DatabaseConnection.conn;
+	private static String createHealthDataReportJson(String query) {
+		Connection conn = DatabaseConnection.getConnection();
 		
 		List<HealthDataReport> reports = new ArrayList<HealthDataReport>();
 		
-		Statement stmt;
+		PreparedStatement stmt;
 		try {
-			stmt = conn.createStatement();
-			ResultSet rs = stmt.executeQuery(query);
+			stmt = conn.prepareStatement(query);
+			ResultSet rs = stmt.executeQuery();
 			while(rs.next()) {
 				HealthDataReport report = createHealthDataReport(rs);
 				reports.add(report);
@@ -60,7 +60,7 @@ public class HealthDataReportDAO {
 	//gets all health reports in the database.
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
-	public String getAllHealthDataReports() {
+	public static String getAllHealthDataReports() {
 
 		String query = "select * from HealthDataReport";
 		String json = createHealthDataReportJson(query);
@@ -72,7 +72,7 @@ public class HealthDataReportDAO {
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("/id/{id}")
-	public String getHealthDataReportByID(@PathParam("id")int id) {
+	public static String getHealthDataReportByID(@PathParam("id")int id) {
 		String query = "select * from HealthDataReport where userID=" + Integer.toString(id);
 		String json = createHealthDataReportJson(query); 
 		return json;
@@ -82,7 +82,7 @@ public class HealthDataReportDAO {
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("/month/{month}")
-	public String getHealthDataReportByMonth(@PathParam("month")int month) {
+	public static String getHealthDataReportByMonth(@PathParam("month")int month) {
 		String query = "select * from HealthDataReport where month(date)=" + Integer.toString(month);
 		String json = createHealthDataReportJson(query);
 		return json;
@@ -92,7 +92,7 @@ public class HealthDataReportDAO {
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("month_id")
-	public String getHealthDataReportByMonthAndID(@QueryParam("month")int month, @QueryParam("id") int id) {
+	public static String getHealthDataReportByMonthAndID(@QueryParam("month")int month, @QueryParam("id") int id) {
 		String query = "select * from HealthDataReport where month(date)=" + Integer.toString(month) +
 				" and userID=" + Integer.toString(id);
 		String json = createHealthDataReportJson(query);

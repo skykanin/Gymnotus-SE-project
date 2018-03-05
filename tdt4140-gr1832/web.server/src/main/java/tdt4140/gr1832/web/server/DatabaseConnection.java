@@ -8,7 +8,11 @@ import java.util.Scanner;
 
 public class DatabaseConnection {
    public static final String URL = "jdbc:mysql://localhost/gymnotus";
-   public static Connection conn = null;
+   private static Connection conn = null;
+   
+   public static Connection getConnection() {
+	   return conn;
+   }
    
    public static void connectToDB() {
 	   Scanner scanner = null;

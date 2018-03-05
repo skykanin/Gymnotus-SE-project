@@ -23,7 +23,7 @@ import tdt4140.gr1832.web.server.DatabaseConnection;
 public class RoleDAO {
 	
 	public static String getRoleDataListJson(String query) {
-		Connection conn = DatabaseConnection.conn;
+		Connection conn = DatabaseConnection.getConnection();
 		
 		List<Role> roles = new ArrayList<Role>();
 		
@@ -48,7 +48,7 @@ public class RoleDAO {
 	}
 	
 	public static String getRoleDataJson(String query) {
-		Connection conn = DatabaseConnection.conn;
+		Connection conn = DatabaseConnection.getConnection();
 		
 		Role role = new Role();
 		

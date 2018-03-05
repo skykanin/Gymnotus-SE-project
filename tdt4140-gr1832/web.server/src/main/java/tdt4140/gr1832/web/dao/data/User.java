@@ -9,6 +9,21 @@ public class User {
 	Integer gender;
 	Integer age;
 	
+	public User() {
+		
+	}
+	
+	public User(int userID, String username, String name, String email,
+				String phone, int gender, int age)
+	{
+		this.userID = userID;
+		this.username = username;
+		this.name = name;
+		this.email = email;
+		this.phone = phone;
+		this.gender = gender;
+		this.age = age;
+	}
 	
 	public int getUserID() {
 		return userID;

@@ -19,7 +19,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 
 
 @Path("user")
@@ -28,15 +27,15 @@ public class UserDAO {
 	// Utilities for getting single columns from User entity
 	public static String getStringColumnData(String username,
 											String columnLabel) {
-		Connection conn = DatabaseConnection.conn;
+		Connection conn = DatabaseConnection.getConnection();
 		
 	    String sql = "select " + columnLabel + " from User where username=" + "'" + username +"'";
 	    String data = null;
 	    
-	    Statement stmt;
+	    PreparedStatement stmt;
 		try {
-			stmt = conn.createStatement();
-		    ResultSet rs = stmt.executeQuery(sql);
+			stmt = conn.prepareStatement(sql);
+		    ResultSet rs = stmt.executeQuery();
 		    while(rs.next()) {
 		    		data = rs.getString(columnLabel);
 		    }
@@ -48,15 +47,15 @@ public class UserDAO {
 	
 	public static Integer getIntegerColumnData(String username,
 									   String columnLabel) {
-		Connection conn = DatabaseConnection.conn;
+		Connection conn = DatabaseConnection.getConnection();
 		
 		String sql = "select " + columnLabel + " from User where username=" + "'" + username +"'";
 		Integer data = null;
 		
-		Statement stmt;
+		PreparedStatement stmt;
 		try {
-		stmt = conn.createStatement();
-		ResultSet rs = stmt.executeQuery(sql);
+		stmt = conn.prepareStatement(sql);
+		ResultSet rs = stmt.executeQuery();
 			while(rs.next()) {
 				data = rs.getInt(columnLabel);
 				if(rs.wasNull()) data = null;
@@ -68,7 +67,7 @@ public class UserDAO {
 	}
 	
 	public static Response updateColumn(String username, String columnLabel, Object newValue, String type) {
-		Connection conn = DatabaseConnection.conn;
+		Connection conn = DatabaseConnection.getConnection();
 		PreparedStatement prepared_stmt = null;
 		int status = 400;
 
@@ -104,7 +103,7 @@ public class UserDAO {
 							  @FormParam("age") int age
 							  ) 
 	{
-		Connection conn = DatabaseConnection.conn;
+		Connection conn = DatabaseConnection.getConnection();
 		PreparedStatement prepared_stmt = null;
 		int status = 400;
 
@@ -141,7 +140,7 @@ public class UserDAO {
 	public Response deleteUser(@FormParam("username")String username,
 							  @FormParam("password") String password)
 	{
-		Connection conn = DatabaseConnection.conn;
+		Connection conn = DatabaseConnection.getConnection();
 		PreparedStatement prepared_stmt = null;
 		int status = 400;
 		Integer num_rows_affected = 0;
@@ -191,7 +190,7 @@ public class UserDAO {
 	
 	@GET
 	@Path("/user_exists")
-	public Response userExists(@QueryParam("username")String username) {
+	public static Response userExists(@QueryParam("username")String username) {
 		String dbUsername = getStringColumnData(username, "username");
 		Boolean userExists = dbUsername == null ? false : dbUsername.equals(username.toLowerCase());
 		int status = dbUsername != null ? 200 : 404;
@@ -201,7 +200,7 @@ public class UserDAO {
 	
 	@GET
 	@Path("/{username}/verify_password")
-	public Response verifyPassword(@PathParam("username") String username, 
+	public static Response verifyPassword(@PathParam("username") String username, 
 								  @QueryParam("password") String password) {
 		String dbPassword = getStringColumnData(username.toLowerCase(), "password");
 		Boolean isSame = dbPassword == null ? false : dbPassword.equals(password);
@@ -212,17 +211,17 @@ public class UserDAO {
 	@GET
 	@Path("/{username}/user_info")
 	@Produces(MediaType.APPLICATION_JSON)
-	public String getUserInfoByUsername(@PathParam("username") String username) {
-		Connection conn = DatabaseConnection.conn;
+	public static String getUserInfoByUsername(@PathParam("username") String username) {
+		Connection conn = DatabaseConnection.getConnection();
 		String query = "select userID, username, name, email, phoneumber, gender, age "
 				+ "from User where username=" + "'" + username + "'";
 		
 		User user = new User();
 		
-		Statement stmt;
+		PreparedStatement stmt;
 		try {
-			stmt = conn.createStatement();
-			ResultSet rs = stmt.executeQuery(query);
+			stmt = conn.prepareStatement(query);
+			ResultSet rs = stmt.executeQuery();
 			while(rs.next()) {
 				user.setUserID(rs.getInt("userID"));
 				if(rs.wasNull()) {
@@ -248,17 +247,17 @@ public class UserDAO {
 	@GET
 	@Path("/{id}/user_info_id")
 	@Produces(MediaType.APPLICATION_JSON)
-	public String getUserInfoByID(@PathParam("id") int id) {
-		Connection conn = DatabaseConnection.conn;
+	public static String getUserInfoByID(@PathParam("id") int id) {
+		Connection conn = DatabaseConnection.getConnection();
 		String query = "select userID, username, name, email, phoneumber, gender, age "
 				+ "from User where userID=" + Integer.toString(id);
 		
 		User user = new User();
 		
-		Statement stmt;
+		PreparedStatement stmt;
 		try {
-			stmt = conn.createStatement();
-			ResultSet rs = stmt.executeQuery(query);
+			stmt = conn.prepareStatement(query);
+			ResultSet rs = stmt.executeQuery();
 			while(rs.next()) {
 				user.setUserID(rs.getInt("userID"));
 				if(rs.wasNull()) {
