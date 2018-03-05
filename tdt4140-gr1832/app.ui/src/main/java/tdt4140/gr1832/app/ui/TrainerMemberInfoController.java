@@ -65,18 +65,19 @@ public class TrainerMemberInfoController extends Application {
 	
 	@FXML
 	public void initialize() {
-		
-		String height=TrainerMemberInfoApp.getHeight();
-		String date=TrainerMemberInfoApp.getDate();
-		String weight=TrainerMemberInfoApp.getWeight();
-		String steps=TrainerMemberInfoApp.getSteps();		
-		String restingHR=TrainerMemberInfoApp.getRestingHR();
-		String name = TrainerMemberInfoApp.getName();
-		String username = TrainerMemberInfoApp.getUsername();
-		String email = TrainerMemberInfoApp.getEmail();
-		String tlf = TrainerMemberInfoApp.getTlf();
-		String age = TrainerMemberInfoApp.getAge();
-		String gender = TrainerMemberInfoApp.getGender();
+		TrainerMemberInfoApp app = new TrainerMemberInfoApp();
+		//app.requestUserInformation_ID();
+		String height="";/*app.getHeight();*/
+		String date="";/*app.getDate();*/
+		String weight="";//app.getWeight();
+		String steps="";//app.getSteps();		
+		String restingHR="";//app.getRestingHR();
+		String name =app.getName();
+		String username = app.getUsername();
+		String email = app.getEmail();
+		String tlf = app.getTlf();
+		String age =app.getAge();
+		String gender = app.getGender();
 		
 		heightField.setText(height);
 		dateField.setText(date);		
