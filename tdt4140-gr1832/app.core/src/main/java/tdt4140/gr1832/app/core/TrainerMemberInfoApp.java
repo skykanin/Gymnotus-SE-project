@@ -5,96 +5,102 @@ package tdt4140.gr1832.app.core;
 //import java.net.HttpURLConnection;
 //import java.net.URL;
 
+import javax.ws.rs.client.WebTarget;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.client.Client;
+import javax.ws.rs.client.ClientBuilder;
+import com.google.gson.Gson;
+
 public class TrainerMemberInfoApp {
+
+	private ShowUserInfoContainer containerUser;
+	private ShowHealthInfoContainer containerHealth;
+	private String baseURI = "http://146.185.153.244:8080/api/";
 	
-//	private static final String USER_AGENT = null;
-//
-//		// HTTP GET request
-//		private void sendGet(String UrlEndsWith) throws Exception {
-//
-//			String url = "http://www.google.com/search?q=mkyong";
-//
-//			URL obj = new URL(url);
-//			HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-//
-//			// optional default is GET
-//			con.setRequestMethod("GET");
-//
-//			//add request header
-//			con.setRequestProperty("User-Agent", USER_AGENT);
-//
-//			int responseCode = con.getResponseCode();
-//			System.out.println("\nSending 'GET' request to URL : " + url);
-//			System.out.println("Response Code : " + responseCode);
-//
-//			BufferedReader in = new BufferedReader(
-//			        new InputStreamReader(con.getInputStream()));
-//			String inputLine;
-//			StringBuffer response = new StringBuffer();
-//
-//			while ((inputLine = in.readLine()) != null) {
-//				response.append(inputLine);
-//			}
-//			in.close();
-//
-//			//print result
-//			System.out.println(response.toString());
-//
-//		}
-    //adding comment
-	public static String getHeight() {
-		// TODO Auto-generated method stub
-		return "182";
+	
+	public void requestUserInformation_ID() {
+		Client client = ClientBuilder.newClient();
+		WebTarget webTarget = client.target(baseURI + "user/1/user_info_id");
+		String test = webTarget.request(MediaType.APPLICATION_JSON).get(String.class);
+		Gson gson = new Gson();
+		containerUser = gson.fromJson(test, ShowUserInfoContainer.class);
+	}
+	
+	public void requestHelthInformation_ID() {
+		Client client = ClientBuilder.newClient();
+		WebTarget webTarget = client.target(baseURI + "health_data/id/1");
+		String test = webTarget.request(MediaType.APPLICATION_JSON).get(String.class);
+		Gson gson = new Gson();
+		containerHealth = gson.fromJson(test, ShowHealthInfoContainer.class);
 	}
 
-	public static String getDate() {
-		// TODO Auto-generated method stub
-		return "28.02.2018";
+	public String checkNull(String in) {
+		if (in == null || in =="" || in == "null") {
+			return "Ikke spesifisert";
+		}
+		return in;
+	}
+	
+	private String convertArrayToString(String[] in ) {
+		String result = "";
+		for (int i=0; i<in.length; i++) {
+			result += in[i];
+		}
+		return result;
+	}
+	
+	public String getHeight() {
+		return convertArrayToString(containerHealth.getHeight());
 	}
 
-	public static String getWeight() {
-		// TODO Auto-generated method stub
-		return "78";
+	public String getDate() {
+		return convertArrayToString(containerHealth.getDate());
 	}
 
-	public static String getSteps() {
-		// TODO Auto-generated method stub
-		return "11000";
+	public String getWeight() {
+		return convertArrayToString(containerHealth.getWeight());
 	}
 
-	public static String getRestingHR() {
-		// TODO Auto-generated method stub
-		return "60";
+	public String getSteps() {
+		return convertArrayToString(containerHealth.getSteps());
 	}
 
-	public static String getName() {
-		// TODO Auto-generated method stub
-		return "Bob";
+	public String getRestingHR() {
+		return convertArrayToString(containerHealth.getRestingHR());
 	}
 
-	public static String getUsername() {
-		// TODO Auto-generated method stub
-		return "bobby";
+	public String getName() {
+		return checkNull(containerUser.getName());
 	}
 
-	public static String getEmail() {
-		// TODO Auto-generated method stub
-		return "bob@gmail.com";
+	public String getUsername() {
+		return checkNull(containerUser.getUsername());
 	}
 
-	public static String getTlf() {
-		// TODO Auto-generated method stub
-		return "90090090";
+	public String getEmail() {
+		return checkNull(containerUser.getEmail());
 	}
 
-	public static String getAge() {
-		// TODO Auto-generated method stub
-		return "21";
+	public String getTlf() {
+		return checkNull(containerUser.getPhone());
 	}
 
-	public static String getGender() {
-		// TODO Auto-generated method stub
-		return "Mann";
+	public String getAge() {
+		return checkNull(""+ containerUser.getAge());
 	}
 
+	public String getGender() {
+		if (containerUser.getGender() == 1) {
+			return "Mann";
+		} else if( containerUser.getGender() == 2 ){
+			return "Kvinne";
+		}
+		return checkNull("" + containerUser.getGender());
+	}
+
+	public static void main(String[] args) {
+		TrainerMemberInfoApp t = new TrainerMemberInfoApp();
+		t.requestUserInformation_ID();
+		t.requestHelthInformation_ID();
+	}
 }
