@@ -8,7 +8,6 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import com.google.gson.Gson;
-import com.sun.tools.corba.se.idl.constExpr.Not;
 
 public class ApplicationState {
     private final String baseURI = "http://146.185.153.244:8080/api/user/";
