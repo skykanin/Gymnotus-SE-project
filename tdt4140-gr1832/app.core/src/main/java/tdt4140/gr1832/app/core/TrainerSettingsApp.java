@@ -32,6 +32,5 @@ public class TrainerSettingsApp {
 		return "Mann";
 	}
 
-	
 
 }
