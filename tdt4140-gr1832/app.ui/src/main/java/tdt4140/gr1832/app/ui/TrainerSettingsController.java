@@ -52,41 +52,6 @@ public class TrainerSettingsController extends Application {
 		//funksjonalitet for å sende felt til database
 	}
 	
-	
-	@FXML
-	public void initialize() {
-		
-		String name = TrainerSettingsApp.getName();
-		String username = TrainerSettingsApp.getUsername();
-		String email = TrainerSettingsApp.getEmail();
-		String tlf = TrainerSettingsApp.getTlf();
-		String age = TrainerSettingsApp.getAge();
-//		String gender = TrainerMemberInfoApp.getGender();
-
-		nameField.setText(name);
-		usernameField.setText(username);		
-		emailField.setText(email);
-		tlfField.setText(tlf);
-		ageField.setText(age);
-//		genderField.setText(gender);
-		
-	}
-	
-	
-	
-	@Override
-	public void start(Stage primaryStage) throws Exception {
-		Parent root = FXMLLoader.load(getClass().getResource("TrainerSettings.fxml")); //Husk å endre til tilhørende fxml fil sitt navn.
-		Scene scene = new Scene(root, 1200, 660);
-        primaryStage.setTitle("MemberInfoView");
-        primaryStage.setScene(scene);
-        primaryStage.show();
-		
-	}
-	
-	public static void main(String[] args) {
-		launch(TrainerSettingsController.class, args);
-	}
 	/*
 	  HENRIKs ARBEID START
 	 */
@@ -122,5 +87,41 @@ public class TrainerSettingsController extends Application {
 	/*
 	 HENRIKs ARBEID SLUTT
 	 */
+	
+	@FXML
+	public void initialize() {
+		
+		String name = TrainerSettingsApp.getName();
+		String username = TrainerSettingsApp.getUsername();
+		String email = TrainerSettingsApp.getEmail();
+		String tlf = TrainerSettingsApp.getTlf();
+		String age = TrainerSettingsApp.getAge();
+//		String gender = TrainerMemberInfoApp.getGender();
+
+		nameField.setText(name);
+		usernameField.setText(username);		
+		emailField.setText(email);
+		tlfField.setText(tlf);
+		ageField.setText(age);
+//		genderField.setText(gender);
+		
+	}
+	
+	
+	
+	@Override
+	public void start(Stage primaryStage) throws Exception {
+		Parent root = FXMLLoader.load(getClass().getResource("TrainerSettings.fxml")); //Husk å endre til tilhørende fxml fil sitt navn.
+		Scene scene = new Scene(root, 1200, 660);
+        primaryStage.setTitle("MemberInfoView");
+        primaryStage.setScene(scene);
+        primaryStage.show();
+		
+	}
+	
+	public static void main(String[] args) {
+		launch(TrainerSettingsController.class, args);
+	}
+	
 	
 }
