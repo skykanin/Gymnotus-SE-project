@@ -11,7 +11,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class WindowController extends Application {
+public class WindowController extends FxApp {
 
 	protected void NavigerTilSide(String filnavn, ActionEvent event) throws IOException {
 		Parent LoginScreen_parent = FXMLLoader.load(getClass().getResource(filnavn));
@@ -21,6 +21,16 @@ public class WindowController extends Application {
 		app_stage.show();
 	}
 
+	protected void NavigerTilSide(String filnavn, ActionEvent event, String userID) throws IOException {
+		TrainerMemberInfoController.userID = userID;
+		Parent LoginScreen_parent = FXMLLoader.load(getClass().getResource(filnavn));
+		Scene LoginScreen_scene = new Scene(LoginScreen_parent);
+		Stage app_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		app_stage.setScene(LoginScreen_scene);
+		app_stage.show();
+		   
+	}
+	
 	@FXML
 	public void TilLoggUt(ActionEvent event) throws Exception {               
         try {
@@ -74,9 +84,4 @@ public class WindowController extends Application {
 		NavigerTilSide("TrainerTrainingProgramExercises.fxml", event);
 	}
 
-	@Override
-	public void start(Stage primaryStage) throws Exception {
-		// TODO Auto-generated method stub
-		
-	}
 }

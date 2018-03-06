@@ -20,7 +20,6 @@ public class ShowHealthInfoContainer {
 	}
 
 	public String getDate() {
-		System.out.println(date);
 		return date;
 	}
 
