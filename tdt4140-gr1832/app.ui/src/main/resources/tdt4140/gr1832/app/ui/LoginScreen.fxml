@@ -11,32 +11,37 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="660.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tdt4140.gr1832.app.ui.LoginScreenController">
+<VBox prefHeight="660.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tdt4140.gr1832.app.ui.LoginScreenController">
   <children>
-    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="451.0" prefWidth="487.0" style="-fx-background-color: #FFFFFF;" stylesheets="@styles/main.css" VBox.vgrow="ALWAYS">
+    <AnchorPane fx:id="Anchor" maxHeight="-1.0" maxWidth="-1.0" prefHeight="451.0" prefWidth="487.0" style="-fx-background-color: #FFFFFF;" VBox.vgrow="ALWAYS">
       <children>
-            <JFXTextField id="brukernavn" fx:id="Brukernavn" focusColor="#80bfb7" labelFloat="true" layoutX="876.0" layoutY="179.0" prefHeight="56.0" prefWidth="278.0" promptText="Brukernavn" unFocusColor="BLACK">
+            <JFXTextField fx:id="username" focusColor="#2196f3" labelFloat="true" layoutX="882.0" layoutY="179.0" prefHeight="56.0" prefWidth="278.0" promptText="Username" unFocusColor="BLACK">
                <font>
                   <Font size="15.0" />
                </font></JFXTextField>
-            <JFXPasswordField id="passord" fx:id="Passord" focusColor="#80bfb7" labelFloat="true" layoutX="876.0" layoutY="350.0" prefHeight="56.0" prefWidth="278.0" promptText="Passord" unFocusColor="BLACK">
+            <JFXPasswordField fx:id="password" focusColor="#2196f3" labelFloat="true" layoutX="881.0" layoutY="350.0" prefHeight="56.0" prefWidth="278.0" promptText="Password" unFocusColor="BLACK">
                <font>
                   <Font size="15.0" />
                </font>
             </JFXPasswordField>
-            <JFXButton fx:id="LoggInn" buttonType="FLAT" layoutX="864.0" layoutY="566.0" onAction="#LoggInn" prefHeight="39.0" prefWidth="89.0" ripplerFill="WHITE" style="-fx-background-color: #80bfb7;" text="Logg inn" />
-            <JFXButton fx:id="Registrer" buttonType="FLAT" layoutX="1047.0" layoutY="565.0" onAction="#Registrer" prefHeight="39.0" prefWidth="89.0" ripplerFill="WHITE" style="-fx-background-color: #80bfb7;" text="Registrer" />
-            <FontAwesomeIconView glyphName="USER" layoutX="830.0" layoutY="236.0" size="35" text="" />
-            <FontAwesomeIconView glyphName="LOCK" layoutX="833.0" layoutY="404.0" size="35" text="" />
-            <Label layoutX="876.0" layoutY="73.0" text="GYMNOTUS">
+            <JFXButton fx:id="loginButton" buttonType="FLAT" layoutX="864.0" layoutY="526.0" onAction="#handleLoginButtonAction" prefHeight="39.0" prefWidth="89.0" ripplerFill="WHITE" style="-fx-background-color: #2196F3;" text="Login" />
+            <JFXButton fx:id="registerButton" buttonType="FLAT" layoutX="1047.0" layoutY="526.0" onAction="#handleRegisterButtonAction" prefHeight="39.0" prefWidth="89.0" ripplerFill="WHITE" style="-fx-background-color: #2196F3;" text="Sign Up" />
+            <FontAwesomeIconView glyphName="USER" layoutX="835.0" layoutY="236.0" size="35" text="" />
+            <FontAwesomeIconView glyphName="LOCK" layoutX="838.0" layoutY="404.0" size="35" text="" />
+            <Label layoutX="930.0" layoutY="73.0" text="GYMNOTUS">
                <font>
                   <Font size="24.0" />
                </font>
             </Label>
-            <ImageView fitHeight="660.0" fitWidth="824.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="666.0" fitWidth="824.0" layoutY="-2.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@./images/gym.jpg" />
+                  <Image url="@images/gymBlur.jpg" />
                </image></ImageView>
+            <Label fx:id="errorMessage" alignment="CENTER" contentDisplay="CENTER" layoutX="861.0" layoutY="459.0" prefHeight="35.0" prefWidth="268.0" textFill="RED">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
       </children>
     </AnchorPane>
   </children>
