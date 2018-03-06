@@ -123,7 +123,4 @@ public class TrainerSettingsController extends Application {
 	 HENRIKs ARBEID SLUTT
 	 */
 	
-	
-	
-	
 }
