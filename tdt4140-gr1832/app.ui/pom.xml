@@ -84,6 +84,7 @@
 				<version>2.20.1</version>
 				<configuration>
 					<skipTests>${skip-ui-tests}</skipTests>
+					<encoding>UTF-8</encoding>
 				</configuration>
 			</plugin>
 		</plugins>
