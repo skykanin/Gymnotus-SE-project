@@ -8,7 +8,7 @@ import javafx.scene.control.Label;
 
 import javax.ws.rs.NotFoundException;
 
-public class LoginScreenController extends FxApp {
+public class LoginScreenController extends WindowController {
 
     @FXML
     private JFXTextField username;
