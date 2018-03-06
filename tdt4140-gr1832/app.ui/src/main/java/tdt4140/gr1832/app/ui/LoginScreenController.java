@@ -22,6 +22,8 @@ public class LoginScreenController extends FxApp {
 
         if (uname.equals("") || pword.equals("")) {
             errorMessage.setText("One or both fields are missing");
+        } else {
+            errorMessage.setText("");
         }
     }
 
