@@ -10,33 +10,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class TrainerTrainingProgramAttendantsController {
+public class TrainerTrainingProgramAttendantsController extends WindowController {
 
-	@FXML
-	private void TilInnstillinger(ActionEvent event) throws IOException {
-		NavigerTilSide("TrainerSettings.fxml", event);
-	}
-	
-	@FXML
-	private void TilDashboard(ActionEvent event) throws IOException {
-		NavigerTilSide("TrainerDashboard.fxml", event);
-	}
-	
-	@FXML
-	private void TilMedlemmer(ActionEvent event) throws IOException {
-		NavigerTilSide("TrainerMembers.fxml", event);
-	}
-	
-	@FXML
-	private void TilTreningsprogram(ActionEvent event) throws IOException {
-		;
-	}
-	
-	private void NavigerTilSide(String filnavn, ActionEvent event) throws IOException {
-		Parent LoginScreen_parent = FXMLLoader.load(getClass().getResource(filnavn));
-		Scene LoginScreen_scene = new Scene(LoginScreen_parent);
-		Stage app_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-		app_stage.setScene(LoginScreen_scene);
-		app_stage.show();
-	}
 }

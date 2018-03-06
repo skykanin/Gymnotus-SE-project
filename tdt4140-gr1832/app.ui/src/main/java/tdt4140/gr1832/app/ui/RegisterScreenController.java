@@ -10,19 +10,11 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class RegisterScreenController {
+public class RegisterScreenController extends WindowController {
 
 	@FXML
 	private void TilDashboard(ActionEvent event) throws IOException {
 		NavigerTilSide("TrainerDashboard.fxml", event);
 	}
 
-	
-	private void NavigerTilSide(String filnavn, ActionEvent event) throws IOException {
-		Parent LoginScreen_parent = FXMLLoader.load(getClass().getResource(filnavn));
-		Scene LoginScreen_scene = new Scene(LoginScreen_parent);
-		Stage app_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-		app_stage.setScene(LoginScreen_scene);
-		app_stage.show();
-	}
 }

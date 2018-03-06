@@ -7,7 +7,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class FxApp extends Application {
-
+	
     @Override
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("FxApp.fxml"));
@@ -21,3 +21,4 @@ public class FxApp extends Application {
         launch(args);
     }
 }
+
