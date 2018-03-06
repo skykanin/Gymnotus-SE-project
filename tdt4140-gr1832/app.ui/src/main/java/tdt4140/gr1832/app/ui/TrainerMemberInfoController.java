@@ -52,11 +52,7 @@ public class TrainerMemberInfoController extends Application {
 	JFXDatePicker datePickerField;
 	
 	
-	private String userID;
-	
-	public void setUser_ID(String id) {
-		this.userID = id;
-	}
+	public static String userID;
 	
 	//start
 	public void start(Stage stage) throws Exception {
@@ -71,11 +67,39 @@ public class TrainerMemberInfoController extends Application {
 	@FXML
 	public void initialize() {
 		if (userID == null) {
-			setUser_ID("1");
-		}
+			tdt4140.gr1832.app.core.TrainerMemberInfoApp app = new TrainerMemberInfoApp();
+			app.requestUserInformation_ID("1");
+			app.requestHealthInformation_ID("1");
+			String height=app.getHeight();
+			String date=app.getDate();
+			String weight=app.getWeight();
+			String steps=app.getSteps();		
+			String restingHR=app.getRestingHR();
+			String name =app.getName();
+			String username = app.getUsername();
+			String email = app.getEmail();
+			String tlf = app.getTlf();
+			String age =app.getAge();
+			String gender = app.getGender();
+			
+			heightField.setText(height);
+			dateField.setText(date);		
+			weightField.setText(weight);
+			stepsField.setText(steps);
+			restingHRField.setText(restingHR);
+			nameField.setText(name);
+			usernameField.setText(username);		
+			emailField.setText(email);
+			tlfField.setText(tlf);
+			ageField.setText(age);
+			genderField.setText(gender);
+			datePickerField.setDisable(true);
+			
+		} else {
 		tdt4140.gr1832.app.core.TrainerMemberInfoApp app = new TrainerMemberInfoApp();
 		app.requestUserInformation_ID(userID);
 		app.requestHealthInformation_ID(userID);
+		
 		String height=app.getHeight();
 		String date=app.getDate();
 		String weight=app.getWeight();
@@ -100,6 +124,7 @@ public class TrainerMemberInfoController extends Application {
 		ageField.setText(age);
 		genderField.setText(gender);
 		datePickerField.setDisable(true);
+		}
 		
 	}
 

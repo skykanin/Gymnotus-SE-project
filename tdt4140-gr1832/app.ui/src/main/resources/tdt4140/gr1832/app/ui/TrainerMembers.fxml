@@ -57,8 +57,8 @@
                   </AnchorPane>
                </children>
             </VBox>
-            <JFXListView fx:id="medlemsListe" layoutX="592.0" layoutY="84.0" />
-            <JFXButton layoutX="688.0" layoutY="515.0" onAction="#velgMedlem" prefHeight="27.0" prefWidth="67.0" style="-fx-background-color: #80bfb7;" text="Velg" />
+            <JFXListView fx:id="medlemsListe" layoutX="592.0" layoutY="84.0" prefHeight="400.0" prefWidth="250.0" />
+            <JFXButton fx:id="velgMedlemButton" layoutX="688.0" layoutY="515.0" onAction="#velgMedlem" prefHeight="27.0" prefWidth="67.0" style="-fx-background-color: #80bfb7;" text="Velg" />
       </children>
     </AnchorPane>
   </children>
