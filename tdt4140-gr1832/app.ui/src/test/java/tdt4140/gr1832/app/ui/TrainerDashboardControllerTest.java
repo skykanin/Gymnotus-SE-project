@@ -15,4 +15,8 @@ import javafx.stage.Stage;
 public class TrainerDashboardControllerTest extends FxAppTest {
 
 
+    @Override
+    public void start(Stage stage) throws Exception {
+
+    }
 }
