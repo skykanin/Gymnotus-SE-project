@@ -8,6 +8,8 @@ import javafx.stage.Stage;
 
 public class FxApp extends Application {
 
+	public static ApplicationState AS;
+	
     @Override
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("LoginScreen.fxml"));
@@ -15,8 +17,11 @@ public class FxApp extends Application {
         stage.setScene(scene);
         stage.setTitle("Gymnotus");
         stage.show();
+        
+        AS = new ApplicationState("LoginScreen.fxml");
     }
 
+    
     public static void main(String[] args) {
         launch(args);
     }
