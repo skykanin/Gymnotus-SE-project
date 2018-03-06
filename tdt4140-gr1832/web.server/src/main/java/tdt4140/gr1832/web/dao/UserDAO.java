@@ -19,6 +19,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Path("user")
@@ -277,6 +279,30 @@ public class UserDAO {
 		
 		Gson gson = new Gson();
 		String json = gson.toJson(user);  
+		return json;
+	}
+	
+	@GET
+	@Path("/get_all_ids")
+	@Produces(MediaType.APPLICATION_JSON)
+	public String getAllID() {
+		Connection conn = DatabaseConnection.getConnection();
+		String query = "select userID from User";
+		
+		List<Integer> ids = new ArrayList<Integer>();
+		PreparedStatement stmt;
+		try {
+			stmt = conn.prepareStatement(query);
+			ResultSet rs = stmt.executeQuery();
+			while(rs.next()) {
+				ids.add(rs.getInt("userID"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		Gson gson = new Gson();
+		String json = gson.toJson(ids);  
 		return json;
 	}
 
