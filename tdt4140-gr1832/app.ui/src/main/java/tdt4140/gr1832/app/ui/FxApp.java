@@ -8,20 +8,17 @@ import javafx.stage.Stage;
 
 public class FxApp extends Application {
 
-	public static ApplicationState AS;
+	ApplicationState AS;
 	
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("LoginScreen.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("FxApp.fxml"));
         Scene scene = new Scene(root);
         stage.setScene(scene);
-        stage.setTitle("Gymnotus");
+        stage.setTitle("FxApp");
         stage.show();
-        
-        AS = new ApplicationState("LoginScreen.fxml");
     }
 
-    
     public static void main(String[] args) {
         launch(args);
     }
