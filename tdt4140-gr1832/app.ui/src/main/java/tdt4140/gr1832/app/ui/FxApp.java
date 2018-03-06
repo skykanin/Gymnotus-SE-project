@@ -8,8 +8,6 @@ import javafx.stage.Stage;
 
 public class FxApp extends Application {
 
-	ApplicationState AS;
-	
     @Override
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("FxApp.fxml"));
