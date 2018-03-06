@@ -1,9 +1,5 @@
 package tdt4140.gr1832.app.core;
 
-//import java.io.BufferedReader;
-//import java.io.InputStreamReader;
-//import java.net.HttpURLConnection;
-//import java.net.URL;
 
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.MediaType;
@@ -35,7 +31,6 @@ public class TrainerMemberInfoApp {
 	Client client = ClientBuilder.newClient();
 	WebTarget webTarget = client.target(baseURI + "user/"+id+"/user_info_id");
 	String test = webTarget.request(MediaType.APPLICATION_JSON).get(String.class);
-	System.out.println(test);
 	Gson gson = new Gson();
 	containerUser = gson.fromJson(test, ShowUserInfoContainer.class);
 	}
@@ -68,6 +63,7 @@ public class TrainerMemberInfoApp {
 		return in;
 	}
 	
+	//Not used now
 	private String convertArrayToString(String[] in ) {
 		String result = "";
 		for (int i=0; i<in.length; i++) {

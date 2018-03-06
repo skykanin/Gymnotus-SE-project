@@ -129,6 +129,7 @@ public class TrainerMemberInfoController extends WindowController {
 	}
 
 	public void datePicker() {
+		//Not yet implemented
 	return;
 	}
 	
