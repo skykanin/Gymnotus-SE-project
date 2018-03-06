@@ -8,7 +8,7 @@ import javafx.stage.Stage;
 
 public class FxApp extends Application {
 
-	ApplicationState AS;
+	public static ApplicationState AS;
 	
     @Override
     public void start(Stage stage) throws Exception {
