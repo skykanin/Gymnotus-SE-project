@@ -19,7 +19,6 @@ public class WindowController extends Application {
 		Stage app_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		app_stage.setScene(LoginScreen_scene);
 		app_stage.show();
-		FxApp.AS.setWindow(filnavn);
 	}
 
 	@FXML
