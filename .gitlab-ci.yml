@@ -17,6 +17,7 @@ variables:
 build-job:
   stage: build
   script:
+    - "export JAVA_TOOL_OPTIONS=-Dfile.encoding=UTF8"
     - "mvn clean compile -U -f tdt4140-gr1832/pom.xml $MAVEN_CLI_OPTS"
 
 unittest-job:
