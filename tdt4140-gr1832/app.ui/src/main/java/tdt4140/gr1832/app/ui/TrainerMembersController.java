@@ -39,4 +39,17 @@ public class TrainerMembersController {
 		app_stage.setScene(LoginScreen_scene);
 		app_stage.show();
 	}
+	
+	@FXML
+	public void TilLoggUt(ActionEvent event) throws Exception {               
+        try {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("LogOut.fxml"));
+                Parent root1 = (Parent) fxmlLoader.load();
+                Stage stage = new Stage();
+                stage.setScene(new Scene(root1));  
+                stage.show();
+        } catch(Exception e) {
+           e.printStackTrace();
+          }
+	}
 }
