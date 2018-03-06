@@ -53,7 +53,7 @@ public class TrainerSettingsTest extends ApplicationTest {
 	
 	@Test
 	public void testFieldExist() {
-		//Tester at feltene so skal vaere der finnes
+		//Tester at feltene so skal være der finnes
 		
 		Assert.assertTrue(lookup("#nameField").query() instanceof JFXTextField);
 		Assert.assertTrue(lookup("#usernameField").query() instanceof JFXTextField);
