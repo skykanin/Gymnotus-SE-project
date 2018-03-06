@@ -14,26 +14,5 @@ import javafx.stage.Stage;
 
 public class TrainerDashboardControllerTest extends FxAppTest {
 
-	private TrainerDashboardController testController;
-	
-	@Before
-	public void setupTestController() {
-
-		
-	}
-	
-	public void start(Stage stage) throws Exception {
-		FXMLLoader loader = new FXMLLoader(getClass().getResource("TrainerMemberInfo.fxml"));
-		Parent root = loader.load();
-        this.testController = loader.getController();
-        Scene scene = new Scene(root);
-        
-        stage.setTitle("JavaFX MemberInfoTest");
-        stage.setScene(scene);
-        stage.show();
-       
-        
-	}
-
 
 }
