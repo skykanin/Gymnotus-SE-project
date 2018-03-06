@@ -1,5 +1,5 @@
 package tdt4140.gr1832.app.ui;
 
-public class LoginScreenControllerTest {
+public class LoginScreenControllerTest extends FxAppTest {
 
 }
