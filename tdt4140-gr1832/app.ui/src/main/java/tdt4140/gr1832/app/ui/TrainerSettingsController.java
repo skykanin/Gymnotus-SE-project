@@ -30,7 +30,7 @@ public class TrainerSettingsController {
 	@FXML
 	private void TilTreningsprogram(ActionEvent event) throws IOException {
 		NavigerTilSide("TrainerTrainingProgramOverview.fxml", event);
-	}
+	}  
 	
 	private void NavigerTilSide(String filnavn, ActionEvent event) throws IOException {
 		Parent LoginScreen_parent = FXMLLoader.load(getClass().getResource(filnavn));

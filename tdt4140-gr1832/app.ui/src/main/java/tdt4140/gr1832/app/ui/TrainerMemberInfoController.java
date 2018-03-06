@@ -1,15 +1,18 @@
 package tdt4140.gr1832.app.ui;
 
+import java.io.IOException;
+
 import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXTextField;
 
 import javafx.application.Application;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.*;
-import javafx.scene.Scene;
 import javafx.stage.Stage;
 import tdt4140.gr1832.app.core.TrainerMemberInfoApp;
+
 
 public class TrainerMemberInfoController extends Application {
 	@FXML
@@ -49,9 +52,11 @@ public class TrainerMemberInfoController extends Application {
 	JFXDatePicker datePickerField;
 	
 	
+	private String userID;
 	
-	
-	
+	public void setUser_ID(String id) {
+		this.userID = id;
+	}
 	
 	//start
 	public void start(Stage stage) throws Exception {
@@ -65,13 +70,17 @@ public class TrainerMemberInfoController extends Application {
 	
 	@FXML
 	public void initialize() {
-		TrainerMemberInfoApp app = new TrainerMemberInfoApp();
-		//app.requestUserInformation_ID();
-		String height="";/*app.getHeight();*/
-		String date="";/*app.getDate();*/
-		String weight="";//app.getWeight();
-		String steps="";//app.getSteps();		
-		String restingHR="";//app.getRestingHR();
+		if (userID == null) {
+			setUser_ID("1");
+		}
+		tdt4140.gr1832.app.core.TrainerMemberInfoApp app = new TrainerMemberInfoApp();
+		app.requestUserInformation_ID(userID);
+		app.requestHealthInformation_ID(userID);
+		String height=app.getHeight();
+		String date=app.getDate();
+		String weight=app.getWeight();
+		String steps=app.getSteps();		
+		String restingHR=app.getRestingHR();
 		String name =app.getName();
 		String username = app.getUsername();
 		String email = app.getEmail();
@@ -90,6 +99,7 @@ public class TrainerMemberInfoController extends Application {
 		tlfField.setText(tlf);
 		ageField.setText(age);
 		genderField.setText(gender);
+		datePickerField.setDisable(true);
 		
 	}
 
@@ -97,9 +107,40 @@ public class TrainerMemberInfoController extends Application {
 	return;
 	}
 	
+	@FXML
+	private void TilInnstillinger(ActionEvent event) throws IOException {
+		NavigerTilSide("TrainerSettings.fxml", event);
+	}
+	
+	@FXML
+	private void TilDashboard(ActionEvent event) throws IOException {
+		NavigerTilSide("TrainerDashboard.fxml", event);
+	}
+	
+	@FXML
+	private void TilMedlemmer(ActionEvent event) throws IOException {
+		NavigerTilSide("TrainerMembers.fxml", event);
+	}
+	
+	@FXML
+	private void TilTreningsprogram(ActionEvent event) throws IOException {
+		NavigerTilSide("TrainerTrainingProgramOverview.fxml", event);
+	}
+	
+	private void NavigerTilSide(String filnavn, ActionEvent event) throws IOException {
+		Parent LoginScreen_parent = FXMLLoader.load(getClass().getResource(filnavn));
+		Scene LoginScreen_scene = new Scene(LoginScreen_parent);
+		Stage app_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		app_stage.setScene(LoginScreen_scene);
+		app_stage.show();
+	}
+	
+	
 	public static void main(String[] args) {
 		
 	launch(TrainerMemberInfoController.class, args);
 	
 	}
+
+
 }

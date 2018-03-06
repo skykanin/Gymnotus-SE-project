@@ -14,7 +14,7 @@ public class ShowUserInfoContainer {
 		
 	
 		
-		public ShowUserInfoContainer (String username, String password, int age, int gender,String name, String email, String phone ) {
+		public ShowUserInfoContainer (String username, String password, String name, int age, int gender, String email, String phone ) {
 			this.phone = phone;
 			this.username =username;
 			this.name = name;

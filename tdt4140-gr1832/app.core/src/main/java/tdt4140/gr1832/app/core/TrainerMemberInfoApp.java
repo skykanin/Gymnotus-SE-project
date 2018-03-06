@@ -7,33 +7,48 @@ package tdt4140.gr1832.app.core;
 
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.MediaType;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 public class TrainerMemberInfoApp {
 
 	private ShowUserInfoContainer containerUser;
-	private ShowHealthInfoContainer containerHealth;
+	private ShowAllUsersContainer containerAllUsers;
+	private List<ShowHealthInfoContainer> containerHealth = new ArrayList<ShowHealthInfoContainer>();
+
 	private String baseURI = "http://146.185.153.244:8080/api/";
+
 	
+	public void requestUserInformation_ID(String id) {
+
+	Client client = ClientBuilder.newClient();
+	WebTarget webTarget = client.target(baseURI + "user/"+id+"/user_info_id");
+	String test = webTarget.request(MediaType.APPLICATION_JSON).get(String.class);
+	Gson gson = new Gson();
+	containerUser = gson.fromJson(test, ShowUserInfoContainer.class);
+	}
 	
-	public void requestUserInformation_ID() {
+	public void requestAllUserID() {
 		Client client = ClientBuilder.newClient();
 		WebTarget webTarget = client.target(baseURI + "user/1/user_info_id");
 		String test = webTarget.request(MediaType.APPLICATION_JSON).get(String.class);
 		Gson gson = new Gson();
-		containerUser = gson.fromJson(test, ShowUserInfoContainer.class);
 	}
 	
-	public void requestHelthInformation_ID() {
+	public void requestHealthInformation_ID(String id) {
 		Client client = ClientBuilder.newClient();
-		WebTarget webTarget = client.target(baseURI + "health_data/id/1");
+		WebTarget webTarget = client.target(baseURI + "health_data/id/"+id);
 		String test = webTarget.request(MediaType.APPLICATION_JSON).get(String.class);
 		Gson gson = new Gson();
-		containerHealth = gson.fromJson(test, ShowHealthInfoContainer.class);
+		containerHealth = gson.fromJson(test, new TypeToken<List<ShowHealthInfoContainer>>(){}.getType());
 	}
-
+	
 	public String checkNull(String in) {
 		if (in == null || in =="" || in == "null") {
 			return "Ikke spesifisert";
@@ -50,23 +65,23 @@ public class TrainerMemberInfoApp {
 	}
 	
 	public String getHeight() {
-		return convertArrayToString(containerHealth.getHeight());
+		return containerHealth.get(0).getHeight();
 	}
 
 	public String getDate() {
-		return convertArrayToString(containerHealth.getDate());
+		return containerHealth.get(0).getDate();
 	}
 
 	public String getWeight() {
-		return convertArrayToString(containerHealth.getWeight());
+		return containerHealth.get(0).getWeight();
 	}
 
 	public String getSteps() {
-		return convertArrayToString(containerHealth.getSteps());
+		return containerHealth.get(0).getSteps();
 	}
 
 	public String getRestingHR() {
-		return convertArrayToString(containerHealth.getRestingHR());
+		return containerHealth.get(0).getRestingHR();
 	}
 
 	public String getName() {
@@ -100,7 +115,7 @@ public class TrainerMemberInfoApp {
 
 	public static void main(String[] args) {
 		TrainerMemberInfoApp t = new TrainerMemberInfoApp();
-		t.requestUserInformation_ID();
-		t.requestHelthInformation_ID();
+		t.requestUserInformation_ID("1");
+		t.requestHealthInformation_ID("1");
 	}
 }
