@@ -11,7 +11,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class WindowController extends Application {
+public class WindowController extends FxApp {
 
 	protected void NavigerTilSide(String filnavn, ActionEvent event) throws IOException {
 		Parent LoginScreen_parent = FXMLLoader.load(getClass().getResource(filnavn));
