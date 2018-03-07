@@ -11,11 +11,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
- 
- <Label fx:id="changingUserError" alignment="CENTER" contentDisplay="CENTER" layoutX="861.0" layoutY="459.0" prefHeight="35.0" prefWidth="268.0" textFill="RED">
-                    <font>
-                        <Font size = "18.0"/>
-                    </font>
 
 <VBox prefHeight="660.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tdt4140.gr1832.app.ui.RegisterScreenController">
   <children>
@@ -30,7 +25,7 @@
                   <Font size="15.0" />
                </font>
             </JFXPasswordField>
-            <JFXButton buttonType="FLAT" layoutX="1047.0" layoutY="565.0" onAction="#TilDashboard" prefHeight="39.0" prefWidth="89.0" ripplerFill="WHITE" style="-fx-background-color: #80bfb7;" text="Registrer" />
+            <JFXButton fx:id="registerButton" buttonType="FLAT" layoutX="1047.0" layoutY="565.0" onAction="#TilDashboard" prefHeight="39.0" prefWidth="89.0" ripplerFill="WHITE" style="-fx-background-color: #80bfb7;" text="Registrer" />
             <Label layoutX="876.0" layoutY="74.0" text="GYMNOTUS">
                <font>
                   <Font size="24.0" />
