@@ -43,9 +43,9 @@ public class TrainerTrainingProgramOverviewControllerTest extends FxAppTest {
         verifyThat(TilMedlemmerID, hasText("    MEDLEMMER"));
         verifyThat(TilInnstillingerID, hasText("    INNSTILLINGER"));
         
-        verifyThat(TilTreningsovelseID, hasText("ØVELSER"));
+        verifyThat(TilTreningsovelseID, hasText("OVELSER"));
         verifyThat(TilTreningskommentarID, hasText("KOMMENTAR"));
-        verifyThat(TilTreningspameldteID, hasText("PÅMELDTE"));
+        verifyThat(TilTreningspameldteID, hasText("PAMELDTE"));
         verifyThat(TilTreningsoversiktID, hasText("OVERSIKT"));
     }
     
