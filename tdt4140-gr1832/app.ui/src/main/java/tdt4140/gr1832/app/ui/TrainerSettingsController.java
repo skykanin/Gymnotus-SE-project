@@ -57,13 +57,13 @@ public class TrainerSettingsController extends WindowController {
 	@FXML
 	public void initialize() {
 		
-		ShowUserInfoContainer user = FxApp.getAS().getLoggInUser();
+		ShowUserInfoContainer user = FxApp.getAS().getLoggedInUser();
 
-		String name = TrainerSettingsApp.getName();
-		String username = TrainerSettingsApp.getUsername();
-		String email = TrainerSettingsApp.getEmail();
-		String tlf = TrainerSettingsApp.getTlf();
-		String age = TrainerSettingsApp.getAge();
+		String name = user.getName();
+		String username = user.getUsername();
+		String email = user.getEmail();
+		String tlf = user.getPhone();
+		String age = Integer.toString(user.getAge());
 //		String gender = TrainerMemberInfoApp.getGender();
 
 		nameField.setText(name);

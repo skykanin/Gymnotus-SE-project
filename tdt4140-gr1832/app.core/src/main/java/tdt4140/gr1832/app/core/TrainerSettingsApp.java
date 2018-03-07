@@ -13,7 +13,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.MultivaluedHashMap;
 import javax.ws.rs.core.MultivaluedMap;
 import javax.ws.rs.core.Response;
-
+import tdt4140.gr1832.app.ui.FxApp;
 
 import com.google.gson.Gson;
 
@@ -34,7 +34,7 @@ public class TrainerSettingsApp {
 	
 	//Returnerer true brukerinfo ble endret riktig.
 	public boolean changeUser(String new_name, String new_email, String new_phone, int new_age) {
-		ShowUserInfoContainer user = FxApp.getAS().getLoggInUser();				
+		ShowUserInfoContainer user = FxApp.getAS().getLoggedInUser();				
 				
 		Client client = ClientBuilder.newClient();
 	  WebTarget webTarget = client.target(baseURI + "user/" + user.getUsername() + "/update_user");
@@ -99,9 +99,10 @@ public class TrainerSettingsApp {
 	/*
 	 MANGLER PASSORD OG KJØNNSENDRINGER
 	 */
+	
 	public static void main(String[] args) {
-		TrainerSettingsApp t = new TrainerSettingsApp();
-//		t.requestAllUserID();
+		
+
 	}
 	
 
