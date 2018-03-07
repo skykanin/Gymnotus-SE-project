@@ -64,10 +64,10 @@ public class TrainerDashboardControllerTest extends FxAppTest {
         assertEquals("TrainerMembers.fxml", FxApp.getAS().getWindowName());
     }
     
-    @Test
-    public void verifyNavigationSettings() {
-        assertEquals("TrainerDashboard.fxml", FxApp.getAS().getWindowName());
-        clickOn(TilInnstillingerID);
-        assertEquals("TrainerSettings.fxml", FxApp.getAS().getWindowName());
-    }
+//    @Test
+//    public void verifyNavigationSettings() {
+//        assertEquals("TrainerDashboard.fxml", FxApp.getAS().getWindowName());
+//        clickOn(TilInnstillingerID);
+//        assertEquals("TrainerSettings.fxml", FxApp.getAS().getWindowName());
+//    }
 }
