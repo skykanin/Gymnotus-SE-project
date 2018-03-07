@@ -1,6 +1,7 @@
 package tdt4140.gr1832.app.ui;
 
-import java.awt.TextField;
+import com.jfoenix.controls.JFXTextField;
+import com.jfoenix.controls.JFXPasswordField;
 import java.io.IOException;
 
 import javax.swing.ButtonGroup;
@@ -28,17 +29,17 @@ public class RegisterScreenController {
 		//@FXML
 		//private Text toStringText;
 		@FXML
-		private TextField setUsernameTextField;
+		private JFXTextField setUsernameTextField;
 		@FXML
-		private TextField setNameTextField;
+		private JFXTextField setNameTextField;
 		@FXML
-		private TextField setEmailTextField;
+		private JFXTextField setEmailTextField;
 		@FXML
-		private TextField setAgeTextField;
+		private JFXTextField setAgeTextField;
 		@FXML
-		private TextField setPhoneNumberTextField;
+		private JFXTextField setPhoneNumberTextField;
 		@FXML
-		private TextField setPasswordTextField;
+		JFXPasswordField setPasswordTextField;
 		@FXML
 	private RadioButton updateGenderMale;
 		@FXML
@@ -56,10 +57,13 @@ public class RegisterScreenController {
 			//updateGenderFemale.setDisable(true);
 		}
 		
-		private String getStringFromTextField(TextField textField) {
+		private String getStringFromTextField(JFXTextField textField) {
 			return (textField.getText());
 		}
-		private int getIntFromTextField(TextField textField) {
+		private String getStringFromPasswordField(JFXPasswordField passwordField) {
+			return (passwordField.getText());
+		}
+		private int getIntFromTextField(JFXTextField textField) {
 			return Integer.parseInt(textField.getText());
 		}
 		//Hente ut informasjonen og setter inn i user-objektet:
@@ -87,7 +91,7 @@ public class RegisterScreenController {
 //			radioSelect(event);
 			radioButtonChanged(); //setter gender
 			String username = getStringFromTextField(setUsernameTextField);
-			String password = getStringFromTextField(setPasswordTextField);
+			String password = getStringFromPasswordField(setPasswordTextField);
 			String name = getStringFromTextField(setNameTextField);
 			int age = getIntFromTextField(setAgeTextField);
 			String phone = getStringFromTextField(setPhoneNumberTextField);
