@@ -65,52 +65,52 @@
                   </AnchorPane>
                </children>
             </VBox>
-            <AnchorPane layoutX="293.0" layoutY="112.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="483.0" prefWidth="665.0">
+            <AnchorPane layoutX="403.0" layoutY="112.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="483.0" prefWidth="665.0">
                <children>
-                  <Label layoutX="38.0" layoutY="153.0" style="-fx-alignment: #2196f3;" text="Brukernavn" textFill="#2196f3">
+                  <Label layoutX="77.0" layoutY="143.0" text="Brukernavn" textFill="#0b87a1">
                      <font>
-                        <Font name="System Bold Italic" size="18.0" />
+                        <Font size="18.0" />
                      </font>
                   </Label>
-                  <JFXTextField fx:id="usernameField" editable="false" focusColor="#4d4d4d00" layoutX="146.0" layoutY="151.0" prefHeight="27.0" prefWidth="190.0" style="-jfx-disable-animation: 1;" unFocusColor="#4d4d4d" />
-                  <Label layoutX="63.0" layoutY="213.0" text="Epost" textFill="#2196f3">
+                  <JFXTextField fx:id="usernameField" editable="false" focusColor="#4d4d4d00" layoutX="228.0" layoutY="141.0" prefHeight="27.0" prefWidth="190.0" unFocusColor="#4d4d4d" />
+                  <Label layoutX="77.0" layoutY="203.0" text="Epost" textFill="#0b87a1">
                      <font>
-                        <Font name="System Bold Italic" size="18.0" />
+                        <Font size="18.0" />
                      </font>
                   </Label>
-                  <JFXTextField fx:id="emailField" editable="false" focusColor="#4d4d4d00" layoutX="147.0" layoutY="211.0" prefHeight="27.0" prefWidth="190.0" styleClass="jf" />
-                  <Label layoutX="75.0" layoutY="267.0" text="Tlf" textFill="#2196f3">
+                  <JFXTextField fx:id="emailField" editable="false" focusColor="#4d4d4d00" layoutX="229.0" layoutY="201.0" prefHeight="27.0" prefWidth="190.0" />
+                  <Label layoutX="77.0" layoutY="257.0" text="Telefonnummer" textFill="#0b87a1">
                      <font>
-                        <Font name="System Bold Italic" size="18.0" />
+                        <Font size="18.0" />
                      </font>
                   </Label>
-                  <JFXTextField fx:id="tlfField" editable="false" focusColor="#4d4d4d00" layoutX="147.0" layoutY="265.0" prefHeight="27.0" prefWidth="190.0" />
-                  <Label layoutX="61.0" layoutY="97.0" text="Navn" textFill="#2196f2">
+                  <JFXTextField fx:id="tlfField" editable="false" focusColor="#4d4d4d00" layoutX="229.0" layoutY="255.0" prefHeight="27.0" prefWidth="190.0" />
+                  <Label layoutX="77.0" layoutY="87.0" text="Navn" textFill="#0b87a1">
                      <font>
-                        <Font name="System Bold Italic" size="18.0" />
+                        <Font size="18.0" />
                      </font>
                   </Label>
-                  <JFXTextField fx:id="ageField" editable="false" focusColor="#4d4d4d00" layoutX="147.0" layoutY="324.0" prefHeight="27.0" prefWidth="190.0" />
-                  <Label layoutX="68.0" layoutY="383.0" text="Kjønn" textFill="#2196f3">
+                  <JFXTextField fx:id="ageField" editable="false" focusColor="#4d4d4d00" layoutX="229.0" layoutY="314.0" prefHeight="27.0" prefWidth="190.0" />
+                  <Label layoutX="77.0" layoutY="373.0" text="Kjønn" textFill="#0b87a1">
                      <font>
-                        <Font name="System Bold Italic" size="18.0" />
+                        <Font size="18.0" />
                      </font>
                   </Label>
-                  <Label layoutX="68.0" layoutY="326.0" text="Alder" textFill="#2196f3">
+                  <Label layoutX="77.0" layoutY="316.0" text="Alder" textFill="#0b87a1">
                      <font>
-                        <Font name="System Bold Italic" size="18.0" />
+                        <Font size="18.0" />
                      </font>
                   </Label>
-                  <Label contentDisplay="CENTER" layoutX="30.0" layoutY="23.0" text="Rediger brukerinformasjon">
+                  <Label contentDisplay="CENTER" layoutX="32.0" layoutY="13.0" text="REDIGER BRUKERINFORMASJON">
                      <font>
-                        <Font name="System Bold Italic" size="36.0" />
+                        <Font size="36.0" />
                      </font>
                      <cursor>
                         <Cursor fx:constant="TEXT" />
                      </cursor>
                   </Label>
-                  <JFXTextField fx:id="nameField" editable="false" focusColor="#405aa800" layoutX="147.0" layoutY="95.0" prefHeight="27.0" prefWidth="190.0" />
-                  <JFXRadioButton layoutX="139.0" layoutY="386.0" text="Mann">
+                  <JFXTextField fx:id="nameField" editable="false" focusColor="#405aa800" layoutX="229.0" layoutY="85.0" prefHeight="27.0" prefWidth="190.0" />
+                  <JFXRadioButton id="kjonn" layoutX="213.0" layoutY="376.0" text="Mann">
                      <font>
                         <Font size="15.0" />
                      </font>
@@ -118,16 +118,13 @@
                         <ToggleGroup fx:id="Gender" />
                      </toggleGroup>
                   </JFXRadioButton>
-                  <JFXRadioButton layoutX="245.0" layoutY="386.0" text="Kvinne">
-                     <toggleGroup>
-                        <ToggleGroup fx:id="Gender1" />
-                     </toggleGroup>
+                  <JFXRadioButton id="kjonn" layoutX="319.0" layoutY="376.0" text="Kvinne" toggleGroup="$Gender">
                      <font>
                         <Font size="15.0" />
                      </font>
                   </JFXRadioButton>
-                  <JFXButton fx:id="submitChangesButton" layoutX="266.0" layoutY="442.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="29.0" prefWidth="136.0" style="-fx-border-color: #2196f3; -fx-background-color: #e7e6e6;" text="Utfør endringer" />
-                  <JFXButton fx:id="setOriginalInformation" layoutX="111.0" layoutY="442.0" onAction="#HandleSetOriginalInformation" style="-fx-border-color: #2196f3; -fx-background-color: #e7e6e6;" text="Se nåværende info" />
+                  <JFXButton fx:id="submitChangesButton" layoutX="292.0" layoutY="432.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="39.0" prefWidth="130.0" ripplerFill="WHITE" style="-fx-background-color: #80bfb7;" text="Utfør endringer" />
+                  <JFXButton fx:id="setOriginalInformation" layoutX="137.0" layoutY="432.0" onAction="#HandleSetOriginalInformation" prefHeight="39.0" prefWidth="130.0" ripplerFill="WHITE" style="-fx-background-color: #80bfb7;" text="Se nåværende info" />
                </children>
             </AnchorPane>
       </children>

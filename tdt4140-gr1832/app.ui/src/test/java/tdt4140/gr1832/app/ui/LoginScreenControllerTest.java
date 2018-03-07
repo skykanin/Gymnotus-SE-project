@@ -40,12 +40,12 @@ public class LoginScreenControllerTest extends FxAppTest {
     @Test
     public void testInvalidInputFields() {
         clickOn(loginButtonID);
-        verifyThat(errorMessageID, hasText("One or both fields are missing"));
+        verifyThat(errorMessageID, hasText("Ett eller begge feltene mangler"));
     }
 
     @Test
     public void verifyButtons() {
-        verifyThat(loginButtonID, hasText("Login"));
-        verifyThat(registerButtonID, hasText("Sign Up"));
+        verifyThat(loginButtonID, hasText("Log inn"));
+        verifyThat(registerButtonID, hasText("Registrer"));
     }
 }
