@@ -9,28 +9,26 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-@Ignore
+
 public class TrainerTrainingProgramOverviewControllerTest extends FxAppTest {
 
     private final String TilDashboardID = "#TilDashboard";
     private final String TilMedlemmerID = "#TilMedlemmer";
     private final String TilTreningsprogramID = "#TilTreningsprogram";
     private final String TilInnstillingerID = "#TilInnstillinger";
-    private final String TilTreningsoversiktID = "#Tiloversikt";
+    private final String TilTreningsoversiktID = "#TilTreningsoversikt";
     private final String TilTreningsovelseID = "#TilTreningsovelse";
     private final String TilTreningskommentarID = "#TilTreningskommentar";
     private final String TilTreningspameldteID = "#TilTreningspameldte";
-    private Stage stage;
-    private Scene originscene;
+
     
 	@Override
 	public void start(Stage stage) throws Exception {
-		this.stage = stage;
+		FxApp.InitializeAS("TrainerTrainingProgramOverview.fxml");
         Parent root = FXMLLoader.load(getClass().getResource("TrainerTrainingProgramOverview.fxml"));
         Scene scene = new Scene(root);
-        originscene = scene;
         stage.setScene(scene);
-        stage.show();		
+        stage.show();
 	}
 
     @Test
@@ -40,9 +38,9 @@ public class TrainerTrainingProgramOverviewControllerTest extends FxAppTest {
         verifyThat(TilMedlemmerID, hasText("    MEDLEMMER"));
         verifyThat(TilInnstillingerID, hasText("    INNSTILLINGER"));
         
+        verifyThat(TilTreningsovelseID, hasText("ØVELSER"));
+        verifyThat(TilTreningskommentarID, hasText("KOMMENTAR"));
+        verifyThat(TilTreningspameldteID, hasText("PÅMELDTE"));
         verifyThat(TilTreningsoversiktID, hasText("OVERSIKT"));
-        verifyThat(TilTreningsoversiktID, hasText("ØVELSER"));
-        verifyThat(TilTreningsoversiktID, hasText("KOMMENTAR"));
-        verifyThat(TilTreningsoversiktID, hasText("PÅMELDTE"));
     }
 }
