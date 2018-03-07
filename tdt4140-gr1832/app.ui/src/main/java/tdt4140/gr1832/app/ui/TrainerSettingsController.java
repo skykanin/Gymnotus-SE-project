@@ -50,7 +50,16 @@ public class TrainerSettingsController extends WindowController {
 	
 	@FXML
 	private void HandleSubmitChangesButton(ActionEvent event) throws IOException {
-		//funksjonalitet for å sende felt til database
+		
+		
+		
+		if(TrainerSettingsApp.changeUser(nameField.getText(),emailField.getText(), tlfField.getText(), ageField.getText())) {
+			return;
+		}
+		
+		System.out.println("Server failed to change userInfo");
+		
+		
 	}
 	
 	

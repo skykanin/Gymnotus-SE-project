@@ -33,7 +33,7 @@ public class TrainerSettingsApp {
 	//Her starter endringen av brukerinformasjonen.
 	
 	//Returnerer true brukerinfo ble endret riktig.
-	public boolean changeUser(String new_name, String new_email, String new_phone, int new_age) {
+	public static boolean changeUser(String new_name, String new_email, String new_phone, String new_age) {
 		ShowUserInfoContainer user = FxApp.getAS().getLoggedInUser();				
 				
 		Client client = ClientBuilder.newClient();
@@ -44,7 +44,7 @@ public class TrainerSettingsApp {
 	  if(new_name != null) formData.add("new_name",  new_name);
 	  formData.add("new_email", new_email);
 	  formData.add("new_phone", new_phone);
-	  formData.add("new_age", Integer.toString(new_age));
+	  formData.add("new_age", new_age);
 		 // formData.add("gender",Integer.toString(this.user.getGender()));
 		 // formData.add("password", this.user.getPassword());
 	  Response response = webTarget.request().post(Entity.form(formData));
