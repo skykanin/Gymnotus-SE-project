@@ -182,7 +182,7 @@ public class UserDAO {
 			if(new_name != null) updateColumn(username, "name", new_name, "string");
 			if(new_email != null) updateColumn(username, "email", new_email, "string");
 			if(new_phone != null) updateColumn(username, "phoneumber", new_phone, "string");
-			if(new_gender != 0) updateColumn(username, "gender", new_gender, "int");
+			if(new_gender > -1) updateColumn(username, "gender", new_gender, "int");
 			if(new_age != 0) updateColumn(username, "age", new_age, "int");
 			if(new_password != null) updateColumn(username, "password", new_password, "string");
 			status = 200;
