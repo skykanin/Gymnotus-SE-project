@@ -56,6 +56,8 @@ public class TrainerSettingsController extends WindowController {
 	@FXML
 	public void initialize() {
 		
+		TrainerSettingsApp.requestUserInformation_ID("1");
+
 		String name = TrainerSettingsApp.getName();
 		String username = TrainerSettingsApp.getUsername();
 		String email = TrainerSettingsApp.getEmail();
@@ -70,6 +72,22 @@ public class TrainerSettingsController extends WindowController {
 		ageField.setText(age);
 //		genderField.setText(gender);
 		
+	}
+	
+	
+	
+	@Override
+	public void start(Stage primaryStage) throws Exception {
+		Parent root = FXMLLoader.load(getClass().getResource("TrainerSettings.fxml")); //Husk å endre til tilhørende fxml fil sitt navn.
+		Scene scene = new Scene(root, 1200, 660);
+        primaryStage.setTitle("MemberInfoView");
+        primaryStage.setScene(scene);
+        primaryStage.show();
+		
+	}
+	
+	public static void main(String[] args) {
+		launch(TrainerSettingsController.class, args);
 	}
 	
 }
