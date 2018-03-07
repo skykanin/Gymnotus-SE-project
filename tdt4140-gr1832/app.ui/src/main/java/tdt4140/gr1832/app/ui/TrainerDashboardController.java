@@ -16,6 +16,15 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
-public class TrainerDashboardController extends WindowController {
+public class TrainerDashboardController extends WindowController implements Initializable {
+	
+    @FXML
+    private Label Velkommen;
 
+	@Override
+	public void initialize(URL arg0, ResourceBundle arg1) {
+	    Velkommen.setText("Velkommen, " + FxApp.getAS().getLoggedInUser().getName());		
+	}
+
+	
 }

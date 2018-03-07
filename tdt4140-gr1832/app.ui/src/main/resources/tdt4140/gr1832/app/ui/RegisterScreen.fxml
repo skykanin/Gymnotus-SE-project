@@ -16,11 +16,11 @@
   <children>
     <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="451.0" prefWidth="487.0" style="-fx-background-color: #FFFFFF;" stylesheets="@styles/main.css" VBox.vgrow="ALWAYS">
       <children>
-            <JFXTextField id="username" focusColor="#2196f3" layoutX="878.0" layoutY="164.0" prefHeight="35.0" prefWidth="278.0" promptText="Brukernavn" unFocusColor="BLACK">
+            <JFXTextField id="username" focusColor="#0b87a1" layoutX="878.0" layoutY="164.0" prefHeight="35.0" prefWidth="278.0" promptText="Brukernavn" unFocusColor="BLACK">
                <font>
                   <Font size="15.0" />
                </font></JFXTextField>
-            <JFXPasswordField id="password" focusColor="#2196f3" layoutX="878.0" layoutY="491.0" prefHeight="35.0" prefWidth="278.0" promptText="Passord" unFocusColor="BLACK">
+            <JFXPasswordField id="password" focusColor="#0b87a1" layoutX="878.0" layoutY="491.0" prefHeight="35.0" prefWidth="278.0" promptText="Passord" unFocusColor="BLACK">
                <font>
                   <Font size="15.0" />
                </font>
@@ -31,9 +31,9 @@
                   <Font size="24.0" />
                </font>
             </Label>
-            <ImageView fitHeight="660.0" fitWidth="824.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="660.0" fitWidth="824.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@./images/gym.jpg" />
+                  <Image url="@images/gymBlur.jpg" />
                </image></ImageView>
             <JFXRadioButton layoutX="861.0" layoutY="390.0" text="Mann">
                <font>
@@ -48,22 +48,22 @@
                   <Font size="15.0" />
                </font>
             </JFXRadioButton>
-            <JFXTextField id="username" focusColor="#2196f3" layoutX="878.0" layoutY="220.0" prefHeight="35.0" prefWidth="278.0" promptText="Navn" unFocusColor="BLACK">
+            <JFXTextField id="username" focusColor="#0b87a1" layoutX="878.0" layoutY="220.0" prefHeight="35.0" prefWidth="278.0" promptText="Navn" unFocusColor="BLACK">
                <font>
                   <Font size="15.0" />
                </font>
             </JFXTextField>
-            <JFXTextField id="username" focusColor="#2196f3" layoutX="878.0" layoutY="276.0" prefHeight="35.0" prefWidth="278.0" promptText="Epost" unFocusColor="BLACK">
+            <JFXTextField id="username" focusColor="#0b87a1" layoutX="878.0" layoutY="276.0" prefHeight="35.0" prefWidth="278.0" promptText="Epost" unFocusColor="BLACK">
                <font>
                   <Font size="15.0" />
                </font>
             </JFXTextField>
-            <JFXTextField id="username" focusColor="#2196f3" layoutX="878.0" layoutY="332.0" prefHeight="39.0" prefWidth="278.0" promptText="Alder" unFocusColor="BLACK">
+            <JFXTextField id="username" focusColor="#0b87a1" layoutX="878.0" layoutY="332.0" prefHeight="39.0" prefWidth="278.0" promptText="Alder" unFocusColor="BLACK">
                <font>
                   <Font size="15.0" />
                </font>
             </JFXTextField>
-            <JFXTextField id="username" focusColor="#2196f3" layoutX="878.0" layoutY="430.0" prefHeight="39.0" prefWidth="278.0" promptText="Telefonnummer" unFocusColor="BLACK">
+            <JFXTextField id="username" focusColor="#0b87a1" layoutX="878.0" layoutY="430.0" prefHeight="39.0" prefWidth="278.0" promptText="Telefonnummer" unFocusColor="BLACK">
                <font>
                   <Font size="15.0" />
                </font>
