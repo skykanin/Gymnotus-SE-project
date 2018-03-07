@@ -14,7 +14,7 @@ public class RegisterScreenController extends WindowController {
 
 	@FXML
 	private void TilDashboard(ActionEvent event) throws IOException {
-		NavigerTilSide("TrainerDashboard.fxml", event);
+		NavigerTilSide("LoginScreen.fxml", event);
 	}
 
 }

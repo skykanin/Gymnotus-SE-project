@@ -6,6 +6,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 
+import java.io.IOException;
+
 import javax.ws.rs.NotFoundException;
 
 public class LoginScreenController extends WindowController {
@@ -46,7 +48,6 @@ public class LoginScreenController extends WindowController {
                 AS.setCurrentUser(uname);
             }
         }
-
     }
 
     @FXML
