@@ -109,6 +109,10 @@
                         <Cursor fx:constant="TEXT" />
                      </cursor>
                   </Label>
+                  <Label fx:id="changingUserError" alignment="CENTER" contentDisplay="CENTER" layoutX="861.0" layoutY="459.0" prefHeight="35.0" prefWidth="268.0" textFill="RED">
+                  	<font>
+                  		<Font size = "18.0"/>
+                 	</font>
                   <JFXTextField fx:id="nameField" editable="false" focusColor="#405aa800" layoutX="147.0" layoutY="95.0" prefHeight="27.0" prefWidth="190.0" />
                   <JFXRadioButton layoutX="139.0" layoutY="386.0" text="Mann">
                      <font>
