@@ -1,36 +1,70 @@
 package tdt4140.gr1832.app.core;
 
+import javax.ws.rs.client.Client;
+import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.client.WebTarget;
+import javax.ws.rs.core.MediaType;
+
+import com.google.gson.Gson;
+
 public class TrainerSettingsApp {
+	
+	private ShowUserInfoContainer containerUser;
+	
+	private String baseURI = "http://146.185.153.244:8080/api/";
 
-	public static String getName() {
-		// TODO Auto-generated method stub
-		return "Bob";
+	
+	public void requestUserInformation_ID(String id) {
+
+	Client client = ClientBuilder.newClient();
+	WebTarget webTarget = client.target(baseURI + "user/"+id+"/user_info_id");
+	String test = webTarget.request(MediaType.APPLICATION_JSON).get(String.class);
+	Gson gson = new Gson();
+	containerUser = gson.fromJson(test, ShowUserInfoContainer.class);
+	}
+	
+	public String checkNull(String in) {
+		if (in == null || in =="" || in == "null") {
+			return "Ikke spesifisert";
+		}
+		return in;
 	}
 
-	public static String getUsername() {
-		// TODO Auto-generated method stub
-		return "bobby";
+	public String getName() {
+		return checkNull(containerUser.getName());
 	}
 
-	public static String getEmail() {
-		// TODO Auto-generated method stub
-		return "bob@gmail.com";
+	public String getUsername() {
+		return checkNull(containerUser.getUsername());
 	}
 
-	public static String getTlf() {
-		// TODO Auto-generated method stub
-		return "90090090";
+	public String getEmail() {
+		return checkNull(containerUser.getEmail());
 	}
 
-	public static String getAge() {
-		// TODO Auto-generated method stub
-		return "21";
+	public String getTlf() {
+		return checkNull(containerUser.getPhone());
 	}
 
-	public static String getGender() {
-		// TODO Auto-generated method stub
-		return "Mann";
+	public String getAge() {
+		return checkNull(""+ containerUser.getAge());
 	}
+
+	public String getGender() {
+		if (containerUser.getGender() == 1) {
+			return "Mann";
+		} else if( containerUser.getGender() == 2 ){
+			return "Kvinne";
+		}
+		return checkNull("" + containerUser.getGender());
+	}
+	
+	public static void main(String[] args) {
+		TrainerSettingsApp t = new TrainerSettingsApp();
+		t.requestUserInformation_ID("1");
+//		t.requestAllUserID();
+	}
+	
 
 
 }
