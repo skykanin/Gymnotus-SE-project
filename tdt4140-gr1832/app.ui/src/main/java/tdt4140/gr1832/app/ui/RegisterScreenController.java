@@ -29,9 +29,9 @@ public class RegisterScreenController {
 		//@FXML
 		//private Text toStringText;
 		@FXML
-		private JFXTextField setUsernameTextField;
+		private JFXTextField setUsername;
 		@FXML
-		private JFXTextField setNameTextField;
+		private JFXTextField setName;
 		@FXML
 		private JFXTextField setEmailTextField;
 		@FXML
@@ -90,9 +90,9 @@ public class RegisterScreenController {
 		private void updateAllInfo() {
 //			radioSelect(event);
 			radioButtonChanged(); //setter gender
-			String username = getStringFromTextField(setUsernameTextField);
+			String username = getStringFromTextField(setUsername);
 			String password = getStringFromPasswordField(setPasswordTextField);
-			String name = getStringFromTextField(setNameTextField);
+			String name = getStringFromTextField(setName);
 			int age = getIntFromTextField(setAgeTextField);
 			String phone = getStringFromTextField(setPhoneNumberTextField);
 			String email = getStringFromTextField(setEmailTextField);

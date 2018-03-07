@@ -16,11 +16,11 @@
   <children>
     <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="451.0" prefWidth="487.0" style="-fx-background-color: #FFFFFF;" stylesheets="@styles/main.css" VBox.vgrow="ALWAYS">
       <children>
-            <JFXTextField id="username" fx:id="setUsernameTextField" focusColor="#2196f3" layoutX="878.0" layoutY="164.0" prefHeight="35.0" prefWidth="278.0" promptText="Brukernavn" unFocusColor="BLACK">
+            <JFXTextField fx:id="setUsername" focusColor="#2196f3" layoutX="878.0" layoutY="164.0" prefHeight="35.0" prefWidth="278.0" promptText="Brukernavn" unFocusColor="BLACK">
                <font>
                   <Font size="15.0" />
                </font></JFXTextField>
-            <JFXPasswordField id="password" fx:id="setPasswordTextField" focusColor="#2196f3" layoutX="878.0" layoutY="491.0" prefHeight="35.0" prefWidth="278.0" promptText="Passord" unFocusColor="BLACK">
+            <JFXPasswordField  fx:id="setPasswordTextField" focusColor="#2196f3" layoutX="878.0" layoutY="491.0" prefHeight="35.0" prefWidth="278.0" promptText="Passord" unFocusColor="BLACK">
                <font>
                   <Font size="15.0" />
                </font>
@@ -48,22 +48,22 @@
                   <Font size="15.0" />
                </font>
             </JFXRadioButton>
-            <JFXTextField id="username" fx:id="setNameTextField" focusColor="#2196f3" layoutX="878.0" layoutY="220.0" prefHeight="35.0" prefWidth="278.0" promptText="Navn" unFocusColor="BLACK">
+            <JFXTextField fx:id="setName" focusColor="#2196f3" layoutX="878.0" layoutY="220.0" prefHeight="35.0" prefWidth="278.0" promptText="Navn" unFocusColor="BLACK">
                <font>
                   <Font size="15.0" />
                </font>
             </JFXTextField>
-            <JFXTextField id="username" fx:id="setEmailTextField" focusColor="#2196f3" layoutX="878.0" layoutY="276.0" prefHeight="35.0" prefWidth="278.0" promptText="Epost" unFocusColor="BLACK">
+            <JFXTextField  fx:id="setEmailTextField" focusColor="#2196f3" layoutX="878.0" layoutY="276.0" prefHeight="35.0" prefWidth="278.0" promptText="Epost" unFocusColor="BLACK">
                <font>
                   <Font size="15.0" />
                </font>
             </JFXTextField>
-            <JFXTextField id="username" fx:id="setAgeTextField" focusColor="#2196f3" layoutX="878.0" layoutY="332.0" prefHeight="39.0" prefWidth="278.0" promptText="Alder" unFocusColor="BLACK">
+            <JFXTextField  fx:id="setAgeTextField" focusColor="#2196f3" layoutX="878.0" layoutY="332.0" prefHeight="39.0" prefWidth="278.0" promptText="Alder" unFocusColor="BLACK">
                <font>
                   <Font size="15.0" />
                </font>
             </JFXTextField>
-            <JFXTextField id="username" fx:id="setPhoneNumberTextField" focusColor="#2196f3" layoutX="878.0" layoutY="430.0" prefHeight="39.0" prefWidth="278.0" promptText="Telefonnummer" unFocusColor="BLACK">
+            <JFXTextField  fx:id="setPhoneNumberTextField" focusColor="#2196f3" layoutX="878.0" layoutY="430.0" prefHeight="39.0" prefWidth="278.0" promptText="Telefonnummer" unFocusColor="BLACK">
                <font>
                   <Font size="15.0" />
                </font>
