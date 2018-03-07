@@ -49,7 +49,11 @@ public class ApplicationState {
         this.window_name = window_name;
     }
 
-    public String getWindow() {
-        return this.window_name;
+    public String getWindowName() {
+        return window_name;
+    }
+    
+    public void DUMMYsetuser(ShowUserInfoContainer s) {
+    	loggedInUser = s;
     }
 }

@@ -23,7 +23,9 @@ public class TrainerDashboardController extends WindowController implements Init
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-	    Velkommen.setText("Velkommen, " + FxApp.getAS().getLoggedInUser().getName());		
+		if (FxApp.getAS().getLoggedInUser() != null) {
+			Velkommen.setText("Velkommen, " + FxApp.getAS().getLoggedInUser().getName());
+		}
 	}
 
 	
