@@ -4,6 +4,8 @@ import java.io.IOException;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
+import com.jfoenix.controls.JFXRadioButton;
+
 
 import javafx.application.Application;
 import javafx.event.ActionEvent;
@@ -39,10 +41,12 @@ public class TrainerSettingsController extends WindowController {
 	@FXML
 	JFXButton submitChangesButton;
 	
+	@FXML
+	JFXRadioButton mannButton;
+
+	@FXML
+	JFXRadioButton dameButton;
 	
-//	@FXML
-//	JFXTextField genderField;
-//	
 	@FXML
 	private void HandleSetOriginalInformation(ActionEvent event) throws IOException {
 		this.initialize();
@@ -51,15 +55,33 @@ public class TrainerSettingsController extends WindowController {
 	@FXML
 	private void HandleSubmitChangesButton(ActionEvent event) throws IOException {
 		
-		
-		
-		if(TrainerSettingsApp.changeUser(nameField.getText(),emailField.getText(), tlfField.getText(), ageField.getText())) {
+		String username = FxApp.getAS().getLoggedInUser().getUsername();
+		String gender;
+		if (mannButton.isSelected()){
+			gender = "0";
+		} else if (dameButton.isSelected()) {
+			gender = "1"; 
+		} else {
+			gender = "2";
+		}
+		if(TrainerSettingsApp.changeUser(username, nameField.getText(),emailField.getText(), tlfField.getText(), ageField.getText(), gender)) {
+			FxApp.getAS().setCurrentUser(username);
 			return;
 		}
 		
 		System.out.println("Server failed to change userInfo");
-		
-		
+	}
+	
+	@FXML
+	private void toggleDameButton(ActionEvent event) throws IOException {
+		mannButton.setSelected(false);
+		dameButton.setSelected(true);
+	}
+	
+	@FXML
+	private void toggleMannButton(ActionEvent event) throws IOException {
+		mannButton.setSelected(true);
+		dameButton.setSelected(false);
 	}
 	
 	
@@ -73,14 +95,24 @@ public class TrainerSettingsController extends WindowController {
 		String email = user.getEmail();
 		String tlf = user.getPhone();
 		String age = Integer.toString(user.getAge());
-//		String gender = TrainerMemberInfoApp.getGender();
+		int gender = user.getGender();
 
 		nameField.setText(name);
 		usernameField.setText(username);		
 		emailField.setText(email);
 		tlfField.setText(tlf);
 		ageField.setText(age);
-//		genderField.setText(gender);
+		
+		if (gender == 2) {
+			return;
+		} else if (gender == 1) {
+			mannButton.setSelected(false);
+			dameButton.setSelected(true);
+		} else if (gender == 0){
+			mannButton.setSelected(true);
+			dameButton.setSelected(false);
+		}
+		
 		
 	}
 	

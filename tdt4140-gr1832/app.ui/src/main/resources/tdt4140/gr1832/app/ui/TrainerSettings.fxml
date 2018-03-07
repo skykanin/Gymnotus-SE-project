@@ -110,7 +110,7 @@
                      </cursor>
                   </Label>
                   <JFXTextField fx:id="nameField" focusColor="#0b88a1" layoutX="229.0" layoutY="141.0" prefHeight="27.0" prefWidth="190.0" />
-                  <JFXRadioButton id="kjonn" layoutX="213.0" layoutY="376.0" text="Mann">
+                  <JFXRadioButton fx:id="mannButton" layoutX="213.0" layoutY="376.0" onAction="#toggleMannButton" text="Mann">
                      <font>
                         <Font size="15.0" />
                      </font>
@@ -118,12 +118,12 @@
                         <ToggleGroup fx:id="Gender" />
                      </toggleGroup>
                   </JFXRadioButton>
-                  <JFXRadioButton id="kjonn" layoutX="319.0" layoutY="376.0" text="Kvinne" toggleGroup="$Gender">
+                  <JFXRadioButton fx:id="dameButton" layoutX="319.0" layoutY="376.0" onAction="#toggleDameButton" text="Kvinne" toggleGroup="$Gender">
                      <font>
                         <Font size="15.0" />
                      </font>
                   </JFXRadioButton>
-                  <JFXButton fx:id="submitChangesButton" layoutX="323.0" layoutY="432.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="39.0" prefWidth="150.0" ripplerFill="WHITE" style="-fx-background-color: #80bfb7;" text="Utfør endringer" />
+                  <JFXButton fx:id="submitChangesButton" layoutX="323.0" layoutY="432.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" onAction="#HandleSubmitChangesButton" prefHeight="39.0" prefWidth="150.0" ripplerFill="WHITE" style="-fx-background-color: #80bfb7;" text="Utfør endringer" />
                   <JFXButton fx:id="setOriginalInformation" layoutX="153.0" layoutY="432.0" onAction="#HandleSetOriginalInformation" prefHeight="39.0" prefWidth="150.0" ripplerFill="WHITE" style="-fx-background-color: #80bfb7;" text="Se nåværende info" />
                </children>
             </AnchorPane>
