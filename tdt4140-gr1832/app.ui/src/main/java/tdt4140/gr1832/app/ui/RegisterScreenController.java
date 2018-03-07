@@ -2,6 +2,8 @@ package tdt4140.gr1832.app.ui;
 
 import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.controls.JFXPasswordField;
+import com.jfoenix.controls.JFXRadioButton;
+import com.jfoenix.controls.JFXButton;
 import java.io.IOException;
 
 import javax.swing.ButtonGroup;
@@ -12,7 +14,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.stage.Stage;
 import tdt4140.gr1832.app.core.RegisterUser;
@@ -41,9 +42,9 @@ public class RegisterScreenController {
 		@FXML
 		JFXPasswordField setPasswordTextField;
 		@FXML
-	private RadioButton updateGenderMale;
+	private JFXRadioButton updateGenderMale;
 		@FXML
-		private RadioButton updateGenderFemale;
+		private JFXRadioButton updateGenderFemale;
 		@FXML
 	private ToggleGroup genderGroup;
 		
