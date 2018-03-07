@@ -13,6 +13,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import tdt4140.gr1832.app.core.ShowUserInfoContainer;
 import tdt4140.gr1832.app.core.TrainerSettingsApp;
 
 public class TrainerSettingsController extends WindowController {
@@ -56,7 +57,7 @@ public class TrainerSettingsController extends WindowController {
 	@FXML
 	public void initialize() {
 		
-		TrainerSettingsApp.requestUserInformation_ID("1");
+		ShowUserInfoContainer user = FxApp.getAS().getLoggInUser();
 
 		String name = TrainerSettingsApp.getName();
 		String username = TrainerSettingsApp.getUsername();

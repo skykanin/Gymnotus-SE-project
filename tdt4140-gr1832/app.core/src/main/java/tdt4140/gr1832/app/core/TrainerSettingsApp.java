@@ -14,6 +14,7 @@ import javax.ws.rs.core.MultivaluedHashMap;
 import javax.ws.rs.core.MultivaluedMap;
 import javax.ws.rs.core.Response;
 
+
 import com.google.gson.Gson;
 
 public class TrainerSettingsApp {
@@ -31,7 +32,7 @@ public class TrainerSettingsApp {
 
 	//Her starter endringen av brukerinformasjonen.
 	
-	//Returnerer trom brukerinfo ble endret riktig.
+	//Returnerer true brukerinfo ble endret riktig.
 	public boolean changeUser(String new_name, String new_email, String new_phone, int new_age) {
 		ShowUserInfoContainer user = FxApp.getAS().getLoggInUser();				
 				
