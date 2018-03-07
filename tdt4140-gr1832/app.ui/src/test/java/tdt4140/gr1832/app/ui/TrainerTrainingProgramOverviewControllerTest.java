@@ -1,26 +1,17 @@
 package tdt4140.gr1832.app.ui;
 
-import javafx.application.Application;
-import javafx.event.ActionEvent;
+import org.junit.Ignore;
+import org.junit.Test;
+import static org.testfx.api.FxAssert.verifyThat;
+import static org.testfx.matcher.base.NodeMatchers.hasText;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import static org.junit.Assert.assertTrue;
-import static org.testfx.api.FxAssert.verifyThat;
-import static org.testfx.matcher.base.NodeMatchers.hasText;
-
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.Ignore;
-
 @Ignore
 public class TrainerTrainingProgramOverviewControllerTest extends FxAppTest {
+
     private final String TilDashboardID = "#TilDashboard";
     private final String TilMedlemmerID = "#TilMedlemmer";
     private final String TilTreningsprogramID = "#TilTreningsprogram";
@@ -32,7 +23,6 @@ public class TrainerTrainingProgramOverviewControllerTest extends FxAppTest {
     private Stage stage;
     private Scene originscene;
     
-
 	@Override
 	public void start(Stage stage) throws Exception {
 		this.stage = stage;
@@ -40,20 +30,9 @@ public class TrainerTrainingProgramOverviewControllerTest extends FxAppTest {
         Scene scene = new Scene(root);
         originscene = scene;
         stage.setScene(scene);
-        stage.show();
+        stage.show();		
 	}
-	
-	@Before
-	
-	
-	@Test
-	public void testNavigationButtons() {
-		assertTrue(stage.getScene() == originscene);
-		clickOn(TilDashboardID);
-		
-	}
-	
-	
+
     @Test
     public void verifyButtons() {
         verifyThat(TilDashboardID, hasText("    DASHBOARD"));
@@ -66,5 +45,4 @@ public class TrainerTrainingProgramOverviewControllerTest extends FxAppTest {
         verifyThat(TilTreningsoversiktID, hasText("KOMMENTAR"));
         verifyThat(TilTreningsoversiktID, hasText("PÅMELDTE"));
     }
-	
 }
