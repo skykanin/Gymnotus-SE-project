@@ -6,6 +6,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 
+import java.io.IOException;
+
 import javax.ws.rs.NotFoundException;
 
 public class LoginScreenController extends WindowController {
@@ -18,12 +20,12 @@ public class LoginScreenController extends WindowController {
     private Label errorMessage;
 
     @FXML
-    private void handleLoginButtonAction(ActionEvent event) {
+    private void handleLoginButtonAction(ActionEvent event) throws IOException {
         String uname = username.getText();
         String pword = password.getText();
 
         if (uname.equals("") || pword.equals("")) {
-            errorMessage.setText("One or both fields are missing");
+            errorMessage.setText("Ett eller begge feltene mangler");
         } else {
             errorMessage.setText("");
             boolean userExists = false, passwordVerified = false;
@@ -33,25 +35,25 @@ public class LoginScreenController extends WindowController {
                 AS.verifyUsername(uname);
                 userExists = true;
             } catch (NotFoundException e) {
-                errorMessage.setText("Username does not exist");
+                errorMessage.setText("Brukernavnet finnes ikke");
             }
 
             // Check if password is correct for user
             if(!(passwordVerified = AS.verifyPassword(uname,pword)) && userExists) {
-                errorMessage.setText("Password is not correct");
+                errorMessage.setText("Passordet er ikke korrekt");
             }
 
             //If both username and passwords matches we can login
             if(userExists && passwordVerified) {
                 AS.setCurrentUser(uname);
+        		NavigerTilSide("TrainerDashboard.fxml", event);
             }
         }
-
     }
 
     @FXML
-    private void handleRegisterButtonAction(ActionEvent event) {
-
+    private void handleRegisterButtonAction(ActionEvent event) throws IOException {
+		NavigerTilSide("RegisterScreen.fxml", event);
     }
 
 }

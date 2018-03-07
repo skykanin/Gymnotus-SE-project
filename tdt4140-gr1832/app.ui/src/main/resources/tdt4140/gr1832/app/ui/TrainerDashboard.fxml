@@ -52,7 +52,7 @@
                <children>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0" stylesheets="@styles/main.css">
                      <children>
-                        <Label id="VelkommenTilbake" layoutY="4.0" prefHeight="40.0" prefWidth="965.0" style="-fx-alignment: center;" styleClass="DosisCaps" textAlignment="CENTER" textFill="WHITE">
+                        <Label id="VelkommenTilbake" fx:id="Velkommen" layoutY="4.0" prefHeight="40.0" prefWidth="965.0" style="-fx-alignment: center;" styleClass="DosisCaps" textAlignment="CENTER" textFill="WHITE">
                            <font>
                               <Font size="28.0" />
                            </font>

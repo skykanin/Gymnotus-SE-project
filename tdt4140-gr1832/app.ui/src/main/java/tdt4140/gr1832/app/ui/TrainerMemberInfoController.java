@@ -10,6 +10,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.*;
+import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import tdt4140.gr1832.app.core.TrainerMemberInfoApp;
 
@@ -51,6 +52,8 @@ public class TrainerMemberInfoController extends WindowController {
 	@FXML
 	JFXDatePicker datePickerField;
 	
+	@FXML
+    private Label Medlemsnavn;
 	
 	public static String userID;
 	
@@ -95,6 +98,9 @@ public class TrainerMemberInfoController extends WindowController {
 			genderField.setText(gender);
 			datePickerField.setDisable(true);
 			
+		    Medlemsnavn.setText("Brukerinformasjonen til " + app.getName());		
+
+			
 		} else {
 		tdt4140.gr1832.app.core.TrainerMemberInfoApp app = new TrainerMemberInfoApp();
 		app.requestUserInformation_ID(userID);
@@ -124,6 +130,8 @@ public class TrainerMemberInfoController extends WindowController {
 		ageField.setText(age);
 		genderField.setText(gender);
 		datePickerField.setDisable(true);
+		
+	    Medlemsnavn.setText("Brukerinformasjonen til " + app.getName());
 		}
 		
 	}

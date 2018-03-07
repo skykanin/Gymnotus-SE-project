@@ -10,14 +10,15 @@ import tdt4140.gr1832.app.core.ApplicationState;
 public class FxApp extends Application {
     private Parent root;
     protected Scene scene;
-    protected ApplicationState AS = new ApplicationState("LoginScreen.fxml");
+    protected static ApplicationState AS;
 
     @Override
     public void start(Stage stage) throws Exception {
         root = FXMLLoader.load(getClass().getResource("LoginScreen.fxml"));
         scene = new Scene(root);
+        AS = new ApplicationState("LoginScreen.fxml");
         stage.setScene(scene);
-        stage.setTitle("Login Screen");
+        stage.setTitle("GYMNOTUS");
         stage.show();
 
     }
@@ -26,4 +27,7 @@ public class FxApp extends Application {
         launch(args);
     }
 
+    public static ApplicationState getAS() {
+    	return AS;
+    }
 }
