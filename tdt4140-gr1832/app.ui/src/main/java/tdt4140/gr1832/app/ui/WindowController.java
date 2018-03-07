@@ -19,6 +19,7 @@ public class WindowController extends FxApp {
 		Stage app_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		app_stage.setScene(LoginScreen_scene);
 		app_stage.show();
+		FxApp.getAS().setWindow(filnavn);
 	}
 
 	protected void NavigerTilSide(String filnavn, ActionEvent event, String userID) throws IOException {
@@ -34,7 +35,7 @@ public class WindowController extends FxApp {
 	@FXML
 	public void TilLoggUt(ActionEvent event) throws Exception {               
         try {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("LogOut.fxml"));
+        	FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("LogOut.fxml"));
                 Parent root1 = (Parent) fxmlLoader.load();
                 Stage stage = new Stage();
                 stage.setScene(new Scene(root1));  
