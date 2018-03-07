@@ -50,7 +50,7 @@ public class RegisterUser {
 	
 public static void main(String[] args) {
 	
-	User u = new User("OlaN", "fortniteHhamstring","Ola Nordmann", 12, 0,  null, "41546593");
+	User u = new User("OlaN", "fortniteHhamstring","Ola Nojrdmann", 12, 0,  "ola.nordmann@gmail.com", "41546593");
 	RegisterUser user1 = new RegisterUser();
 	
 	user1.registerUser(u);
@@ -62,7 +62,7 @@ public static void main(String[] args) {
 }
 	
 	
-	
+	 
 	
 	
 
