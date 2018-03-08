@@ -10,13 +10,13 @@ public class User {
 	private String userID; //lag metoder
 	private String email; //lag metoder
 	private String phone;
-	
-	
+
 	public User () {
-		
+
 	}
-	
-	public User (String username, String password, String name, int age, int gender, String email, String phone ) {
+
+	public User (String username, String password, String name,
+				 int age, int gender, String email, String phone ) {
 		this.setPhone(phone);
 		this.setUsername(username);
 		this.setName(name);

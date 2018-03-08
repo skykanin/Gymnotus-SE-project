@@ -16,16 +16,6 @@
   <children>
     <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="451.0" prefWidth="487.0" style="-fx-background-color: #FFFFFF;" stylesheets="@styles/main.css" VBox.vgrow="ALWAYS">
       <children>
-            <JFXTextField fx:id="setUsername" focusColor="#0b87a1" layoutX="878.0" layoutY="164.0" prefHeight="35.0" prefWidth="278.0" promptText="Brukernavn" unFocusColor="BLACK">
-               <font>
-                  <Font size="15.0" />
-               </font></JFXTextField>
-            <JFXPasswordField  fx:id="setPasswordTextField" focusColor="#0b87a1" layoutX="878.0" layoutY="491.0" prefHeight="35.0" prefWidth="278.0" promptText="Passord" unFocusColor="BLACK">
-               <font>
-                  <Font size="15.0" />
-               </font>
-            </JFXPasswordField>
-            <JFXButton fx:id="registerButton" buttonType="FLAT" layoutX="1047.0" layoutY="565.0" onAction="#TilDashboard" prefHeight="39.0" prefWidth="89.0" ripplerFill="WHITE" style="-fx-background-color: #80bfb7;" text="Registrer" />
             <Label layoutX="876.0" layoutY="74.0" text="GYMNOTUS">
                <font>
                   <Font size="24.0" />
@@ -35,6 +25,25 @@
                <image>
                   <Image url="@images/gymBlur.jpg" />
                </image></ImageView>
+            <JFXTextField fx:id="setUsername" focusColor="#0b87a1" layoutX="878.0" layoutY="164.0" prefHeight="35.0" prefWidth="278.0" promptText="Brukernavn" unFocusColor="BLACK">
+               <font>
+                  <Font size="15.0" />
+               </font></JFXTextField>
+            <JFXTextField fx:id="setName" focusColor="#0b87a1" layoutX="878.0" layoutY="220.0" prefHeight="35.0" prefWidth="278.0" promptText="Navn" unFocusColor="BLACK">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </JFXTextField>
+            <JFXTextField fx:id="setEmailTextField" focusColor="#0b87a1" layoutX="878.0" layoutY="276.0" prefHeight="35.0" prefWidth="278.0" promptText="Epost" unFocusColor="BLACK">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </JFXTextField>
+            <JFXTextField fx:id="setAgeTextField" focusColor="#0b87a1" layoutX="878.0" layoutY="332.0" prefHeight="39.0" prefWidth="278.0" promptText="Alder" unFocusColor="BLACK">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </JFXTextField>
             <JFXRadioButton fx:id="updateGenderMale" layoutX="861.0" layoutY="390.0" text="Mann">
                <font>
                   <Font size="15.0" />
@@ -48,26 +57,22 @@
                   <Font size="15.0" />
                </font>
             </JFXRadioButton>
-            <JFXTextField fx:id="setName" focusColor="#0b87a1" layoutX="878.0" layoutY="220.0" prefHeight="35.0" prefWidth="278.0" promptText="Navn" unFocusColor="BLACK">
+            <JFXTextField fx:id="setPhoneNumberTextField" focusColor="#0b87a1" layoutX="878.0" layoutY="430.0" prefHeight="39.0" prefWidth="278.0" promptText="Telefonnummer" unFocusColor="BLACK">
                <font>
                   <Font size="15.0" />
                </font>
             </JFXTextField>
-            <JFXTextField  fx:id="setEmailTextField" focusColor="#0b87a1" layoutX="878.0" layoutY="276.0" prefHeight="35.0" prefWidth="278.0" promptText="Epost" unFocusColor="BLACK">
+            <JFXPasswordField fx:id="setPasswordTextField" focusColor="#0b87a1" layoutX="878.0" layoutY="491.0" prefHeight="35.0" prefWidth="278.0" promptText="Passord" unFocusColor="BLACK">
                <font>
                   <Font size="15.0" />
                </font>
-            </JFXTextField>
-            <JFXTextField  fx:id="setAgeTextField" focusColor="#0b87a1" layoutX="878.0" layoutY="332.0" prefHeight="39.0" prefWidth="278.0" promptText="Alder" unFocusColor="BLACK">
+            </JFXPasswordField>
+            <JFXButton fx:id="registerButton" buttonType="FLAT" layoutX="1047.0" layoutY="565.0" onAction="#tilDashboard" prefHeight="39.0" prefWidth="89.0" ripplerFill="WHITE" style="-fx-background-color: #80bfb7;" text="Registrer" />
+            <Label fx:id="errorMessage" alignment="CENTER" layoutX="808.0" layoutY="563.0" prefHeight="39.0" prefWidth="235.0" textAlignment="JUSTIFY" textFill="RED">
                <font>
-                  <Font size="15.0" />
+                  <Font size="14.0" />
                </font>
-            </JFXTextField>
-            <JFXTextField  fx:id="setPhoneNumberTextField" focusColor="#0b87a1" layoutX="878.0" layoutY="430.0" prefHeight="39.0" prefWidth="278.0" promptText="Telefonnummer" unFocusColor="BLACK">
-               <font>
-                  <Font size="15.0" />
-               </font>
-            </JFXTextField>
+            </Label>
       </children>
     </AnchorPane>
   </children>
