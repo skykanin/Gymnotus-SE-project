@@ -21,7 +21,7 @@ import tdt4140.gr1832.app.core.User;
 
 public class RegisterScreenController {
 	
-	private 	User user;  //
+	private 	User user; 
 	private 	RegisterUser r; 
 	private int gender;
 	
@@ -50,7 +50,6 @@ public class RegisterScreenController {
 		
 		@FXML
 		private void initialize() {
-			user = new User();
 			genderGroup = new ToggleGroup();
 			this.updateGenderMale.setToggleGroup(genderGroup);
 			this.updateGenderFemale.setToggleGroup(genderGroup);
@@ -88,7 +87,7 @@ public class RegisterScreenController {
 		}
 		
 		@FXML
-		private void updateAllInfo() {
+		private void updateAllInfo() throws Exception {
 //			radioSelect(event);
 			radioButtonChanged(); //setter gender
 			String username = getStringFromTextField(setUsername);
@@ -100,29 +99,27 @@ public class RegisterScreenController {
 			r = new RegisterUser();
 			user = new User(username, password, name, age, gender, email, phone );
 			r.registerUser(user);
-			initialize();
 		}
 		
 		@FXML
 		private void TilDashboard(ActionEvent event) throws IOException {
 			initialize();
-			updateAllInfo();
+			try {
+				updateAllInfo();
+			}
+			catch (Exception e) {
+				return;
+			}
+			FxApp.getAS().setCurrentUser(user.getUsername());
 			NavigerTilSide("TrainerDashboard.fxml", event);
 		}
 
-		
 		private void NavigerTilSide(String filnavn, ActionEvent event) throws IOException {
 			Parent LoginScreen_parent = FXMLLoader.load(getClass().getResource(filnavn));
 			Scene LoginScreen_scene = new Scene(LoginScreen_parent);
 			Stage app_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 			app_stage.setScene(LoginScreen_scene);
 			app_stage.show();
-		}
-		
-		
-		
-		
-		
-		
+		}		
 	}
 

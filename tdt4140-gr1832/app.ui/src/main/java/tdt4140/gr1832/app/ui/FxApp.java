@@ -20,7 +20,6 @@ public class FxApp extends Application {
         stage.setScene(scene);
         stage.setTitle("GYMNOTUS");
         stage.show();
-
     }
 
     public static void main(String[] args) {
