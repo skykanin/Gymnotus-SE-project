@@ -11,7 +11,10 @@ public class ShowAllUsersContainer {
 	
 	public void addUserInfo(ShowUserInfoContainer userInfo) {
 		users.add(userInfo);
+<<<<<<< HEAD
 		
+=======
+>>>>>>> 14-implementere-funksjonalitet-for-a-kunne-se-brukerdata-og-helsedata-til-en-bruker
 	}
 	
 	public List<ShowUserInfoContainer> getUsers() {

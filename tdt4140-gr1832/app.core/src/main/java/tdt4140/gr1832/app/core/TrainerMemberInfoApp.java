@@ -19,7 +19,7 @@ public class TrainerMemberInfoApp {
 	
 	private List<Integer> userids = new ArrayList<Integer>();
 	
-	ShowAllUsersContainer containerAllUsers = new ShowAllUsersContainer();
+	private ShowAllUsersContainer containerAllUsers = new ShowAllUsersContainer();
 	
 	private List<ShowHealthInfoContainer> containerHealth = new ArrayList<ShowHealthInfoContainer>();
 
@@ -27,12 +27,22 @@ public class TrainerMemberInfoApp {
 
 	
 	public void requestUserInformation_ID(String id) {
+<<<<<<< HEAD
 
 	Client client = ClientBuilder.newClient();
 	WebTarget webTarget = client.target(baseURI + "user/"+id+"/user_info_id");
 	String test = webTarget.request(MediaType.APPLICATION_JSON).get(String.class);
 	Gson gson = new Gson();
 	containerUser = gson.fromJson(test, ShowUserInfoContainer.class);
+=======
+		Client client = ClientBuilder.newClient();
+		WebTarget webTarget = client.target(baseURI + "user/"+id+"/user_info_id");
+		String test = webTarget.request(MediaType.APPLICATION_JSON).get(String.class);
+		System.out.println(test);
+		Gson gson = new Gson();
+		containerUser = gson.fromJson(test, ShowUserInfoContainer.class);
+		containerUser.setUserId(id);
+>>>>>>> 14-implementere-funksjonalitet-for-a-kunne-se-brukerdata-og-helsedata-til-en-bruker
 	}
 	
 	public void requestAllUserID() {
@@ -128,12 +138,13 @@ public class TrainerMemberInfoApp {
 	}
 
 	public String getGender() {
-		if (containerUser.getGender() == 1) {
+		if (containerUser.getGender() == 0) {
 			return "Mann";
-		} else if( containerUser.getGender() == 2 ){
+		} else if( containerUser.getGender() == 1 ){
 			return "Kvinne";
+		} else {
+			return "Uspesifisert";
 		}
-		return checkNull("" + containerUser.getGender());
 	}
 	
 	public List<String> getNames(){
@@ -144,25 +155,38 @@ public class TrainerMemberInfoApp {
 				usernames.add(name);
 			}
 			}
-		System.out.println(usernames);
+		
 		return usernames;
 		}
 	
 	public String getIDfromName(String name) {
 		for (ShowUserInfoContainer user : containerAllUsers.getUsers()){
-			if (user.getName() == name) {
-				System.out.println(user.getUserID());
+			if (user.getName().equals(name)) {
 				return user.getUserID();
 			}
 		}
 		return "1";
 	}
-
+	
+	public String getBaseUrl() {
+		return baseURI;
+	}
+	public void addContainerHealth(ShowHealthInfoContainer e) {
+		containerHealth.add(e);
+	}
+	
+	public void setContianerUser(ShowUserInfoContainer c) {
+		this.containerUser = c;
+	}
+	
+	public void setAllUsersContainer(ShowAllUsersContainer e) {
+		this.containerAllUsers = e;
+	}
 
 	public static void main(String[] args) {
-		TrainerMemberInfoApp t = new TrainerMemberInfoApp();
-//		t.requestUserInformation_ID("1");
-//		t.requestHealthInformation_ID("1");
-		t.requestAllUserID();
+//		TrainerMemberInfoApp t = new TrainerMemberInfoApp();
+////		t.requestUserInformation_ID("1");
+////		t.requestHealthInformation_ID("1");
+//		t.requestAllUserID();
 	}
 }
