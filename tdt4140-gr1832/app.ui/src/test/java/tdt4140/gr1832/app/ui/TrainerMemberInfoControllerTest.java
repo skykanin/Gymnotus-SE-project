@@ -4,7 +4,11 @@ import static org.junit.Assert.assertEquals;
 import static org.testfx.api.FxAssert.verifyThat;
 import static org.testfx.matcher.base.NodeMatchers.hasText;
 
+import org.junit.Assert;
 import org.junit.Test;
+
+import com.jfoenix.controls.JFXDatePicker;
+import com.jfoenix.controls.JFXTextField;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
