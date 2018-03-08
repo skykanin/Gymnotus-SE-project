@@ -54,6 +54,7 @@ public class TrainerSettingsController extends WindowController {
 	private void HandleSubmitChangesButton(ActionEvent event) throws IOException {
 		
 		String username = FxApp.getAS().getLoggedInUser().getUsername();
+		
 		String gender;
 		if (mannButton.isSelected()){
 			gender = "0";
@@ -69,6 +70,18 @@ public class TrainerSettingsController extends WindowController {
 			}
 		}
 		
+		
+		if (ageField.getText().length() < (1) || ageField.getText().length() >(2)) {
+			throw new IllegalArgumentException("age must be a 1 or 2- digit number");
+			}
+		
+		for ( int i=0; i<ageField.getText().length();i++) {
+			char c= ageField.getText().charAt(i);
+			if (!(Character.isDigit(c))) {
+				throw new IllegalArgumentException("age can only consist of digits");
+			}
+		}
+	        
 		if(TrainerSettingsApp.changeUser(username, nameField.getText(),emailField.getText(), tlfField.getText(), ageField.getText(), gender)) {
 			FxApp.getAS().setCurrentUser(username);
 			return;

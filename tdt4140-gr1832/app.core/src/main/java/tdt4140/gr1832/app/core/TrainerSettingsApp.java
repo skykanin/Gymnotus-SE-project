@@ -32,6 +32,7 @@ public class TrainerSettingsApp {
 	//Her starter endringen av brukerinformasjonen.
 	
 	//Returnerer true brukerinfo ble endret riktig.
+	
 	public static boolean changeUser(String username, String new_name, String new_email, String new_phone, String new_age, String new_gender) {		
 				
 		Client client = ClientBuilder.newClient();
@@ -51,7 +52,7 @@ public class TrainerSettingsApp {
 	}
 	
 	/*
-	 MANGLER PASSORD OG KJØNNSENDRINGER
+	 MANGLER PASSORD-endringer
 	 */
 	
 	public static void main(String[] args) {
