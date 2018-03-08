@@ -3,123 +3,108 @@ package tdt4140.gr1832.app.ui;
 import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXRadioButton;
-import com.jfoenix.controls.JFXButton;
 import java.io.IOException;
-
-import javax.swing.ButtonGroup;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.control.ToggleGroup;
-import javafx.stage.Stage;
 import tdt4140.gr1832.app.core.RegisterUser;
 import tdt4140.gr1832.app.core.User;
 
-public class RegisterScreenController {
+public class RegisterScreenController extends WindowController {
 	
-	private 	User user; 
-	private 	RegisterUser r; 
+	private User user;
+	private RegisterUser r;
 	private int gender;
-	
-	//stian kode:
-	
-		//@FXML
-		//private Text toStringText;
-		@FXML
-		private JFXTextField setUsername;
-		@FXML
-		private JFXTextField setName;
-		@FXML
-		private JFXTextField setEmailTextField;
-		@FXML
-		private JFXTextField setAgeTextField;
-		@FXML
-		private JFXTextField setPhoneNumberTextField;
-		@FXML
-		JFXPasswordField setPasswordTextField;
-		@FXML
+
+	@FXML
+	private JFXTextField setUsername;
+	@FXML
+	private JFXTextField setName;
+	@FXML
+	private JFXTextField setEmailTextField;
+	@FXML
+	private JFXTextField setAgeTextField;
+	@FXML
+	private JFXTextField setPhoneNumberTextField;
+	@FXML
+	private JFXPasswordField setPasswordTextField;
+	@FXML
 	private JFXRadioButton updateGenderMale;
-		@FXML
-		private JFXRadioButton updateGenderFemale;
-		@FXML
+	@FXML
+	private JFXRadioButton updateGenderFemale;
+	@FXML
 	private ToggleGroup genderGroup;
-		
-		@FXML
-		private void initialize() {
-			genderGroup = new ToggleGroup();
-			this.updateGenderMale.setToggleGroup(genderGroup);
-			this.updateGenderFemale.setToggleGroup(genderGroup);
-			//updateGenderMale.setDisable(true);
-			//updateGenderFemale.setDisable(true);
-		}
-		
-		private String getStringFromTextField(JFXTextField textField) {
-			return (textField.getText());
-		}
-		private String getStringFromPasswordField(JFXPasswordField passwordField) {
-			return (passwordField.getText());
-		}
-		private int getIntFromTextField(JFXTextField textField) {
-			return Integer.parseInt(textField.getText());
-		}
-		//Hente ut informasjonen og setter inn i user-objektet:
+	@FXML
+	private Label errorMessage;
 
-		public void radioButtonChanged( ) {
-			if (this.genderGroup.getSelectedToggle().equals(this.updateGenderMale)) {
-				this.gender = 1;
-			}
-			if (this.genderGroup.getSelectedToggle().equals(this.updateGenderMale)) {
-				this.gender = 0;
-			}
-			
-//			int  gender;
-//			if (updateGenderMale.isSelected()) {
-//				gender= 1;
-//			}
-//			else if (updateGenderFemale.isSelected()) {
-//				gender= 0;
-//			}
-			
-		}
-		
-		@FXML
-		private void updateAllInfo() throws Exception {
-//			radioSelect(event);
-			radioButtonChanged(); //setter gender
-			String username = getStringFromTextField(setUsername);
-			String password = getStringFromPasswordField(setPasswordTextField);
-			String name = getStringFromTextField(setName);
-			int age = getIntFromTextField(setAgeTextField);
-			String phone = getStringFromTextField(setPhoneNumberTextField);
-			String email = getStringFromTextField(setEmailTextField);
-			r = new RegisterUser();
-			user = new User(username, password, name, age, gender, email, phone );
-			r.registerUser(user);
-		}
-		
-		@FXML
-		private void TilDashboard(ActionEvent event) throws IOException {
-			initialize();
-			try {
-				updateAllInfo();
-			}
-			catch (Exception e) {
-				return;
-			}
-			FxApp.getAS().setCurrentUser(user.getUsername());
-			NavigerTilSide("TrainerDashboard.fxml", event);
-		}
-
-		private void NavigerTilSide(String filnavn, ActionEvent event) throws IOException {
-			Parent LoginScreen_parent = FXMLLoader.load(getClass().getResource(filnavn));
-			Scene LoginScreen_scene = new Scene(LoginScreen_parent);
-			Stage app_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-			app_stage.setScene(LoginScreen_scene);
-			app_stage.show();
-		}		
+	@FXML
+	private void initialize() {
+		this.genderGroup = new ToggleGroup();
+		this.updateGenderMale.setToggleGroup(genderGroup);
+		this.updateGenderFemale.setToggleGroup(genderGroup);
+		//updateGenderMale.setDisable(true);
+		//updateGenderFemale.setDisable(true);
 	}
+
+	private String getStringFromTextField(JFXTextField textField) {
+		return (textField.getText());
+	}
+	private String getStringFromPasswordField(JFXPasswordField passwordField) {
+		return (passwordField.getText());
+	}
+	private int getIntFromTextField(JFXTextField textField) {
+		return Integer.parseInt(textField.getText());
+	}
+	//Hente ut informasjonen og setter inn i user-objektet:
+
+	public void radioButtonChanged() {
+
+		if (this.genderGroup.getSelectedToggle() == null) {
+			throw new IllegalArgumentException("No sex selected");
+		} else if (this.genderGroup.getSelectedToggle().equals(this.updateGenderMale)) {
+			this.gender = 1;
+		} else if (this.genderGroup.getSelectedToggle().equals(this.updateGenderFemale)) {
+			this.gender = 0;
+		}
+
+	}
+
+	@FXML
+	private void updateAllInfo() throws IllegalArgumentException {
+		radioButtonChanged(); //setter gender
+		String username = getStringFromTextField(setUsername);
+		String password = getStringFromPasswordField(setPasswordTextField);
+		String name = getStringFromTextField(setName);
+		int age = getIntFromTextField(setAgeTextField);
+		String phone = getStringFromTextField(setPhoneNumberTextField);
+		String email = getStringFromTextField(setEmailTextField);
+		r = new RegisterUser();
+		user = new User(username, password, name, age, gender, email, phone);
+		r.registerUser(user);
+	}
+
+	@FXML
+	private void tilDashboard(ActionEvent event) {
+		initialize();
+		try {
+			updateAllInfo();
+			System.out.println("Has been done");
+
+			System.out.println(FxApp.getAS());
+			FxApp.getAS().setCurrentUser(user.getUsername());
+
+			NavigerTilSide("TrainerDashboard.fxml", event);
+
+		}
+		catch (IllegalArgumentException e) {
+			errorMessage.setText(e.getMessage());
+		}
+		catch (IOException e) {
+			System.out.println(e.getMessage());
+		}
+	}
+
+}
 
