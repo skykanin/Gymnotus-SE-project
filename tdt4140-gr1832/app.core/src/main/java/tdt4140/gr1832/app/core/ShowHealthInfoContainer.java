@@ -23,10 +23,6 @@ public class ShowHealthInfoContainer {
 	}
 
 	public String getDate() {
-<<<<<<< HEAD
-=======
-		
->>>>>>> 14-implementere-funksjonalitet-for-a-kunne-se-brukerdata-og-helsedata-til-en-bruker
 		return date;
 	}
 

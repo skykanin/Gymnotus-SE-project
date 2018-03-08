@@ -27,22 +27,13 @@ public class TrainerMemberInfoApp {
 
 	
 	public void requestUserInformation_ID(String id) {
-<<<<<<< HEAD
 
-	Client client = ClientBuilder.newClient();
-	WebTarget webTarget = client.target(baseURI + "user/"+id+"/user_info_id");
-	String test = webTarget.request(MediaType.APPLICATION_JSON).get(String.class);
-	Gson gson = new Gson();
-	containerUser = gson.fromJson(test, ShowUserInfoContainer.class);
-=======
 		Client client = ClientBuilder.newClient();
 		WebTarget webTarget = client.target(baseURI + "user/"+id+"/user_info_id");
 		String test = webTarget.request(MediaType.APPLICATION_JSON).get(String.class);
-		System.out.println(test);
 		Gson gson = new Gson();
 		containerUser = gson.fromJson(test, ShowUserInfoContainer.class);
 		containerUser.setUserId(id);
->>>>>>> 14-implementere-funksjonalitet-for-a-kunne-se-brukerdata-og-helsedata-til-en-bruker
 	}
 	
 	public void requestAllUserID() {
