@@ -25,21 +25,21 @@
                <image>
                   <Image url="@images/gymBlur.jpg" />
                </image></ImageView>
-            <JFXTextField fx:id="setUsername" focusColor="#2196f3" layoutX="878.0" layoutY="164.0" prefHeight="35.0" prefWidth="278.0" promptText="Brukernavn" unFocusColor="BLACK">
+            <JFXTextField fx:id="setUsername" focusColor="#0b87a1" layoutX="878.0" layoutY="164.0" prefHeight="35.0" prefWidth="278.0" promptText="Brukernavn" unFocusColor="BLACK">
                <font>
                   <Font size="15.0" />
                </font></JFXTextField>
-            <JFXTextField fx:id="setName" focusColor="#2196f3" layoutX="878.0" layoutY="220.0" prefHeight="35.0" prefWidth="278.0" promptText="Navn" unFocusColor="BLACK">
+            <JFXTextField fx:id="setName" focusColor="#0b87a1" layoutX="878.0" layoutY="220.0" prefHeight="35.0" prefWidth="278.0" promptText="Navn" unFocusColor="BLACK">
                <font>
                   <Font size="15.0" />
                </font>
             </JFXTextField>
-            <JFXTextField fx:id="setEmailTextField" focusColor="#2196f3" layoutX="878.0" layoutY="276.0" prefHeight="35.0" prefWidth="278.0" promptText="Epost" unFocusColor="BLACK">
+            <JFXTextField fx:id="setEmailTextField" focusColor="#0b87a1" layoutX="878.0" layoutY="276.0" prefHeight="35.0" prefWidth="278.0" promptText="Epost" unFocusColor="BLACK">
                <font>
                   <Font size="15.0" />
                </font>
             </JFXTextField>
-            <JFXTextField fx:id="setAgeTextField" focusColor="#2196f3" layoutX="878.0" layoutY="332.0" prefHeight="39.0" prefWidth="278.0" promptText="Alder" unFocusColor="BLACK">
+            <JFXTextField fx:id="setAgeTextField" focusColor="#0b87a1" layoutX="878.0" layoutY="332.0" prefHeight="39.0" prefWidth="278.0" promptText="Alder" unFocusColor="BLACK">
                <font>
                   <Font size="15.0" />
                </font>
@@ -57,12 +57,12 @@
                   <Font size="15.0" />
                </font>
             </JFXRadioButton>
-            <JFXTextField fx:id="setPhoneNumberTextField" focusColor="#2196f3" layoutX="878.0" layoutY="430.0" prefHeight="39.0" prefWidth="278.0" promptText="Telefonnummer" unFocusColor="BLACK">
+            <JFXTextField fx:id="setPhoneNumberTextField" focusColor="#0b87a1" layoutX="878.0" layoutY="430.0" prefHeight="39.0" prefWidth="278.0" promptText="Telefonnummer" unFocusColor="BLACK">
                <font>
                   <Font size="15.0" />
                </font>
             </JFXTextField>
-            <JFXPasswordField fx:id="setPasswordTextField" focusColor="#2196f3" layoutX="878.0" layoutY="491.0" prefHeight="35.0" prefWidth="278.0" promptText="Passord" unFocusColor="BLACK">
+            <JFXPasswordField fx:id="setPasswordTextField" focusColor="#0b87a1" layoutX="878.0" layoutY="491.0" prefHeight="35.0" prefWidth="278.0" promptText="Passord" unFocusColor="BLACK">
                <font>
                   <Font size="15.0" />
                </font>
