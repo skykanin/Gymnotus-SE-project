@@ -14,9 +14,9 @@ public class FxApp extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
+    	InitializeAS("LoginScreen.fxml");
         root = FXMLLoader.load(getClass().getResource("LoginScreen.fxml"));
         scene = new Scene(root);
-        AS = new ApplicationState("LoginScreen.fxml");
         stage.setScene(scene);
         stage.setTitle("GYMNOTUS");
         stage.show();
@@ -27,6 +27,10 @@ public class FxApp extends Application {
         launch(args);
     }
 
+    public static void InitializeAS(String string) {
+        AS = new ApplicationState(string);
+    }
+    
     public static ApplicationState getAS() {
     	return AS;
     }

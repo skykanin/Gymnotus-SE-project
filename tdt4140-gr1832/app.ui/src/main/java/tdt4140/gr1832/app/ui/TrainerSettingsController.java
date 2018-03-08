@@ -1,5 +1,4 @@
 package tdt4140.gr1832.app.ui;
-// fungerende
 import java.io.IOException;
 
 import com.jfoenix.controls.JFXButton;
