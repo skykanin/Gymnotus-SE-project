@@ -1,0 +1,12 @@
+.VenstreMenyKnapp {
+	-fx-alignment: center-left;
+}
+
+.jfx-rippler {
+    -fx-rippler-fill: lime;
+}
+
+.jfx-radio-button {
+    -fx-selected-color: yellow !important;
+    -fx-unselected-color: blue !important;
+}
