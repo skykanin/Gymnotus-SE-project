@@ -54,7 +54,7 @@ public class RegisterScreenController extends WindowController {
 	private String getStringFromPasswordField(JFXPasswordField passwordField) {
 		return (passwordField.getText());
 	}
-	private int getIntFromTextField(JFXTextField textField) {
+	private int getIntFromTextField(JFXTextField textField) throws NumberFormatException {
 		return Integer.parseInt(textField.getText());
 	}
 	//Hente ut informasjonen og setter inn i user-objektet:
@@ -98,12 +98,18 @@ public class RegisterScreenController extends WindowController {
 			NavigerTilSide("TrainerDashboard.fxml", event);
 
 		}
+		catch (NumberFormatException e) {
+			errorMessage.setText("Age must be an integer between 0 and 100");
+		}
 		catch (IllegalArgumentException e) {
+			//e.printStackTrace();
 			errorMessage.setText(e.getMessage());
 		}
 		catch (IOException e) {
+			System.out.println("IO Exception here");
 			System.out.println(e.getMessage());
 		}
+
 	}
 
 }
