@@ -55,6 +55,11 @@ public class TrainerSettingsController extends WindowController {
 		
 		String username = FxApp.getAS().getLoggedInUser().getUsername();
 		
+	// VALIDER EMAIL HER
+		
+		
+		
+		
 		String gender;
 		if (mannButton.isSelected()){
 			gender = "0";
