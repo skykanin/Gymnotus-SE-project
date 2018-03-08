@@ -48,8 +48,6 @@ public class TrainerSettingsController extends WindowController {
 	@FXML
 	JFXRadioButton dameButton;
 	
-	boolean manButtonSelected = false;
-	boolean ladyButtonSelected = false;
 	
 	@FXML
 	private void HandleSetOriginalInformation(ActionEvent event) throws IOException {
@@ -78,8 +76,8 @@ public class TrainerSettingsController extends WindowController {
 		}
 		
 		for (int i=0; i<tlfField.getText().length(); i++) {
-			if (Character.isDigit(tlfField.getText().charAt(i))) {
-				throw new IllegalArgumentException("Phonenumber cannot contain any digits");
+			if (!(Character.isDigit(tlfField.getText().charAt(i)))) {
+				throw new IllegalArgumentException("Phonenumber cannot contain any letters");
 			}
 		}
 		
@@ -109,35 +107,16 @@ public class TrainerSettingsController extends WindowController {
 	
 	@FXML
 	private void toggleDameButton(ActionEvent event) throws IOException {
-		if (! ladyButtonSelected) {
-			
-			mannButton.setSelected(false);
-			dameButton.setSelected(true);
-			ladyButtonSelected = true;
-			manButtonSelected = false;
-		} else if (ladyButtonSelected) {
-			mannButton.setSelected(false);
-			dameButton.setSelected(false);
-			ladyButtonSelected = false;
-			manButtonSelected = false;
-		}
 		
+			mannButton.setSelected(false);
+			dameButton.setSelected(true);	
 	}
 	
 	@FXML
 	private void toggleMannButton(ActionEvent event) throws IOException {
-		if (! manButtonSelected) {
-			
+		
 			mannButton.setSelected(true);
 			dameButton.setSelected(false);
-			ladyButtonSelected = false;
-			manButtonSelected = true;
-		} else if (manButtonSelected) {
-			mannButton.setSelected(false);
-			dameButton.setSelected(false);
-			ladyButtonSelected = false;
-			manButtonSelected = false;
-		}
 	}
 	
 	
@@ -162,19 +141,14 @@ public class TrainerSettingsController extends WindowController {
 		if (gender == 2) {
 			mannButton.setSelected(false);
 			dameButton.setSelected(false);
-			ladyButtonSelected = false;
-			manButtonSelected = false;
-			return;
 		} else if (gender == 1) {
 			mannButton.setSelected(false);
 			dameButton.setSelected(true);
-			ladyButtonSelected = true;
-			manButtonSelected = false;
+			
 		} else if (gender == 0){
 			mannButton.setSelected(true);
 			dameButton.setSelected(false);
-			ladyButtonSelected = false;
-			manButtonSelected = true;
+		
 		}
 		
 		
