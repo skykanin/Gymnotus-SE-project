@@ -143,7 +143,7 @@ public class TrainerSettingsController extends WindowController {
 	
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-		Parent root = FXMLLoader.load(getClass().getResource("TrainerSettings.fxml")); //Husk å endre til tilhørende fxml fil sitt navn.
+		Parent root = FXMLLoader.load(getClass().getResource("TrainerSettings.fxml")); //change to correct filename
 		Scene scene = new Scene(root, 1200, 660);
         primaryStage.setTitle("MemberInfoView");
         primaryStage.setScene(scene);
