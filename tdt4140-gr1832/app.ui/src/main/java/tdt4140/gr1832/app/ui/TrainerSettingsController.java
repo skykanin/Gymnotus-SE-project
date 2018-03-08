@@ -62,6 +62,13 @@ public class TrainerSettingsController extends WindowController {
 		} else {
 			gender = "2";
 		}
+		
+		for (int i=0; i<nameField.getText().length(); i++) {
+			if (Character.isDigit(nameField.getText().charAt(i))) {
+				throw new IllegalArgumentException("Name cannot contain any digits");
+			}
+		}
+		
 		if(TrainerSettingsApp.changeUser(username, nameField.getText(),emailField.getText(), tlfField.getText(), ageField.getText(), gender)) {
 			FxApp.getAS().setCurrentUser(username);
 			return;
