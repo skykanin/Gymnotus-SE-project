@@ -9,6 +9,8 @@ public class ShowHealthInfoContainer {
 	private int weight;
 	private int steps;
 	private int restingHR;
+	private int userID;
+	
 	
 	public ShowHealthInfoContainer(int reportID, int userID, String date,
 		int bloodPressure,int dailySteps, int restingHeartRate, int height, int weight ) {
@@ -17,6 +19,7 @@ public class ShowHealthInfoContainer {
 		this.height = height;
 		this.weight = weight;
 		this.steps = dailySteps;
+		this.userID = userID;
 	}
 
 	public String getDate() {
@@ -43,6 +46,7 @@ public class ShowHealthInfoContainer {
 	public String  getRestingHR() {
 		return restingHR+ "";
 	}
+	
 
 	
 

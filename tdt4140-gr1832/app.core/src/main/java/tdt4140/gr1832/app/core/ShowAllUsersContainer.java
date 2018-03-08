@@ -11,7 +11,6 @@ public class ShowAllUsersContainer {
 	
 	public void addUserInfo(ShowUserInfoContainer userInfo) {
 		users.add(userInfo);
-		
 	}
 	
 	public List<ShowUserInfoContainer> getUsers() {
