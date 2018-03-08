@@ -2,6 +2,9 @@ package tdt4140.gr1832.app.ui;
 // fungerende
 import java.io.IOException;
 
+import javax.mail.internet.AddressException;
+import javax.mail.internet.InternetAddress;
+
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.controls.JFXRadioButton;
@@ -45,6 +48,9 @@ public class TrainerSettingsController extends WindowController {
 	@FXML
 	JFXRadioButton dameButton;
 	
+	boolean manButtonSelected = false;
+	boolean ladyButtonSelected = false;
+	
 	@FXML
 	private void HandleSetOriginalInformation(ActionEvent event) throws IOException {
 		this.initialize();
@@ -54,11 +60,7 @@ public class TrainerSettingsController extends WindowController {
 	private void HandleSubmitChangesButton(ActionEvent event) throws IOException {
 		
 		String username = FxApp.getAS().getLoggedInUser().getUsername();
-		
-	// VALIDER EMAIL HER
-		
-		
-		
+				
 		
 		String gender;
 		if (mannButton.isSelected()){
@@ -75,6 +77,16 @@ public class TrainerSettingsController extends WindowController {
 			}
 		}
 		
+		for (int i=0; i<tlfField.getText().length(); i++) {
+			if (Character.isDigit(tlfField.getText().charAt(i))) {
+				throw new IllegalArgumentException("Phonenumber cannot contain any digits");
+			}
+		}
+		
+		if (!(isValidEmailAddress(emailField.getText()))) {
+			throw new IllegalArgumentException("Email is not valid");
+			
+		}
 		
 		if (ageField.getText().length() < (1) || ageField.getText().length() >(2)) {
 			throw new IllegalArgumentException("age must be a 1 or 2- digit number");
@@ -97,14 +109,35 @@ public class TrainerSettingsController extends WindowController {
 	
 	@FXML
 	private void toggleDameButton(ActionEvent event) throws IOException {
-		mannButton.setSelected(false);
-		dameButton.setSelected(true);
+		if (! ladyButtonSelected) {
+			
+			mannButton.setSelected(false);
+			dameButton.setSelected(true);
+			ladyButtonSelected = true;
+			manButtonSelected = false;
+		} else if (ladyButtonSelected) {
+			mannButton.setSelected(false);
+			dameButton.setSelected(false);
+			ladyButtonSelected = false;
+			manButtonSelected = false;
+		}
+		
 	}
 	
 	@FXML
 	private void toggleMannButton(ActionEvent event) throws IOException {
-		mannButton.setSelected(true);
-		dameButton.setSelected(false);
+		if (! manButtonSelected) {
+			
+			mannButton.setSelected(true);
+			dameButton.setSelected(false);
+			ladyButtonSelected = false;
+			manButtonSelected = true;
+		} else if (manButtonSelected) {
+			mannButton.setSelected(false);
+			dameButton.setSelected(false);
+			ladyButtonSelected = false;
+			manButtonSelected = false;
+		}
 	}
 	
 	
@@ -127,18 +160,38 @@ public class TrainerSettingsController extends WindowController {
 		ageField.setText(age);
 		
 		if (gender == 2) {
+			mannButton.setSelected(false);
+			dameButton.setSelected(false);
+			ladyButtonSelected = false;
+			manButtonSelected = false;
 			return;
 		} else if (gender == 1) {
 			mannButton.setSelected(false);
 			dameButton.setSelected(true);
+			ladyButtonSelected = true;
+			manButtonSelected = false;
 		} else if (gender == 0){
 			mannButton.setSelected(true);
 			dameButton.setSelected(false);
+			ladyButtonSelected = false;
+			manButtonSelected = true;
 		}
 		
 		
 	}
 	
+	//Emailvalidator
+	
+	private boolean isValidEmailAddress(String email) {
+		   boolean result = true;
+		   try {
+		      InternetAddress emailAddr = new InternetAddress(email);
+		      emailAddr.validate();
+		   } catch (AddressException ex) {
+		      result = false;
+		   }
+		   return result;
+		}
 	
 	
 	@Override
