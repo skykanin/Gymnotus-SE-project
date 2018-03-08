@@ -65,4 +65,22 @@ public class TrainerMemberInfoControllerTest extends FxAppTest {
 //      clickOn(TilInnstillingerID);
 //      assertEquals(FxApp.getAS().getWindowName(),"TrainerSettings.fxml");
 //  }
+
+  @Test
+  public void testFieldExist() {
+      //Tester at feltene so skal vere der finnes
+      Assert.assertTrue(lookup("#datePickerField").query() instanceof JFXDatePicker);
+      Assert.assertTrue(lookup("#dateField").query() instanceof JFXTextField);
+      Assert.assertTrue(lookup("#heightField").query() instanceof JFXTextField);
+      Assert.assertTrue(lookup("#weightField").query() instanceof JFXTextField);
+      Assert.assertTrue(lookup("#stepsField").query() instanceof JFXTextField);
+      Assert.assertTrue(lookup("#restingHRField").query() instanceof JFXTextField);
+      Assert.assertTrue(lookup("#nameField").query() instanceof JFXTextField);
+      Assert.assertTrue(lookup("#usernameField").query() instanceof JFXTextField);
+      Assert.assertTrue(lookup("#emailField").query() instanceof JFXTextField);
+      Assert.assertTrue(lookup("#tlfField").query() instanceof JFXTextField);
+      Assert.assertTrue(lookup("#genderField").query() instanceof JFXTextField);
+      Assert.assertTrue(lookup("#datePickerField").query() instanceof JFXDatePicker);
+      Assert.assertTrue(lookup("#ageField").query() instanceof JFXTextField);
+  }
 }
