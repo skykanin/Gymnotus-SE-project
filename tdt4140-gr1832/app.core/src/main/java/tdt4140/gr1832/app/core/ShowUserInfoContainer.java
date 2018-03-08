@@ -24,6 +24,11 @@ public class ShowUserInfoContainer {
 			this.gender = gender;
 		}
 
+		public void setUserId(String id) {
+			if (this.userID == null){
+				this.userID = id;
+			}
+		}
 		public String getPhone() {
 			return phone;
 		}

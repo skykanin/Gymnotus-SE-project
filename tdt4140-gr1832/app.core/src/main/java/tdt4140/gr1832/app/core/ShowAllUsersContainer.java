@@ -11,7 +11,6 @@ public class ShowAllUsersContainer {
 	
 	public void addUserInfo(ShowUserInfoContainer userInfo) {
 		users.add(userInfo);
-		System.out.println(users);
 	}
 	
 	public List<ShowUserInfoContainer> getUsers() {
