@@ -7,6 +7,9 @@ CREATE TABLE User (
   phoneumber VARCHAR(16),
   gender INT,
   age INT,
+  isAnonymous BOOLEAN,
+  shareHealthData BOOLEAN,
+  shareExerciseData BOOLEAN,
   CHECK (age >= 16)
 );
 
