@@ -1,5 +1,6 @@
 package tdt4140.gr1832.web.dao;
 import tdt4140.gr1832.web.server.DatabaseConnection;
+import tdt4140.gr1832.web.dao.data.HealthDataReport;
 import tdt4140.gr1832.web.dao.data.User;
 
 import javax.ws.rs.Consumes;
@@ -25,6 +26,19 @@ import java.util.List;
 
 @Path("user")
 public class UserDAO {
+	
+	public static User createUser(ResultSet rs) throws SQLException {
+		User user = new User();
+		user.setUserID(rs.getInt("userID"));
+		if(rs.wasNull()) return null;
+		user.setUsername(rs.getString("username"));
+		user.setName(rs.getString("name"));
+		user.setEmail(rs.getString("email"));
+		user.setPhone(rs.getString("phoneumber"));
+		user.setGender(rs.getInt("gender"));
+		user.setAge(rs.getInt("age"));
+		return user;
+	}
 	
 	// Utilities for getting single columns from User entity
 	public static String getStringColumnData(String username,
@@ -305,5 +319,5 @@ public class UserDAO {
 		String json = gson.toJson(ids);  
 		return json;
 	}
-
+	
 }
