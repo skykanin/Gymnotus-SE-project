@@ -61,3 +61,6 @@ typings/
 .DS_Store
 
 /target/
+
+# IntelliJ iml files
+*.iml

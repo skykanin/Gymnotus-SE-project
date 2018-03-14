@@ -1,3 +1,6 @@
 # Remove IDE settings
 .idea/
 .vscode/
+
+# Remove IntelliJ files
+*.iml
