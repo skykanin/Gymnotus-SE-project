@@ -3,19 +3,26 @@ package tdt4140.gr1832.web.dao;
 import tdt4140.gr1832.web.dao.data.*;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.sql.PreparedStatement;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 
 import com.google.gson.Gson;
 
@@ -58,6 +65,62 @@ public class HealthDataReportDAO {
 	}
 	
 	//gets all health reports in the database.
+	@POST
+	@Produces(MediaType.APPLICATION_JSON)
+	@Path("/create_data")
+	public Response createHealthData(@FormParam("user_id") Integer userID,
+										 @FormParam("date") String stringDate,
+										 @FormParam("blood_pressure") Integer bloodPressure,
+										 @FormParam("daily_steps") Integer dailySteps,
+										 @FormParam("resting_heart_rate") Integer restingHeartRate,
+										 @FormParam("height") Integer height,
+										 @FormParam("weight") Integer weight) 
+	{
+		Connection conn = DatabaseConnection.getConnection();
+		PreparedStatement prepared_stmt = null;
+		int status = 400;
+		
+		if(userID == null && stringDate == null && bloodPressure == null && dailySteps == null &&
+			restingHeartRate == null && height == null && weight == null)
+			return Response.status(status).build();
+
+		String query = "insert into HealthDataReport (userID, date, bloodPressure,dailySteps,restingHeartRate, height, weight) "
+						+ "values (?, ?, ?, ?, ?, ?, ?)";
+
+		// Convert string to date
+		DateFormat formatter ; 
+		java.util.Date utilDate = new java.util.Date();  
+		formatter = new SimpleDateFormat("yy-mm-dd");
+		try {
+			utilDate = formatter.parse(stringDate);
+		}
+		catch (ParseException e1) {
+			e1.printStackTrace();
+			return Response.status(status).build();
+		}
+		
+		// Execute query
+		try {
+			prepared_stmt = conn.prepareStatement(query);
+			
+			prepared_stmt.setInt(1, userID);
+			prepared_stmt.setDate(2, new Date(utilDate.getYear(), utilDate.getMonth(), utilDate.getDay()));
+			prepared_stmt.setInt(3, bloodPressure);
+			prepared_stmt.setInt(4, dailySteps);
+			prepared_stmt.setInt(5, restingHeartRate);
+			prepared_stmt.setInt(6, height);
+			prepared_stmt.setInt(7, weight);
+
+			prepared_stmt.executeUpdate();
+			status = 200;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			status = 400;
+		}
+		return Response.status(status).build();
+	}
+	
+	//gets all health reports in the database.
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public static String getAllHealthDataReports() {
@@ -67,6 +130,7 @@ public class HealthDataReportDAO {
 		
 		return json;
 	}
+	
 	
 	// Get all reports for the person with given user id
 	@GET
