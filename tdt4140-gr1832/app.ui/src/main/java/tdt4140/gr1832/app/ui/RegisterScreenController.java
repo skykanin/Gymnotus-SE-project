@@ -64,9 +64,9 @@ public class RegisterScreenController extends WindowController {
 		if (this.genderGroup.getSelectedToggle() == null) {
 			throw new IllegalArgumentException("No sex selected");
 		} else if (this.genderGroup.getSelectedToggle().equals(this.updateGenderMale)) {
-			this.gender = 1;
-		} else if (this.genderGroup.getSelectedToggle().equals(this.updateGenderFemale)) {
 			this.gender = 0;
+		} else if (this.genderGroup.getSelectedToggle().equals(this.updateGenderFemale)) {
+			this.gender = 1;
 		}
 
 	}
