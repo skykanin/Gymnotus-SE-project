@@ -3,17 +3,10 @@ package tdt4140.gr1832.app.ui;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.List;
 import java.util.ResourceBundle;
 
-import javax.ws.rs.client.Client;
-import javax.ws.rs.client.ClientBuilder;
-import javax.ws.rs.client.WebTarget;
-import javax.ws.rs.core.MediaType;
-
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 import com.jfoenix.controls.JFXComboBox;
+
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -31,6 +24,8 @@ public class TrainerDashboardController extends WindowController implements Init
 	
     @FXML private Label Velkommen;
     
+    @FXML Label infoText;
+    
     TrainerDashboardApp app = new TrainerDashboardApp();
 
 	@Override
@@ -39,6 +34,7 @@ public class TrainerDashboardController extends WindowController implements Init
 			Velkommen.setText("Velkommen, " + FxApp.getAS().getLoggedInUser().getName());
 		}
 		
+		infoText.setText("Velg dra-til-tryne for å visualisere informasjon:");
 		app.requestAllUserID();
 		ObservableList<String> names = FXCollections.observableArrayList();
 		for (String name : app.getNames()) {
@@ -46,10 +42,12 @@ public class TrainerDashboardController extends WindowController implements Init
 		}
 		
 		memberComboBox.setItems(names);
+		
 	}
 	
 	public void handleMemberComboBox(ActionEvent actionEvent) throws IOException {
-		
+		String username = memberComboBox.getSelectionModel().getSelectedItem();
+		infoText.setText("Viser " + username + "'s info, velg nytt tryne: " );
 	}
 	
 	
