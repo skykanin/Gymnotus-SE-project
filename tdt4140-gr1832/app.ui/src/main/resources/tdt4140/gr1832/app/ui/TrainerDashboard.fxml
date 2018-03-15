@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
@@ -65,6 +67,12 @@
                   </AnchorPane>
                </children>
             </VBox>
+            <JFXComboBox fx:id="memberComboBox" editable="true" layoutX="655.0" layoutY="67.0" prefHeight="20.0" prefWidth="300.0" promptText="Liste over medlemmer" style="-fx-background-color: #e0e0e0;" />
+            <JFXTextField editable="false" layoutX="266.0" layoutY="64.0" prefHeight="29.0" prefWidth="376.0" promptText="VELG MEDLEM FOR Å VISUALISERE INFORMASJON: " unFocusColor="WHITE">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </JFXTextField>
       </children>
     </AnchorPane>
   </children>
