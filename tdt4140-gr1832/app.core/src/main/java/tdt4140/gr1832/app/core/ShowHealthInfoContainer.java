@@ -7,18 +7,18 @@ public class ShowHealthInfoContainer {
 	private String date;
 	private int height;
 	private int weight;
-	private int steps;
-	private int restingHR;
+	private int dailySteps;
+	private int restingHeartRate;
 	private int userID;
 	
 	
 	public ShowHealthInfoContainer(int reportID, int userID, String date,
 		int bloodPressure,int dailySteps, int restingHeartRate, int height, int weight ) {
 		this.date = date;
-		this.restingHR = restingHeartRate;
+		this.restingHeartRate = restingHeartRate;
 		this.height = height;
 		this.weight = weight;
-		this.steps = dailySteps;
+		this.dailySteps = dailySteps;
 		this.userID = userID;
 	}
 
@@ -38,13 +38,13 @@ public class ShowHealthInfoContainer {
 
 	
 	public String getSteps() {
-		return steps + "";
+		return dailySteps + "";
 	}
 
 	
 
 	public String  getRestingHR() {
-		return restingHR+ "";
+		return restingHeartRate+ "";
 	}
 	
 

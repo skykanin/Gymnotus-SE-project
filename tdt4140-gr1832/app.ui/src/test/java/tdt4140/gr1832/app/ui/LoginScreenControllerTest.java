@@ -7,7 +7,6 @@ import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
 import tdt4140.gr1832.app.core.ShowUserInfoContainer;
 
-import org.junit.Ignore;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
@@ -57,7 +56,6 @@ public class LoginScreenControllerTest extends FxAppTest {
     }
     
   @Test
-  @Ignore
   public void testLogin() {
       final KeyCode[] testStringNavn = {KeyCode.T, KeyCode.E, KeyCode.S, KeyCode.T, KeyCode.B, KeyCode.R, KeyCode.U, KeyCode.K, KeyCode.E, KeyCode.R};
       final KeyCode[] testStringPassord = {KeyCode.CAPS, KeyCode.L, KeyCode.U, KeyCode.L, KeyCode.CAPS};
