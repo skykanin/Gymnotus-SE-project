@@ -65,7 +65,7 @@ public class TrainerMemberInfoApp {
 	}
 	
 	//Not used now
-	private String convertArrayToString(String[] in ) {
+	String convertArrayToString(String[] in ) {
 		String result = "";
 		for (int i=0; i<in.length; i++) {
 			result += in[i];
@@ -174,10 +174,4 @@ public class TrainerMemberInfoApp {
 		this.containerAllUsers = e;
 	}
 
-	public static void main(String[] args) {
-//		TrainerMemberInfoApp t = new TrainerMemberInfoApp();
-////		t.requestUserInformation_ID("1");
-////		t.requestHealthInformation_ID("1");
-//		t.requestAllUserID();
-	}
 }

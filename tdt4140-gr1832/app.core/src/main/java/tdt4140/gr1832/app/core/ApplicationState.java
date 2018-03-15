@@ -56,4 +56,8 @@ public class ApplicationState {
     public void DUMMYsetuser(ShowUserInfoContainer s) {
     	loggedInUser = s;
     }
+    
+    public String getBaseURI() {
+    		return baseURI;
+    }
 }
