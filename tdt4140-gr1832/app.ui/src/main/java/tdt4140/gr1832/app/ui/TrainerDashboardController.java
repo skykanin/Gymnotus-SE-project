@@ -26,6 +26,10 @@ public class TrainerDashboardController extends WindowController implements Init
     
     @FXML Label infoText;
     
+    @FXML Label pulsSnittTekst;
+
+    @FXML Label pulsSnittVerdi;
+    
     TrainerDashboardApp app = new TrainerDashboardApp();
 
 	@Override
@@ -48,10 +52,38 @@ public class TrainerDashboardController extends WindowController implements Init
 	public void handleMemberComboBox(ActionEvent actionEvent) throws IOException {
 		String username = memberComboBox.getSelectionModel().getSelectedItem();
 		infoText.setText("Viser " + username + "'s info, velg nytt tryne: " );
+		
+		app.requestHealthInformation_ID(app.getIDfromName(username));
+		
+		String datesToSet = "";
+		String HRsToSet = "";
+		int meanHR = 0;
+		
+		if (app.getDates() != null) {
+			
+			for (int i = 0; i < app.getDates().size(); i++) {
+				datesToSet += app.getDates().get(i) + ", ";
+				HRsToSet += app.getRestingHRs().get(i) + ", ";
+				meanHR += Integer.parseInt(app.getRestingHRs().get(i))/app.getRestingHRs().size();
+			} 
+			
+			datesToSet = datesToSet.substring(0, datesToSet.length()-2);
+			HRsToSet = HRsToSet.substring(0, HRsToSet.length()-2);
+			
+			pulsSnittTekst.setText(username +"'s snittpuls ligger på:");
+			pulsSnittVerdi.setText(meanHR + "");
+			
+		} else {
+			pulsSnittTekst.setText("Ingen helsedata å vise");
+			pulsSnittVerdi.setText("");
+		}
+		
+		
+		
+		
+		
 	}
 	
 	
-	
-
 	
 }

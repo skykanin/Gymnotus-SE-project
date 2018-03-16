@@ -72,6 +72,12 @@
                   <Font size="18.0" />
                </font>
             </Label>
+            <Label fx:id="pulsSnittTekst" alignment="TOP_RIGHT" layoutX="832.0" layoutY="146.0" prefHeight="20.0" prefWidth="295.0" text="Henrik Griske Fosset's snittpuls" />
+            <Label fx:id="pulsSnittVerdi" alignment="TOP_CENTER" layoutX="978.0" layoutY="185.0" prefHeight="74.0" prefWidth="94.0" text="65">
+               <font>
+                  <Font size="34.0" />
+               </font>
+            </Label>
       </children>
     </AnchorPane>
   </children>

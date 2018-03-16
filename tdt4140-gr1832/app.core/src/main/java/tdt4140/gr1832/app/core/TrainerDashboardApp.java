@@ -17,6 +17,8 @@ public class TrainerDashboardApp {
 
 	private List<Integer> userids = new ArrayList<Integer>();
 	
+	private List<ShowHealthInfoContainer> healthContainers = new ArrayList<ShowHealthInfoContainer>();
+	
 	private ShowAllUsersContainer containerAllUsers = new ShowAllUsersContainer();
 	
 	private String baseURI = "http://146.185.153.244:8080/api/";
@@ -46,6 +48,14 @@ public class TrainerDashboardApp {
 		
 	}
 	
+	public void requestHealthInformation_ID(String id) {
+		Client client = ClientBuilder.newClient();
+		WebTarget webTarget = client.target(baseURI + "health_data/id/"+id);
+		String test = webTarget.request(MediaType.APPLICATION_JSON).get(String.class);
+		Gson gson = new Gson();
+		healthContainers = gson.fromJson(test, new TypeToken<List<ShowHealthInfoContainer>>(){}.getType());
+	}
+	
 	public List<String> getNames(){
 		List<String> usernames = new ArrayList<>();
 		for (ShowUserInfoContainer user : containerAllUsers.getUsers()){
@@ -57,4 +67,88 @@ public class TrainerDashboardApp {
 		
 		return usernames;
 		}
+	
+	public String getIDfromName(String name) {
+		for (ShowUserInfoContainer user : containerAllUsers.getUsers()){
+			if (user.getName().equals(name)) {
+				return user.getUserID();
+			}
+		}
+		return "1";
+	}
+	
+	public List<String> getHeights() {
+		if (healthContainers.size()<1) {
+			return null;
+		}
+		
+		List<String> heights = new ArrayList<>();
+		
+		for (ShowHealthInfoContainer hContainer : healthContainers) {
+			heights.add(hContainer.getHeight());
+		}
+		
+		return heights;
+	}
+
+	public List<String> getDates() {
+		if (healthContainers.size()<1) {
+			return null;
+		}
+		
+		List<String> dates = new ArrayList<>();
+		
+		for (ShowHealthInfoContainer hContainer : healthContainers) {
+			dates.add(hContainer.getDate());
+		}
+		
+		return dates;
+	}
+	
+	//weight
+	public List<String> getWeights() {
+		if (healthContainers.size()<1) {
+			return null;
+		}
+		
+		List<String> weights = new ArrayList<>();
+		
+		for (ShowHealthInfoContainer hContainer : healthContainers) {
+			weights.add(hContainer.getWeight());
+		}
+		
+		return weights;
+	}
+	
+	//steps
+	public List<String> getSteps() {
+		if (healthContainers.size()<1) {
+			return null;
+		}
+		
+		List<String> steps = new ArrayList<>();
+		
+		for (ShowHealthInfoContainer hContainer : healthContainers) {
+			steps.add(hContainer.getSteps());
+		}
+		
+		return steps;
+	}
+	
+	//restingHR
+	public List<String> getRestingHRs() {
+		if (healthContainers.size()<1) {
+			return null;
+		}
+		
+		List<String> HRs = new ArrayList<>();
+		
+		for (ShowHealthInfoContainer hContainer : healthContainers) {
+			HRs.add(hContainer.getRestingHR());
+		}
+		
+		return HRs;
+	}
+
+
 }
