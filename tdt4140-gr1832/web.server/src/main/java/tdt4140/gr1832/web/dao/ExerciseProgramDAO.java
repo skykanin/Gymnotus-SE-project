@@ -22,7 +22,6 @@ import tdt4140.gr1832.web.server.DatabaseConnection;
 
 @Path("/exercise_program")
 public class ExerciseProgramDAO {
-	
 	//utility for getting information about exercise program based on the ID
 	public static String getExerciseProgramDataJson(String query) {
 		Connection conn = DatabaseConnection.getConnection();
