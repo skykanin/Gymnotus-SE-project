@@ -27,12 +27,12 @@ public class HealthDataReportTest {
 	@SuppressWarnings("deprecation")
 	@Test
 	public void testGetter() {
-		Assert.assertEquals(report.getBloodPressure(), 1);
-		Assert.assertEquals(report.getDailySteps(), 1);
-		Assert.assertEquals(report.getRestingHeartRate(), 1);
-		Assert.assertEquals(report.getDate(), new Date(2018,1,1));
-		Assert.assertEquals(report.getHeight(), 1);
-		Assert.assertEquals(report.getWeight(), 1);
-		Assert.assertEquals(report.getUserID(), 1);
+		Assert.assertEquals(1, report.getBloodPressure());
+		Assert.assertEquals(1, report.getDailySteps());
+		Assert.assertEquals(1, report.getRestingHeartRate());
+		Assert.assertEquals(new Date(2018,1,1), report.getDate());
+		Assert.assertEquals(1, report.getHeight());
+		Assert.assertEquals(1, report.getWeight());
+		Assert.assertEquals(1, report.getUserID());
 	}
 }

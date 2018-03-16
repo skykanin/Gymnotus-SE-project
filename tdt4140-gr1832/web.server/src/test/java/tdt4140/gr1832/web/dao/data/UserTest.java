@@ -22,12 +22,12 @@ public class UserTest {
 	
 	@Test
 	public void testGetterSetter() {
-		Assert.assertEquals(user.getUserID(), 1);
-		Assert.assertEquals(user.getUsername(), "test");
-		Assert.assertEquals(user.getEmail(), "test@test.com");
-		Assert.assertEquals(user.getGender(), 0);
-		Assert.assertEquals(user.getAge(), 1);
-		Assert.assertEquals(user.getPhone(), "123");
-		Assert.assertEquals(user.getName(), "test");
+		Assert.assertEquals(1, user.getUserID());
+		Assert.assertEquals("test", user.getUsername());
+		Assert.assertEquals("test@test.com",  user.getEmail());
+		Assert.assertEquals(0, user.getGender());
+		Assert.assertEquals(1, user.getAge());
+		Assert.assertEquals("123", user.getPhone());
+		Assert.assertEquals("test", user.getName());
 	}
 }
