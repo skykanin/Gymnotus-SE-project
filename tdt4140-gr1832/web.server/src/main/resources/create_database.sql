@@ -1,5 +1,5 @@
 CREATE TABLE User (
-  userID int UNIQUE NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  userID int NOT NULL PRIMARY KEY IDENTITY,
   username VARCHAR(32),
   password VARCHAR(64),
   name VARCHAR(64),
@@ -14,13 +14,13 @@ CREATE TABLE User (
 );
 
 CREATE TABLE Role (
-  roleID INT UNIQUE NOT NULL PRIMARY KEY,
+  roleID INT NOT NULL PRIMARY KEY,
   title VARCHAR(64),
   description VARCHAR(256)
 );
 
 CREATE TABLE UserHasRole (
-  userID int NOT NULL UNIQUE,
+  userID int NOT NULL ,
   roleID int NOT NULL,
   PRIMARY KEY (userID, roleID),
   FOREIGN KEY (userID) REFERENCES User(userID) ON DELETE CASCADE,
@@ -28,7 +28,7 @@ CREATE TABLE UserHasRole (
 );
 
 CREATE TABLE Feedback (
-  feedbackID int NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  feedbackID int NOT NULL PRIMARY KEY IDENTITY,
   userID int NOT NULL,
   content VARCHAR(1024),
   date DATE,
@@ -36,7 +36,7 @@ CREATE TABLE Feedback (
 );
 
 CREATE TABLE HealthDataReport (
-  reportID INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  reportID INT NOT NULL PRIMARY KEY IDENTITY,
   userID INT NOT NULL,
   date DATE,
   bloodPressure INT,
@@ -48,26 +48,24 @@ CREATE TABLE HealthDataReport (
 );
 
 CREATE TABLE ExerciseProgram (
-  programID INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  programID INT NOT NULL PRIMARY KEY IDENTITY,
   name VARCHAR(64),
   description VARCHAR(1024)
 );
 
 CREATE TABLE Exercise (
-  exerciseID INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  exerciseID INT NOT NULL PRIMARY KEY IDENTITY,
   programID INT,
   description VARCHAR(1024),
   sets INT,
   repsPerSet INT,
   pauseBetweenSets INT,
   parameter INT,
-  CHECK (sets > 0 && repsPerSet > 0),
-  FOREIGN KEY (programID) REFERENCES ExerciseProgram(programID)
-);
+  CHECK (sets > 0 and repsPerSet > 0),
+  FOREIGN KEY (programID) REFERENCES ExerciseProgram(programID));
 
-// LEGG  INN RESULTATSVARIABLER
 CREATE TABLE Result (
-  resultID INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  resultID INT NOT NULL PRIMARY KEY IDENTITY,
   userID INT NOT NULL,
   exerciseID INT NOT NULL,
   date DATE,
@@ -85,7 +83,7 @@ CREATE TABLE UserRegisteredForExercise (
 );
 
 CREATE TABLE UserCommentOnExerciseprogram (
-  commentID int NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  commentID int NOT NULL PRIMARY KEY IDENTITY,
   userID int NOT NULL,
   programID int NOT NULL,
   content VARCHAR(1024),

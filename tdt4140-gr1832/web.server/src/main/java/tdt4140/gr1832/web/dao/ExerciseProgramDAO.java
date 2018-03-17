@@ -2,13 +2,16 @@ package tdt4140.gr1832.web.dao;
 import tdt4140.gr1832.web.dao.data.ExerciseProgram;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -46,6 +49,7 @@ public class ExerciseProgramDAO {
 		return json;
 	}
 	
+	
 	public static String getExerciseProgramListJson(String query) {
 		Connection conn = DatabaseConnection.getConnection();
 		
@@ -69,6 +73,35 @@ public class ExerciseProgramDAO {
 		Gson gson = new Gson();
 		String json = gson.toJson(programs);  
 		return json;
+	}
+	
+	
+	@POST
+	@Path("/create_exercise_program")
+	public Response createExerciseProgram(@FormParam("name") String name, @FormParam("description") String description) {
+		Connection conn = DatabaseConnection.getConnection();
+		PreparedStatement prepared_stmt = null;
+		int status = 400;
+		Integer num_rows_affected = 0;
+		
+		String query = "insert into ExerciseProgram  (name, description) values(?, ?)";
+		if(name != null && description != null) {
+			try {
+				prepared_stmt = conn.prepareStatement(query);
+				
+				prepared_stmt.setString(1, name);
+				prepared_stmt.setString(2, description);
+				
+				num_rows_affected = prepared_stmt.executeUpdate();
+				status = 200;
+			} 
+			catch (SQLException e) {
+				e.printStackTrace();
+				status = 400;
+			}
+		}
+		
+		return Response.status(status).entity(num_rows_affected).build();
 	}
 	
 	@GET

@@ -3,6 +3,7 @@ package tdt4140.gr1832.web.server;
 import java.io.Console;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Scanner;
 
@@ -13,6 +14,37 @@ public class DatabaseConnection {
    public static Connection getConnection() {
 	   return conn;
    }
+   
+   public static void setConnection(Connection conn) {
+	   DatabaseConnection.conn = conn;
+   }
+   
+   public static void executeStatements(final String path, final boolean cleanUp) throws SQLException {
+	   Statement dbStatement = conn.createStatement();
+	   final StringBuilder buffer = new StringBuilder();
+	   	try (Scanner scanner = new Scanner(DatabaseConnection.class.getClassLoader().getResourceAsStream(path))) {
+			while (scanner.hasNextLine()) {
+				final String line = scanner.nextLine();
+				final int pos = line.indexOf(";");
+				if (pos >= 0) {
+					buffer.append(line.substring(0, pos + 1));
+					final String sql = buffer.toString();
+					buffer.setLength(0);
+					if (pos < line.length()) {
+						buffer.append(line.substring(pos + 1));
+					}
+					
+					if (cleanUp || (! sql.startsWith("DROP"))) {
+						dbStatement.execute(sql);
+					}
+				} else {
+					buffer.append(line);
+					buffer.append("\n");
+				}
+			}
+		}
+	}
+
    
    public static void connectToDB() {
 	   Scanner scanner = null;
