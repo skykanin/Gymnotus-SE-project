@@ -48,7 +48,7 @@ CREATE TABLE HealthDataReport (
 );
 
 CREATE TABLE ExerciseProgram (
-  programID INT NOT NULL PRIMARY KEY ,
+  programID INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
   name VARCHAR(64),
   description VARCHAR(1024)
 );
