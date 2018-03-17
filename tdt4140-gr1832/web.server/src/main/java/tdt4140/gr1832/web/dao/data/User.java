@@ -8,6 +8,9 @@ public class User {
 	String phone;
 	Integer gender;
 	Integer age;
+	Boolean isAnonymous;
+	Boolean shareExerciseData;
+	Boolean shareHealthData;
 	
 	public User() {
 		
@@ -66,5 +69,29 @@ public class User {
 	}
 	public void setAge(int age) {
 		this.age = age;
+	}
+
+	public Boolean getIsAnonymous() {
+		return isAnonymous;
+	}
+
+	public void setIsAnonymous(Boolean isAnonymous) {
+		this.isAnonymous = isAnonymous;
+	}
+
+	public Boolean getShareExerciseData() {
+		return shareExerciseData;
+	}
+
+	public void setShareExerciseData(Boolean shareExerciseData) {
+		this.shareExerciseData = shareExerciseData;
+	}
+
+	public Boolean getShareHealthData() {
+		return shareHealthData;
+	}
+
+	public void setShareHealthData(Boolean shareHealthData) {
+		this.shareHealthData = shareHealthData;
 	}
 }
