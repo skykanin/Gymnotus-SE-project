@@ -111,6 +111,10 @@ public class RegisterScreenController extends WindowController {
 		}
 
 	}
-
+	
+	@FXML
+	private void tilLoginScreen(ActionEvent event) throws IOException {
+		NavigerTilSide("LoginScreen.fxml", event);
+	}
 }
 
