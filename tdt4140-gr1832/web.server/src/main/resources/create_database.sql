@@ -43,7 +43,7 @@ CREATE TABLE HealthDataReport (
   dailySteps INT,
   restingHeartRate INT,
   height INT,
-  width INT,
+  weight INT,
   FOREIGN KEY (userID) REFERENCES User(userID) ON DELETE CASCADE
 );
 
