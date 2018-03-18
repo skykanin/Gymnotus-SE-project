@@ -21,13 +21,13 @@
     </content>
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="inheritedJdk" />
-    <orderEntry type="library" name="org.eclipse.m2e.MAVEN2_CLASSPATH_CONTAINER" level="application" />
-    <orderEntry type="library" name="Maven: org.eclipse.jetty:jetty-servlet:9.4.0.v20161208" level="project" />
-    <orderEntry type="library" name="Maven: org.eclipse.jetty:jetty-security:9.4.0.v20161208" level="project" />
-    <orderEntry type="library" name="Maven: org.eclipse.jetty:jetty-server:9.4.0.v20161208" level="project" />
-    <orderEntry type="library" name="Maven: org.eclipse.jetty:jetty-http:9.4.0.v20161208" level="project" />
-    <orderEntry type="library" name="Maven: org.eclipse.jetty:jetty-io:9.4.0.v20161208" level="project" />
-    <orderEntry type="library" name="Maven: org.eclipse.jetty:jetty-client:9.4.8.v20171121" level="project" />
+    <orderEntry type="library" exported="" name="org.eclipse.m2e.MAVEN2_CLASSPATH_CONTAINER" level="application" />
+    <orderEntry type="library" exported="" name="Maven: org.eclipse.jetty:jetty-servlet:9.4.0.v20161208" level="project" />
+    <orderEntry type="library" exported="" name="Maven: org.eclipse.jetty:jetty-security:9.4.0.v20161208" level="project" />
+    <orderEntry type="library" exported="" name="Maven: org.eclipse.jetty:jetty-server:9.4.0.v20161208" level="project" />
+    <orderEntry type="library" exported="" name="Maven: org.eclipse.jetty:jetty-http:9.4.0.v20161208" level="project" />
+    <orderEntry type="library" exported="" name="Maven: org.eclipse.jetty:jetty-io:9.4.0.v20161208" level="project" />
+    <orderEntry type="library" exported="" name="Maven: org.eclipse.jetty:jetty-client:9.4.8.v20171121" level="project" />
     <orderEntry type="module" module-name="tdt4140-gr1832.app.core" />
     <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-core:2.9.3" level="project" />
     <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-databind:2.9.3" level="project" />
