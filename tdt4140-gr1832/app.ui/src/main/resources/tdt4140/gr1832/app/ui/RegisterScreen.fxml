@@ -67,12 +67,13 @@
                   <Font size="15.0" />
                </font>
             </JFXPasswordField>
-            <JFXButton fx:id="registerButton" buttonType="FLAT" layoutX="1047.0" layoutY="565.0" onAction="#tilDashboard" prefHeight="39.0" prefWidth="89.0" ripplerFill="WHITE" style="-fx-background-color: #80bfb7;" text="Registrer" />
+            <JFXButton fx:id="registerButton" buttonType="FLAT" layoutX="1036.0" layoutY="563.0" onAction="#tilDashboard" prefHeight="39.0" prefWidth="89.0" ripplerFill="WHITE" style="-fx-background-color: #80bfb7;" text="Registrer" />
             <Label fx:id="errorMessage" alignment="CENTER" layoutX="808.0" layoutY="563.0" prefHeight="39.0" prefWidth="235.0" textAlignment="JUSTIFY" textFill="RED">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
+            <JFXButton fx:id="tilbake" buttonType="FLAT" layoutX="876.0" layoutY="563.0" onAction="#tilLoginScreen" prefHeight="39.0" prefWidth="89.0" ripplerFill="WHITE" style="-fx-background-color: #80bfb7;" text="Tilbake" />
       </children>
     </AnchorPane>
   </children>
