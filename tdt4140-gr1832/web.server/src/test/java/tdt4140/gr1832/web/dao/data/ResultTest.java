@@ -19,6 +19,7 @@ public class ResultTest {
 		result.setExerciseID(1);
 		result.setUserID(1);
 		result.setDate(new Date(2018,1,1));
+		result.setResultParameter(1);
 	}
 	
 	@SuppressWarnings("deprecation")
@@ -28,5 +29,6 @@ public class ResultTest {
 		Assert.assertEquals(1, (int)result.getExerciseID());
 		Assert.assertEquals(1, (int)result.getUserID());
 		Assert.assertEquals(new Date(2018,1,1), result.getDate());
+		Assert.assertEquals(1, (int)result.getResultParameter());
 	}
 }

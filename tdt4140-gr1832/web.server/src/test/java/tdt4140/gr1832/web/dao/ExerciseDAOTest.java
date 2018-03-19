@@ -59,7 +59,7 @@ public class ExerciseDAOTest {
 	
 	@Test
 	public void testUpdateExercises() {
-		Response response = exerciseDAO.updateExercise(0, "test", 1,2,3,"test");
+		Response response = exerciseDAO.updateExercise(0, "test", 1,2,3, "test");
 		Assert.assertEquals(200, response.getStatus());
 		
 		exercise = gson.fromJson(exerciseDAO.getExercise(0), Exercise.class);

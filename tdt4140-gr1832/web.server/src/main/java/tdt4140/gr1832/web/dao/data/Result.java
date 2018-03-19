@@ -7,6 +7,7 @@ public class Result {
 	Integer userID;
 	Integer exerciseID;
 	Date date;
+	Integer resultParameter;
 	public Integer getResultID() {
 		return resultID;
 	}
@@ -31,4 +32,11 @@ public class Result {
 	public void setDate(Date date) {
 		this.date = date;
 	}
+	public Integer getResultParameter() {
+		return resultParameter;
+	}
+	public void setResultParameter(Integer resultParameter) {
+		this.resultParameter = resultParameter;
+	}
+	
 }
