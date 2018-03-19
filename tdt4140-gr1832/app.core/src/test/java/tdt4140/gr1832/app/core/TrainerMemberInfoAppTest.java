@@ -28,7 +28,7 @@ public class TrainerMemberInfoAppTest extends TestCase {
 		showUserInfoContainer = new ShowUserInfoContainer("brukernavn", "passord", "navn",11, 0, "email", "telefon");
 		showUserInfoContainer1 = new ShowUserInfoContainer("brukernavn", "passord", "navn",11, 1, "email", "telefon");
 		showUserInfoContainer2 = new ShowUserInfoContainer("brukernavn", "passord", "navn",11, 2, "email", "telefon");
-		showHealthInfoContainer = new ShowHealthInfoContainer(123, 007, "Mar  2018", 85, 100, 60, 181, 80);
+		showHealthInfoContainer = new ShowHealthInfoContainer(123, 007, "Mar  2018", 85, 100, 60, 181, 80, true, true, true);
 		testapp.addContainerHealth(showHealthInfoContainer);
 		testapp.setContianerUser(showUserInfoContainer);
 	}
