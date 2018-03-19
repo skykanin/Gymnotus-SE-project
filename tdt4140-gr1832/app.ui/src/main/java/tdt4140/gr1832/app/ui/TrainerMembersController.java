@@ -13,6 +13,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import tdt4140.gr1832.app.core.ApplicationState;
 import tdt4140.gr1832.app.core.TrainerMemberInfoApp;
 
 public class TrainerMembersController extends WindowController {
@@ -34,10 +35,29 @@ public class TrainerMembersController extends WindowController {
 	@FXML
 	private void velgMedlem(ActionEvent event) throws IOException {
 		String preferedUser = medlemsListe.getSelectionModel().getSelectedItem();
-		String id = app.getIDfromName(preferedUser);
-		NavigerTilSide("TrainerMemberInfo.fxml", event, id);
 		
+		try {
+			String[] splitUser=preferedUser.split("#");
+			if (splitUser.length==2) {
+				String id = splitUser[1];
+				NavigerTilSide("AnonymousTrainerMemberInfo.fxml", event, id);
+
+			}
+		}
+		catch  (Exception e){
+			String id = app.getIDfromName(preferedUser);
+		NavigerTilSide("TrainerMemberInfo.fxml", event, id);
+		}
+				
+	}
+	
+	public static void main(String[] args) {
+	
+			
 		
 	}
 	
+	
 }
+
+

@@ -25,26 +25,26 @@
                <image>
                   <Image url="@images/gymBlur.jpg" />
                </image></ImageView>
-            <JFXTextField fx:id="setUsername" focusColor="#0b87a1" layoutX="878.0" layoutY="164.0" prefHeight="35.0" prefWidth="278.0" promptText="Brukernavn" unFocusColor="BLACK">
+            <JFXTextField fx:id="setUsername" focusColor="#0b87a1" layoutX="876.0" layoutY="121.0" prefHeight="35.0" prefWidth="278.0" promptText="Brukernavn" unFocusColor="BLACK">
                <font>
                   <Font size="15.0" />
                </font></JFXTextField>
-            <JFXTextField fx:id="setName" focusColor="#0b87a1" layoutX="878.0" layoutY="220.0" prefHeight="35.0" prefWidth="278.0" promptText="Navn" unFocusColor="BLACK">
+            <JFXTextField fx:id="setName" focusColor="#0b87a1" layoutX="876.0" layoutY="177.0" prefHeight="35.0" prefWidth="278.0" promptText="Navn" unFocusColor="BLACK">
                <font>
                   <Font size="15.0" />
                </font>
             </JFXTextField>
-            <JFXTextField fx:id="setEmailTextField" focusColor="#0b87a1" layoutX="878.0" layoutY="276.0" prefHeight="35.0" prefWidth="278.0" promptText="Epost" unFocusColor="BLACK">
+            <JFXTextField fx:id="setEmailTextField" focusColor="#0b87a1" layoutX="876.0" layoutY="233.0" prefHeight="35.0" prefWidth="278.0" promptText="Epost" unFocusColor="BLACK">
                <font>
                   <Font size="15.0" />
                </font>
             </JFXTextField>
-            <JFXTextField fx:id="setAgeTextField" focusColor="#0b87a1" layoutX="878.0" layoutY="332.0" prefHeight="39.0" prefWidth="278.0" promptText="Alder" unFocusColor="BLACK">
+            <JFXTextField fx:id="setAgeTextField" focusColor="#0b87a1" layoutX="876.0" layoutY="289.0" prefHeight="39.0" prefWidth="278.0" promptText="Alder" unFocusColor="BLACK">
                <font>
                   <Font size="15.0" />
                </font>
             </JFXTextField>
-            <JFXRadioButton fx:id="updateGenderMale" layoutX="861.0" layoutY="390.0" text="Mann">
+            <JFXRadioButton fx:id="updateGenderMale" layoutX="862.0" layoutY="348.0" text="Mann">
                <font>
                   <Font size="15.0" />
                </font>
@@ -52,22 +52,22 @@
                   <ToggleGroup fx:id="genderGroup" />
                </toggleGroup>
             </JFXRadioButton>
-            <JFXRadioButton fx:id="updateGenderFemale" layoutX="973.0" layoutY="390.0" text="Kvinne" toggleGroup="$genderGroup">
+            <JFXRadioButton fx:id="updateGenderFemale" layoutX="974.0" layoutY="348.0" text="Kvinne" toggleGroup="$genderGroup">
                <font>
                   <Font size="15.0" />
                </font>
             </JFXRadioButton>
-            <JFXTextField fx:id="setPhoneNumberTextField" focusColor="#0b87a1" layoutX="878.0" layoutY="430.0" prefHeight="39.0" prefWidth="278.0" promptText="Telefonnummer" unFocusColor="BLACK">
+            <JFXTextField fx:id="setPhoneNumberTextField" focusColor="#0b87a1" layoutX="877.0" layoutY="397.0" prefHeight="39.0" prefWidth="278.0" promptText="Telefonnummer" unFocusColor="BLACK">
                <font>
                   <Font size="15.0" />
                </font>
             </JFXTextField>
-            <JFXPasswordField fx:id="setPasswordTextField" focusColor="#0b87a1" layoutX="878.0" layoutY="491.0" prefHeight="35.0" prefWidth="278.0" promptText="Passord" unFocusColor="BLACK">
+            <JFXPasswordField fx:id="setPasswordTextField" focusColor="#0b87a1" layoutX="876.0" layoutY="458.0" prefHeight="35.0" prefWidth="278.0" promptText="Passord" unFocusColor="BLACK">
                <font>
                   <Font size="15.0" />
                </font>
             </JFXPasswordField>
-            <JFXButton fx:id="registerButton" buttonType="FLAT" layoutX="1047.0" layoutY="565.0" onAction="#tilDashboard" prefHeight="39.0" prefWidth="89.0" ripplerFill="WHITE" style="-fx-background-color: #80bfb7;" text="Registrer" />
+            <JFXButton fx:id="registerButton" buttonType="FLAT" layoutX="1058.0" layoutY="516.0" onAction="#tilDashboard" prefHeight="39.0" prefWidth="89.0" ripplerFill="WHITE" style="-fx-background-color: #80bfb7;" text="Registrer" />
             <Label fx:id="errorMessage" alignment="CENTER" layoutX="808.0" layoutY="563.0" prefHeight="39.0" prefWidth="235.0" textAlignment="JUSTIFY" textFill="RED">
                <font>
                   <Font size="14.0" />
