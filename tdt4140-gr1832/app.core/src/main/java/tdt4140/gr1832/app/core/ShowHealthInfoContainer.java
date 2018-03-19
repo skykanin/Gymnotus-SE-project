@@ -10,10 +10,40 @@ public class ShowHealthInfoContainer {
 	private int dailySteps;
 	private int restingHeartRate;
 	private int userID;
+	private boolean isAnonymous;
+	private boolean shareHealthData;
+	private boolean shareExerciseData;
+
+	public boolean getIsAnonymous() {
+		return isAnonymous;
+	}
+
+	public void setAnonymous(boolean anonymous) {
+		isAnonymous = anonymous;
+	}
+
+	public boolean getShareHealthData() {
+		return shareHealthData;
+	}
+
+	public void setShareHealthData(boolean shareHealthData) {
+		this.shareHealthData = shareHealthData;
+	}
+
+	public boolean getShareExerciseData() {
+		return shareExerciseData;
+	}
+
+	public void setShareExerciseData(boolean shareExerciseData) {
+		this.shareExerciseData = shareExerciseData;
+	}
 	
 	
 	public ShowHealthInfoContainer(int reportID, int userID, String date,
-		int bloodPressure,int dailySteps, int restingHeartRate, int height, int weight ) {
+								   int bloodPressure,int dailySteps, int restingHeartRate,
+								   int height, int weight, boolean isAnonymous,
+								   boolean shareHealthData, boolean shareExerciseData) {
+
 		this.date = date;
 		this.restingHeartRate = restingHeartRate;
 		this.height = height;
