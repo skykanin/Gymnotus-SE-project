@@ -87,24 +87,12 @@ public class HealthDataReportDAO {
 		String query = "insert into HealthDataReport (userID, date, bloodPressure,dailySteps,restingHeartRate, height, weight) "
 						+ "values (?, ?, ?, ?, ?, ?, ?)";
 
-		// Convert string to date
-		DateFormat formatter ; 
-		java.util.Date utilDate = new java.util.Date();  
-		formatter = new SimpleDateFormat("yy-mm-dd");
-		try {
-			utilDate = formatter.parse(stringDate);
-		}
-		catch (ParseException e1) {
-			e1.printStackTrace();
-			return Response.status(status).build();
-		}
-		
 		// Execute query
 		try {
 			prepared_stmt = conn.prepareStatement(query);
 			
 			prepared_stmt.setInt(1, userID);
-			prepared_stmt.setDate(2, new Date(utilDate.getYear(), utilDate.getMonth(), utilDate.getDay()));
+			prepared_stmt.setString(2, stringDate);
 			prepared_stmt.setInt(3, bloodPressure);
 			prepared_stmt.setInt(4, dailySteps);
 			prepared_stmt.setInt(5, restingHeartRate);
