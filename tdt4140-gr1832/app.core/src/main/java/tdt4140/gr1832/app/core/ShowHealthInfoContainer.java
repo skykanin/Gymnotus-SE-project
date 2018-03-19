@@ -25,6 +25,9 @@ public class ShowHealthInfoContainer {
 		this.weight = weight;
 		this.dailySteps = dailySteps;
 		this.userID = userID;
+		this.isAnonymous = isAnonymous;
+		this.shareHealthData = shareHealthData;
+		this.shareExerciseData = shareExerciseData;
 	}
 
 	public boolean getIsAnonymous() {
