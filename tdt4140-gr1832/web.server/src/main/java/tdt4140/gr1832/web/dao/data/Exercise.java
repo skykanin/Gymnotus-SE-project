@@ -1,13 +1,13 @@
 package tdt4140.gr1832.web.dao.data;
 
 public class Exercise {
-	  Integer exerciseID;
-	  Integer programID;
-	  String description;
-	  Integer sets;
-	  Integer repsPerSet;
-	  Integer pauseBetweenSets;
-	  Integer parameter;
+	Integer exerciseID;
+	Integer programID;
+	String description;
+	Integer sets;
+	Integer repsPerSet;
+	Integer pauseBetweenSets;
+	String parameterDescription;
 	public Integer getExerciseID() {
 		return exerciseID;
 	}
@@ -44,10 +44,10 @@ public class Exercise {
 	public void setPauseBetweenSets(Integer pauseBetweenSets) {
 		this.pauseBetweenSets = pauseBetweenSets;
 	}
-	public Integer getParameter() {
-		return parameter;
+	public String getParameterDescription() {
+		return parameterDescription;
 	}
-	public void setParameter(Integer parameter) {
-		this.parameter = parameter;
+	public void setParameterDescription(String parameter) {
+		this.parameterDescription = parameter;
 	}
 }

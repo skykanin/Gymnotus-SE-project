@@ -16,7 +16,7 @@ public class ExerciseTest {
 		
 		exercise.setExerciseID(1);
 		exercise.setDescription("test");
-		exercise.setParameter(1);
+		exercise.setParameterDescription("test");
 		exercise.setPauseBetweenSets(1);
 		exercise.setProgramID(1);
 		exercise.setRepsPerSet(1);
@@ -28,7 +28,7 @@ public class ExerciseTest {
 	public void testGetter() {
 		Assert.assertEquals(1, (int)exercise.getExerciseID());
 		Assert.assertEquals("test", exercise.getDescription());
-		Assert.assertEquals(1, (int)exercise.getParameter());
+		Assert.assertEquals("test", (String)exercise.getParameterDescription());
 		Assert.assertEquals(1, (int)exercise.getPauseBetweenSets());
 		Assert.assertEquals(1, (int)exercise.getProgramID());
 		Assert.assertEquals(1, (int)exercise.getRepsPerSet());

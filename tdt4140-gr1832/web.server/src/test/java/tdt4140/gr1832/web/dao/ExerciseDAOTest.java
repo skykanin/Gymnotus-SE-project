@@ -41,7 +41,7 @@ public class ExerciseDAOTest {
 		Response response = programDAO.createExerciseProgram("test", "test");
 		Assert.assertEquals(200, response.getStatus());
 		
-		Response response1 = exerciseDAO.createExercise(0, "test", 1, 1, 1, 1);
+		Response response1 = exerciseDAO.createExercise(0, "test", 1, 1, 1, "test");
 		Assert.assertEquals(200, response1.getStatus());
 		
 		testNum++;
@@ -59,7 +59,7 @@ public class ExerciseDAOTest {
 	
 	@Test
 	public void testUpdateExercises() {
-		Response response = exerciseDAO.updateExercise(0, "test", 1,2,3,4);
+		Response response = exerciseDAO.updateExercise(0, "test", 1,2,3,"test");
 		Assert.assertEquals(200, response.getStatus());
 		
 		exercise = gson.fromJson(exerciseDAO.getExercise(0), Exercise.class);
@@ -68,7 +68,7 @@ public class ExerciseDAOTest {
 		Assert.assertEquals(1, (int)exercise.getSets());
 		Assert.assertEquals(2, (int)exercise.getRepsPerSet());
 		Assert.assertEquals(3, (int)exercise.getPauseBetweenSets());
-		Assert.assertEquals(4, (int)exercise.getParameter());
+		Assert.assertEquals("test", (String)exercise.getParameterDescription());
 	}
 	
 	@Test
@@ -83,7 +83,7 @@ public class ExerciseDAOTest {
 		exercise = gson.fromJson(exerciseDAO.getExercise(0), Exercise.class);
 		Assert.assertEquals("test", exercise.getDescription());
 		Assert.assertEquals(0, (int)exercise.getProgramID());
-		Assert.assertEquals(1, (int)exercise.getParameter());
+		Assert.assertEquals("test", (String)exercise.getParameterDescription());
 		Assert.assertEquals(1, (int)exercise.getPauseBetweenSets());
 		Assert.assertEquals(1, (int)exercise.getRepsPerSet());
 		Assert.assertEquals(1, (int)exercise.getSets());

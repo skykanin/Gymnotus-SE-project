@@ -60,7 +60,7 @@ CREATE TABLE Exercise (
   sets INT,
   repsPerSet INT,
   pauseBetweenSets INT,
-  parameter INT,
+  parameterDescription VARCHAR(512),
   CHECK (sets > 0 and repsPerSet > 0),
   FOREIGN KEY (programID) REFERENCES ExerciseProgram(programID));
 
@@ -68,6 +68,7 @@ CREATE TABLE Result (
   resultID INT NOT NULL PRIMARY KEY IDENTITY,
   userID INT NOT NULL,
   exerciseID INT NOT NULL,
+  resultParameter INT,
   date DATE,
   FOREIGN KEY (userID) REFERENCES User(userID) ON DELETE CASCADE,
   FOREIGN KEY (exerciseID) REFERENCES Exercise(exerciseID) ON DELETE CASCADE

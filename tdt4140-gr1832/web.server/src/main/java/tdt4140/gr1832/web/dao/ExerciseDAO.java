@@ -31,7 +31,7 @@ public class ExerciseDAO {
 		exercise.setSets(rs.getInt("sets"));
 		exercise.setRepsPerSet(rs.getInt("repsPerSet"));
 		exercise.setPauseBetweenSets(rs.getInt("pauseBetweenSets"));
-		exercise.setParameter(rs.getInt("parameter"));
+		exercise.setParameterDescription(rs.getString("parameterDescription"));
 		return exercise;
 	}
 	
@@ -68,7 +68,7 @@ public class ExerciseDAO {
 			   @FormParam("sets") Integer sets,
 			   @FormParam("reps_per_set") Integer repsPerSet,
 			   @FormParam("pause_between_sets") Integer pauseBetweenSets,
-			   @FormParam("parameter") Integer parameter)
+			   @FormParam("parameterDescription") String parameterDescription)
 	{
 		int status = 400;
 		Integer num_rows_affected = 0;
@@ -78,7 +78,7 @@ public class ExerciseDAO {
 			if(sets != null) num_rows_affected += updateColumn(exerciseID, "sets", sets, "int").getStatus() == 200 ? 1 : 0;
 			if(repsPerSet != null) num_rows_affected += updateColumn(exerciseID, "repsPerSet", repsPerSet, "int").getStatus() == 200 ? 1 : 0;
 			if(pauseBetweenSets != null) num_rows_affected += updateColumn(exerciseID, "pauseBetweenSets", pauseBetweenSets, "int").getStatus() == 200 ? 1 : 0;
-			if(parameter != null) num_rows_affected += updateColumn(exerciseID, "parameter", parameter, "int").getStatus() == 200 ? 1 : 0;
+			if(parameterDescription != null) num_rows_affected += updateColumn(exerciseID, "parameterDescription", parameterDescription, "string").getStatus() == 200 ? 1 : 0;
 			status = 200;
 		}
 		
@@ -92,14 +92,14 @@ public class ExerciseDAO {
 			  					   @FormParam("sets") Integer sets,
 			  					   @FormParam("reps_per_set") Integer repsPerSet,
 			  					   @FormParam("pause_between_sets") Integer pauseBetweenSets,
-			  					   @FormParam("parameter") Integer parameter)
+			  					   @FormParam("parameterDescription") String parameterDescription)
 	{
 		Connection conn = DatabaseConnection.getConnection();
 		PreparedStatement prepared_stmt = null;
 		int status = 400;
 		Integer num_rows_affected = 0;
 		
-		String query = "insert into Exercise  (programID, description, sets, repsPerSet, pauseBetweenSets, parameter)"
+		String query = "insert into Exercise  (programID, description, sets, repsPerSet, pauseBetweenSets, parameterDescription)"
 				+ " values(?, ?, ?, ?, ?, ?)";
 		if(programID != null) {
 			try {
@@ -110,7 +110,7 @@ public class ExerciseDAO {
 				prepared_stmt.setInt(3, sets);
 				prepared_stmt.setInt(4, repsPerSet);
 				prepared_stmt.setInt(5, pauseBetweenSets);
-				prepared_stmt.setInt(6, parameter);
+				prepared_stmt.setString(6, parameterDescription);
 				
 				num_rows_affected = prepared_stmt.executeUpdate();
 				status = 200;
