@@ -4,12 +4,14 @@ import java.io.IOException;
 
 import javafx.application.Application;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 
 public class WindowController extends FxApp {
 
@@ -36,10 +38,27 @@ public class WindowController extends FxApp {
 	public void TilLoggUt(ActionEvent event) throws Exception {               
         try {
         	FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("LogOut.fxml"));
-                Parent root1 = (Parent) fxmlLoader.load();
-                Stage stage = new Stage();
-                stage.setScene(new Scene(root1));  
-                stage.show();
+			Parent root1 = (Parent) fxmlLoader.load();
+			Stage stage = new Stage();
+			stage.setScene(new Scene(root1));
+			stage.show();
+
+			stage.setOnHidden(new EventHandler<WindowEvent>() {
+				public void handle(WindowEvent we) {
+					// Send user to login screen window here
+					try {
+						Parent LoginScreen_parent = FXMLLoader.load(getClass().getResource("LoginScreen.fxml"));
+						Scene LoginScreen_scene = new Scene(LoginScreen_parent);
+						Stage app_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+						app_stage.setScene(LoginScreen_scene);
+						app_stage.show();
+						FxApp.getAS().setWindow("LoginScreen.fxml");
+						FxApp.getAS().DUMMYsetuser(null);
+					} catch (IOException e) {
+						System.out.println(e.getMessage());
+					}
+				}
+			});
         } catch(Exception e) {
            e.printStackTrace();
           }
