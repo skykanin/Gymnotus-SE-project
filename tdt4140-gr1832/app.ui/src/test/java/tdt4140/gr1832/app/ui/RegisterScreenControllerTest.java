@@ -29,7 +29,7 @@ public class RegisterScreenControllerTest extends FxAppTest {
 	    @Override
 		public void start(Stage stage) throws Exception {
 			FxApp.InitializeAS("RegisterScreen.fxml");
-			ShowUserInfoContainer user = new ShowUserInfoContainer("username", "password", "name", 10, 1, "email", "123");
+			ShowUserInfoContainer user = new ShowUserInfoContainer("username", "password", "name", 10, 1, "email", "123", true, true, true);
 			FxApp.getAS().DUMMYsetuser(user);
 	        Parent root = FXMLLoader.load(getClass().getResource("RegisterScreen.fxml"));
 	        Scene scene = new Scene(root);

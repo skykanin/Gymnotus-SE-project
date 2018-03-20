@@ -14,6 +14,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import tdt4140.gr1832.app.core.ApplicationState;
+import tdt4140.gr1832.app.core.ShowUserInfoContainer;
 import tdt4140.gr1832.app.core.TrainerMemberInfoApp;
 
 public class TrainerMembersController extends WindowController {
@@ -25,9 +26,11 @@ public class TrainerMembersController extends WindowController {
 	public void initialize() {
 		app.requestAllUserID();
 		ObservableList<String> names = FXCollections.observableArrayList();
-		for (String name : app.getNames()) {
+		for (ShowUserInfoContainer c : app.getUsers()) {
+			String name = c.getName();
 			names.add(name);
 		}
+		
 		medlemsListe.setItems(names);
 	}
 	
