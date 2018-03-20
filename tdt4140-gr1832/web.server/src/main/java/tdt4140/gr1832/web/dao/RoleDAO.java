@@ -94,7 +94,7 @@ public class RoleDAO {
 	
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
-	@Path("/user_role")
+	@Path("/role_by_user_id")
 	public String getRoleByUserID(@QueryParam("user_id") int userID) {
 		String query = "select roleID, title, description from UserHasRole "
 				+ "natural join Role"
@@ -105,24 +105,23 @@ public class RoleDAO {
 	
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
-	@Path("/user_ids_by_role")
+	@Path("/users_by_role_id")
 	public String getUserIDsWithRoleId(@QueryParam("role_id") int roleID) {
-		String query = "select userID from UserHasRole "
+		String query = "select User.* from UserHasRole "
 				+ "natural join Role natural join User"
 				+ " where roleID=" + Integer.toString(roleID);
 		
 		Connection conn = DatabaseConnection.getConnection();
 		
-		// Maps from role to userID/username
-		List<Integer> users = new ArrayList<Integer>();
+		List<User> users = new ArrayList<User>();
 		
 		Statement stmt;
 		try {
 			stmt = conn.createStatement();
 			ResultSet rs = stmt.executeQuery(query);
 			while(rs.next()) {
-				int userID = rs.getInt("userID");
-				users.add(userID);
+				User user = UserDAO.createUser(rs);
+				users.add(user);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -132,34 +131,4 @@ public class RoleDAO {
 		String json = gson.toJson(users);  
 		return json;
 	}
-	
-	@GET
-	@Produces(MediaType.APPLICATION_JSON)
-	@Path("/usernames_by_role")
-	public String getUsernamesWithRoleId(@QueryParam("role_id") int roleID) {
-		String query = "select username from UserHasRole "
-				+ "natural join Role natural join User"
-				+ " where roleID=" + Integer.toString(roleID);
-		Connection conn = DatabaseConnection.getConnection();
-		
-		// Maps from role to userID/username
-		List<String> users = new ArrayList<String>();
-		
-		Statement stmt;
-		try {
-			stmt = conn.createStatement();
-			ResultSet rs = stmt.executeQuery(query);
-			while(rs.next()) {
-				String username = rs.getString("username");
-				users.add(username);
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-			users = null;
-		}
-		Gson gson = new Gson();
-		String json = gson.toJson(users);  
-		return json;
-	}
-	
 }

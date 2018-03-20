@@ -77,7 +77,6 @@ public class ExerciseDAOTest {
 		Assert.assertEquals(1, exercises.size());
 	}
 	
-	
 	@Test
 	public void testGetExercise() {
 		exercise = gson.fromJson(exerciseDAO.getExercise(0), Exercise.class);
