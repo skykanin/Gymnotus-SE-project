@@ -67,12 +67,12 @@ public class TrainerMemberInfoApp {
 		String test = webTarget.request(MediaType.APPLICATION_JSON).get(String.class);
 		Gson gson = new Gson();
 		containerHealth = gson.fromJson(test, new TypeToken<List<ShowHealthInfoContainer>>(){}.getType());
-//		this.requestUserInformation_ID(id);
-//		if (containerUser != null && (!containerUser.getShareHealthData())) { //Hvis health er false, da vises ikke data
-//			for (ShowHealthInfoContainer healtcontainer : containerHealth) {
-//				healtcontainer.viewNoHealthData();
-//			}
-//		}
+		this.requestUserInformation_ID(id);
+		if (containerUser != null && (!containerUser.getShareHealthData())) { //Hvis health er false, da vises ikke data
+			for (ShowHealthInfoContainer healtcontainer : containerHealth) {
+				healtcontainer.viewNoHealthData();
+			}
+		}
 	}
 	
 	public String checkNull(String in) {
