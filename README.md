@@ -9,7 +9,7 @@ Det skal eksistere mange forskjellige treningsprogram inne på scenen "Treningsp
 og "Påmeldte". Det finnes ikke brukergrensesnitt for datagiver i denne applikasjonen, så denne menyen er det kun treneren som får.
 Kunden rapporterer inn data fra treningsøkter samt daglig helsedata. Både trener og kunde kan så få frem dataene for å kunne tolke kundens treningsprogresjon. 
 
-På "Medlemmer" kan treneren gå inn å se på alle brukerne, så sant brukerne ikke har anonymisert seg selv. Her kan han se på alle datoene kunden har lagt inn data om seg selv
+På "Medlemmer" kan treneren gå inn å se på alle brukerne, så sant brukerne ikke har anonymisert seg selv. Her kan han se data fra alle datoene kunden har lagt inn informasjon om seg selv.
 
 På "Innstillinger" kan alle brukerne endre sin egen brukerinformasjon. 
 
