@@ -14,8 +14,8 @@ public class FxApp extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-    	InitializeAS("AnonymousMemberInfoController.fxml");
-        root = FXMLLoader.load(getClass().getResource("AnonymousMemberInfoController.fxml"));
+    	InitializeAS("LoginScreen.fxml");
+        root = FXMLLoader.load(getClass().getResource("LoginScreen.fxml"));
         scene = new Scene(root);
         stage.setScene(scene);
         stage.setTitle("GYMNOTUS");
