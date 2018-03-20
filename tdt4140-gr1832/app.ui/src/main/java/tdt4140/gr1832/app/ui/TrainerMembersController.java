@@ -28,7 +28,6 @@ public class TrainerMembersController extends WindowController {
 		ObservableList<String> names = FXCollections.observableArrayList();
 		for (ShowUserInfoContainer c : app.getUsers()) {
 			String name = c.getName();
-			System.out.println(name);
 			names.add(name);
 		}
 		

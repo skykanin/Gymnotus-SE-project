@@ -40,10 +40,10 @@ public class TrainerMemberInfoApp {
 		containerUser = gson.fromJson(test, ShowUserInfoContainer.class);
 		containerUser.setUserId(id);
 		if(containerUser.getIsAnonymous()) {
-			containerUser.setUsername("anonym");
+			containerUser.setUsername("Brukeren er anonym");
 			containerUser.setName("anonym#" + containerUser.getUserID());
-			containerUser.setPhone("anonym");
-			containerUser.setEmail("anonym");
+			containerUser.setPhone("Brukeren er anonym");
+			containerUser.setEmail("Brukeren er anonym");
 		}
 	}
 	
