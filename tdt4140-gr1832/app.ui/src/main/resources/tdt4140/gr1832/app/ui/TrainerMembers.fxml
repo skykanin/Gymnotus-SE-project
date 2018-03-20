@@ -4,10 +4,11 @@
 <?import com.jfoenix.controls.JFXListView?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="660.0" prefWidth="1200.0" stylesheets="@styles/main.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tdt4140.gr1832.app.ui.TrainerMembersController">
+<VBox prefHeight="660.0" prefWidth="1200.0" stylesheets="@styles/main.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tdt4140.gr1832.app.ui.TrainerMembersController">
   <children>
     <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="451.0" prefWidth="487.0" style="-fx-background-color: #FFFFFF;" stylesheets="@styles/main.css" VBox.vgrow="ALWAYS">
       <children>
@@ -45,7 +46,7 @@
                               <Font size="16.0" />
                            </font>
                         </JFXButton>
-                        <JFXButton fx:id="TilLoggUt" layoutY="567.0" onAction="#TilLoggUt" prefHeight="47.0" prefWidth="236.0" styleClass="VenstreMenyKnapp" text="    AVSLUTT" textFill="WHITE">
+                        <JFXButton fx:id="TilLoggUt" layoutY="567.0" onAction="#loadDialog" prefHeight="47.0" prefWidth="236.0" styleClass="VenstreMenyKnapp" text="    AVSLUTT" textFill="WHITE">
                            <font>
                               <Font size="16.0" />
                            </font>
@@ -58,7 +59,7 @@
                <children>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0" stylesheets="@styles/main.css">
                      <children>
-                        <Label layoutY="4.0" prefHeight="40.0" prefWidth="965.0" style="-fx-alignment: center;" styleClass="DosisCaps" text="MEDLEMSLISTE" textAlignment="CENTER" textFill="WHITE">
+                        <Label layoutY="4.0" prefHeight="40.0" prefWidth="972.0" style="-fx-alignment: center;" styleClass="DosisCaps" text="MEDLEMSLISTE" textAlignment="CENTER" textFill="WHITE">
                            <font>
                               <Font size="28.0" />
                            </font>
@@ -67,13 +68,18 @@
                   </AnchorPane>
                </children>
             </VBox>
-            <JFXListView fx:id="medlemsListe" layoutX="592.0" layoutY="84.0" prefHeight="400.0" prefWidth="250.0" style="-fx-border-color: #80bfb7;" />
-            <JFXButton fx:id="velgMedlemButton" layoutX="688.0" layoutY="515.0" onAction="#velgMedlem" prefHeight="27.0" prefWidth="67.0" style="-fx-background-color: #80bfb7;" text="Velg" />
-            <Label fx:id="valgResponse" layoutX="592.0" layoutY="484.0" prefHeight="18.0" prefWidth="250.0" textAlignment="CENTER" textFill="RED">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Label>
+            <AnchorPane layoutX="235.0" layoutY="47.0" prefHeight="614.0" prefWidth="972.0">
+               <children>
+                  <JFXListView fx:id="medlemsListe" layoutX="361.0" layoutY="44.0" prefHeight="400.0" prefWidth="250.0" style="-fx-border-color: #80bfb7;" />
+                  <JFXButton fx:id="velgMedlemButton" layoutX="453.0" layoutY="486.0" onAction="#velgMedlem" prefHeight="27.0" prefWidth="67.0" style="-fx-background-color: #80bfb7;" text="Velg" />
+                  <Label fx:id="valgResponse" layoutX="361.0" layoutY="454.0" prefHeight="18.0" prefWidth="250.0" textAlignment="CENTER" textFill="RED">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <StackPane fx:id="root" prefHeight="614.0" prefWidth="972.0" />
+               </children>
+            </AnchorPane>
       </children>
     </AnchorPane>
   </children>

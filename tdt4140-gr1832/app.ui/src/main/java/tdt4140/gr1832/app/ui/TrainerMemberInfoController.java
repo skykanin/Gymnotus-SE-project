@@ -7,8 +7,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.Formatter;
 import java.util.List;
 
-import com.jfoenix.controls.JFXDatePicker;
-import com.jfoenix.controls.JFXTextField;
+import com.jfoenix.controls.*;
 
 import javafx.application.Application;
 import javafx.event.ActionEvent;
@@ -18,6 +17,8 @@ import javafx.scene.*;
 import javafx.scene.control.DateCell;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
+import javafx.scene.layout.StackPane;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 import javafx.util.StringConverter;
@@ -63,7 +64,10 @@ public class TrainerMemberInfoController extends WindowController {
 	
 	@FXML
     private Label Medlemsnavn;
-	
+
+	@FXML
+	private StackPane root;
+
 	public static String userID;
 	//for dateString converter
 	String pattern = "LLL dd, yyyy";
@@ -81,8 +85,36 @@ public class TrainerMemberInfoController extends WindowController {
         stage.setTitle("MemberInfoView");
         stage.setScene(scene);
         stage.show();
+
+		root.setPickOnBounds(false);
 	}
-	
+
+	@FXML
+	public void loadDialog(ActionEvent parentEvent) {
+		JFXDialogLayout content = new JFXDialogLayout();
+		content.setHeading(new Text("Logg ut bekreftelse"));
+		content.setBody(new Text("Er du sikker på at du vil logge ut?"));
+		JFXDialog dialog = new JFXDialog(root, content, JFXDialog.DialogTransition.CENTER);
+		JFXButton buttonYes = new JFXButton("Ja");
+		JFXButton buttonNo = new JFXButton("Nei");
+
+		buttonYes.setOnAction((event) -> {
+			dialog.close();
+			try {
+				NavigerTilSide("LoginScreen.fxml", parentEvent);
+				FxApp.getAS().DUMMYsetuser(null);
+			} catch (IOException e) {
+				System.out.println(e.getMessage());
+			}
+		});
+
+		buttonNo.setOnAction((event) -> {
+			dialog.close();
+		});
+		content.setActions(buttonYes, buttonNo);
+		dialog.show();
+	}
+
 	@FXML
 	public void initialize() {
 		if (userID == null) {

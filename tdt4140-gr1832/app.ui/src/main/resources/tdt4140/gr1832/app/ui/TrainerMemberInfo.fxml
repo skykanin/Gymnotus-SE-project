@@ -6,10 +6,11 @@
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="660.0" prefWidth="1200.0" stylesheets="@styles/main.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tdt4140.gr1832.app.ui.TrainerMemberInfoController">
+<VBox prefHeight="660.0" prefWidth="1200.0" stylesheets="@styles/main.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tdt4140.gr1832.app.ui.TrainerMemberInfoController">
   <children>
     <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="660.0" prefWidth="12000.0" style="-fx-background-color: #FFFFFF;" stylesheets="@styles/main.css" VBox.vgrow="ALWAYS">
       <children>
@@ -48,7 +49,7 @@
                               <Font size="16.0" />
                            </font>
                         </JFXButton>
-                        <JFXButton fx:id="TilLoggUt" layoutY="567.0" onAction="#TilLoggUt" prefHeight="47.0" prefWidth="236.0" styleClass="VenstreMenyKnapp" text="    AVSLUTT" textFill="WHITE">
+                        <JFXButton fx:id="TilLoggUt" layoutY="567.0" onAction="#loadDialog" prefHeight="47.0" prefWidth="236.0" styleClass="VenstreMenyKnapp" text="    AVSLUTT" textFill="WHITE">
                            <font>
                               <Font size="16.0" />
                            </font>
@@ -163,6 +164,7 @@
                   <JFXTextField fx:id="nameField" editable="false" focusColor="#405aa800" layoutX="147.0" layoutY="100.0" prefHeight="27.0" prefWidth="190.0" />
                </children>
             </AnchorPane>
+            <StackPane fx:id="root" layoutX="236.0" layoutY="47.0" prefHeight="613.0" prefWidth="965.0" />
       </children>
     </AnchorPane>
   </children>

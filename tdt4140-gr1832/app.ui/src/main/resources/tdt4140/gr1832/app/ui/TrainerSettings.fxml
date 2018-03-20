@@ -7,6 +7,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
@@ -48,7 +49,7 @@
                               <Font size="16.0" />
                            </font>
                         </JFXButton>
-                        <JFXButton fx:id="TilLoggUt" layoutY="567.0" onAction="#TilLoggUt" prefHeight="47.0" prefWidth="236.0" styleClass="VenstreMenyKnapp" text="    AVSLUTT" textFill="WHITE">
+                        <JFXButton fx:id="TilLoggUt" layoutY="567.0" onAction="#loadDialog" prefHeight="47.0" prefWidth="236.0" styleClass="VenstreMenyKnapp" text="    AVSLUTT" textFill="WHITE">
                            <font>
                               <Font size="16.0" />
                            </font>
@@ -132,6 +133,7 @@
                   <JFXButton fx:id="setOriginalInformation" layoutX="153.0" layoutY="432.0" onAction="#HandleSetOriginalInformation" prefHeight="39.0" prefWidth="150.0" ripplerFill="WHITE" style="-fx-background-color: #80bfb7;" text="Se nåværende info" />
                </children>
             </AnchorPane>
+            <StackPane fx:id="root" layoutX="235.0" layoutY="47.0" prefHeight="613.0" prefWidth="965.0" />
       </children>
     </AnchorPane>
   </children>
