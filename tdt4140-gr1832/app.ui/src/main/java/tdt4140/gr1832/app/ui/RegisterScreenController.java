@@ -38,12 +38,16 @@ public class RegisterScreenController extends WindowController {
 	private ToggleGroup genderGroup;
 	@FXML
 	private Label errorMessage;
+	
+
 
 	@FXML
 	private void initialize() {
 		this.genderGroup = new ToggleGroup();
 		this.updateGenderMale.setToggleGroup(genderGroup);
 		this.updateGenderFemale.setToggleGroup(genderGroup);
+		
+	
 		//updateGenderMale.setDisable(true);
 		//updateGenderFemale.setDisable(true);
 	}
@@ -71,6 +75,7 @@ public class RegisterScreenController extends WindowController {
 
 	}
 
+
 	@FXML
 	private void updateAllInfo() throws IllegalArgumentException {
 		radioButtonChanged(); //setter gender
@@ -81,6 +86,8 @@ public class RegisterScreenController extends WindowController {
 		String phone = getStringFromTextField(setPhoneNumberTextField);
 		String email = getStringFromTextField(setEmailTextField);
 		r = new RegisterUser();
+
+		
 		user = new User(username, password, name, age, gender, email, phone);
 		r.registerUser(user);
 	}

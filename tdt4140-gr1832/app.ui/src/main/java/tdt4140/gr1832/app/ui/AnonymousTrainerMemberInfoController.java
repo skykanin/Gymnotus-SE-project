@@ -1,3 +1,4 @@
+
 package tdt4140.gr1832.app.ui;
 
 import java.io.IOException;
@@ -15,7 +16,9 @@ import javafx.stage.Stage;
 import tdt4140.gr1832.app.core.TrainerMemberInfoApp;
 
 
-public class TrainerMemberInfoController extends WindowController {
+
+public class AnonymousTrainerMemberInfoController {
+
 	@FXML
 	JFXTextField heightField;
 	
@@ -31,38 +34,36 @@ public class TrainerMemberInfoController extends WindowController {
 	@FXML
 	JFXTextField restingHRField;
 
-	@FXML
-	JFXTextField nameField;
+	//@FXML
+	//JFXTextField nameField;
 	
-	@FXML
-	JFXTextField usernameField;
+	//@FXML
+	//JFXTextField usernameField;
 	
-	@FXML
-	JFXTextField emailField;
+	//@FXML
+	//JFXTextField emailField;
 	
-	@FXML
-	JFXTextField tlfField;
+	//@FXML
+	//JFXTextField tlfField;
 	
-	@FXML
-	JFXTextField ageField;
+	//@FXML
+	//JFXTextField ageField;
 	
-	@FXML
-	JFXTextField genderField;
+	//@FXML
+	//JFXTextField genderField;
 	
 	@FXML
 	JFXDatePicker datePickerField;
 	
-	@FXML
-    private Label Medlemsnavn;
+	//@FXML
+   // private Label Medlemsnavn;
 	
 	public static String userID;
 	
 	//start
 	public void start(Stage stage) throws Exception {
 		//launches from the fxml-file
-		//HVORDAN SJEKKER JEG OM ANON ER TRUE HER? 
-		//HVIS DET ER TRUE VIL JEG HELLER ÅPNE ANONYMOUSTrainerMemberInfo.fxml
-		Parent root = FXMLLoader.load(getClass().getResource("TrainerMemberInfo.fxml")); //Husk å endre til tilhørende fxml fil sitt navn.
+		Parent root = FXMLLoader.load(getClass().getResource("AnonymousTrainerMemberInfo.fxml")); //Husk å endre til tilhørende fxml fil sitt navn.
 		Scene scene = new Scene(root, 1200, 660);
         stage.setTitle("MemberInfoView");
         stage.setScene(scene);
@@ -80,27 +81,27 @@ public class TrainerMemberInfoController extends WindowController {
 			String weight=app.getWeight();
 			String steps=app.getSteps();		
 			String restingHR=app.getRestingHR();
-			String name =app.getName();
-			String username = app.getUsername();
-			String email = app.getEmail();
-			String tlf = app.getTlf();
-			String age =app.getAge();
-			String gender = app.getGender();
+			//String name =app.getName();
+			//String username = app.getUsername();
+			//String email = app.getEmail();
+			//String tlf = app.getTlf();
+			//String age =app.getAge();
+			//String gender = app.getGender();
 			
 			heightField.setText(height);
 			dateField.setText(date);		
 			weightField.setText(weight);
 			stepsField.setText(steps);
 			restingHRField.setText(restingHR);
-			nameField.setText(name);
+			/*nameField.setText(name);
 			usernameField.setText(username);		
 			emailField.setText(email);
 			tlfField.setText(tlf);
 			ageField.setText(age);
-			genderField.setText(gender);
+			genderField.setText(gender);*/
 			datePickerField.setDisable(true);
 			
-		    Medlemsnavn.setText("Brukerinformasjonen til " + app.getName());		
+		    //Medlemsnavn.setText("Brukerinformasjonen til " + app.getName());		
 
 			
 		} else {
@@ -113,43 +114,27 @@ public class TrainerMemberInfoController extends WindowController {
 		String weight=app.getWeight();
 		String steps=app.getSteps();		
 		String restingHR=app.getRestingHR();
-		String name =app.getName();
-		String username = app.getUsername();
-		String email = app.getEmail();
-		String tlf = app.getTlf();
-		String age =app.getAge();
-		String gender = app.getGender();
-		/*if (!(anon=true)){ Gjør alt under. Hvis ikke : 
-			heightField.setText("Bruker");
-		dateField.setText(date);		
-		weightField.setText(weight);
-		stepsField.setText(steps);
-		restingHRField.setText(restingHR);
-		nameField.setText(name);
-		usernameField.setText(username);		
-		emailField.setText(email);
-		tlfField.setText(tlf);
-		ageField.setText(age);
-		genderField.setText(gender);
-		datePickerField.setDisable(true);
-		
-		
-		
-		}*/
+		//String name =app.getName();
+		//String username = app.getUsername();
+		//String email = app.getEmail();
+		//String tlf = app.getTlf();
+		//String age =app.getAge();
+		//String gender = app.getGender();
+	
 		heightField.setText(height);
 		dateField.setText(date);		
 		weightField.setText(weight);
 		stepsField.setText(steps);
 		restingHRField.setText(restingHR);
-		nameField.setText(name);
-		usernameField.setText(username);		
-		emailField.setText(email);
-		tlfField.setText(tlf);
-		ageField.setText(age);
-		genderField.setText(gender);
+		//nameField.setText(name);
+		//usernameField.setText(username);		
+		//emailField.setText(email);
+		//tlfField.setText(tlf);
+		//ageField.setText(age);
+		//genderField.setText(gender);
 		datePickerField.setDisable(true);
 		
-	    Medlemsnavn.setText("Brukerinformasjonen til " + app.getName());
+	   // Medlemsnavn.setText("Brukerinformasjonen til " + app.getName());
 		}
 		
 	}
