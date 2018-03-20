@@ -4,18 +4,10 @@ Dette er repoet for treningsoppfølgingsprogrammet kalt Gymnotus. Applikasjonen 
 ## Beskrivelse av programmet
 
 I programmet er det mulig å registrere seg som to forskjellige brukere, "trener" og "bruker". Disse brukerne vil i utgangspunktet ha forskjellige funksjonaliteter på sine
-grensesnitt, men akkurat nå har vi bare grensesnitt for trenere. Det eksisterer fire forskjellige scener vertikalt, Dashboard, Treningsprogram, Medlemmer og Innstillinger. Noen av disse har også flere scener oppe horisontalt inne hos seg.
+grensesnitt, men i applikasjonen er det bare grensesnitt for trenere. Trenerne skal kunne følge brukerne når de trener på treningsprogrammene som ligger inne
+i applikasjonen. Kunden rapporterer inn data fra treningsøkter samt daglig helsedata. Både trener og kunde kan så få frem dataene visualisert og ikke-visualisert for å kunne tolke kundens treningsprogresjon.
 
-På "Dashboard" skal treneren kunne se en grei oversikt over den mest nødvendige informasjonen.
-
-Det skal eksistere mange forskjellige treningsprogram inne på scenen "Treningsprogram", hvor man har de fire horisontale scenene "Oversikt", "Ovelser", "Kommentarer"
-og "Påmeldte". Det finnes ikke brukergrensesnitt for "brukeren", som datagiver, i denne applikasjonen, så denne menyen er det kun treneren som får.
-Kunden rapporterer inn data fra treningsøkter samt daglig helsedata. Både trener og kunde kan så få frem dataene for å kunne tolke kundens treningsprogresjon. 
-
-På "Medlemmer" kan treneren gå inn å se på alle brukerne, så sant brukerne ikke har anonymisert seg selv. Her kan han se data fra alle datoene kunden har lagt inn informasjon om seg selv.
-
-På "Innstillinger" kan alle brukerne endre sin egen brukerinformasjon. 
-
+ 
 
 
 ## Avhengigheter
