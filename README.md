@@ -1,7 +1,16 @@
 # Gymnotus - TDT4140, gruppe 32
 Dette er repoet for treningsoppfølgingsprogrammet kalt Gymnotus. Applikasjonen lar personlige trenere følge opp treningen og helsen til kundene til appen.
-Kunden kan på sin side velge treningsprogrammer å melde seg på som er tilknyttet til forskjellige trenere. Kunden rapporterer inn data fra treningsøkter samt daglig helsedata. Både trener og kunde kan så få frem dataene for å kunne tolke kundens treningsprogresjon. 
-Både trener og kunde kan få frem dataene for å kunne tolke kundens treningsprogresjon
+Det er to forskjellige brukere man kan registrere seg som i applikasjonen, "trener" og "bruker". Disse brukerne vil ha forskjellige funksjonaliteter på sine
+grensesnitt. Det eksisterer fire forskjellige scener vertikalt. Noen av disse har også flere scener oppe horisontalt inne hos seg.
+
+Det skal eksistere mange forskjellige treningsprogram inne på scenen "Treningsprogram", hvor man har de fire horisontale scenene "Oversikt", "Ovelser", "Kommentarer"
+og "Påmeldte". Det finnes ikke brukergrensesnitt for datagiver i denne applikasjonen, så denne menyen er det kun treneren som får.
+Kunden rapporterer inn data fra treningsøkter samt daglig helsedata. Både trener og kunde kan så få frem dataene for å kunne tolke kundens treningsprogresjon. 
+
+På "Medlemmer" kan treneren gå inn å se på alle brukerne, så sant brukerne ikke har anonymisert seg selv. 
+
+På "Innstillinger" kan alle brukerne endre sin egen brukerinformasjon. 
+
 
 
 ## Avhengigheter
