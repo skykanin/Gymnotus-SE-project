@@ -66,6 +66,7 @@ public class TrainerTrainingProgramCommentsControllerTest extends FxAppTest {
     public void verifyNavigationMembers() {
         assertEquals("TrainerTrainingProgramComments.fxml", FxApp.getAS().getWindowName());
         clickOn(TilMedlemmerID);
+        clickOn(TilMedlemmerID);
         assertEquals("TrainerMembers.fxml", FxApp.getAS().getWindowName());
     }
     
