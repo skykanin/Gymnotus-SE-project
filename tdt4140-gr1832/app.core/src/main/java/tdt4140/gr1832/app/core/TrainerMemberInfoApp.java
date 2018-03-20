@@ -41,7 +41,7 @@ public class TrainerMemberInfoApp {
 		containerUser.setUserId(id);
 		if(containerUser.getIsAnonymous()) {
 			containerUser.setUsername("Brukeren er anonym");
-			containerUser.setName("anonym#" + containerUser.getUserID());
+			containerUser.setName("Anonym#" + containerUser.getUserID());
 			containerUser.setPhone("Brukeren er anonym");
 			containerUser.setEmail("Brukeren er anonym");
 		}
@@ -56,6 +56,7 @@ public class TrainerMemberInfoApp {
 		
 		for(Integer i : userids) {
 			requestUserInformation_ID(i.toString());
+			containerUser.setUserId(i.toString());
 			containerAllUsers.addUserInfo(containerUser);
 		}
 	}
@@ -66,6 +67,12 @@ public class TrainerMemberInfoApp {
 		String test = webTarget.request(MediaType.APPLICATION_JSON).get(String.class);
 		Gson gson = new Gson();
 		containerHealth = gson.fromJson(test, new TypeToken<List<ShowHealthInfoContainer>>(){}.getType());
+		this.requestUserInformation_ID(id);
+		if (containerUser != null && (!containerUser.getShareHealthData())) { //Hvis health er false, da vises ikke data
+			for (ShowHealthInfoContainer healtcontainer : containerHealth) {
+				healtcontainer.viewNoHealthData();
+			}
+		}
 	}
 	
 	public String checkNull(String in) {
@@ -88,7 +95,7 @@ public class TrainerMemberInfoApp {
 		if (containerHealth.size()<1) {
 			return "Ikke spesifisert";
 		}
-		return containerHealth.get(healtInfoIndex).getHeight();
+		return checkHealthDataView(containerHealth.get(healtInfoIndex).getHeight());
 	}
 
 	public String getDate() {
@@ -103,21 +110,21 @@ public class TrainerMemberInfoApp {
 		if (containerHealth.size()<1) {
 			return "Ikke spesifisert";
 		}
-		return containerHealth.get(healtInfoIndex).getWeight();
+		return checkHealthDataView(containerHealth.get(healtInfoIndex).getWeight());
 	}
 
 	public String getSteps() {
 		if (containerHealth.size()<1) {
 			return "Ikke spesifisert";
 		}
-		return containerHealth.get(healtInfoIndex).getSteps();
+		return checkHealthDataView(containerHealth.get(healtInfoIndex).getSteps());
 	}
 
 	public String getRestingHR() {
 		if (containerHealth.size()<1) {
 			return "Ikke spesifisert";
 		}
-		return containerHealth.get(healtInfoIndex).getRestingHR();
+		return checkHealthDataView(containerHealth.get(healtInfoIndex).getRestingHR());
 	}
 
 	public String getName() {
@@ -215,6 +222,14 @@ public class TrainerMemberInfoApp {
 			result.add(c.getDate());
 		}
 		return result;
+	}
+	
+	private String checkHealthDataView(int i) {
+		if (i == -1) {
+			return "Brukeren viser ikke helsedata";
+		} else{
+			return i + "";
+		}	
 	}
 			
 

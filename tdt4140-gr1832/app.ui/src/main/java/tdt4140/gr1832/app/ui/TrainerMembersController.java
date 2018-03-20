@@ -45,18 +45,9 @@ public class TrainerMembersController extends WindowController {
 	private void velgMedlem(ActionEvent event) throws IOException {
 		String preferedUser = medlemsListe.getSelectionModel().getSelectedItem();
 		
-		try {
-			String[] splitUser=preferedUser.split("#");
-			if (splitUser.length==2) {
-				String id = splitUser[1];
-				NavigerTilSide("AnonymousTrainerMemberInfo.fxml", event, id);
 
-			}
-		}
-		catch  (Exception e){
-			String id = app.getIDfromName(preferedUser);
+		String id = app.getIDfromName(preferedUser);
 		NavigerTilSide("TrainerMemberInfo.fxml", event, id);
-		}
 				
 	}
 

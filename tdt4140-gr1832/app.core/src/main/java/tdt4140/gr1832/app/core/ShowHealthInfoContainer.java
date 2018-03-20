@@ -30,24 +30,32 @@ public class ShowHealthInfoContainer {
 	}
 
 	
-	public String getHeight() {
-		return height +"";
+	public int getHeight() {
+		return height;
 	}
 
 
-	public String getWeight() {
-		return weight+ "";
-	}
-
-	
-	public String getSteps() {
-		return dailySteps + "";
+	public int getWeight() {
+		return weight;
 	}
 
 	
+	public int getSteps() {
+		return dailySteps;
+	}
 
-	public String  getRestingHR() {
-		return restingHeartRate+ "";
+	
+
+	public int  getRestingHR() {
+		return restingHeartRate;
+	}
+	//-1, so trainerMemberInfoApp can check, and show right values
+	public void viewNoHealthData() {
+		this.restingHeartRate = -1;
+		this.height = -1;
+		this.weight = -1;
+		this.dailySteps = -1;
+		System.out.println(userID);
 	}
 	
 

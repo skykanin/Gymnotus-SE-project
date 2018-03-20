@@ -35,9 +35,7 @@ public class ShowUserInfoContainer {
 		}
 
 		public void setUserId(String id) {
-			if (this.userID == null){
 				this.userID = id;
-			}
 		}
 		public String getPhone() {
 			return phone;

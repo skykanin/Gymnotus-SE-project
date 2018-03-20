@@ -74,22 +74,22 @@ public class TrainerMemberInfoAppTest extends TestCase {
 	
 	@Test
 	public void testShowHealthInfoHeight() {
-		Assert.assertEquals("181", showHealthInfoContainer.getHeight());
+		Assert.assertEquals(181, showHealthInfoContainer.getHeight());
 	}
 	
 	@Test
 	public void testShowHealthInfoWeight() {
-		Assert.assertEquals("80", showHealthInfoContainer.getWeight());
+		Assert.assertEquals(80, showHealthInfoContainer.getWeight());
 	}
 	
 	@Test
 	public void testShowHealthInfoSteps() {
-		Assert.assertEquals("100", showHealthInfoContainer.getSteps());
+		Assert.assertEquals(100, showHealthInfoContainer.getSteps());
 	}
 	
 	@Test
 	public void testShowHealthInfoRestingHR() {
-		Assert.assertEquals("60", showHealthInfoContainer.getRestingHR());
+		Assert.assertEquals(60, showHealthInfoContainer.getRestingHR());
 	}
 	
 	@Test
