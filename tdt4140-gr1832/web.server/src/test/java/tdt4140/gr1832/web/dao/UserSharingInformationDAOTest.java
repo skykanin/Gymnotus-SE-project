@@ -53,10 +53,10 @@ public class UserSharingInformationDAOTest {
 	@Test
 	public void testGetUsersAnonymous() {
 		users = gson.fromJson(informationDAO.getUsersAnonymous(true), new TypeToken<List<User>>(){}.getType());
-		Assert.assertEquals(1, users.size());
+		Assert.assertEquals(0, users.size());
 		
 		users = gson.fromJson(informationDAO.getUsersAnonymous(false), new TypeToken<List<User>>(){}.getType());
-		Assert.assertEquals(0, users.size());
+		Assert.assertEquals(1, users.size());
 		
 	}
 	

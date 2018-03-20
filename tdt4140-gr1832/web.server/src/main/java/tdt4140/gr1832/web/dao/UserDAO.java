@@ -146,9 +146,9 @@ public class UserDAO {
 				prepared_stmt.setString(5, phone);
 				prepared_stmt.setInt(6, gender);
 				prepared_stmt.setInt(7, age);
-				prepared_stmt.setBoolean(8, isAnonymous);
-				prepared_stmt.setBoolean(9, shareHealthData);
-				prepared_stmt.setBoolean(10, shareExerciseData);
+				prepared_stmt.setBoolean(8, false);
+				prepared_stmt.setBoolean(9, true);
+				prepared_stmt.setBoolean(10, true);
 
 				prepared_stmt.executeUpdate();
 				status = 200;
@@ -163,7 +163,7 @@ public class UserDAO {
 	
 	@POST
 	@Path("delete_user")
-	public Response deleteUser(@FormParam("username")String username,
+	public Response deleteUser(@FormParam("username") String username,
 							  @FormParam("password") String password)
 	{
 		Connection conn = DatabaseConnection.getConnection();
