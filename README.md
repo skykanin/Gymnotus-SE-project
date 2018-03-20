@@ -1,7 +1,6 @@
 # Gymnotus - TDT4140, gruppe 32
 Dette er repoet for treningsoppfølgingsprogrammet kalt Gymnotus. Applikasjonen lar personlige trenere følge opp treningen og helsen til kundene til appen.
-Kunden kan på sin side velge treningsprogrammer å melde seg på som er tilknyttet til forskjellige trenere. Kunden rapporterer inn data fra treningsøkter samt daglig helsedata.
-Kunden rapporterer inn data fra treningsøkter samt daglig helsedata
+Kunden kan på sin side velge treningsprogrammer å melde seg på som er tilknyttet til forskjellige trenere. Kunden rapporterer inn data fra treningsøkter samt daglig helsedata. Både trener og kunde kan så få frem dataene for å kunne tolke kundens treningsprogresjon. 
 Både trener og kunde kan få frem dataene for å kunne tolke kundens treningsprogresjon
 
 
