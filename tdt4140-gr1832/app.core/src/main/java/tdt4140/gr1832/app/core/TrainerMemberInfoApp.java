@@ -5,8 +5,11 @@ import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.MediaType;
 
 import java.awt.Container;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
@@ -14,6 +17,8 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 public class TrainerMemberInfoApp {
+	
+	int healtInfoIndex = 0;
 
 	private ShowUserInfoContainer containerUser;
 	
@@ -77,35 +82,36 @@ public class TrainerMemberInfoApp {
 		if (containerHealth.size()<1) {
 			return "Ikke spesifisert";
 		}
-		return containerHealth.get(0).getHeight();
+		return containerHealth.get(healtInfoIndex).getHeight();
 	}
 
 	public String getDate() {
 		if (containerHealth.size()<1) {
 			return "Ikke spesifisert";
 		}
-		return containerHealth.get(0).getDate();
+		
+		return containerHealth.get(healtInfoIndex).getDate();
 	}
 
 	public String getWeight() {
 		if (containerHealth.size()<1) {
 			return "Ikke spesifisert";
 		}
-		return containerHealth.get(0).getWeight();
+		return containerHealth.get(healtInfoIndex).getWeight();
 	}
 
 	public String getSteps() {
 		if (containerHealth.size()<1) {
 			return "Ikke spesifisert";
 		}
-		return containerHealth.get(0).getSteps();
+		return containerHealth.get(healtInfoIndex).getSteps();
 	}
 
 	public String getRestingHR() {
 		if (containerHealth.size()<1) {
 			return "Ikke spesifisert";
 		}
-		return containerHealth.get(0).getRestingHR();
+		return containerHealth.get(healtInfoIndex).getRestingHR();
 	}
 
 	public String getName() {
@@ -174,4 +180,34 @@ public class TrainerMemberInfoApp {
 		this.containerAllUsers = e;
 	}
 
+	public void nextDate() {
+		if (healtInfoIndex < containerHealth.size()-1) healtInfoIndex++;
+		else healtInfoIndex = 0;
+	}
+
+	public void lastDate() {
+		if (healtInfoIndex >0 ) healtInfoIndex--;
+		else healtInfoIndex = containerHealth.size()-1;
+		
+	}
+	
+	public void giveDateIndex(int index) {
+		if (-1<index && index<containerHealth.size()) {
+			this.healtInfoIndex = index;
+		} else {
+			
+		}
+	}
+	
+	public List<String> getDates() {
+		List<String> result = new ArrayList<>();
+		for (ShowHealthInfoContainer c : containerHealth) {
+			result.add(c.getDate());
+		}
+		return result;
+	}
+			
+
+
 }
+
