@@ -13,7 +13,7 @@ public class ApplicationStateTest {
 	public void setup() {
 		testAS = new ApplicationState("test");
 		
-		user = new ShowUserInfoContainer("test", "test", "test", 11, 0, "test", "test", false, true, true);
+		user = new ShowUserInfoContainer("test", "test", "test", 11, 0, "test", "test", false, true, true, false);
 		testAS.DUMMYsetuser(user);
 	}
 	

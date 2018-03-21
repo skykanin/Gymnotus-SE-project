@@ -22,7 +22,7 @@ public class TrainerSettingsControllerTest extends FxAppTest {
 	@Override
 	public void start(Stage stage) throws Exception {
 		FxApp.InitializeAS("TrainerSettings.fxml");
-		ShowUserInfoContainer user = new ShowUserInfoContainer("username", "password", "name", 10, 1, "email", "123", true, true, true);
+		ShowUserInfoContainer user = new ShowUserInfoContainer("username", "password", "name", 10, 1, "email", "123", true, true, true, false);
 		FxApp.getAS().DUMMYsetuser(user);
         Parent root = FXMLLoader.load(getClass().getResource("TrainerSettings.fxml"));
         Scene scene = new Scene(root);
