@@ -5,7 +5,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-<<<<<<< tdt4140-gr1832/app.ui/src/main/java/tdt4140/gr1832/app/ui/TrainerDashboardController.java
 import com.jfoenix.controls.JFXComboBox;
 
 
@@ -28,8 +27,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import javafx.scene.chart.XYChart;
 
-=======
-
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDialog;
 import com.jfoenix.controls.JFXDialogLayout;
@@ -40,7 +37,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
->>>>>>> tdt4140-gr1832/app.ui/src/main/java/tdt4140/gr1832/app/ui/TrainerDashboardController.java
 
 public class TrainerDashboardController extends WindowController implements Initializable {
 	
@@ -152,7 +148,6 @@ public class TrainerDashboardController extends WindowController implements Init
           
         heartRateChart.getData().add(series);
 
-<<<<<<< tdt4140-gr1832/app.ui/src/main/java/tdt4140/gr1832/app/ui/TrainerDashboardController.java
 //          /**
 //           * Browsing through the Data and applying ToolTip
 //           * as well as the class on hover
@@ -178,7 +173,6 @@ public class TrainerDashboardController extends WindowController implements Init
 	    public static void main(String[] args) {
 	        launch(args);
 	    }
-=======
 	@FXML
 	public void loadDialog(ActionEvent parentEvent) {
 		JFXDialogLayout content = new JFXDialogLayout();
@@ -204,7 +198,5 @@ public class TrainerDashboardController extends WindowController implements Init
 		content.setActions(buttonYes, buttonNo);
 		dialog.show();
 	}
-
->>>>>>> tdt4140-gr1832/app.ui/src/main/java/tdt4140/gr1832/app/ui/TrainerDashboardController.java
 }
 
