@@ -114,7 +114,7 @@ public class TrainerDashboardApp {
 		List<String> weights = new ArrayList<>();
 		
 		for (ShowHealthInfoContainer hContainer : healthContainers) {
-			weights.add(hContainer.getWeight()+"");
+			weights.add(hContainer.getWeight()+ "");
 		}
 		
 		return weights;
@@ -129,7 +129,7 @@ public class TrainerDashboardApp {
 		List<String> steps = new ArrayList<>();
 		
 		for (ShowHealthInfoContainer hContainer : healthContainers) {
-			steps.add(hContainer.getSteps()+"");
+			steps.add(hContainer.getSteps()+ "");
 		}
 		
 		return steps;
@@ -144,7 +144,7 @@ public class TrainerDashboardApp {
 		List<String> HRs = new ArrayList<>();
 		
 		for (ShowHealthInfoContainer hContainer : healthContainers) {
-			HRs.add(hContainer.getRestingHR()+"");
+			HRs.add(hContainer.getRestingHR()+ "");
 		}
 		
 		return HRs;

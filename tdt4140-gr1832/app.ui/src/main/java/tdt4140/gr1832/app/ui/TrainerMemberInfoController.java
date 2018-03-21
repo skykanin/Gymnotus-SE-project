@@ -66,6 +66,13 @@ public class TrainerMemberInfoController extends WindowController {
     private Label Medlemsnavn;
 
 	@FXML
+	private JFXButton lastDay;
+	
+	@FXML
+	private JFXButton nextDay;
+	
+	
+	@FXML
 	private StackPane root;
 
 	public static String userID;
@@ -154,6 +161,13 @@ public class TrainerMemberInfoController extends WindowController {
 		app.requestUserInformation_ID(userID);
 		app.requestHealthInformation_ID(userID);
 		
+		//Disable buttons if there are noe health info
+		if (app.getContainerHealth().size()<1) {
+			lastDay.setDisable(true);
+			nextDay.setDisable(true);
+			datePickerField.setDisable(true);
+		}
+		
 		String height=app.getHeight();
 		String date=app.getDate();
 		String weight=app.getWeight();
@@ -165,23 +179,7 @@ public class TrainerMemberInfoController extends WindowController {
 		String tlf = app.getTlf();
 		String age =app.getAge();
 		String gender = app.getGender();
-		/*if (!(anon=true)){ Gjør alt under. Hvis ikke : 
-			heightField.setText("Bruker");
-		dateField.setText(date);		
-		weightField.setText(weight);
-		stepsField.setText(steps);
-		restingHRField.setText(restingHR);
-		nameField.setText(name);
-		usernameField.setText(username);		
-		emailField.setText(email);
-		tlfField.setText(tlf);
-		ageField.setText(age);
-		genderField.setText(gender);
-		datePickerField.setDisable(true);
 		
-		
-		
-		}*/
 		heightField.setText(height);
 		dateField.setText(date);		
 		weightField.setText(weight);
@@ -195,8 +193,6 @@ public class TrainerMemberInfoController extends WindowController {
 		genderField.setText(gender);
 		dateField.setEditable(false);
 		Medlemsnavn.setText("Brukerinformasjonen til " + app.getName());
-		//datePickerField.setDisable(true);
-		
 		datePickerField.setPromptText(date);
 
 		datePickerField.setConverter(new StringConverter<LocalDate>() {
@@ -238,13 +234,11 @@ public class TrainerMemberInfoController extends WindowController {
 							setStyle("-fx-background-color: #0b88a10a");
 							//setStyle("fx")
 						} else {
-						}
-						
+							//do nothing
+						}	
 					}
-					
 				};
 			}
-			
 		};
 		
 		datePickerField.setDayCellFactory(set);
