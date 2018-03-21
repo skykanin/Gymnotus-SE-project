@@ -31,12 +31,14 @@ public class TrainerDashboardApp {
 		Gson gson = new Gson();
 		containerUser = gson.fromJson(test, ShowUserInfoContainer.class);
 		containerUser.setUserId(id);
+		
 		if(containerUser.getIsAnonymous()) {
 			containerUser.setUsername("Brukeren er anonym");
 			containerUser.setName("Anonym#" + containerUser.getUserID());
 			containerUser.setPhone("Brukeren er anonym");
 			containerUser.setEmail("Brukeren er anonym");
 		}
+		
 	}
 
 	
@@ -55,8 +57,11 @@ public class TrainerDashboardApp {
 	}
 	
 	public void requestHealthInformation_ID(String id) {
+		
 		Client client = ClientBuilder.newClient();
 		WebTarget webTarget = client.target(baseURI + "health_data/id/"+id);
+		this.requestUserInformation_ID(id);
+		System.out.println("i req.health:" + containerUser.getName());
 		String test = webTarget.request(MediaType.APPLICATION_JSON).get(String.class);
 		Gson gson = new Gson();
 		healthContainers = gson.fromJson(test, new TypeToken<List<ShowHealthInfoContainer>>(){}.getType());
@@ -145,7 +150,7 @@ public class TrainerDashboardApp {
 	public List<Integer> getRestingHRs() {
 		if (healthContainers.size()<1) {
 			return null;
-		}
+		} 
 		
 		List<Integer> HRs = new ArrayList<>();
 		
@@ -154,6 +159,11 @@ public class TrainerDashboardApp {
 		}
 		
 		return HRs;
+	}
+
+
+	public ShowUserInfoContainer getContainerUser() {
+		return containerUser;
 	}
 
 

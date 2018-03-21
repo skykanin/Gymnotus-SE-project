@@ -47,11 +47,7 @@
                               <Font size="16.0" />
                            </font>
                         </JFXButton>
-                        <JFXButton fx:id="TilLoggUt" layoutY="567.0" onAction="#TilLoggUt" prefHeight="47.0" prefWidth="236.0" styleClass="VenstreMenyKnapp" text="    AVSLUTT" textFill="WHITE">
-                           <font>
-                              <Font size="16.0" />
-                           </font>
-                        </JFXButton>
+                       
                      </children>
                   </AnchorPane>
                </children>
@@ -89,7 +85,7 @@
                 <NumberAxis fx:id="yAxis" side="LEFT" />
               </yAxis>
             </LineChart>
-            <LineChart fx:id="stepsChart" accessibleRole="IMAGE_VIEW" animated="false" layoutX="262.0" layoutY="392.0" prefHeight="250.0" prefWidth="600.0">
+            <LineChart fx:id="stepsChart" accessibleRole="IMAGE_VIEW" animated="false" layoutX="249.0" layoutY="393.0" prefHeight="250.0" prefWidth="600.0">
                <xAxis>
                   <CategoryAxis side="BOTTOM" fx:id="xAxis1" />
                </xAxis>
@@ -98,21 +94,13 @@
                </yAxis>
             </LineChart>
             <Label fx:id="stepsSnittTekst" alignment="TOP_RIGHT" layoutX="893.0" layoutY="419.0" prefHeight="21.0" prefWidth="227.0" text="Henrik Griske Fosset's snittpuls" />
-            <Label fx:id="stepsSnittVerdi" alignment="TOP_CENTER" layoutX="979.0" layoutY="471.0" prefHeight="74.0" prefWidth="94.0" text="65">
+            <Label fx:id="stepsSnittVerdi" alignment="TOP_CENTER" layoutX="946.0" layoutY="472.0" prefHeight="74.0" prefWidth="163.0" text="2000.3">
                <font>
                   <Font size="34.0" />
                </font>
             </Label>
-            <Label fx:id="heartRateChartTitle" alignment="CENTER" layoutX="262.0" layoutY="101.0" prefHeight="23.0" prefWidth="590.0" text="Label" textAlignment="RIGHT" textFill="#0b87a1">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Label>
-            <Label fx:id="stepChartTitle" alignment="CENTER" layoutX="267.0" layoutY="375.0" prefHeight="23.0" prefWidth="590.0" text="Label" textAlignment="RIGHT" textFill="#0b87a1">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Label>
+            <Label fx:id="heartRateChartTitle" alignment="CENTER" layoutX="267.0" layoutY="122.0" prefHeight="23.0" prefWidth="590.0" textAlignment="RIGHT" textFill="#0d0d0d" />
+            <Label fx:id="stepsChartTitle" alignment="CENTER" layoutX="267.0" layoutY="381.0" prefHeight="23.0" prefWidth="590.0" textAlignment="RIGHT" />
       </children>
     </AnchorPane>
   </children>
