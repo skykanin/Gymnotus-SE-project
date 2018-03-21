@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="660.0" prefWidth="1200.0" stylesheets="@styles/main.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tdt4140.gr1832.app.ui.TrainerMemberInfoController">
+<VBox prefHeight="660.0" prefWidth="1200.0" stylesheets="@styles/main.css" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tdt4140.gr1832.app.ui.TrainerMemberInfoController">
   <children>
     <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="660.0" prefWidth="12000.0" style="-fx-background-color: #FFFFFF;" stylesheets="@styles/main.css" VBox.vgrow="ALWAYS">
       <children>
@@ -62,7 +62,7 @@
                <children>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0" stylesheets="@styles/main.css">
                      <children>
-                        <Label id="Person" fx:id="Medlemsnavn" layoutY="4.0" prefHeight="40.0" prefWidth="965.0" style="-fx-alignment: center;" styleClass="DosisCaps" textAlignment="CENTER" textFill="WHITE">
+                        <Label id="Person" fx:id="Medlemsnavn" layoutY="4.0" prefHeight="40.0" prefWidth="966.0" style="-fx-alignment: center;" styleClass="DosisCaps" textAlignment="CENTER" textFill="WHITE">
                            <font>
                               <Font size="28.0" />
                            </font>

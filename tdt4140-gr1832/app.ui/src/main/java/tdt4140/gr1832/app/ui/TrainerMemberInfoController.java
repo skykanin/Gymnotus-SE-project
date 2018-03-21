@@ -85,8 +85,6 @@ public class TrainerMemberInfoController extends WindowController {
         stage.setTitle("MemberInfoView");
         stage.setScene(scene);
         stage.show();
-
-		root.setPickOnBounds(false);
 	}
 
 	@FXML
@@ -117,6 +115,7 @@ public class TrainerMemberInfoController extends WindowController {
 
 	@FXML
 	public void initialize() {
+		root.setPickOnBounds(false);
 		if (userID == null) {
 			app = new TrainerMemberInfoApp();
 			app.requestUserInformation_ID("1");
