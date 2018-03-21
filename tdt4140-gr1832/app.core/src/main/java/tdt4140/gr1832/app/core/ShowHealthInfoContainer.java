@@ -55,7 +55,6 @@ public class ShowHealthInfoContainer {
 		this.height = -1;
 		this.weight = -1;
 		this.dailySteps = -1;
-		System.out.println(userID);
 	}
 	
 
