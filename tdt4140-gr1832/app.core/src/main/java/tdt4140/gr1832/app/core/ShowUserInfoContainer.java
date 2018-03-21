@@ -14,9 +14,10 @@ public class ShowUserInfoContainer {
 		private boolean isAnonymous;
 		private boolean shareHealthData;
 		private boolean shareExerciseData;
+		private boolean isTrainer;
 		
 		public ShowUserInfoContainer (String username, String password, String name, int age, int gender, String email, String phone,
-				boolean isAnonymous, boolean shareHealthData, boolean shareExerciseData) {
+				boolean isAnonymous, boolean shareHealthData, boolean shareExerciseData, boolean isTrainer) {
 			this.phone = phone;
 			this.name = name;
 			this.password = password;
@@ -27,6 +28,7 @@ public class ShowUserInfoContainer {
 			this.username = username;
 			this.shareHealthData = shareHealthData;
 			this.shareExerciseData = shareExerciseData;
+			this.isTrainer = isTrainer;
 			if(this.isAnonymous) {
 				this.name = "Anonym#" + this.userID;
 				this.phone = "Brukeren er anonym";
@@ -42,14 +44,13 @@ public class ShowUserInfoContainer {
 			return phone;
 		}
 
-		
-		
-	
 		public String getBrukerType() {
 			return this.userType;
 		}
 
-		//name:
+		public boolean getIsTrainer() {
+			return isTrainer;
+		}
 		
 		public String getName() {
 			return this.name;

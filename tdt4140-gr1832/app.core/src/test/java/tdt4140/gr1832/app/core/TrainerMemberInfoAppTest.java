@@ -25,9 +25,9 @@ public class TrainerMemberInfoAppTest extends TestCase {
 	@Before
 	public void setUp() {
 		showAllUserContainer = new ShowAllUsersContainer(); 
-		showUserInfoContainer = new ShowUserInfoContainer("brukernavn", "passord", "navn",11, 0, "email", "telefon", false, true, true);
-		showUserInfoContainer1 = new ShowUserInfoContainer("brukernavn", "passord", "navn",11, 1, "email", "telefon", false, true, true);
-		showUserInfoContainer2 = new ShowUserInfoContainer("brukernavn", "passord", "navn",11, 2, "email", "telefon", false, true, true);
+		showUserInfoContainer = new ShowUserInfoContainer("brukernavn", "passord", "navn",11, 0, "email", "telefon", false, true, true, false);
+		showUserInfoContainer1 = new ShowUserInfoContainer("brukernavn", "passord", "navn",11, 1, "email", "telefon", false, true, true, false);
+		showUserInfoContainer2 = new ShowUserInfoContainer("brukernavn", "passord", "navn",11, 2, "email", "telefon", false, true, true, false);
 		showHealthInfoContainer = new ShowHealthInfoContainer(123, 007, "Mar, 2018", 85, 100, 60, 181, 80, false, true, true);
 		testapp.setContianerUser(showUserInfoContainer);
 	}
@@ -97,7 +97,7 @@ public class TrainerMemberInfoAppTest extends TestCase {
 	
 	@Test
 	public void testUserInfoContainer() {
-		ShowUserInfoContainer a = new ShowUserInfoContainer("Test", "password", "test", 0, 0, "test", "test", true, true, true);
+		ShowUserInfoContainer a = new ShowUserInfoContainer("Test", "password", "test", 0, 0, "test", "test", true, true, true, true);
 		a.setUserId("null");
 		Assert.assertEquals("Anonym#"+"null", a.getName());
 		a.setPhone("123");

@@ -14,6 +14,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -26,17 +27,26 @@ public class TrainerMembersController extends WindowController {
 	@FXML JFXButton velgMedlemButton;
 	tdt4140.gr1832.app.core.TrainerMemberInfoApp app = new TrainerMemberInfoApp();
 	@FXML StackPane root;
+	@FXML JFXButton velgTrener;
+	@FXML JFXListView<String> trenerListe;
+	@FXML Label valgMFeil;
+	@FXML Label valgTFeil;
 
 	@FXML
 	public void initialize() {
 		root.setPickOnBounds(false);
 		app.requestAllUserID();
 		ObservableList<String> names = FXCollections.observableArrayList();
+		ObservableList<String> trainers = FXCollections.observableArrayList();
 		for (ShowUserInfoContainer c : app.getUsers()) {
 			String name = c.getName();
-			names.add(name);
+			if (c.getIsTrainer()) {
+				trainers.add(name);
+			}else {
+				names.add(name);
+			}
 		}
-		
+		trenerListe.setItems(trainers);
 		medlemsListe.setItems(names);
 	}
 	
@@ -44,12 +54,27 @@ public class TrainerMembersController extends WindowController {
 	@FXML
 	private void velgMedlem(ActionEvent event) throws IOException {
 		String preferedUser = medlemsListe.getSelectionModel().getSelectedItem();
-		
-
-		String id = app.getIDfromName(preferedUser);
-		NavigerTilSide("TrainerMemberInfo.fxml", event, id);
-				
+		if (preferedUser == null) {
+			valgMFeil.setText("Du har ikke valgt medlem");
+		} else {
+			valgMFeil.setText("");
+			String id = app.getIDfromName(preferedUser);
+			NavigerTilSide("TrainerMemberInfo.fxml", event, id);		
+		}
 	}
+	
+	@FXML
+	private void velgTrener(ActionEvent event) throws IOException{
+		String preferedUser = trenerListe.getSelectionModel().getSelectedItem();
+		if (preferedUser == null) {
+			valgTFeil.setText("Du har ikke valgt trener");
+		} else {
+			valgTFeil.setText("");
+			String id = app.getIDfromName(preferedUser);
+			NavigerTilSide("TrainerMemberInfo.fxml", event, id);
+		}
+	}
+	
 
 	@FXML
 	public void loadDialog(ActionEvent parentEvent) {
