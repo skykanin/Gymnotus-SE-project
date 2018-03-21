@@ -224,6 +224,10 @@ public class TrainerMemberInfoApp {
 		return result;
 	}
 	
+	public ShowAllUsersContainer getContainerAllUsers() {
+		return containerAllUsers;
+	}
+	
 	private String checkHealthDataView(int i) {
 		if (i == -1) {
 			return "Brukeren viser ikke helsedata";

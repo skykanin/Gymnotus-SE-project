@@ -28,9 +28,10 @@ public class ShowUserInfoContainer {
 			this.shareHealthData = shareHealthData;
 			this.shareExerciseData = shareExerciseData;
 			if(this.isAnonymous) {
-				this.name = "anonym#" + this.userID;
-				this.phone = "anonym";
-				this.email = "anonym";
+				this.name = "Anonym#" + this.userID;
+				this.phone = "Brukeren er anonym";
+				this.email = "Brukeren er anonym";
+				this.username = "Brukeren er anonym";
 			}
 		}
 

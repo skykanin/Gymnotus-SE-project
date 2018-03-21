@@ -23,7 +23,7 @@ public class TrainerSettingsApp {
 
 	
 	public static String checkNull(String in) {
-		if (in == null || in =="" || in == "null") {
+		if (in == null || in.equals("")) {
 			return "Ikke spesifisert";
 		}
 		return in;
@@ -54,10 +54,7 @@ public class TrainerSettingsApp {
 	/*
 	 MANGLER PASSORD-endringer
 	 */
-	
-	public static void main(String[] args) {
+	public String getBaseURI() {
+		return baseURI;
 	}
-	
-
-
 }
