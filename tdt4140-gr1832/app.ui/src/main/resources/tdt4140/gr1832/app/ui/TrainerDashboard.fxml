@@ -16,7 +16,7 @@
       <children>
             <VBox prefHeight="660.0" prefWidth="235.0" style="-fx-background-color: #0b87a1;">
                <children>
-                  <AnchorPane prefHeight="667.0" prefWidth="245.0" stylesheets="@styles/charts.css">
+                  <AnchorPane prefHeight="667.0" prefWidth="245.0">
                      <children>
                         <JFXButton maxHeight="0.0" maxWidth="0.0" opacity="0.0" text=" ">
                            <font>
@@ -83,10 +83,10 @@
             </Label>
             <LineChart fx:id="heartRateChart" accessibleRole="IMAGE_VIEW" layoutX="253.0" layoutY="112.0" prefHeight="270.0" prefWidth="601.0">
               <xAxis>
-                <CategoryAxis side="BOTTOM" />
+                <CategoryAxis fx:id="xAxis" side="BOTTOM"  />
               </xAxis>
               <yAxis>
-                <NumberAxis side="LEFT" />
+                <NumberAxis fx:id="yAxis" side="LEFT"  />
               </yAxis>
             </LineChart>
       </children>
