@@ -209,4 +209,9 @@ public class TrainerSettingsController extends WindowController {
 		dialog.show();
 	}
 	
+	@FXML
+	public void TilSlettProfil(ActionEvent event) throws Exception {               
+		NavigerTilSide("DeleteUser.fxml", event);
+	}
+	
 }

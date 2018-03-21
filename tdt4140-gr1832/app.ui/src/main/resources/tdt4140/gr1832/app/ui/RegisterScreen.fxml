@@ -68,12 +68,12 @@
                </font>
             </JFXPasswordField>
             <JFXButton fx:id="registerButton" buttonType="FLAT" layoutX="1058.0" layoutY="516.0" onAction="#tilDashboard" prefHeight="39.0" prefWidth="89.0" ripplerFill="WHITE" style="-fx-background-color: #80bfb7;" text="Registrer" />
-            <Label fx:id="errorMessage" alignment="CENTER" layoutX="808.0" layoutY="563.0" prefHeight="39.0" prefWidth="235.0" textAlignment="JUSTIFY" textFill="RED">
+            <Label fx:id="errorMessage" alignment="CENTER" layoutX="876.0" layoutY="566.0" prefHeight="49.0" prefWidth="278.0" textAlignment="JUSTIFY" textFill="RED">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
-            <JFXButton fx:id="tilbake" buttonType="FLAT" layoutX="876.0" layoutY="563.0" onAction="#tilLoginScreen" prefHeight="39.0" prefWidth="89.0" ripplerFill="WHITE" style="-fx-background-color: #80bfb7;" text="Tilbake" />
+            <JFXButton fx:id="tilbake" buttonType="FLAT" layoutX="876.0" layoutY="516.0" onAction="#tilLoginScreen" prefHeight="39.0" prefWidth="89.0" ripplerFill="WHITE" style="-fx-background-color: #80bfb7;" text="Tilbake" />
       </children>
     </AnchorPane>
   </children>
