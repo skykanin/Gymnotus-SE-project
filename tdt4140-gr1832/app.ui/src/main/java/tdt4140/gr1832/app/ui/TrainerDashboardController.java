@@ -127,10 +127,6 @@ public class TrainerDashboardController extends WindowController implements Init
 			series2.getData().add(new XYChart.Data(app.getDates().get(i).substring(0,app.getDates().get(i).length()-6 ),app.getSteps().get(i)));
 		
 		}
-
-		
-		
-		
 			
 		heartRateChart.setCreateSymbols(false);
 		heartRateChart.setAnimated(false);
