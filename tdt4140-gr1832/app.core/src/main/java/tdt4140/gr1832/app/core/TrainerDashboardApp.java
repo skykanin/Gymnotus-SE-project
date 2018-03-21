@@ -77,15 +77,15 @@ public class TrainerDashboardApp {
 		return "1";
 	}
 	
-	public List<String> getHeights() {
+	public List<Integer> getHeights() {
 		if (healthContainers.size()<1) {
 			return null;
 		}
 		
-		List<String> heights = new ArrayList<>();
+		List<Integer> heights = new ArrayList<>();
 		
 		for (ShowHealthInfoContainer hContainer : healthContainers) {
-			heights.add(hContainer.getHeight()+"");
+			heights.add(hContainer.getHeight());
 		}
 		
 		return heights;
@@ -106,45 +106,45 @@ public class TrainerDashboardApp {
 	}
 	
 	//weight
-	public List<String> getWeights() {
+	public List<Integer> getWeights() {
 		if (healthContainers.size()<1) {
 			return null;
 		}
 		
-		List<String> weights = new ArrayList<>();
+		List<Integer> weights = new ArrayList<>();
 		
 		for (ShowHealthInfoContainer hContainer : healthContainers) {
-			weights.add(hContainer.getWeight()+"");
+			weights.add(hContainer.getWeight());
 		}
 		
 		return weights;
 	}
 	
 	//steps
-	public List<String> getSteps() {
+	public List<Integer> getSteps() {
 		if (healthContainers.size()<1) {
 			return null;
 		}
 		
-		List<String> steps = new ArrayList<>();
+		List<Integer> steps = new ArrayList<>();
 		
 		for (ShowHealthInfoContainer hContainer : healthContainers) {
-			steps.add(hContainer.getSteps()+"");
+			steps.add(hContainer.getSteps());
 		}
 		
 		return steps;
 	}
 	
 	//restingHR
-	public List<String> getRestingHRs() {
+	public List<Integer> getRestingHRs() {
 		if (healthContainers.size()<1) {
 			return null;
 		}
 		
-		List<String> HRs = new ArrayList<>();
+		List<Integer> HRs = new ArrayList<>();
 		
 		for (ShowHealthInfoContainer hContainer : healthContainers) {
-			HRs.add(hContainer.getRestingHR()+"");
+			HRs.add(hContainer.getRestingHR());
 		}
 		
 		return HRs;
