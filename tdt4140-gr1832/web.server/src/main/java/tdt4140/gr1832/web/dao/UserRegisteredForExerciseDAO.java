@@ -16,6 +16,7 @@ import javax.ws.rs.core.Response;
 
 import com.google.gson.Gson;
 
+import tdt4140.gr1832.web.dao.data.ExerciseProgram;
 import tdt4140.gr1832.web.dao.data.User;
 import tdt4140.gr1832.web.server.DatabaseConnection;
 
@@ -102,6 +103,15 @@ public class UserRegisteredForExerciseDAO {
 		
 		Gson gson = new Gson();
 		String json = gson.toJson(users);  
+		return json;
+	}
+	
+	@GET
+	@Path("/get_registered_programs")
+	public String getPrograms(@QueryParam("user_id") Integer userID) {
+		String query = "select * from UserRegisteredForExercise "
+						+ "natural join ExerciseProgram where userID=" + Integer.toString(userID);
+		String json = ExerciseProgramDAO.getExerciseProgramListJson(query);
 		return json;
 	}
 

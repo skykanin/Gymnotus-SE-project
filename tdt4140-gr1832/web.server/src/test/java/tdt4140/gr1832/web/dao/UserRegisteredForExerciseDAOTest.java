@@ -16,6 +16,7 @@ import org.junit.Test;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
+import tdt4140.gr1832.web.dao.data.ExerciseProgram;
 import tdt4140.gr1832.web.dao.data.User;
 import tdt4140.gr1832.web.server.DatabaseConnection;
 
@@ -94,5 +95,17 @@ public class UserRegisteredForExerciseDAOTest {
 		
 		users = gson.fromJson(registeredDAO.getUsersFromProgram(1), new TypeToken<List<User>>(){}.getType());
 		Assert.assertEquals(1, users.size());
+	}
+	
+	@Test
+	public void testGetProgramsForUser() {
+		List<ExerciseProgram> programs = gson.fromJson(registeredDAO.getPrograms(0), new TypeToken<List<ExerciseProgram>>(){}.getType());
+		Assert.assertNotNull(programs);
+		
+		Assert.assertEquals(1, programs.size());
+		ExerciseProgram program = programs.get(0);
+		Assert.assertEquals(0, program.getProgramID());
+		Assert.assertEquals("test", program.getName());
+		Assert.assertEquals("test", program.getDescription());
 	}
 }
