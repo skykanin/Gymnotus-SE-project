@@ -150,4 +150,14 @@ public class HealthDataReportDAO {
 		String json = createHealthDataReportJson(query);
 		return json;
 	}
+	
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
+	@Path("sorted_dates")
+	public static String getHealthDataSorted(@QueryParam("ascending") Boolean ascending, @QueryParam("id") int id) {
+		String query = "select * from HealthDataReport where userID=" + Integer.toString(id) +
+						" order by date " + (ascending ? "ASC" : "DESC");
+		String json = createHealthDataReportJson(query);
+		return json;
+	}
 }

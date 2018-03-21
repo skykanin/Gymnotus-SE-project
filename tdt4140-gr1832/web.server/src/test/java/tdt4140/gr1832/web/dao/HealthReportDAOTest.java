@@ -2,6 +2,8 @@ package tdt4140.gr1832.web.dao;
 
 import tdt4140.gr1832.web.server.DatabaseConnection;
 
+import static org.junit.Assert.assertEquals;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -124,5 +126,16 @@ public class HealthReportDAOTest {
     		Assert.assertTrue(isEqual(report, reports.get(0)));
     }
     
-
+    @Test
+    public void getHealthDataSortedIDSortedByDateDesc() {
+    		Response response = healthDAO.createHealthData(0, "2018-02-02", 1, 1, 1, 1, 1);
+    		assertEquals(200, response.getStatus());
+		String json = HealthDataReportDAO.getHealthDataSorted(false, 0);
+		Assert.assertNotNull(json);
+		
+		reports = gson.fromJson(json, new TypeToken<List<HealthDataReport>>(){}.getType());
+		
+		Assert.assertNotNull(reports);
+		Assert.assertTrue(isEqual(report, reports.get(1)));
+    }
 }
