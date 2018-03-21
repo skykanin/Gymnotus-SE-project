@@ -12,6 +12,8 @@ import junit.framework.TestCase;
 public class TrainerMemberInfoAppTest extends TestCase {
 	//Serverrequests are testted elsewere
 	ShowUserInfoContainer showUserInfoContainer;
+	ShowUserInfoContainer showUserInfoContainer1;
+	ShowUserInfoContainer showUserInfoContainer2;
 	ShowHealthInfoContainer showHealthInfoContainer;
 	ShowAllUsersContainer showAllUserContainer; 
 	
@@ -23,12 +25,13 @@ public class TrainerMemberInfoAppTest extends TestCase {
 	@Before
 	public void setUp() {
 		showAllUserContainer = new ShowAllUsersContainer(); 
-		showUserInfoContainer = new ShowUserInfoContainer("brukernavn", "passord", "navn",11, 0, "email", "telefon");
-		showHealthInfoContainer = new ShowHealthInfoContainer(123, 007, "Mar  2018", 85, 100, 60, 181, 80);
-		testapp.addContainerHealth(showHealthInfoContainer);
+		showUserInfoContainer = new ShowUserInfoContainer("brukernavn", "passord", "navn",11, 0, "email", "telefon", false, true, true, false);
+		showUserInfoContainer1 = new ShowUserInfoContainer("brukernavn", "passord", "navn",11, 1, "email", "telefon", false, true, true, false);
+		showUserInfoContainer2 = new ShowUserInfoContainer("brukernavn", "passord", "navn",11, 2, "email", "telefon", false, true, true, false);
+		showHealthInfoContainer = new ShowHealthInfoContainer(123, 007, "Mar, 2018", 85, 100, 60, 181, 80, false, true, true);
 		testapp.setContianerUser(showUserInfoContainer);
 	}
-
+	@Test
 	public void testShowAllUserInfoContainerAdd() {
 		assertEquals(Arrays.asList(), showAllUserContainer.getUsers());
 		showAllUserContainer.addUserInfo(showUserInfoContainer);
@@ -37,6 +40,7 @@ public class TrainerMemberInfoAppTest extends TestCase {
 	
 	@Test
 	public void testTrainerMemberInfoGetters() {
+		testapp.addContainerHealth(showHealthInfoContainer);
 		showUserInfoContainer.setUserId("007");
 		testapp.setAllUsersContainer(showAllUserContainer);
 		showAllUserContainer.addUserInfo(showUserInfoContainer);
@@ -51,34 +55,122 @@ public class TrainerMemberInfoAppTest extends TestCase {
 		Assert.assertEquals("100", testapp.getSteps());
 		Assert.assertEquals("181", testapp.getHeight());
 		Assert.assertEquals("80", testapp.getWeight());
-		Assert.assertEquals("Mar  2018",testapp.getDate());
+		Assert.assertEquals("Mar, 2018",testapp.getDate());
 		Assert.assertEquals(Arrays.asList("navn"), testapp.getNames());
+		testapp.setContianerUser(showUserInfoContainer1);
+		Assert.assertEquals("Kvinne", testapp.getGender());
+		testapp.setContianerUser(showUserInfoContainer2);
+		Assert.assertEquals("Uspesifisert", testapp.getGender());
+		Assert.assertEquals("1", testapp.getIDfromName("feil"));
 	}
 	
 	@Test
+	public void testDateFunction() {
+		testapp.addContainerHealth(showHealthInfoContainer);
+		testapp.addContainerHealth(new ShowHealthInfoContainer(1, 1, "Feb, 1", 0, 0, 0, 0, 0, false, true, true));
+		Assert.assertEquals("Mar, 2018",testapp.getDate());
+		testapp.nextDate();
+		Assert.assertEquals("Feb, 1",testapp.getDate());
+		testapp.nextDate();
+		testapp.nextDate();
+		testapp.lastDate();
+		Assert.assertEquals("Mar, 2018",testapp.getDate());
+		testapp.lastDate();
+		Assert.assertEquals("Feb, 1",testapp.getDate());
+		testapp.giveDateIndex(0);
+		testapp.giveDateIndex(5);
+		Assert.assertEquals("Mar, 2018",testapp.getDate());
+		Assert.assertEquals(Arrays.asList("Mar, 2018", "Feb, 1"), testapp.getDates());
+	}
+	
+	@Test 
+	public void  testcheckHealthData() {
+		testapp.addContainerHealth(new ShowHealthInfoContainer(1, 1, "test", -1, -1, -1, -1, -1, false, false, false));
+		Assert.assertEquals("Brukeren viser ikke helsedata",testapp.getSteps());
+	}
+	@Test
+	public void testGetUsers() {
+		Assert.assertEquals(Arrays.asList(),testapp.getUsers());
+		testapp.getContainerAllUsers().addUserInfo(showUserInfoContainer);
+		Assert.assertEquals(Arrays.asList(showUserInfoContainer), testapp.getUsers());
+	}
+	
+	@Test
+	public void testUserInfoContainer() {
+		ShowUserInfoContainer a = new ShowUserInfoContainer("Test", "password", "test", 0, 0, "test", "test", true, true, true, true);
+		a.setUserId("null");
+		Assert.assertEquals("Anonym#"+"null", a.getName());
+		a.setPhone("123");
+		Assert.assertEquals("123", a.getPhone());
+		a.setUsername("unavn");
+		Assert.assertEquals("unavn", a.getUsername());
+		a.setName("navn");
+		Assert.assertEquals("navn", a.getName());
+		a.setEmail("Enavn");
+		Assert.assertEquals("Enavn", a.getEmail());
+		Assert.assertEquals(true, a.getIsAnonymous());
+		a.setAnonymous(false);
+		Assert.assertEquals(false, a.getIsAnonymous());
+		Assert.assertEquals(true, a.getShareExerciseData());
+		a.setShareExerciseData(false);
+		Assert.assertEquals(false, a.getShareExerciseData());
+		Assert.assertEquals(true, a.getShareHealthData());
+		a.setShareHealthData(false);
+		Assert.assertEquals(false, a.getShareHealthData());
+		Assert.assertEquals("navnunavn00password", a.toString());
+		
+		
+	}
+	
+	@Test
+	public void testHealthInfoContainer() {
+		ShowHealthInfoContainer h = new ShowHealthInfoContainer(1, 3, "Mars 1", 11, 11, 11, 11, 11, true, false, true);
+		h.viewNoHealthData();
+		Assert.assertEquals(-1, h.getHeight());
+		Assert.assertEquals(-1, h.getSteps());
+		Assert.assertEquals(-1, h.getWeight());
+		Assert.assertEquals(-1, h.getRestingHR());
+	}
+	
+	@Test
+	public void testNotSpecified() {
+		Assert.assertEquals("Ikke spesifisert", testapp.getSteps());
+		Assert.assertEquals("Ikke spesifisert", testapp.getHeight());
+		Assert.assertEquals("Ikke spesifisert", testapp.getWeight());
+		Assert.assertEquals("Ikke spesifisert", testapp.getRestingHR());
+		Assert.assertEquals("Ikke spesifisert", testapp.getDate());
+	}
+	@ Test 
+	public void testConvertArrayToString() {
+		String[] s = {"h","e","i"};
+		Assert.assertEquals("hei", testapp.convertArrayToString(s));
+	}
+	@Test
 	public void testShowHealthInfoDate() {
-		Assert.assertEquals("Mar  2018", showHealthInfoContainer.getDate());
+		Assert.assertEquals("Mar, 2018", showHealthInfoContainer.getDate());
 	}
 	
 	@Test
 	public void testShowHealthInfoHeight() {
-		Assert.assertEquals("181", showHealthInfoContainer.getHeight());
+		Assert.assertEquals(181, showHealthInfoContainer.getHeight());
 	}
 	
 	@Test
 	public void testShowHealthInfoWeight() {
-		Assert.assertEquals("80", showHealthInfoContainer.getWeight());
+		Assert.assertEquals(80, showHealthInfoContainer.getWeight());
 	}
 	
 	@Test
 	public void testShowHealthInfoSteps() {
-		Assert.assertEquals("100", showHealthInfoContainer.getSteps());
+		Assert.assertEquals(100, showHealthInfoContainer.getSteps());
 	}
 	
 	@Test
 	public void testShowHealthInfoRestingHR() {
-		Assert.assertEquals("60", showHealthInfoContainer.getRestingHR());
+		Assert.assertEquals(60, showHealthInfoContainer.getRestingHR());
 	}
+	
+	
 	
 	@Test
 	public void testShowUserInfoContainerUsername() {
@@ -105,6 +197,9 @@ public class TrainerMemberInfoAppTest extends TestCase {
 	@Test
 	public void testShowUserInfoContainerGender() {
 		Assert.assertEquals(0, showUserInfoContainer.getGender());
+		Assert.assertEquals(1, showUserInfoContainer1.getGender());
+		Assert.assertEquals(2, showUserInfoContainer2.getGender());
+
 	
 	}
 	@Test
@@ -126,11 +221,22 @@ public class TrainerMemberInfoAppTest extends TestCase {
 	}
 	
 	@Test
+	public void testGetUser() {
+		ShowAllUsersContainer c = new ShowAllUsersContainer();
+		c.addUserInfo(showUserInfoContainer);
+		Assert.assertEquals(null, c.getUser("01010"));
+		showUserInfoContainer.setUserId("1");
+		Assert.assertEquals(showUserInfoContainer, c.getUser("1"));
+		
+	}
+	
+	@Test
 	public void testCheckNull() {
 		Assert.assertTrue("Ikke spesifisert".equals(testapp.checkNull("")));
 		Assert.assertTrue("Ikke spesifisert".equals(testapp.checkNull(null)));
 		Assert.assertTrue("Ikke spesifisert".equals(testapp.checkNull("null")));
 		Assert.assertFalse("Ikke spesifisert".equals(testapp.checkNull("12")));
 	}
+	
 	
 }

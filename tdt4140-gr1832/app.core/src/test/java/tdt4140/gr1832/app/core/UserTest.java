@@ -3,8 +3,10 @@ package tdt4140.gr1832.app.core;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+
 
 public class UserTest {
 	
@@ -14,6 +16,24 @@ public class UserTest {
 	public void setUp() throws Exception{
 		this.user = new User("OlaN", "hamstring","Ola Nordmann", 12, 0,  "ola.nordmann@gmail.com", "41546593");
 		
+	}
+	
+	@Test
+	public void testToString() {
+		Assert.assertEquals("Ola Nordmann" + "OlaN" + 12 + 0 + "hamstring", user.toString());
+	}
+	@Test
+	public void testUserType() {
+		user.setUserType("bruker");
+		Assert.assertEquals("bruker", user.getBrukerType());
+		user.setUserType("PT");
+		Assert.assertEquals("PT", user.getBrukerType());
+	}
+	
+	@Test
+	public void testUserID() {
+		user.setUserID("11");
+		Assert.assertEquals("11", user.getUserID());
 	}
 	
 	@Test
@@ -40,7 +60,12 @@ public class UserTest {
 			assert false;
 		}catch (IllegalArgumentException e) {
 			assert true;
-		}		
+		}
+		user.setGender(1);
+		Assert.assertEquals(1, user.getGender());
+		user.setGender(2);
+		Assert.assertEquals(2, user.getGender());
+		
 	}
 	@Test
 	public void testSetEmail() {
@@ -89,6 +114,12 @@ public class UserTest {
 		assertEquals("OlaN", user.getUsername());
 		}
 		
+		@Test
+		public void testEmail() {
+			Assert.assertEquals("ola.nordmann@gmail.com", user.getEmail());
+			user.setEmail(null);
+			Assert.assertEquals(null, user.getEmail());
+		}
 		
 		@Test
 		public void testSetAge() {
@@ -99,6 +130,7 @@ public class UserTest {
 			}catch (IllegalArgumentException e) {
 				assert true;
 			}
+			
 		}
 		@Test
 		public void testGetAge() {

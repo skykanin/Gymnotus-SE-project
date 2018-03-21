@@ -44,20 +44,6 @@ public class RegisterUser {
 	  System.out.println(response.getStatus());
 		
 	}
-	
-	
-	
-	
-public static void main(String[] args) {
-	
-	User u = new User("OlaN", "fortniteHhamstring","Ola Nojrdmann", 12, 0,  "ola.nordmann@gmail.com", "41546593");
-	RegisterUser user1 = new RegisterUser();
-	
-	user1.registerUser(u);
-
-	}
-
-
 
 }
 	
