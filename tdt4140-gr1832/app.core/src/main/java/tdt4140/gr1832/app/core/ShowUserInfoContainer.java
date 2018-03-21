@@ -29,7 +29,12 @@ public class ShowUserInfoContainer {
 			this.shareHealthData = shareHealthData;
 			this.shareExerciseData = shareExerciseData;
 			this.isTrainer = isTrainer;
-			
+			if(this.isAnonymous) {
+				this.name = "Anonym#" + this.userID;
+				this.phone = "Brukeren er anonym";
+				this.email = "Brukeren er anonym";
+				this.username = "Brukeren er anonym";
+			}
 		}
 
 		public void setUserId(String id) {
