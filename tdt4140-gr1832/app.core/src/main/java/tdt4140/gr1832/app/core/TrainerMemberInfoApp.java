@@ -227,6 +227,9 @@ public class TrainerMemberInfoApp {
 	public ShowAllUsersContainer getContainerAllUsers() {
 		return containerAllUsers;
 	}
+	public List<ShowHealthInfoContainer> getContainerHealth() {
+		return containerHealth;
+	}
 	
 	private String checkHealthDataView(int i) {
 		if (i == -1) {

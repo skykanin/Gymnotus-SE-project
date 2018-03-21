@@ -37,7 +37,12 @@ public class DeleteUserController extends WindowController {
 	
     @FXML
 	private StackPane root;
-    
+
+	@FXML
+	public void initialize() {
+		root.setPickOnBounds(false);
+	}
+
 	
 	@FXML
 	public void SlettProfil(ActionEvent event) throws InterruptedException, IOException {
