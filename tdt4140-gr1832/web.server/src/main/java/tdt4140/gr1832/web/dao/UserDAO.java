@@ -40,6 +40,7 @@ public class UserDAO {
 		user.setIsAnonymous(rs.getBoolean("isAnonymous"));
 		user.setShareHealthData(rs.getBoolean("shareHealthData"));
 		user.setShareExerciseData(rs.getBoolean("shareExerciseData"));
+		user.setIsTrainer(rs.getBoolean("isTrainer"));
 		return user;
 	}
 	
@@ -123,7 +124,8 @@ public class UserDAO {
 							  @FormParam("age") int age,
 							  @FormParam("isAnonymous") Boolean isAnonymous,
 							  @FormParam("shareHealthData") Boolean shareHealthData,
-							  @FormParam("shareExerciseData") Boolean shareExerciseData
+							  @FormParam("shareExerciseData") Boolean shareExerciseData,
+							  @FormParam("isTrainer") Boolean isTrainer
 							  ) 
 	{
 		Connection conn = DatabaseConnection.getConnection();
@@ -131,8 +133,8 @@ public class UserDAO {
 		int status = 400;
 
 		String insertUserSQL = "insert into User "
-				+ "(username, password, name, email, phoneumber, gender, age, isAnonymous, shareHealthData, shareExerciseData)"
-				+ " VALUES (?,?,?,?,?,?,?,?,?,?)";
+				+ "(username, password, name, email, phoneumber, gender, age, isAnonymous, shareHealthData, shareExerciseData, isTrainer)"
+				+ " VALUES (?,?,?,?,?,?,?,?,?,?,?)";
 		username = username.toLowerCase();
 		String userExists = userExists(username).getEntity().toString();
 		if(username != null && password != null && userExists.equals("false")) {
@@ -149,6 +151,7 @@ public class UserDAO {
 				prepared_stmt.setBoolean(8, false);
 				prepared_stmt.setBoolean(9, true);
 				prepared_stmt.setBoolean(10, true);
+				prepared_stmt.setBoolean(11, true);
 
 				prepared_stmt.executeUpdate();
 				status = 200;
@@ -202,7 +205,8 @@ public class UserDAO {
 							   @FormParam("new_age") int new_age,
 							   @FormParam("new_is_anonymous") Boolean isAnonymous,
 							   @FormParam("new_share_health_data") Boolean shareHealthData,
-							   @FormParam("new_share_exercise_data") Boolean shareExerciseData
+							   @FormParam("new_share_exercise_data") Boolean shareExerciseData,
+							   @FormParam("new_is_trainer") Boolean isTrainer
 							   )
 	{
 		int status = 400;
@@ -216,6 +220,7 @@ public class UserDAO {
 			if(isAnonymous != null) updateColumn(username, "isAnonymous", isAnonymous, "bool");
 			if(shareHealthData != null) updateColumn(username, "shareHealthData", shareHealthData, "bool");
 			if(shareExerciseData != null) updateColumn(username, "shareExerciseData", shareExerciseData, "bool");
+			if(isTrainer != null) updateColumn(username, "isTrainer", isTrainer, "bool");
 			status = 200;
 		}
 		return Response.status(status).build();
@@ -246,9 +251,7 @@ public class UserDAO {
 	@Produces(MediaType.APPLICATION_JSON)
 	public static String getUserInfoByUsername(@PathParam("username") String username) {
 		Connection conn = DatabaseConnection.getConnection();
-		String query = "select userID, username, name, email, phoneumber, gender, age, isAnonymous, shareHealthData, shareExerciseData "
-				+ "from User where username=" + "'" + username + "'";
-		
+		String query = "select * from User where username=" + "'" + username + "'";
 		User user = new User();
 		
 		PreparedStatement stmt;
@@ -272,9 +275,7 @@ public class UserDAO {
 	@Produces(MediaType.APPLICATION_JSON)
 	public static String getUserInfoByID(@PathParam("id") int id) {
 		Connection conn = DatabaseConnection.getConnection();
-		String query = "select userID, username, name, email, phoneumber, gender, age, isAnonymous, shareHealthData, shareExerciseData "
-				+ "from User where userID=" + Integer.toString(id);
-		
+		String query = "select * from User where userID=" + Integer.toString(id);
 		User user = new User();
 		
 		PreparedStatement stmt;

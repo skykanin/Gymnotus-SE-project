@@ -18,6 +18,7 @@ public class UserTest {
 		user.setAge(1);
 		user.setPhone("123");
 		user.setName("test");
+		user.setIsTrainer(true);
 	}
 	
 	@Test
@@ -29,5 +30,6 @@ public class UserTest {
 		Assert.assertEquals(1, user.getAge());
 		Assert.assertEquals("123", user.getPhone());
 		Assert.assertEquals("test", user.getName());
+		Assert.assertEquals(true, user.getIsTrainer());
 	}
 }

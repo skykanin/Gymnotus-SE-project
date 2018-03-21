@@ -11,7 +11,16 @@ public class User {
 	Boolean isAnonymous;
 	Boolean shareExerciseData;
 	Boolean shareHealthData;
+	Boolean isTrainer;
 	
+	public Boolean getIsTrainer() {
+		return isTrainer;
+	}
+
+	public void setIsTrainer(Boolean isTrainer) {
+		this.isTrainer = isTrainer;
+	}
+
 	public User() {
 		
 	}

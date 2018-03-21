@@ -45,7 +45,7 @@ public class HealthReportDAOTest {
 		DatabaseConnection.setConnection(conn);
 		DatabaseConnection.executeStatements("create_database.sql", false);
 		
-		Response response1 = userDAO.createUser("test", "test", "test", "test@test.com", "1234", 1, 18, true, true, true);
+		Response response1 = userDAO.createUser("test", "test", "test", "test@test.com", "1234", 1, 18, true, true, true, true);
 		Assert.assertEquals(200, response1.getStatus());
 		
 		// Creates healthdata, and also tests if we succesfullly did so.

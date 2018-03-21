@@ -41,7 +41,7 @@ public class UserRegisteredForExerciseDAOTest {
 		DatabaseConnection.setConnection(conn);
 		DatabaseConnection.executeStatements("create_database.sql", false);
 		
-		Response response = userDAO.createUser("test", "test", "test", "test@test.com", "1234", 1, 18, true, true, true);
+		Response response = userDAO.createUser("test", "test", "test", "test@test.com", "1234", 1, 18, true, true, true, true);
 		Assert.assertEquals(200, response.getStatus());
 		
 		Response response1 = exerciseProgramDAO.createExerciseProgram("test", "test");

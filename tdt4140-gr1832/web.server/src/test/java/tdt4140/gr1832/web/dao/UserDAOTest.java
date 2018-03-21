@@ -33,7 +33,7 @@ public class UserDAOTest {
 		DatabaseConnection.setConnection(conn);
 		DatabaseConnection.executeStatements("create_database.sql", false);
 		
-		Response response = userDAO.createUser("test", "test", "test", "test@test.com", "1234", 1, 18, true, true, true);
+		Response response = userDAO.createUser("test", "test", "test", "test@test.com", "1234", 1, 18, true, true, true, true);
 		Assert.assertEquals(200, response.getStatus());
 		
 		user = gson.fromJson(UserDAO.getUserInfoByUsername("test"), User.class);

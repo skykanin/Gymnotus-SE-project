@@ -10,6 +10,7 @@ CREATE TABLE User (
   isAnonymous BOOLEAN,
   shareHealthData BOOLEAN,
   shareExerciseData BOOLEAN,
+  isTrainer BOOLEAN,
   CHECK (age >= 16)
 );
 

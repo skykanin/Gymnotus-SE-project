@@ -35,7 +35,7 @@ public class UserSharingInformationDAOTest {
 		conn = DriverManager.getConnection("jdbc:hsqldb:mem:" + getClass().getName() + testNum, "SA", "");
 		DatabaseConnection.setConnection(conn);
 		DatabaseConnection.executeStatements("create_database.sql", false);
-		Response response = userDAO.createUser("test", "test", "test", "test@test.com", "1234", 1, 18, true, true, true);
+		Response response = userDAO.createUser("test", "test", "test", "test@test.com", "1234", 1, 18, true, true, true, true);
 		Assert.assertEquals(200, response.getStatus());
 		testNum++;
 	}
@@ -57,7 +57,6 @@ public class UserSharingInformationDAOTest {
 		
 		users = gson.fromJson(informationDAO.getUsersAnonymous(false), new TypeToken<List<User>>(){}.getType());
 		Assert.assertEquals(1, users.size());
-		
 	}
 	
 	@Test
@@ -76,6 +75,15 @@ public class UserSharingInformationDAOTest {
 		Assert.assertEquals(1, users.size());
 		
 		users = gson.fromJson(informationDAO.getUsersExerciseData(false), new TypeToken<List<User>>(){}.getType());
+		Assert.assertEquals(0, users.size());
+	}
+	
+	@Test
+	public void testGetTrainers() {
+		users = gson.fromJson(informationDAO.getTrainers(true), new TypeToken<List<User>>(){}.getType());
+		Assert.assertEquals(1, users.size());
+		
+		users = gson.fromJson(informationDAO.getTrainers(false), new TypeToken<List<User>>(){}.getType());
 		Assert.assertEquals(0, users.size());
 	}
 }

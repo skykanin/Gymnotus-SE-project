@@ -69,4 +69,13 @@ public class UserSharingInformationDAO {
 		String json = executeInfoSharingQuery(query);
 		return json;
 	}
+	
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
+	@Path("trainer")
+	public String getTrainers(@QueryParam("is_trainer") boolean isTrainer) {
+		String query = "select * from User where isTrainer=" + Boolean.toString(isTrainer);
+		String json = executeInfoSharingQuery(query);
+		return json;
+	}
 }
