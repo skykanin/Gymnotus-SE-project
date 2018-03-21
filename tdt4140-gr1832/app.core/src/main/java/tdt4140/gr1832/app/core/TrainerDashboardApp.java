@@ -31,6 +31,12 @@ public class TrainerDashboardApp {
 		Gson gson = new Gson();
 		containerUser = gson.fromJson(test, ShowUserInfoContainer.class);
 		containerUser.setUserId(id);
+		if(containerUser.getIsAnonymous()) {
+			containerUser.setUsername("Brukeren er anonym");
+			containerUser.setName("Anonym#" + containerUser.getUserID());
+			containerUser.setPhone("Brukeren er anonym");
+			containerUser.setEmail("Brukeren er anonym");
+		}
 	}
 
 	
