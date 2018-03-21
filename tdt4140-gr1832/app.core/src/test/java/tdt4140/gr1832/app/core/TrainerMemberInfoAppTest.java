@@ -62,6 +62,7 @@ public class TrainerMemberInfoAppTest extends TestCase {
 		testapp.setContianerUser(showUserInfoContainer2);
 		Assert.assertEquals("Uspesifisert", testapp.getGender());
 		Assert.assertEquals("1", testapp.getIDfromName("feil"));
+		Assert.assertEquals(Arrays.asList(showHealthInfoContainer),testapp.getContainerHealth());
 	}
 	
 	@Test
