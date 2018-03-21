@@ -22,26 +22,20 @@ import tdt4140.gr1832.app.core.TrainerDashboardApp;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.CategoryAxis;
-import java.util.Date;
+
+import java.text.DecimalFormat;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import javafx.scene.chart.XYChart;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDialog;
 import com.jfoenix.controls.JFXDialogLayout;
-import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
 
-import javafx.fxml.Initializable;
-import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
 
 public class TrainerDashboardController extends WindowController implements Initializable {
 	
-	
-    
 	@FXML JFXComboBox<String> memberComboBox;
     @FXML private Label Velkommen;
     @FXML Label infoText;
@@ -51,6 +45,14 @@ public class TrainerDashboardController extends WindowController implements Init
     @FXML LineChart<String,Number> heartRateChart;
     @FXML CategoryAxis xAxis;
     @FXML NumberAxis yAxis;
+    
+    @FXML LineChart<String, Number> stepsChart;
+    @FXML CategoryAxis xAxis1;
+    @FXML NumberAxis yAxis1;
+    @FXML Label stepsSnittTekst;
+    @FXML Label stepsSnittVerdi;
+    @FXML Label heartRateChartTitle;
+    @FXML Label stepsChartTitle;
     
     TrainerDashboardApp app = new TrainerDashboardApp();
 
@@ -64,8 +66,12 @@ public class TrainerDashboardController extends WindowController implements Init
 			Velkommen.setText("Velkommen, " + FxApp.getAS().getLoggedInUser().getName());
 		}
 		
+		heartRateChart.setLegendVisible(false);
+		stepsChart.setLegendVisible(false);
+		heartRateChart.setOpacity(0);
+		stepsChart.setOpacity(0);
+		infoText.setText("Velg en venn for å visualisere informasjon:");
 		
-		infoText.setText("Velg tryne for å visualisere informasjon:");
 		app.requestAllUserID();
 		ObservableList<String> names = FXCollections.observableArrayList();
 		for (String name : app.getNames()) {
@@ -75,6 +81,8 @@ public class TrainerDashboardController extends WindowController implements Init
 		memberComboBox.setItems(names);
 		pulsSnittTekst.setText("");
 		pulsSnittVerdi.setText("");
+		stepsSnittTekst.setText("");
+		stepsSnittVerdi.setText("");
 		
 	}
 	
@@ -83,89 +91,147 @@ public class TrainerDashboardController extends WindowController implements Init
 	public void handleMemberComboBox(ActionEvent actionEvent) throws IOException, ParseException {
 		
 		String username = memberComboBox.getSelectionModel().getSelectedItem();
-		infoText.setText("Viser " + username + "'s info, velg nytt tryne: " );
+		infoText.setText("Du ser " + username + "'s helsedata. Se noen andre: " );
+		
+		System.out.println(username);
+		System.out.println(app.getIDfromName(username));
 		
 		app.requestHealthInformation_ID(app.getIDfromName(username));
 		
-		String datesToSet = "";
-		String HRsToSet = "";
-		int meanHR = 0;
 		
-		if (app.getDates() != null) {
+		double meanHR = 0;
+		double meanSteps = 0;
+		
+		System.out.println(app.getContainerUser().getShareHealthData());
+		
+		if (app.getRestingHRs() != null && app.getContainerUser().getShareHealthData()) {
 			
-			for (int i = 0; i < app.getDates().size(); i++) {
-				datesToSet += app.getDates().get(i) + ", ";
-				HRsToSet += app.getRestingHRs().get(i) + ", ";
-				meanHR += Integer.parseInt(app.getRestingHRs().get(i))/app.getRestingHRs().size();
+			for (int i = 0; i < app.getRestingHRs().size(); i++) {
+				
+				meanHR += (double) (app.getRestingHRs().get(i))/ (double) (app.getRestingHRs().size());
+				meanSteps += (double) (app.getSteps().get(i))/(double) (app.getSteps().size());
 			} 
 			
-			datesToSet = datesToSet.substring(0, datesToSet.length()-2);
-			HRsToSet = HRsToSet.substring(0, HRsToSet.length()-2);
-			System.out.println(datesToSet);
-			System.out.println(HRsToSet);
-			pulsSnittTekst.setText(username +"'s snittpuls ligger på:");
-			pulsSnittVerdi.setText(meanHR + "");
+			heartRateChartTitle.setText(username + "'s puls");
+			stepsChartTitle.setText(username + "'s steps");
+		
+			DecimalFormat df = new DecimalFormat(" .#");
 			
-		} else {
-			pulsSnittTekst.setText("Ingen helsedata å vise");
-			pulsSnittVerdi.setText("");
-		}
+			pulsSnittTekst.setText(username +"'s snittpuls er:");
+			pulsSnittVerdi.setText(df.format(meanHR) + "");
+			stepsSnittTekst.setText(username +"'s snittsteps er:");
+			stepsSnittVerdi.setText(df.format(meanSteps) + "");
+			
+			// START PLOTT		
+			heartRateChart.getData().clear();
+			stepsChart.getData().clear();
+			
+	        XYChart.Series<String,Number> series = new XYChart.Series<>();
+	        XYChart.Series<String,Number> series2 = new XYChart.Series<>();
 		
-		// START PLOTT
-		
-//        SimpleDateFormat dateFormat = new SimpleDateFormat("MMM dd, yyyy");
-		
-		heartRateChart.getData().clear();
-		
-		
-		
-        XYChart.Series<String,Number> series = new XYChart.Series<>();
-		series.setName("Puls for " + username);
-		
-		for (int i = 0; i < app.getDates().size() ; i++) {
-			series.getData().add(new XYChart.Data(app.getDates().get(i),Integer.parseInt(app.getRestingHRs().get(i))));
-		}
-//        series.getData().add(new XYChart.Data("Januar",23));
-//        series.getData().add(new XYChart.Data("Februar",22));
-//        series.getData().add(new XYChart.Data("Mars",24));
-		
-		
-		int min = 1000;
-		
-		for (int i = 0; i < app.getDates().size() ; i++) {
-			if (Integer.parseInt(app.getRestingHRs().get(i)) < min) {
-				min = Integer.parseInt(app.getRestingHRs().get(i));
+			for (int i = 0; i < app.getDates().size() ; i++) {
+				series.getData().add(new XYChart.Data(app.getDates().get(i).substring(0,app.getDates().get(i).length()-6 ),app.getRestingHRs().get(i)));
+				series2.getData().add(new XYChart.Data(app.getDates().get(i).substring(0,app.getDates().get(i).length()-6 ),app.getSteps().get(i)));
 			}
-		}
-		
-		System.out.println(min);
-			if (min > 10) {
-				yAxis.setLowerBound(min - 10);
-			}
+				
+			// FORMATTING PLOT
+			heartRateChart.setOpacity(1);
+			stepsChart.setOpacity(1);
 			
+			yAxis.setAutoRanging(false);
+			yAxis1.setAutoRanging(false);
+		   
+		    
+		    if (((meanHR - meanHR*0.07) % 2) != 0) {
+		    		int lowerBound = (int) (meanHR - meanHR*0.07 - ((meanHR - meanHR*0.07) % 2));
+		    		 yAxis.setLowerBound(lowerBound);	
+		    } else {
+		    		yAxis.setLowerBound((int) (meanHR - meanHR*0.07));
+		    }
+		    
+		    if (((meanHR + meanHR*0.07) % 2) != 0) {
+			    	int upperBound = (int) (meanHR + meanHR*0.07 + 1);
+			    	yAxis.setUpperBound(upperBound);
+		    } else {
+		    	 	yAxis.setUpperBound((int) (meanHR + meanHR*0.07)); 	
+		    }
+		    
+		    yAxis1.setLowerBound((int) (meanSteps - meanSteps));
+		    
+		    if ((((int) (meanSteps + meanSteps)) % 500 != 0)) {
+		    		int upperBound = (int) (meanSteps + meanSteps + (500 - (meanSteps + meanSteps ) % 500));
+		    		yAxis1.setUpperBound(upperBound);		
+		    		
+		    } else {
+		    		yAxis1.setUpperBound((int) (meanSteps + meanSteps));		
+		    }
+		    
+		    yAxis.setTickUnit(2);
+		    yAxis.setMinorTickVisible(false);
+		    
+		    yAxis1.setTickUnit(500);
+		    yAxis1.setMinorTickVisible(false);
+		    
+			heartRateChart.setHorizontalGridLinesVisible(true);
+			stepsChart.setHorizontalGridLinesVisible(true);
 			
-		heartRateChart.setAnimated(false);
-          
-        heartRateChart.getData().add(series);
+			heartRateChart.setVerticalGridLinesVisible(false);
+			stepsChart.setVerticalGridLinesVisible(false);
+			
+			heartRateChart.setCreateSymbols(false);
+			heartRateChart.setAnimated(false);
+	        heartRateChart.getData().add(series);
+	        stepsChart.setCreateSymbols(false);
+	        stepsChart.setAnimated(false);
+	        stepsChart.getData().add(series2);
 
-//          /**
-//           * Browsing through the Data and applying ToolTip
-//           * as well as the class on hover
-//           */
-//          for (XYChart.Series<Date, Number> s : lineChart.getData()) {
-//              for (XYChart.Data<Date, Number> d : s.getData()) {
-//                  Tooltip.install(d.getNode(), new Tooltip(
-//                          d.getXValue().toString() + "\n" +
-//                                  "Number Of Events : " + d.getYValue()));
-//
-//                  //Adding class on hover
-//                  d.getNode().setOnMouseEntered(event -> d.getNode().getStyleClass().add("onHover"));
-//
-//                  //Removing class on exit
-//                  d.getNode().setOnMouseExited(event -> d.getNode().getStyleClass().remove("onHover"));
-//  	            }
-//  	        }
-//  	    }
+			
+		
+			
+		} else if(!(app.getContainerUser().getShareHealthData())) {
+			
+			infoText.setText(username + " har valgt å ikke vise sin data, velg en ny venn: ");
+			pulsSnittTekst.setText("");
+			pulsSnittVerdi.setText("");
+			stepsSnittTekst.setText("");
+			stepsSnittVerdi.setText("");
+			
+					
+			heartRateChart.getData().clear();
+			stepsChart.getData().clear();
+			
+			heartRateChartTitle.setText("");
+			stepsChartTitle.setText("");
+			
+			
+			heartRateChart.setOpacity(0);
+			stepsChart.setOpacity(0);
+			
+	     
+
+			
+		}
+		else {
+			infoText.setText(username + " har ikke registrert helsedata, velg en ny venn: ");
+			pulsSnittTekst.setText("");
+			pulsSnittVerdi.setText("");
+			stepsSnittTekst.setText("");
+			stepsSnittVerdi.setText("");
+			
+			heartRateChartTitle.setText("");
+			stepsChartTitle.setText("");
+			
+			
+			heartRateChart.getData().clear();
+			stepsChart.getData().clear();
+		
+
+			heartRateChart.setOpacity(0);
+			stepsChart.setOpacity(0);
+		}
+		
+		
+
 	}
 	
 	
