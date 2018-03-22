@@ -5,8 +5,11 @@ import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.MediaType;
 
 import java.awt.Container;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
@@ -14,6 +17,8 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 public class TrainerMemberInfoApp {
+	
+	int healtInfoIndex = 0;
 
 	private ShowUserInfoContainer containerUser;
 	
@@ -34,6 +39,12 @@ public class TrainerMemberInfoApp {
 		Gson gson = new Gson();
 		containerUser = gson.fromJson(test, ShowUserInfoContainer.class);
 		containerUser.setUserId(id);
+		if(containerUser.getIsAnonymous()) {
+			containerUser.setUsername("Brukeren er anonym");
+			containerUser.setName("Anonym#" + containerUser.getUserID());
+			containerUser.setPhone("Brukeren er anonym");
+			containerUser.setEmail("Brukeren er anonym");
+		}
 	}
 	
 	public void requestAllUserID() {
@@ -45,6 +56,7 @@ public class TrainerMemberInfoApp {
 		
 		for(Integer i : userids) {
 			requestUserInformation_ID(i.toString());
+			containerUser.setUserId(i.toString());
 			containerAllUsers.addUserInfo(containerUser);
 		}
 	}
@@ -55,6 +67,12 @@ public class TrainerMemberInfoApp {
 		String test = webTarget.request(MediaType.APPLICATION_JSON).get(String.class);
 		Gson gson = new Gson();
 		containerHealth = gson.fromJson(test, new TypeToken<List<ShowHealthInfoContainer>>(){}.getType());
+		this.requestUserInformation_ID(id);
+		if (containerUser != null && (!containerUser.getShareHealthData())) { //Hvis health er false, da vises ikke data
+			for (ShowHealthInfoContainer healtcontainer : containerHealth) {
+				healtcontainer.viewNoHealthData();
+			}
+		}
 	}
 	
 	public String checkNull(String in) {
@@ -65,7 +83,7 @@ public class TrainerMemberInfoApp {
 	}
 	
 	//Not used now
-	private String convertArrayToString(String[] in ) {
+	String convertArrayToString(String[] in ) {
 		String result = "";
 		for (int i=0; i<in.length; i++) {
 			result += in[i];
@@ -77,35 +95,36 @@ public class TrainerMemberInfoApp {
 		if (containerHealth.size()<1) {
 			return "Ikke spesifisert";
 		}
-		return containerHealth.get(0).getHeight();
+		return checkHealthDataView(containerHealth.get(healtInfoIndex).getHeight());
 	}
 
 	public String getDate() {
 		if (containerHealth.size()<1) {
 			return "Ikke spesifisert";
 		}
-		return containerHealth.get(0).getDate();
+		
+		return containerHealth.get(healtInfoIndex).getDate();
 	}
 
 	public String getWeight() {
 		if (containerHealth.size()<1) {
 			return "Ikke spesifisert";
 		}
-		return containerHealth.get(0).getWeight();
+		return checkHealthDataView(containerHealth.get(healtInfoIndex).getWeight());
 	}
 
 	public String getSteps() {
 		if (containerHealth.size()<1) {
 			return "Ikke spesifisert";
 		}
-		return containerHealth.get(0).getSteps();
+		return checkHealthDataView(containerHealth.get(healtInfoIndex).getSteps());
 	}
 
 	public String getRestingHR() {
 		if (containerHealth.size()<1) {
 			return "Ikke spesifisert";
 		}
-		return containerHealth.get(0).getRestingHR();
+		return checkHealthDataView(containerHealth.get(healtInfoIndex).getRestingHR());
 	}
 
 	public String getName() {
@@ -150,6 +169,10 @@ public class TrainerMemberInfoApp {
 		return usernames;
 		}
 	
+	public List<ShowUserInfoContainer> getUsers() {
+		return containerAllUsers.getUsers();
+	}
+	
 	public String getIDfromName(String name) {
 		for (ShowUserInfoContainer user : containerAllUsers.getUsers()){
 			if (user.getName().equals(name)) {
@@ -174,10 +197,49 @@ public class TrainerMemberInfoApp {
 		this.containerAllUsers = e;
 	}
 
-	public static void main(String[] args) {
-//		TrainerMemberInfoApp t = new TrainerMemberInfoApp();
-////		t.requestUserInformation_ID("1");
-////		t.requestHealthInformation_ID("1");
-//		t.requestAllUserID();
+	public void nextDate() {
+		if (healtInfoIndex < containerHealth.size()-1) healtInfoIndex++;
+		else healtInfoIndex = 0;
 	}
+
+	public void lastDate() {
+		if (healtInfoIndex >0 ) healtInfoIndex--;
+		else healtInfoIndex = containerHealth.size()-1;
+		
+	}
+	
+	public void giveDateIndex(int index) {
+		if (-1<index && index<containerHealth.size()) {
+			this.healtInfoIndex = index;
+		} else {
+			
+		}
+	}
+	
+	public List<String> getDates() {
+		List<String> result = new ArrayList<>();
+		for (ShowHealthInfoContainer c : containerHealth) {
+			result.add(c.getDate());
+		}
+		return result;
+	}
+	
+	public ShowAllUsersContainer getContainerAllUsers() {
+		return containerAllUsers;
+	}
+	public List<ShowHealthInfoContainer> getContainerHealth() {
+		return containerHealth;
+	}
+	
+	private String checkHealthDataView(int i) {
+		if (i == -1) {
+			return "Brukeren viser ikke helsedata";
+		} else{
+			return i + "";
+		}	
+	}
+			
+
+
 }
+

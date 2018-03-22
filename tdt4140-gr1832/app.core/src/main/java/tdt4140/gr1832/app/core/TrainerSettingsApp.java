@@ -22,8 +22,8 @@ public class TrainerSettingsApp {
 	private static String baseURI = "http://146.185.153.244:8080/api/";
 
 	
-	public static String checkNull(String in) {
-		if (in == null || in =="" || in == "null") {
+	public String checkNull(String in) {
+		if (in == null || in.equals("")) {
 			return "Ikke spesifisert";
 		}
 		return in;
@@ -54,10 +54,7 @@ public class TrainerSettingsApp {
 	/*
 	 MANGLER PASSORD-endringer
 	 */
-	
-	public static void main(String[] args) {
+	public String getBaseURI() {
+		return baseURI;
 	}
-	
-
-
 }

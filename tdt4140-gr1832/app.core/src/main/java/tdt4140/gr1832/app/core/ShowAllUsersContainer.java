@@ -16,4 +16,13 @@ public class ShowAllUsersContainer {
 	public List<ShowUserInfoContainer> getUsers() {
 		return users;
 	}
+	
+	public ShowUserInfoContainer getUser(String id) {
+		for (ShowUserInfoContainer c : users) {
+			if (id.equals(c.getUserID())) {
+				return c;
+			}
+		}
+		return null;
+	}
 }

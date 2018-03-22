@@ -1,48 +1,56 @@
 package tdt4140.gr1832.app.ui;
 
-import static org.testfx.api.FxAssert.verifyThat;
-import static org.testfx.matcher.base.NodeMatchers.hasText;
+
 
 import org.junit.Test;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.input.KeyCode;
+import static org.testfx.api.FxAssert.verifyThat;
+import static org.hamcrest.CoreMatchers.is;
 import javafx.stage.Stage;
 import tdt4140.gr1832.app.core.ShowUserInfoContainer;
 
 public class WindowControllerTest extends FxAppTest {
-//
-//	private final String usernameFieldID = "#username";
-//    private final String passwordFieldID = "#password";
-//    private final String loginButtonID = "#loginButton";
-//    private final String registerButtonID = "#registerButton";
-//    private final String errorMessageID = "#errorMessage";
-//
+
+    private Parent root;
+    private Scene scene;
+    private ShowUserInfoContainer mockUser;
+
     @Override
     public void start(Stage stage) throws Exception {
-		FxApp.InitializeAS("TrainerMembers.fxml");
-    	ShowUserInfoContainer user = new ShowUserInfoContainer("username", "password", "name", 10, 1, "email", "123");
-    	FxApp.getAS().DUMMYsetuser(user);
-        Parent root = FXMLLoader.load(getClass().getResource("LoginScreen.fxml"));
-        Scene scene = new Scene(root);
+		FxApp.InitializeAS("LoginScreen.fxml");
+        root = FXMLLoader.load(getClass().getResource("LoginScreen.fxml"));
+        scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
+
+        this.mockLogin();
     }
-//
-//    @Test
-//    public void testValidInputFields() {
-//        final KeyCode[] testStringNavn = {KeyCode.T, KeyCode.E, KeyCode.S, KeyCode.T, KeyCode.B, KeyCode.R, KeyCode.U, KeyCode.K, KeyCode.E, KeyCode.R};
-//        final KeyCode[] testStringPassord = {KeyCode.CAPS, KeyCode.L, KeyCode.U, KeyCode.L, KeyCode.CAPS};
-//        
-//        clickOn(usernameFieldID).type(testStringNavn);
-//        clickOn(passwordFieldID).type(testStringPassord);
-//
-//        verifyThat(usernameFieldID, hasText("testbruker"));
-//        verifyThat(passwordFieldID, hasText("LUL"));
-//        verifyThat(errorMessageID, hasText(""));
-//        clickOn(loginButtonID);
-//
-//    }
+
+
+    public void mockLogin() {
+        final String username = "mockbruker";
+        final String password = "LUL";
+
+        setMockUser(username, password);
+        FxApp.getAS().setWindow("TrainerDashboard.fxml");
+    }
+
+
+    public void setMockUser(String username, String password) {
+        mockUser = new ShowUserInfoContainer(username, password, "name", 10, 1, "mailto@ntnu.no", "123213", true, true, true, false);
+        FxApp.getAS().DUMMYsetuser(mockUser);
+
+    }
+
+    @Test
+    public void testMockLogin() {
+        String windowName = FxApp.getAS().getWindowName();
+        ShowUserInfoContainer userFromAS = FxApp.getAS().getLoggedInUser();
+
+        verifyThat(windowName, is("TrainerDashboard.fxml"));
+        verifyThat(userFromAS, is(mockUser));
+    }
 }

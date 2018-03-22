@@ -23,7 +23,7 @@ public class LoginScreenControllerTest extends FxAppTest {
     @Override
     public void start(Stage stage) throws Exception {
 		FxApp.InitializeAS("LoginScreen.fxml");
-    	ShowUserInfoContainer user = new ShowUserInfoContainer("username", "password", "name", 10, 1, "email", "123");
+    	ShowUserInfoContainer user = new ShowUserInfoContainer("username", "password", "name", 10, 1, "email", "123", true, true, true, false);
     	FxApp.getAS().DUMMYsetuser(user);
         Parent root = FXMLLoader.load(getClass().getResource("LoginScreen.fxml"));
         Scene scene = new Scene(root);
@@ -55,6 +55,9 @@ public class LoginScreenControllerTest extends FxAppTest {
         verifyThat(registerButtonID, hasText("Registrer"));
     }
     
+  /*
+  This test is dependent apon our database being online
+
   @Test
   public void testLogin() {
       final KeyCode[] testStringNavn = {KeyCode.T, KeyCode.E, KeyCode.S, KeyCode.T, KeyCode.B, KeyCode.R, KeyCode.U, KeyCode.K, KeyCode.E, KeyCode.R};
@@ -68,7 +71,7 @@ public class LoginScreenControllerTest extends FxAppTest {
       clickOn(loginButtonID);
 
       assertEquals(FxApp.getAS().getWindowName(),"TrainerDashboard.fxml");
-  }
+  }*/
   
   @Test
   public void testNavigateToRegister() {
