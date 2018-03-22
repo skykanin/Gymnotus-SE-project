@@ -165,6 +165,50 @@ public class TrainerDashboardApp {
 	public ShowUserInfoContainer getContainerUser() {
 		return containerUser;
 	}
+	
+	public void setShowUserInfoContainer(ShowUserInfoContainer c) {
+		this.containerUser = c;
+	}
+
+
+	public List<Integer> getUserids() {
+		return userids;
+	}
+
+
+	public void setUserids(List<Integer> userids) {
+		this.userids = userids;
+	}
+
+
+	public List<ShowHealthInfoContainer> getHealthContainers() {
+		return healthContainers;
+	}
+
+
+	public void setHealthContainers(List<ShowHealthInfoContainer> healthContainers) {
+		this.healthContainers = healthContainers;
+	}
+
+
+	public ShowAllUsersContainer getContainerAllUsers() {
+		return containerAllUsers;
+	}
+
+
+	public void setContainerAllUsers(ShowAllUsersContainer containerAllUsers) {
+		this.containerAllUsers = containerAllUsers;
+	}
+
+
+	public String getBaseURI() {
+		return baseURI;
+	}
+
+
+	public void setContainerUser(ShowUserInfoContainer containerUser) {
+		this.containerUser = containerUser;
+	}
 
 
 }
