@@ -10,9 +10,7 @@ public class ShowHealthInfoContainer {
 	private int dailySteps;
 	private int restingHeartRate;
 	private int userID;
-	private boolean isAnonymous;
-	private boolean shareHealthData;
-	private boolean shareExerciseData;
+
 	
 	public ShowHealthInfoContainer(int reportID, int userID, String date,
 								   int bloodPressure,int dailySteps, int restingHeartRate,
@@ -25,33 +23,6 @@ public class ShowHealthInfoContainer {
 		this.weight = weight;
 		this.dailySteps = dailySteps;
 		this.userID = userID;
-		this.isAnonymous = isAnonymous;
-		this.shareHealthData = shareHealthData;
-		this.shareExerciseData = shareExerciseData;
-	}
-
-	public boolean getIsAnonymous() {
-		return isAnonymous;
-	}
-
-	public void setAnonymous(boolean anonymous) {
-		isAnonymous = anonymous;
-	}
-
-	public boolean getShareHealthData() {
-		return shareHealthData;
-	}
-
-	public void setShareHealthData(boolean shareHealthData) {
-		this.shareHealthData = shareHealthData;
-	}
-
-	public boolean getShareExerciseData() {
-		return shareExerciseData;
-	}
-
-	public void setShareExerciseData(boolean shareExerciseData) {
-		this.shareExerciseData = shareExerciseData;
 	}
 
 	public String getDate() {
@@ -59,24 +30,31 @@ public class ShowHealthInfoContainer {
 	}
 
 	
-	public String getHeight() {
-		return height +"";
+	public int getHeight() {
+		return height;
 	}
 
 
-	public String getWeight() {
-		return weight+ "";
-	}
-
-	
-	public String getSteps() {
-		return dailySteps + "";
+	public int getWeight() {
+		return weight;
 	}
 
 	
+	public int getSteps() {
+		return dailySteps;
+	}
 
-	public String  getRestingHR() {
-		return restingHeartRate+ "";
+	
+
+	public int  getRestingHR() {
+		return restingHeartRate;
+	}
+	//-1, so trainerMemberInfoApp can check, and show right values
+	public void viewNoHealthData() {
+		this.restingHeartRate = -1;
+		this.height = -1;
+		this.weight = -1;
+		this.dailySteps = -1;
 	}
 	
 

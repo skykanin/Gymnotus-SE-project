@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
@@ -12,7 +16,7 @@
       <children>
             <VBox prefHeight="660.0" prefWidth="235.0" style="-fx-background-color: #0b87a1;">
                <children>
-                  <AnchorPane prefHeight="667.0" prefWidth="245.0" stylesheets="@styles/main.css">
+                  <AnchorPane prefHeight="667.0" prefWidth="245.0">
                      <children>
                         <JFXButton maxHeight="0.0" maxWidth="0.0" opacity="0.0" text=" ">
                            <font>
@@ -43,11 +47,7 @@
                               <Font size="16.0" />
                            </font>
                         </JFXButton>
-                        <JFXButton fx:id="TilLoggUt" layoutY="567.0" onAction="#TilLoggUt" prefHeight="47.0" prefWidth="236.0" styleClass="VenstreMenyKnapp" text="    AVSLUTT" textFill="WHITE">
-                           <font>
-                              <Font size="16.0" />
-                           </font>
-                        </JFXButton>
+                       
                      </children>
                   </AnchorPane>
                </children>
@@ -65,6 +65,42 @@
                   </AnchorPane>
                </children>
             </VBox>
+            <JFXComboBox fx:id="memberComboBox" focusColor="#4d4d4d00" layoutX="891.0" layoutY="63.0" onAction="#handleMemberComboBox" prefHeight="27.0" prefWidth="259.0" promptText="Liste over medlemmer" style="-fx-background-color: #e0e0e0;" unFocusColor="WHITE" />
+            <Label fx:id="infoText" alignment="CENTER" layoutX="249.0" layoutY="65.0" prefHeight="23.0" prefWidth="608.0" text="Label" textAlignment="RIGHT" textFill="#0b87a1">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="pulsSnittTekst" alignment="TOP_RIGHT" layoutX="909.0" layoutY="177.0" prefHeight="17.0" prefWidth="215.0" text="Henrik Griske Fosset's snittpuls" />
+            <Label fx:id="pulsSnittVerdi" alignment="TOP_CENTER" layoutX="980.0" layoutY="230.0" prefHeight="74.0" prefWidth="94.0" text="65">
+               <font>
+                  <Font size="34.0" />
+               </font>
+            </Label>
+            <LineChart fx:id="heartRateChart" accessibleRole="IMAGE_VIEW" animated="false" layoutX="258.0" layoutY="134.0" prefHeight="250.0" prefWidth="600.0">
+              <xAxis>
+                <CategoryAxis side="BOTTOM" fx:id="xAxis" />
+              </xAxis>
+              <yAxis>
+                <NumberAxis fx:id="yAxis" side="LEFT" />
+              </yAxis>
+            </LineChart>
+            <LineChart fx:id="stepsChart" accessibleRole="IMAGE_VIEW" animated="false" layoutX="249.0" layoutY="393.0" prefHeight="250.0" prefWidth="600.0">
+               <xAxis>
+                  <CategoryAxis side="BOTTOM" fx:id="xAxis1" />
+               </xAxis>
+               <yAxis>
+                  <NumberAxis fx:id="yAxis1" side="LEFT" />
+               </yAxis>
+            </LineChart>
+            <Label fx:id="stepsSnittTekst" alignment="TOP_RIGHT" layoutX="893.0" layoutY="419.0" prefHeight="21.0" prefWidth="227.0" text="Henrik Griske Fosset's snittpuls" />
+            <Label fx:id="stepsSnittVerdi" alignment="TOP_CENTER" layoutX="946.0" layoutY="472.0" prefHeight="74.0" prefWidth="163.0" text="2000.3">
+               <font>
+                  <Font size="34.0" />
+               </font>
+            </Label>
+            <Label fx:id="heartRateChartTitle" alignment="CENTER" layoutX="267.0" layoutY="122.0" prefHeight="23.0" prefWidth="590.0" textAlignment="RIGHT" textFill="#0d0d0d" />
+            <Label fx:id="stepsChartTitle" alignment="CENTER" layoutX="267.0" layoutY="381.0" prefHeight="23.0" prefWidth="590.0" textAlignment="RIGHT" />
       </children>
     </AnchorPane>
   </children>

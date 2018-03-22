@@ -40,7 +40,7 @@ public class WindowControllerTest extends FxAppTest {
 
 
     public void setMockUser(String username, String password) {
-        mockUser = new ShowUserInfoContainer(username, password, "name", 10, 1, "mailto@ntnu.no", "123213");
+        mockUser = new ShowUserInfoContainer(username, password, "name", 10, 1, "mailto@ntnu.no", "123213", true, true, true, false);
         FxApp.getAS().DUMMYsetuser(mockUser);
 
     }

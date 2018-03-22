@@ -4,9 +4,7 @@ import java.io.IOException;
 import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 
-import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXTextField;
-import com.jfoenix.controls.JFXRadioButton;
+import com.jfoenix.controls.*;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -14,6 +12,8 @@ import javafx.fxml.FXMLLoader;
 
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.layout.StackPane;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import tdt4140.gr1832.app.core.ShowUserInfoContainer;
 import tdt4140.gr1832.app.core.TrainerSettingsApp;
@@ -46,7 +46,9 @@ public class TrainerSettingsController extends WindowController {
 
 	@FXML
 	JFXRadioButton dameButton;
-	
+
+	@FXML
+	StackPane root;
 	
 	@FXML
 	private void HandleSetOriginalInformation(ActionEvent event) throws IOException {
@@ -150,7 +152,7 @@ public class TrainerSettingsController extends WindowController {
 		
 		}
 		
-		
+		root.setPickOnBounds(false);
 	}
 	
 	//Emailvalidator
@@ -179,6 +181,37 @@ public class TrainerSettingsController extends WindowController {
 	
 	public static void main(String[] args) {
 		launch(TrainerSettingsController.class, args);
+	}
+
+	@FXML
+	public void loadDialog(ActionEvent parentEvent) {
+		JFXDialogLayout content = new JFXDialogLayout();
+		content.setHeading(new Text("Logg ut bekreftelse"));
+		content.setBody(new Text("Er du sikker på at du vil logge ut?"));
+		JFXDialog dialog = new JFXDialog(root, content, JFXDialog.DialogTransition.CENTER);
+		JFXButton buttonYes = new JFXButton("Ja");
+		JFXButton buttonNo = new JFXButton("Nei");
+
+		buttonYes.setOnAction((event) -> {
+			dialog.close();
+			try {
+				NavigerTilSide("LoginScreen.fxml", parentEvent);
+				FxApp.getAS().DUMMYsetuser(null);
+			} catch (IOException e) {
+				System.out.println(e.getMessage());
+			}
+		});
+
+		buttonNo.setOnAction((event) -> {
+			dialog.close();
+		});
+		content.setActions(buttonYes, buttonNo);
+		dialog.show();
+	}
+	
+	@FXML
+	public void TilSlettProfil(ActionEvent event) throws Exception {               
+		NavigerTilSide("DeleteUser.fxml", event);
 	}
 	
 }
