@@ -26,11 +26,11 @@ public class TrainerTrainingProgramOverviewAppTest {
 		Assert.assertEquals(11, (int)container.getProgramID());
 	}
 	
-//	@Test
-//	public void testGettersApp() {
-//		testapp.addContainerTocontainerExercisePrograms(container);
-//		Assert.assertEquals("http://146.185.153.244:8080/api/", testapp.getBaseURI());
-//		Assert.assertEquals(container, testapp.getExerciseProgramContainer(0));
-//		Assert.assertEquals(1, testapp.getContainerExcerciseProgramLength());
-//	}
+	@Test
+	public void testGettersApp() {
+		testapp.addContainerTocontainerExercisePrograms(container);
+		Assert.assertEquals("http://146.185.153.244:8080/api/", testapp.getBaseURI());
+		Assert.assertEquals(container, testapp.getExerciseProgramContainer(0));
+		Assert.assertEquals(1, (int) testapp.getContainerExcerciseProgramLength());
+	}
 }

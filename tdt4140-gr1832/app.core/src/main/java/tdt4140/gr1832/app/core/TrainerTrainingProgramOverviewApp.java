@@ -30,4 +30,13 @@ public class TrainerTrainingProgramOverviewApp {
 	public int getContainerExcerciseProgramLength() {
 		return (int)containerExercisePrograms.size();
 	}
+
+	public void addContainerTocontainerExercisePrograms(ExerciseProgramContainer container) {
+		containerExercisePrograms.add(container);
+		
+	}
+
+	public Object getBaseURI() {
+		return baseURI;
+	}
 }
