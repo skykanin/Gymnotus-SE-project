@@ -37,7 +37,7 @@ public class TrainerTrainingProgramOverviewController extends WindowController  
 	
 	TrainerTrainingProgramOverviewApp programApp = new TrainerTrainingProgramOverviewApp();;
 	
-	int programCounter = 0;
+	private int programCounter = 0;
 	
     @FXML
     private StackPane root;
