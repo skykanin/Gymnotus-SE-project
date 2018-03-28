@@ -132,6 +132,18 @@ public class ResultDAO {
 		return json;
 	}
 	
+	@GET
+	@Path("get_results_by_program_and_user")
+	public String getResultsByProgramUser(@QueryParam("user_id") Integer userID, 
+										 @QueryParam("program_id") Integer programID)  {
+		String query = "select * from Result natural join Exercise" +
+						" where programID=" + Integer.toString(programID) + 
+						" and userID=" + Integer.toString(userID);
+		System.out.println(query);
+		String json = createResultListJson(query);
+		return json;
+	}
+	
 	@POST
 	@Path("/create_result")
 	public Response createResult(@FormParam("user_id") Integer userID, 

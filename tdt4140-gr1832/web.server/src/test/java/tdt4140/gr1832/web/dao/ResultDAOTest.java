@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.List;
 
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Response;
 
 import org.junit.After;
@@ -143,4 +144,19 @@ public class ResultDAOTest {
 		Result new_result = results.get(0);
 		verifyEqualResult(result, new_result);
 	}
+	
+	@Test
+	public void testGetResultsByProgramUser() {
+		Response response = exerciseDAO.createExercise(0, "test1", 2, 2, 2, "test1");
+		Assert.assertEquals(200, response.getStatus());
+		
+		Response response1 = resultDAO.createResult(0, 1, 100, "2018-02-02");
+		Assert.assertEquals(200, response1.getStatus());
+		
+		String json = resultDAO.getResultsByProgramUser(0, 0);
+		List<Result> results = gson.fromJson(json,new TypeToken<List<Result>>(){}.getType());
+		
+		Assert.assertEquals(2, results.size());
+	}
+
 }
