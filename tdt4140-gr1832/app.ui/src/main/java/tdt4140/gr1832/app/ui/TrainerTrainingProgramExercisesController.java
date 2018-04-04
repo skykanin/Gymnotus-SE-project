@@ -24,7 +24,7 @@ import javafx.scene.text.Text;
 import tdt4140.gr1832.app.core.TrainerTrainingProgramExercisesApp;
 
 
-public class TrainerTrainingProgramExercisesController extends WindowController implements Initializable {
+public class TrainerTrainingProgramExercisesController extends WindowController {
     
 	@FXML private StackPane root;
 	
@@ -54,9 +54,9 @@ public class TrainerTrainingProgramExercisesController extends WindowController 
 //     
 //    TrainerTrainingProgramExercisesApp app = new TrainerTrainingProgramExercisesApp();
     
-	@Override
-	public void initialize(URL arg0, ResourceBundle arg1) {
-		
+//	@Override
+//	public void initialize(URL arg0, ResourceBundle arg1) {
+//		
 //		exChartOne.setLegendVisible(false);
 //		exChartTwo.setLegendVisible(false);
 //		exChartThree.setLegendVisible(false);
@@ -77,8 +77,8 @@ public class TrainerTrainingProgramExercisesController extends WindowController 
 //		}
 //		
 //		memberComboBox.setItems(names);
-		
-	}
+//		
+//	}
     
     public static void main(String[] args) {
         launch(args);
