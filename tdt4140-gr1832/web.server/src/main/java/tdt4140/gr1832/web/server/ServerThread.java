@@ -1,6 +1,10 @@
 package tdt4140.gr1832.web.server;
 
 import java.io.IOException;
+import java.io.Writer;
+import java.io.FileWriter;
+import java.io.BufferedWriter;
+import java.io.PrintWriter;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -74,6 +78,14 @@ public class ServerThread {
         } 
         catch (Exception ex) {
             Logger.getLogger(ServerThread.class.getName()).log(Level.SEVERE, null, ex);
+	    try(Writer w = new FileWriter("file.log", true)) {
+		ex.printStackTrace(new PrintWriter(new BufferedWriter(w)));
+		ex.printStackTrace();
+	    }
+	    catch (Exception e) {
+		e.printStackTrace();
+	    }
+	    System.out.println("[INFO] ERROR date: " + (new java.util.Date()));
         } 
         finally {
             server.destroy();
@@ -83,19 +95,23 @@ public class ServerThread {
     }
     
     public boolean close() {
-    		try {
-    			server.stop();
-		} 
-    		catch (Exception e) {
-			e.printStackTrace();
-		}
-    		return server.isStopped();
+	try {
+	    server.stop();
+	} 
+	catch (Exception e) {
+	    e.printStackTrace();
+	}
+	return server.isStopped();
     }
     
     public static void main(String[] args) throws InterruptedException, IOException {
-    		DatabaseConnection.connectToDB();
+    	java.util.Date start = new java.util.Date();
+	DatabaseConnection.connectToDB();
         start();
+    	java.util.Date end = new java.util.Date();
 
-        System.in.read();
+	System.out.println("[INFO] Start date: " + start);
+	System.out.println("[INFO] End date: " + end);
+        //System.in.read();
     }
 }
