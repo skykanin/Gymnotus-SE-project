@@ -79,12 +79,12 @@ public class TrainerTrainingProgramExercisesController extends WindowController 
 //		memberComboBox.setItems(names);
 //		
 //	}
-    
-    public static void main(String[] args) {
-        launch(args);
-    }
-    
-    
+//    
+//    public static void main(String[] args) {
+//        launch(args);
+//    }
+//    
+//    
     
     
     
