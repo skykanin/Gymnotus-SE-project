@@ -93,8 +93,7 @@ public class TrainerDashboardController extends WindowController implements Init
 		String username = memberComboBox.getSelectionModel().getSelectedItem();
 		infoText.setText("Du ser " + username + "'s helsedata. Se noen andre: " );
 		
-		System.out.println(username);
-		System.out.println(app.getIDfromName(username));
+		
 		
 		app.requestHealthInformation_ID(app.getIDfromName(username));
 		
@@ -102,7 +101,7 @@ public class TrainerDashboardController extends WindowController implements Init
 		double meanHR = 0;
 		double meanSteps = 0;
 		
-		System.out.println(app.getContainerUser().getShareHealthData());
+		
 		
 		if (app.getRestingHRs() != null && app.getContainerUser().getShareHealthData()) {
 			
