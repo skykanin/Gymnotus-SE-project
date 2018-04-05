@@ -3,7 +3,7 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXComboBox?>
 <?import javafx.scene.chart.CategoryAxis?>
-<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.LineChart?> 
 <?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -85,7 +85,7 @@
                   </AnchorPane>
                </children>
             </VBox>
-            <LineChart fx:id="exChartOne" layoutX="271.0" layoutY="220.0" prefHeight="200.0" prefWidth="400.0">
+            <LineChart fx:id="exChartOne" layoutX="230.0" layoutY="150.0" prefHeight="250.0" prefWidth="500.0">
               <xAxis>
                 <CategoryAxis side="BOTTOM" />
               </xAxis>
@@ -93,7 +93,7 @@
                 <NumberAxis side="LEFT" />
               </yAxis>
             </LineChart>
-            <LineChart fx:id="exChartThree" layoutX="777.0" layoutY="223.0" prefHeight="200.0" prefWidth="400.0">
+            <LineChart fx:id="exChartThree" layoutX="720.0" layoutY="150.0" prefHeight="250.0" prefWidth="500.0">
                <xAxis>
                   <CategoryAxis side="BOTTOM" />
                </xAxis>
@@ -101,7 +101,7 @@
                   <NumberAxis side="LEFT" />
                </yAxis>
             </LineChart>
-            <LineChart fx:id="exChartTwo" layoutX="270.0" layoutY="429.0" prefHeight="200.0" prefWidth="400.0">
+            <LineChart fx:id="exChartTwo" layoutX="230.0" layoutY="410.0" prefHeight="250.0" prefWidth="500.0">
                <xAxis>
                   <CategoryAxis side="BOTTOM" />
                </xAxis>
@@ -109,7 +109,7 @@
                   <NumberAxis side="LEFT" />
                </yAxis>
             </LineChart>
-            <LineChart fx:id="exChartFour" layoutX="774.0" layoutY="423.0" prefHeight="200.0" prefWidth="400.0">
+            <LineChart fx:id="exChartFour" layoutX="720.0" layoutY="410.0" prefHeight="250.0" prefWidth="500.0">
                <xAxis>
                   <CategoryAxis side="BOTTOM" />
                </xAxis>
@@ -117,10 +117,10 @@
                   <NumberAxis side="LEFT" />
                </yAxis>
             </LineChart>
-            <Label fx:id="exLabelOne" alignment="CENTER" layoutX="368.0" layoutY="202.0" prefHeight="27.0" prefWidth="189.0" text="ov1" />
-            <Label fx:id="exLabelFour" alignment="CENTER" layoutX="889.0" layoutY="408.0" prefHeight="27.0" prefWidth="189.0" text="ov4" />
-            <Label fx:id="exLabelTwo" alignment="CENTER" layoutX="374.0" layoutY="412.0" prefHeight="27.0" prefWidth="189.0" text="ov2" />
-            <Label fx:id="exLabelThree" alignment="CENTER" layoutX="878.0" layoutY="198.0" prefHeight="27.0" prefWidth="189.0" text="ov3" />
+            <Label fx:id="exLabelOne" alignment="CENTER" layoutX="400.0" layoutY="135.0" prefHeight="27.0" prefWidth="189.0" text="ov1" />
+            <Label fx:id="exLabelFour" alignment="CENTER" layoutX="890.0" layoutY="395.0" prefHeight="27.0" prefWidth="189.0" text="ov4" />
+            <Label fx:id="exLabelTwo" alignment="CENTER" layoutX="400.0" layoutY="395.0" prefHeight="27.0" prefWidth="189.0" text="ov2" />
+            <Label fx:id="exLabelThree" alignment="CENTER" layoutX="890.0" layoutY="135.0" prefHeight="27.0" prefWidth="189.0" text="ov3" />
             <Label fx:id="exInfoText" alignment="CENTER" layoutX="262.0" layoutY="72.0" prefHeight="23.0" prefWidth="608.0" text="informasjon" textAlignment="RIGHT" textFill="#0b87a1">
                <font>
                   <Font size="18.0" />

@@ -32,16 +32,18 @@ import javafx.stage.Stage;
 import tdt4140.gr1832.app.core.TrainerTrainingProgramExercisesApp;
 
 public class TrainerTrainingProgramExercisesController extends WindowController implements Initializable {
-    @FXML
+    
+	@FXML
     private StackPane root;
 
 	@FXML JFXComboBox<String> exMemberComboBox;
 	
 	@FXML Label exInfoText;
-	@FXML Label ov1;
-	@FXML Label ov2;
-	@FXML Label ov3;
-	@FXML Label ov4;
+	@FXML Label exLabelOne;
+	@FXML Label exLabelTwo;
+	@FXML Label exLabelThree;
+	@FXML Label exLabelFour;
+	
 	    
 	@FXML LineChart<String,Number> exChartOne;
 	@FXML CategoryAxis xAxisOne;
@@ -92,12 +94,74 @@ public class TrainerTrainingProgramExercisesController extends WindowController 
 	public void exHandleMemberComboBox(ActionEvent actionEvent) throws IOException, ParseException {
     	// FYLL MED FUNKSJONALITET FRA DASHBOARDCONTROLLER
 
-	}
-
-	@Override
-	public void initialize(URL arg0, ResourceBundle arg1) {
+    	String username = exMemberComboBox.getSelectionModel().getSelectedItem();
+	exInfoText.setText("Du ser " + username + "'s øvelseslogg. Se noen andre: " );
 		
-		exChartOne.setLegendVisible(false);
+	app.requestHealthInformation_ID(app.getIDfromName(username));
+	
+	if (app.getResult1() != null && app.getContainerUser().getShareExerciseData()) {
+	
+		exChartOne.getData().clear();
+		exChartTwo.getData().clear();
+		exChartThree.getData().clear();
+		exChartFour.getData().clear();
+		
+	    XYChart.Series<String,Number> series = new XYChart.Series<>();
+	    XYChart.Series<String,Number> series2 = new XYChart.Series<>();
+	    XYChart.Series<String,Number> series3 = new XYChart.Series<>();
+	    XYChart.Series<String,Number> series4 = new XYChart.Series<>();
+	
+		for (int i = 0; i < app.getDates().size() ; i++) {
+			
+			//MERK: DET REFERERES TIL DUMMY-METODER I ttpeAPP, MÅ KOBLES TIL DATABASEN
+			series.getData().add(new XYChart.Data(app.getDates().get(i).substring(0,app.getDates().get(i).length()-6 ),app.getResult1().get(i)));
+			series2.getData().add(new XYChart.Data(app.getDates().get(i).substring(0,app.getDates().get(i).length()-6 ),app.getResult2().get(i)));
+			series3.getData().add(new XYChart.Data(app.getDates().get(i).substring(0,app.getDates().get(i).length()-6 ),app.getResult3().get(i)));
+			series4.getData().add(new XYChart.Data(app.getDates().get(i).substring(0,app.getDates().get(i).length()-6 ),app.getResult4().get(i)));
+		}
+		
+		exChartOne.setOpacity(1);
+		exChartTwo.setOpacity(1);
+		exChartThree.setOpacity(1);
+		exChartFour.setOpacity(1);
+		
+		exLabelOne.setText("temp: Biceps");
+		exLabelTwo.setText("temp: Triceps");
+		exLabelThree.setText("temp: Qatroceps");
+		exLabelFour.setText("temp: Sinkoceps");
+		
+		exChartOne.setCreateSymbols(false);
+		exChartOne.setAnimated(false);
+        exChartOne.getData().add(series);
+        
+        exChartTwo.setCreateSymbols(false);
+        exChartTwo.setAnimated(false);
+        exChartTwo.getData().add(series2);
+        
+        exChartThree.setCreateSymbols(false);
+        exChartThree.setAnimated(false);
+        exChartThree.getData().add(series3);
+        
+        exChartFour.setCreateSymbols(false);
+        exChartFour.setAnimated(false);
+        exChartFour.getData().add(series4);
+
+	
+	} else if(!(app.getContainerUser().getShareExerciseData())) {
+		exInfoText.setText(username + " har valgt å ikke vise sin data, velg en ny venn: ");
+		hidePageContent();
+
+	} else {
+		exInfoText.setText(username + " har ikke registrert helsedata, velg en ny venn: ");
+		hidePageContent();
+	}
+		
+	}
+    
+    //HJELPEMETODE
+    private void hidePageContent() {
+    	
+    		exChartOne.setLegendVisible(false);
 		exChartTwo.setLegendVisible(false);
 		exChartThree.setLegendVisible(false);
 		exChartFour.setLegendVisible(false);
@@ -107,10 +171,20 @@ public class TrainerTrainingProgramExercisesController extends WindowController 
 		exChartThree.setOpacity(0);
 		exChartFour.setOpacity(0);
 		
+		exLabelOne.setText("");
+		exLabelTwo.setText("");
+		exLabelThree.setText("");
+		exLabelFour.setText("");
+    }
+    
+	@Override
+	public void initialize(URL arg0, ResourceBundle arg1) {
 		
+		hidePageContent();
 		exInfoText.setText("Velg en venn for å visualisere informasjon:");
 		
 		app.requestAllUserID();
+		
 		ObservableList<String> names = FXCollections.observableArrayList();
 		for (String name : app.getNames()) {
 			names.add(name);
@@ -123,7 +197,5 @@ public class TrainerTrainingProgramExercisesController extends WindowController 
     public static void main(String[] args) {
         launch(args);
     }
-    
-    
 
 }

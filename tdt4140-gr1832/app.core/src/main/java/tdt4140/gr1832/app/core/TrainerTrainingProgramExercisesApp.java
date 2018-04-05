@@ -11,6 +11,8 @@ import javax.ws.rs.core.MediaType;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
+import javafx.scene.chart.XYChart.Series;
+
 public class TrainerTrainingProgramExercisesApp {
 	
 	private ShowUserInfoContainer containerUser;
@@ -101,19 +103,39 @@ public class TrainerTrainingProgramExercisesApp {
 		return heights;
 	}
 
+	// STANDARDISERT DATESFUNKSJON, DEN EKTE ER KOMMENTERT UT UNDER
+	
 	public List<String> getDates() {
-		if (healthContainers.size()<1) {
-			return null;
-		}
+		String date1 = "Mar 1, 2018";
+		String date2 = "Mar 2, 2018";
+		String date3 = "Mar 3, 2018";
+		String date4 = "Mar 4, 2018";
 		
 		List<String> dates = new ArrayList<>();
 		
-		for (ShowHealthInfoContainer hContainer : healthContainers) {
-			dates.add(hContainer.getDate());
-		}
+		dates.add(date1);
+		dates.add(date2);
+		dates.add(date3);
+		dates.add(date4);
 		
 		return dates;
+		
 	}
+	
+	
+//	public List<String> getDates() {
+//		if (healthContainers.size()<1) {
+//			return null;
+//		}
+//		
+//		List<String> dates = new ArrayList<>();
+//		
+//		for (ShowHealthInfoContainer hContainer : healthContainers) {
+//			dates.add(hContainer.getDate());
+//		}
+//		
+//		return dates;
+//	}
 	
 	//weight
 	public List<Integer> getWeights() {
@@ -183,5 +205,53 @@ public class TrainerTrainingProgramExercisesApp {
 		return containerUser;
 	}
 
+
+	public List<Integer> getResult1() {
+		// Sandys generated method
+		
+		List<Integer> res1 = new ArrayList<>();
+		res1.add(1);
+		res1.add(2);
+		res1.add(3);
+		res1.add(4);
+		
+		return res1;
+	}
+	
+	public List<Integer> getResult2() {
+		// Sandys generated method
+		
+				List<Integer> res1 = new ArrayList<>();
+				res1.add(1);
+				res1.add(2);
+				res1.add(3);
+				res1.add(4);
+				
+				return res1;
+	}
+	
+	public List<Integer> getResult3() {
+		// Sandys generated method
+		
+				List<Integer> res1 = new ArrayList<>();
+				res1.add(1);
+				res1.add(2);
+				res1.add(3);
+				res1.add(4);
+				
+				return res1;
+	}
+	
+	public List<Integer> getResult4() {
+		// Sandys generated method
+		
+				List<Integer> res1 = new ArrayList<>();
+				res1.add(1);
+				res1.add(2);
+				res1.add(3);
+				res1.add(4);
+				
+				return res1;
+	}
 
 }

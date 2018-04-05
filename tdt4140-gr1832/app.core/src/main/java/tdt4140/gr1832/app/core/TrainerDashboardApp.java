@@ -60,7 +60,7 @@ public class TrainerDashboardApp {
 		Client client = ClientBuilder.newClient();
 		WebTarget webTarget = client.target(baseURI + "health_data/id/"+id);
 		this.requestUserInformation_ID(id);
-		System.out.println("i req.health:" + containerUser.getName());
+		
 		String test = webTarget.request(MediaType.APPLICATION_JSON).get(String.class);
 		Gson gson = new Gson();
 		healthContainers = gson.fromJson(test, new TypeToken<List<ShowHealthInfoContainer>>(){}.getType());
