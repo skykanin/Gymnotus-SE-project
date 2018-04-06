@@ -30,10 +30,12 @@ import javafx.stage.Stage;
 import javafx.util.Callback;
 import javafx.util.StringConverter;
 import tdt4140.gr1832.app.core.ExerciseProgramContainer;
+import tdt4140.gr1832.app.core.ShowExerciseDataContainerFromProgram;
 import tdt4140.gr1832.app.core.ShowUserInfoContainer;
 import tdt4140.gr1832.app.core.TrainerDashboardApp;
 import tdt4140.gr1832.app.core.TrainerMemberInfoApp;
 import tdt4140.gr1832.app.core.TrainerTrainingProgramOverviewApp;
+import tdt4140.gr1832.app.core.TrainingExerciseDataApp;
 
 public class TrainerTrainingProgramAttendantsController extends WindowController {
 
@@ -49,6 +51,9 @@ public class TrainerTrainingProgramAttendantsController extends WindowController
 	
 	@FXML
 	Label o4Label;
+	
+	@FXML
+	Label messageLabel;
 	
 	@FXML
 	JFXTextField result1Field;
@@ -78,9 +83,10 @@ public class TrainerTrainingProgramAttendantsController extends WindowController
 	JFXTextField genderField;
 
 	@FXML
-	JFXButton lastDay;
+	JFXButton nextProgram;
 	
-	JFXButton nextDay;
+	@FXML
+	JFXButton lastProgram;
 	
     @FXML
     private StackPane root;
@@ -90,6 +96,27 @@ public class TrainerTrainingProgramAttendantsController extends WindowController
 	
 	@FXML
 	FontAwesomeIconView programRight;
+	
+	@FXML
+	Label ageLabel;
+	
+	@FXML
+	Label genderLabel;
+	
+	@FXML
+	Label stepsLabel;
+	
+	@FXML
+	Label restingHRlabel;
+	
+	@FXML
+	Label weightLabel;
+	
+	@FXML
+	JFXButton lastDay;
+	
+	@FXML
+	JFXButton nextDay;
 	
 	@FXML
 	JFXTextField program;
@@ -102,24 +129,40 @@ public class TrainerTrainingProgramAttendantsController extends WindowController
 	
 	private int programCounter = 0;
 	
+	private int dayCounter = 0;
+	
 	String pattern = "LLL dd, yyyy";
 	DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern(pattern);
 	
-	private TrainerMemberInfoApp membApp = new TrainerMemberInfoApp();
-	private TrainerTrainingProgramOverviewApp progApp = new TrainerTrainingProgramOverviewApp();
+	private TrainingExerciseDataApp eDataApp;
 	
-	
+	@FXML
 	public void initialize() {
-		progApp.requestExerciseProgramInformation();
-		membApp.requestAllUserID();
 		root.setPickOnBounds(false);
-		ObservableList<String> names = FXCollections.observableArrayList();
-		for (String name : membApp.getNames()) {
-			names.add(name);
-		}
+		setFieldVisibility(false);
+		setHealthFieldVisibility(false);
+		setDisableField(true);
+		o1Label.setText("");
+		o2Label.setText("");
+		o3Label.setText("");
+		o4Label.setText("");
+		eDataApp = new TrainingExerciseDataApp();
+		program.setText(eDataApp.getProgram(programCounter).getName());
+		datePickerField.setPromptText("Ingen medlem valgt");
 		
-		memberComboBox.setItems(names);
-		datePickerField.setPromptText("Mar, 1");
+		
+		ObservableList<String> names = FXCollections.observableArrayList();
+		
+		for (ShowUserInfoContainer userContainer : eDataApp.getUsersInProgram(programCounter)) {
+			names.add(userContainer.getName());
+		}
+		if(names.size() <1) {
+			names.add("Ingen medlemmer pameldt");
+			memberComboBox.setItems(names);
+		} else {
+			memberComboBox.setItems(names);			
+		}
+		memberComboBox.setPromptText("Velg medlem...");
 
 		datePickerField.setConverter(new StringConverter<LocalDate>() {
 
@@ -152,7 +195,7 @@ public class TrainerTrainingProgramAttendantsController extends WindowController
 					public void updateItem(LocalDate item, boolean empty) {
 						super.updateItem(item, empty);
 						String dateS = dateFormatter.format(item);
-						if(checkStringDate(dateS,membApp.getDates())) {
+						if(checkStringDate(dateS,eDataApp.getDates())) {
 							setDisable(true);
 							setStyle("-fx-background-color: #0b88a10a");
 							//setStyle("fx")
@@ -170,35 +213,145 @@ public class TrainerTrainingProgramAttendantsController extends WindowController
 	@FXML
 	public void handleMemberComboBox() {
 		String name = memberComboBox.getSelectionModel().getSelectedItem();
-		String userID = membApp.getIDfromName(name);
-		ShowUserInfoContainer userContainer = membApp.getContainerAllUsers().getUser(userID);
-		membApp.requestHealthInformation_ID(userID);
+		
+		if (!"Ingen medlemmer pameldt".equals(name)){
+			int userID = -1; 
+			for (ShowUserInfoContainer userContainer : eDataApp.getUsersInProgram(programCounter)) {
+				if (name != null && name.equals(userContainer.getName())){
+					userID = Integer.parseInt(userContainer.getUserID());
+				}
+			}
+			if (userID != -1) {
+				eDataApp.requestHealthExerciseDataByProgramUserID(eDataApp.getProgram(programCounter).getProgramID(), userID);
+			}
+			if (eDataApp.getDates().size() > 0) {
+				setDisableField(false);
+			}
+			setHealthFieldVisibility(true);
+			
+			//Set userInfo
+			memberComboBox.setPromptText(name);
+			//Newest Date
+			dayCounter = eDataApp.getDates().size() -1;
+			ageField.setText(eDataApp.getAge());
+			genderField.setText(eDataApp.getGender());
+			//Check if user shares Exercise Data
+			if (eDataApp.userIsSharingExerciseData()) {
+				this.updateInfoFieldsOnDate(dayCounter);
+			} else {
+				messageLabel.setText("Medlem deler ikke treningsdata");
+			}
+			
+		}	else {
+			eDataApp.clearSortedResultMap();
+			setDisableField(false);
+			updateInfoFieldsOnDate(-222222);
+			dayCounter = eDataApp.getDates().size() -1;
+			ageField.setText(eDataApp.getAge());
+			genderField.setText(eDataApp.getGender());
+		}
+	}
+	
+	public void updateInfoFieldsOnDate(int dayCounter) {
+//		if (dayCounter != -222222) {
+//			eDataApp.getExercises(dayCounter);	
+//		}
+		eDataApp.getExercises(dayCounter);
+		String date = eDataApp.getDate(dayCounter);
+		String ii = date.toLowerCase();
+		if (ii.length() == 11) {
+			ii = ii.substring(0,4) + "0"+ii.substring(4);
+		}
+		datePickerField.setValue(LocalDate.parse(ii, dateFormatter));
+		
+		datePickerField.setPromptText(eDataApp.getDate(dayCounter));
+		//Set health info
+		stepsField.setText(eDataApp.getSteps(dayCounter));
+		weightField.setText(eDataApp.getWeight(dayCounter));
+		restingHRField.setText(eDataApp.getRestingHR(dayCounter));
+		//Set ExerciseInfo
+		if(eDataApp.userIsSharingExerciseData()) {
+			if (eDataApp.getExercise1() == null) {
+				setFieldVisibility(false);
+				o1Label.setText("");
+				o2Label.setText("");
+				o3Label.setText("");
+				o4Label.setText("");
+				messageLabel.setText("Ingen okter gjennomfort denne dagen");
+			} else {
+				setFieldVisibility(true);
+				messageLabel.setText("");
+				o1Label.setText(eDataApp.getExercise1());
+				result1Field.setText(eDataApp.getResult1(dayCounter));
+				o2Label.setText(eDataApp.getExercise2());
+				result2Field.setText(eDataApp.getResult2(dayCounter));
+				o3Label.setText(eDataApp.getExercise3());
+				result3Field.setText(eDataApp.getResult3(dayCounter));
+				o4Label.setText(eDataApp.getExercise4());
+				result4Field.setText(eDataApp.getResult4(dayCounter));
+			}
+		}
 		
 	}
 
-	public void update() {
-		ExerciseProgramContainer c = progApp.getExerciseProgramContainer(programCounter);
-		program.setText(c.getName());
+	public void updateProgram() {
+		memberComboBox.setPromptText("Velg medlem...");
+		program.setText(eDataApp.getProgram(programCounter).getName());
+		datePickerField.setPromptText("Ingen medlem valgt");
+		setDisableField(true);
+		setHealthFieldVisibility(false);
+		messageLabel.setText("");
+		stepsField.setText("");
+		weightField.setText("");
+		restingHRField.setText("");
+		ageField.setText("");
+		genderField.setText("");
+		//Set ExerciseInfo
+		o1Label.setText("");
+		result1Field.setText("");
+		o2Label.setText("");
+		result2Field.setText("");
+		o3Label.setText("");
+		result3Field.setText("");
+		o4Label.setText("");
+		result4Field.setText("");
+		
+		ObservableList<String> names = FXCollections.observableArrayList();
+		
+		for (ShowUserInfoContainer userContainer : eDataApp.getUsersInProgram(programCounter)) {
+			names.add(userContainer.getName());
+		}
+		if(names.size() <1) {
+			names.add("Ingen medlemmer pameldt");
+			memberComboBox.setItems(names);
+		} else {
+			memberComboBox.setItems(names);			
+		}
+		
 	}
 
 	@FXML
 	public void nextProgram() {
-		if (programCounter < (progApp.getContainerExcerciseProgramLength()-1)) {
+		memberComboBox.setItems(null);
+		memberComboBox.setPromptText("Velg medlem...");
+		if (programCounter < (eDataApp.getProgramsListSize()-1)) {
 			programCounter++;	
 		} else {
 			programCounter = 0;
 		}
-		update();
+		updateProgram();
 	}
 	
 	@FXML
 	public void lastProgram() {
+		memberComboBox.setItems(null);
+		memberComboBox.setPromptText("Velg medlem...");
 		if (programCounter > 0 ){
 			programCounter--;	
 		} else {
-		programCounter = progApp.getContainerExcerciseProgramLength()-1;
+		programCounter = eDataApp.getProgramsListSize()-1;
 		}
-		update();
+		updateProgram();
 	}
 	
         
@@ -228,6 +381,45 @@ public class TrainerTrainingProgramAttendantsController extends WindowController
         dialog.show();
     }
     
+    @FXML
+	public void datePicker() {
+		LocalDate date = datePickerField.getValue();
+		String dateS = dateFormatter.format(date);
+		if (date.getDayOfMonth()<9) {
+			dateS = dateS.substring(0, 1).toUpperCase()+dateS.substring(1,4)+dateS.substring(5);
+		} else {
+			dateS = dateS.substring(0, 1).toUpperCase()+dateS.substring(1);
+		}
+
+		if (eDataApp.getDates().contains(dateS)) {
+			dayCounter = eDataApp.getDates().indexOf(dateS);	
+		} else {
+			dayCounter = 0;
+		}
+		updateInfoFieldsOnDate(dayCounter);
+		 
+	}
+    
+    @FXML
+    public void lastDay() {
+    		if (dayCounter > 0) {
+    			dayCounter--;
+    		} else {
+    			dayCounter = eDataApp.getDates().size()-1;
+    		}
+    		updateInfoFieldsOnDate(dayCounter);
+    }
+    
+    @FXML
+    public void nextDay() {
+    	if (eDataApp.getDates().size() - 1 > dayCounter) {
+			dayCounter++;
+		} else {
+			dayCounter = 0;
+		}
+		updateInfoFieldsOnDate(dayCounter);
+    }
+    
     //Help function for datePicker
 	private boolean checkStringDate(String in, List<String> liste) {
 		for (String i : liste) {
@@ -241,4 +433,31 @@ public class TrainerTrainingProgramAttendantsController extends WindowController
 		}
 		return true;
 	}
+
+	private void setFieldVisibility(boolean value) {
+		result1Field.setVisible(value);
+		result2Field.setVisible(value);
+		result3Field.setVisible(value);
+		result4Field.setVisible(value);
+	}
+	
+	private void setHealthFieldVisibility(boolean value) {
+		stepsField.setVisible(value);
+		ageField.setVisible(value);
+		genderField.setVisible(value);
+		restingHRField.setVisible(value);
+		weightField.setVisible(value);
+		weightLabel.setVisible(value);
+		restingHRlabel.setVisible(value);
+		genderLabel.setVisible(value);
+		ageLabel.setVisible(value);
+		stepsLabel.setVisible(value);
+	}
+	
+	private void setDisableField(boolean value) {
+		nextDay.setDisable(value);
+		lastDay.setDisable(value);
+		datePickerField.setDisable(value);
+	}
 }
+

@@ -18,14 +18,12 @@
       <children>
             <AnchorPane layoutX="235.0" layoutY="47.0" prefHeight="613.0" prefWidth="965.0">
                <children>
-                  <JFXButton layoutX="737.0" layoutY="73.0" onAction="#nextProgram" prefHeight="71.0" prefWidth="60.0" text="  " />
                   <FontAwesomeIconView fx:id="programRight" fill="#0d889e" glyphName="ARROW_RIGHT" layoutX="737.0" layoutY="133.0" size="70.0" />
-                  <JFXTextField fx:id="program" alignment="CENTER" editable="false" focusColor="#405aa800" layoutX="258.0" layoutY="73.0" prefHeight="71.0" prefWidth="477.0" style="-fx-alignment: Center;" styleClass="DosisCaps">
+                  <JFXTextField fx:id="program" alignment="CENTER" editable="false" focusColor="#405aa800" focusTraversable="false" layoutX="258.0" layoutY="73.0" prefHeight="71.0" prefWidth="477.0" style="-fx-alignment: Center;" styleClass="DosisCaps">
                      <font>
                         <Font name="System Bold" size="36.0" />
                      </font>
                   </JFXTextField>
-                  <JFXButton layoutX="198.0" layoutY="73.0" onAction="#lastProgram" prefHeight="71.0" prefWidth="60.0" text="  " />
                   <FontAwesomeIconView fx:id="programLeft" accessibleRole="BUTTON" fill="#0b87a1" glyphName="ARROW_LEFT" layoutX="198.0" layoutY="133.0" size="70.0" />
                   <JFXComboBox fx:id="memberComboBox" layoutX="370.0" layoutY="193.0" onAction="#handleMemberComboBox" prefHeight="27.0" prefWidth="254.0" promptText="Velg medlem" />
                   <Label fx:id="weightLabel" layoutX="100.0" layoutY="380.0" text="Vekt" textFill="#0b87a1">
@@ -51,25 +49,23 @@
                         <Cursor fx:constant="TEXT" />
                      </cursor>
                   </Label>
-                  <JFXTextField fx:id="weightField" editable="false" focusColor="#405aa800" layoutX="200.0" layoutY="380.0" />
-                  <JFXTextField fx:id="stepsField" editable="false" focusColor="#405aa800" layoutX="200.0" layoutY="430.0" />
-                  <JFXTextField fx:id="restingHRField" editable="false" focusColor="#405aa800" layoutX="200.0" layoutY="480.0" />
+                  <JFXTextField fx:id="weightField" alignment="CENTER" editable="false" focusColor="#405aa800" layoutX="200.0" layoutY="380.0" />
+                  <JFXTextField fx:id="stepsField" alignment="CENTER" editable="false" focusColor="#405aa800" layoutX="200.0" layoutY="430.0" />
+                  <JFXTextField fx:id="restingHRField" alignment="CENTER" editable="false" focusColor="#405aa800" layoutX="200.0" layoutY="480.0" />
                   <JFXDatePicker fx:id="datePickerField" defaultColor="#0b87a1" editable="false" layoutX="408.0" layoutY="516.0" onAction="#datePicker" />
-                  <Label layoutX="100.0" layoutY="280.0" text="Alder" textFill="#0b87a1">
+                  <Label fx:id="ageLabel" layoutX="100.0" layoutY="280.0" text="Alder" textFill="#0b87a1">
                      <font>
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <Label layoutX="100.0" layoutY="330.0" text="Kjønn" textFill="#0b87a1">
+                  <Label fx:id="genderLabel" layoutX="100.0" layoutY="330.0" text="Kjønn" textFill="#0b87a1">
                      <font>
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <JFXTextField fx:id="genderField" editable="false" focusColor="#4d4d4d00" layoutX="200.0" layoutY="330.0" prefHeight="27.0" prefWidth="151.0" />
-                  <JFXButton fx:id="lastDay" layoutX="382.0" layoutY="570.0" onAction="#lastDay" prefHeight="29.0" prefWidth="90.0" style="-fx-background-color: #0b87a1;" text="Forrige dag" />
-                  <JFXButton fx:id="nextDay" layoutX="502.0" layoutY="570.0" onAction="#nextDay" prefHeight="29.0" prefWidth="90.0" style="-fx-background-color: #0b87a1;" text="Neste dag" />
-                  <JFXTextField fx:id="ageField" editable="false" focusColor="#4d4d4d00" layoutX="200.0" layoutY="280.0" prefHeight="27.0" prefWidth="151.0" />
-                  <Label fx:id="o1Label" layoutX="600.0" layoutY="280.0" text="O1" textFill="#0b87a1">
+                  <JFXTextField fx:id="genderField" alignment="CENTER" editable="false" focusColor="#4d4d4d00" layoutX="200.0" layoutY="330.0" prefHeight="27.0" prefWidth="151.0" />
+                  <JFXTextField fx:id="ageField" alignment="CENTER" editable="false" focusColor="#4d4d4d00" layoutX="200.0" layoutY="280.0" prefHeight="27.0" prefWidth="151.0" />
+                  <Label fx:id="o1Label" alignment="CENTER" layoutX="509.0" layoutY="280.0" prefHeight="23.0" prefWidth="187.0" style="-fx-alignment: CENTER;" text="O1" textFill="#0b87a1">
                      <font>
                         <Font size="18.0" />
                      </font>
@@ -82,25 +78,31 @@
                         <Cursor fx:constant="TEXT" />
                      </cursor>
                   </Label>
-                  <Label fx:id="o2Label" layoutX="600.0" layoutY="330.0" text="O2" textFill="#0b87a1">
+                  <Label fx:id="o2Label" alignment="CENTER" layoutX="509.0" layoutY="330.0" prefHeight="23.0" prefWidth="187.0" text="O2" textFill="#0b87a1">
                      <font>
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <Label fx:id="o3Label" layoutX="600.0" layoutY="380.0" text="O3" textFill="#0b87a1">
+                  <Label fx:id="o3Label" alignment="CENTER" layoutX="509.0" layoutY="380.0" prefHeight="23.0" prefWidth="187.0" text="O3" textFill="#0b87a1">
                      <font>
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <Label fx:id="o4Label" layoutX="600.0" layoutY="430.0" text="O4" textFill="#0b87a1">
+                  <Label fx:id="o4Label" alignment="CENTER" layoutX="509.0" layoutY="430.0" prefHeight="23.0" prefWidth="187.0" text="O4" textFill="#0b87a1">
                      <font>
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <JFXTextField fx:id="result1Field" editable="false" focusColor="#4d4d4d00" layoutX="647.0" layoutY="280.0" prefHeight="27.0" prefWidth="151.0" />
-                  <JFXTextField fx:id="result2Field" editable="false" focusColor="#4d4d4d00" layoutX="647.0" layoutY="330.0" prefHeight="27.0" prefWidth="151.0" />
-                  <JFXTextField fx:id="result3Field" editable="false" focusColor="#4d4d4d00" layoutX="647.0" layoutY="380.0" prefHeight="27.0" prefWidth="151.0" />
-                  <JFXTextField fx:id="result4Field" editable="false" focusColor="#4d4d4d00" layoutX="647.0" layoutY="430.0" prefHeight="27.0" prefWidth="151.0" />
+                  <JFXTextField fx:id="result1Field" alignment="CENTER" editable="false" focusColor="#4d4d4d00" layoutX="692.0" layoutY="280.0" prefHeight="27.0" prefWidth="151.0" style="-fx-aligment: CENTER;" />
+                  <JFXTextField fx:id="result2Field" alignment="CENTER" editable="false" focusColor="#4d4d4d00" layoutX="692.0" layoutY="328.0" prefHeight="27.0" prefWidth="151.0" />
+                  <JFXTextField fx:id="result3Field" alignment="CENTER" editable="false" focusColor="#4d4d4d00" layoutX="692.0" layoutY="380.0" prefHeight="27.0" prefWidth="151.0" />
+                  <JFXTextField fx:id="result4Field" alignment="CENTER" editable="false" focusColor="#4d4d4d00" layoutX="692.0" layoutY="430.0" prefHeight="27.0" prefWidth="151.0" />
+                  <JFXButton fx:id="lastDay" layoutX="382.0" layoutY="570.0" onAction="#lastDay" prefHeight="29.0" prefWidth="90.0" style="-fx-background-color: #0b87a1;" text="Forrige dag" />
+                  <JFXButton fx:id="nextDay" layoutX="502.0" layoutY="570.0" onAction="#nextDay" prefHeight="29.0" prefWidth="90.0" style="-fx-background-color: #0b87a1;" text="Neste dag" />
+                  <JFXButton fx:id="nextProgram" layoutX="737.0" layoutY="73.0" onAction="#nextProgram" prefHeight="71.0" prefWidth="60.0" text="  " />
+                  <JFXButton fx:id="lastProgram" layoutX="198.0" layoutY="73.0" onAction="#lastProgram" prefHeight="71.0" prefWidth="60.0" text="  " />
+                  <Label fx:id="messageLabel" alignment="CENTER" layoutX="584.0" layoutY="355.0" prefHeight="34.0" prefWidth="277.0" textAlignment="CENTER" />
+                  <StackPane fx:id="root" layoutY="-3.0" prefHeight="613.0" prefWidth="965.0" />
                </children>
             </AnchorPane>
             <VBox prefHeight="660.0" prefWidth="235.0" style="-fx-background-color: #0b87a1;">
@@ -176,6 +178,5 @@
             </VBox>
       </children>
     </AnchorPane>
-      <StackPane fx:id="root" prefHeight="613.0" prefWidth="965.0" />
   </children>
 </VBox>
