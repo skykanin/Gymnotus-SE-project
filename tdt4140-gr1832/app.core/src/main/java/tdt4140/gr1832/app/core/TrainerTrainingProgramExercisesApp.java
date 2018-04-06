@@ -211,9 +211,9 @@ public class TrainerTrainingProgramExercisesApp {
 		
 		List<Integer> res1 = new ArrayList<>();
 		res1.add(1);
-		res1.add(2);
-		res1.add(3);
-		res1.add(4);
+		res1.add(1);
+		res1.add(0);
+		res1.add(1);
 		
 		return res1;
 	}
@@ -223,8 +223,8 @@ public class TrainerTrainingProgramExercisesApp {
 		
 				List<Integer> res1 = new ArrayList<>();
 				res1.add(1);
+				res1.add(0);
 				res1.add(2);
-				res1.add(3);
 				res1.add(4);
 				
 				return res1;
@@ -246,10 +246,10 @@ public class TrainerTrainingProgramExercisesApp {
 		// Sandys generated method
 		
 				List<Integer> res1 = new ArrayList<>();
-				res1.add(1);
 				res1.add(2);
-				res1.add(3);
 				res1.add(4);
+				res1.add(16);
+				res1.add(256);
 				
 				return res1;
 	}

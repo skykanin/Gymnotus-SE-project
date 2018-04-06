@@ -12,6 +12,7 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 public class TrainerTrainingProgramOverviewApp {
+	
 	private List<ExerciseProgramContainer> containerExercisePrograms = new ArrayList<ExerciseProgramContainer>();
 	private String baseURI = "http://146.185.153.244:8080/api/";
 	
