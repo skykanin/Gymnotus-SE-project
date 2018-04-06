@@ -139,8 +139,23 @@ public class ResultDAO {
 		String query = "select * from Result natural join Exercise" +
 						" where programID=" + Integer.toString(programID) + 
 						" and userID=" + Integer.toString(userID);
-		System.out.println(query);
-		String json = createResultListJson(query);
+		Connection conn = DatabaseConnection.getConnection();
+		
+		List<Result> results = new ArrayList<Result>();
+		PreparedStatement stmt;
+		try {
+			stmt = conn.prepareStatement(query);
+			ResultSet rs = stmt.executeQuery();
+			while(rs.next()) {
+				Result result = createResult(rs);
+				result.setDescription(rs.getString("description"));
+				results.add(result);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		Gson gson = new Gson();
+		String json = gson.toJson(results);  
 		return json;
 	}
 	

@@ -154,9 +154,11 @@ public class ResultDAOTest {
 		Assert.assertEquals(200, response1.getStatus());
 		
 		String json = resultDAO.getResultsByProgramUser(0, 0);
+		System.out.println(json);
 		List<Result> results = gson.fromJson(json,new TypeToken<List<Result>>(){}.getType());
 		
 		Assert.assertEquals(2, results.size());
+		Assert.assertEquals("test1", results.get(1).getDescription());
 	}
 
 }
