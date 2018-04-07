@@ -70,7 +70,7 @@ public class CommentDAOTest {
 	
 	@Test
 	public void testUpdateUser() {
-		Response response = commentDAO.updateComment(0, 0, 0, "test1", "2018-01-02");
+		Response response = commentDAO.updateComment(0,"test1", "2018-01-02");
 		Assert.assertEquals(200, response.getStatus());
 		
 		comment = gson.fromJson(commentDAO.getCommentByID(0), Comment.class);

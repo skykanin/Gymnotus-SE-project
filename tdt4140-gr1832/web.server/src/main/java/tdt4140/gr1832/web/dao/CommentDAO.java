@@ -107,8 +107,6 @@ public class CommentDAO {
 	@POST
 	@Path("/update_comment")
 	public Response updateComment(@FormParam("comment_id") Integer commentID, 
-			   @FormParam("user_id") Integer userID,
-			   @FormParam("program_id") Integer programID,
 			   @FormParam("content") String content,
 			   @FormParam("date") String date)
 	{
@@ -116,8 +114,6 @@ public class CommentDAO {
 		Integer num_rows_affected = 0;
 		
 		if(commentID != null) {
-			if(userID != null) num_rows_affected += updateColumn(commentID, "userID", userID, "int").getStatus() == 200 ? 1 : 0;
-			if(programID != null) num_rows_affected += updateColumn(commentID, "programID", programID, "int").getStatus() == 200 ? 1 : 0;
 			if(content != null) num_rows_affected += updateColumn(commentID, "content", content, "string").getStatus() == 200 ? 1 : 0;
 			if(date != null) num_rows_affected += updateColumn(commentID, "date", date, "string").getStatus() == 200 ? 1 : 0;
 			status = 200;
