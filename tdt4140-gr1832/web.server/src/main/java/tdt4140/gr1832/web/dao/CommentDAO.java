@@ -13,6 +13,7 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
@@ -162,7 +163,7 @@ public class CommentDAO {
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("get_comment")
-	public static String getCommentByID(@PathParam("comment_id")int id) {
+	public static String getCommentByID(@QueryParam("comment_id")int id) {
 		String query = "select * from UserCommentOnExerciseprogram where commentID=" + Integer.toString(id);
 		String json = createComment(query); 
 		return json;
@@ -171,7 +172,7 @@ public class CommentDAO {
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("get_comments_from_program")
-	public static String getCommentByProgramID(@PathParam("program_id")int id) {
+	public static String getCommentByProgramID(@QueryParam("program_id")int id) {
 		String query = "select * from UserCommentOnExerciseprogram where programID=" + Integer.toString(id);
 		String json = createCommentList(query); 
 		return json;
@@ -180,7 +181,7 @@ public class CommentDAO {
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("get_comments_from_user")
-	public static String getCommentByUserID(@PathParam("user_id")int id) {
+	public static String getCommentByUserID(@QueryParam("user_id")int id) {
 		String query = "select * from UserCommentOnExerciseprogram where userID=" + Integer.toString(id);
 		String json = createCommentList(query); 
 		return json;
