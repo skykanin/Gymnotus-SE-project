@@ -36,33 +36,34 @@ public class ProgramResultsGraphsController extends WindowController implements 
 	@FXML
     private StackPane root;
 
-	@FXML JFXComboBox<String> exMemberComboBox;
+	@FXML JFXComboBox<String> memberComboBox;
+	@FXML JFXComboBox<String> programComboBox;
 	
-	@FXML Label exInfoText;
-	@FXML Label exLabelOne;
-	@FXML Label exLabelTwo;
-	@FXML Label exLabelThree;
-	@FXML Label exLabelFour;
-	
+	@FXML Label infoText;
+	@FXML Label	programInfoText;
+	@FXML Label labelOne;
+	@FXML Label labelTwo;
+	@FXML Label labelThree;
+	@FXML Label labelFour;
 	    
-	@FXML LineChart<String,Number> exChartOne;
+	@FXML LineChart<String,Number> chartOne;
 	@FXML CategoryAxis xAxisOne;
 	@FXML NumberAxis yAxisOne;
     
-	@FXML LineChart<String,Number> exChartTwo;
+	@FXML LineChart<String,Number> chartTwo;
 	@FXML CategoryAxis xAxisTwo;
 	@FXML NumberAxis yAxisTwo;
     
-	@FXML LineChart<String,Number> exChartThree;
+	@FXML LineChart<String,Number> chartThree;
 	@FXML CategoryAxis xAxisThree;
 	@FXML NumberAxis yAxisThree;
     
-	@FXML LineChart<String,Number> exChartFour;
+	@FXML LineChart<String,Number> chartFour;
 	@FXML CategoryAxis xAxisFour;
 	@FXML NumberAxis yAxisFour;
      
-	TrainerTrainingProgramExercisesApp app = new TrainerTrainingProgramExercisesApp();
-    
+	ProgramResultsGraphsApp app = new ProgramResultsGraphsApp();
+	
     @FXML
     public void loadDialog(ActionEvent parentEvent) {
         JFXDialogLayout content = new JFXDialogLayout();
@@ -90,21 +91,27 @@ public class ProgramResultsGraphsController extends WindowController implements 
     }
 
     @SuppressWarnings({ "unchecked", "rawtypes" })
-	
-	public void exHandleMemberComboBox(ActionEvent actionEvent) throws IOException, ParseException {
+
+    public void handleProgramComboBox(ActionEvent actionEvent) throws IOException, ParseException {
+    	
+    }
+    
+    @SuppressWarnings({ "unchecked", "rawtypes" })
+
+    public void handleMemberComboBox(ActionEvent actionEvent) throws IOException, ParseException {
     	// FYLL MED FUNKSJONALITET FRA DASHBOARDCONTROLLER
 
-    	String username = exMemberComboBox.getSelectionModel().getSelectedItem();
-	exInfoText.setText("Du ser " + username + "'s øvelseslogg. Se noen andre: " );
+    	String username = memberComboBox.getSelectionModel().getSelectedItem();
+	infoText.setText("Du ser " + username + "'s øvelseslogg. Se noen andre: " );
 		
 	app.requestHealthInformation_ID(app.getIDfromName(username));
 	
 	if (app.getResult1() != null && app.getContainerUser().getShareExerciseData()) {
 	
-		exChartOne.getData().clear();
-		exChartTwo.getData().clear();
-		exChartThree.getData().clear();
-		exChartFour.getData().clear();
+		chartOne.getData().clear();
+		chartTwo.getData().clear();
+		chartThree.getData().clear();
+		chartFour.getData().clear();
 		
 	    XYChart.Series<String,Number> series = new XYChart.Series<>();
 	    XYChart.Series<String,Number> series2 = new XYChart.Series<>();
@@ -120,39 +127,39 @@ public class ProgramResultsGraphsController extends WindowController implements 
 			series4.getData().add(new XYChart.Data(app.getDates().get(i).substring(0,app.getDates().get(i).length()-6 ),app.getResult4().get(i)));
 		}
 		
-		exChartOne.setOpacity(1);
-		exChartTwo.setOpacity(1);
-		exChartThree.setOpacity(1);
-		exChartFour.setOpacity(1);
+		chartOne.setOpacity(1);
+		chartTwo.setOpacity(1);
+		chartThree.setOpacity(1);
+		chartFour.setOpacity(1);
 		
-		exLabelOne.setText("temp: Biceps");
-		exLabelTwo.setText("temp: Triceps");
-		exLabelThree.setText("temp: Qatroceps");
-		exLabelFour.setText("temp: Sinkoceps");
+		labelOne.setText("temp: Biceps");
+		labelTwo.setText("temp: Triceps");
+		labelThree.setText("temp: Qatroceps");
+		labelFour.setText("temp: Sinkoceps");
 		
-		exChartOne.setCreateSymbols(false);
-		exChartOne.setAnimated(false);
-        exChartOne.getData().add(series);
+		chartOne.setCreateSymbols(false);
+		chartOne.setAnimated(false);
+        chartOne.getData().add(series);
         
-        exChartTwo.setCreateSymbols(false);
-        exChartTwo.setAnimated(false);
-        exChartTwo.getData().add(series2);
+        chartTwo.setCreateSymbols(false);
+        chartTwo.setAnimated(false);
+        chartTwo.getData().add(series2);
         
-        exChartThree.setCreateSymbols(false);
-        exChartThree.setAnimated(false);
-        exChartThree.getData().add(series3);
+        chartThree.setCreateSymbols(false);
+        chartThree.setAnimated(false);
+        chartThree.getData().add(series3);
         
-        exChartFour.setCreateSymbols(false);
-        exChartFour.setAnimated(false);
-        exChartFour.getData().add(series4);
+        chartFour.setCreateSymbols(false);
+        chartFour.setAnimated(false);
+        chartFour.getData().add(series4);
 
 	
 	} else if(!(app.getContainerUser().getShareExerciseData())) {
-		exInfoText.setText(username + " har valgt å ikke vise sin data, velg en ny venn: ");
+		infoText.setText(username + " har valgt å ikke vise sin data, velg en ny venn: ");
 		hidePageContent();
 
 	} else {
-		exInfoText.setText(username + " har ikke registrert helsedata, velg en ny venn: ");
+		infoText.setText(username + " har ikke registrert helsedata, velg en ny venn: ");
 		hidePageContent();
 	}
 		
@@ -161,27 +168,28 @@ public class ProgramResultsGraphsController extends WindowController implements 
     //HJELPEMETODE
     private void hidePageContent() {
     	
-    		exChartOne.setLegendVisible(false);
-		exChartTwo.setLegendVisible(false);
-		exChartThree.setLegendVisible(false);
-		exChartFour.setLegendVisible(false);
+    		chartOne.setLegendVisible(false);
+		chartTwo.setLegendVisible(false);
+		chartThree.setLegendVisible(false);
+		chartFour.setLegendVisible(false);
 		
-		exChartOne.setOpacity(0);
-		exChartTwo.setOpacity(0);
-		exChartThree.setOpacity(0);
-		exChartFour.setOpacity(0);
+		chartOne.setOpacity(0);
+		chartTwo.setOpacity(0);
+		chartThree.setOpacity(0);
+		chartFour.setOpacity(0);
 		
-		exLabelOne.setText("");
-		exLabelTwo.setText("");
-		exLabelThree.setText("");
-		exLabelFour.setText("");
+		labelOne.setText("");
+		labelTwo.setText("");
+		labelThree.setText("");
+		labelFour.setText("");
     }
     
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		
 		hidePageContent();
-		exInfoText.setText("Velg en venn for å visualisere informasjon:");
+		infoText.setText("Velg en venn for å visualisere informasjon:");
+		programInfoText.setText("Velg en venn for å visualisere informasjon:");
 		
 		app.requestAllUserID();
 		
@@ -190,7 +198,7 @@ public class ProgramResultsGraphsController extends WindowController implements 
 			names.add(name);
 		}
 		
-		exMemberComboBox.setItems(names);
+		memberComboBox.setItems(names);
 		
 	}
     

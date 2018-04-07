@@ -1,6 +1,8 @@
 package tdt4140.gr1832.app.ui;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDialog;
@@ -8,6 +10,7 @@ import com.jfoenix.controls.JFXDialogLayout;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -15,9 +18,12 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-public class TrainerTrainingProgramExercisesController extends WindowController {
+public class TrainerTrainingProgramExercisesController extends WindowController implements Initializable {
+	
     @FXML
     private StackPane root;
+    
+    @FXML JFXButton tilProgram;
 
     @FXML
     public void loadDialog(ActionEvent parentEvent) {
@@ -44,4 +50,25 @@ public class TrainerTrainingProgramExercisesController extends WindowController 
         content.setActions(buttonYes, buttonNo);
         dialog.show();
     }
+    
+    @FXML
+	private void exHandleMemberComboBox(ActionEvent event) throws IOException {
+		//empty
+	}
+
+	@Override
+	public void initialize(URL location, ResourceBundle resources) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+
+	//Sander temp metode
+	@FXML
+	private void actionTilProgram(ActionEvent event) throws IOException {
+		
+		NavigerTilSide("ProgramResultsGraphs.fxml", event);
+	}
+    
+    
 }

@@ -1,5 +1,257 @@
 package tdt4140.gr1832.app.core;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.ws.rs.client.Client;
+import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.client.WebTarget;
+import javax.ws.rs.core.MediaType;
+
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+
+
 public class ProgramResultsGraphsApp {
+	
+	private ShowUserInfoContainer containerUser;
+
+	private List<Integer> userids = new ArrayList<Integer>();
+	
+	private List<ShowHealthInfoContainer> healthContainers = new ArrayList<ShowHealthInfoContainer>();
+	
+	private ShowAllUsersContainer containerAllUsers = new ShowAllUsersContainer();
+	
+	private String baseURI = "http://146.185.153.244:8080/api/";
+	
+	public void requestUserInformation_ID(String id) {
+
+		Client client = ClientBuilder.newClient();
+		WebTarget webTarget = client.target(baseURI + "user/"+id+"/user_info_id");
+		String test = webTarget.request(MediaType.APPLICATION_JSON).get(String.class);
+		Gson gson = new Gson();
+		containerUser = gson.fromJson(test, ShowUserInfoContainer.class);
+		containerUser.setUserId(id);
+		
+		if(containerUser.getIsAnonymous()) {
+			containerUser.setUsername("Brukeren er anonym");
+			containerUser.setName("Anonym#" + containerUser.getUserID());
+			containerUser.setPhone("Brukeren er anonym");
+			containerUser.setEmail("Brukeren er anonym");
+		}
+		
+	}
+
+	
+	public void requestAllUserID() {
+		Client client = ClientBuilder.newClient();
+		WebTarget webTarget = client.target(baseURI +"user/get_all_ids");
+		String test = webTarget.request(MediaType.APPLICATION_JSON).get(String.class);
+		Gson gson = new Gson();
+		userids = gson.fromJson(test, new TypeToken<List<Integer>>(){}.getType());
+		
+		for(Integer i : userids) {
+			requestUserInformation_ID(i.toString());
+			containerAllUsers.addUserInfo(containerUser);
+		}
+	}
+	
+	public void requestHealthInformation_ID(String id) {
+		
+		Client client = ClientBuilder.newClient();
+		WebTarget webTarget = client.target(baseURI + "health_data/id/"+id);
+		this.requestUserInformation_ID(id);
+		
+		String test = webTarget.request(MediaType.APPLICATION_JSON).get(String.class);
+		Gson gson = new Gson();
+		healthContainers = gson.fromJson(test, new TypeToken<List<ShowHealthInfoContainer>>(){}.getType());
+	}
+	
+	public List<String> getNames(){
+		List<String> usernames = new ArrayList<>();
+		for (ShowUserInfoContainer user : containerAllUsers.getUsers()){
+			String name = user.getName();
+			if (name != null) {
+				usernames.add(name);
+			}
+			}
+		
+		return usernames;
+		}
+	
+	public String getIDfromName(String name) {
+		for (ShowUserInfoContainer user : containerAllUsers.getUsers()){
+			if (user.getName().equals(name)) {
+				return user.getUserID();
+			}
+		}
+		return "1";
+	}
+	
+	public List<Integer> getHeights() {
+		if (healthContainers.size()<1) {
+			return null;
+		}
+		
+		List<Integer> heights = new ArrayList<>();
+		
+		for (ShowHealthInfoContainer hContainer : healthContainers) {
+			heights.add(hContainer.getHeight());
+		}
+		
+		return heights;
+	}
+
+	// STANDARDISERT DATESFUNKSJON, DEN EKTE ER KOMMENTERT UT UNDER
+	
+	public List<String> getDates() {
+		String date1 = "Mar 1, 2018";
+		String date2 = "Mar 2, 2018";
+		String date3 = "Mar 3, 2018";
+		String date4 = "Mar 4, 2018";
+		
+		List<String> dates = new ArrayList<>();
+		
+		dates.add(date1);
+		dates.add(date2);
+		dates.add(date3);
+		dates.add(date4);
+		
+		return dates;
+		
+	}
+	
+	
+//	public List<String> getDates() {
+//		if (healthContainers.size()<1) {
+//			return null;
+//		}
+//		
+//		List<String> dates = new ArrayList<>();
+//		
+//		for (ShowHealthInfoContainer hContainer : healthContainers) {
+//			dates.add(hContainer.getDate());
+//		}
+//		
+//		return dates;
+//	}
+	
+	//weight
+	public List<Integer> getWeights() {
+		if (healthContainers.size()<1) {
+			return null;
+		}
+		
+		List<Integer> weights = new ArrayList<>();
+		
+		for (ShowHealthInfoContainer hContainer : healthContainers) {
+			weights.add(hContainer.getWeight());
+		}
+		
+		return weights;
+	}
+	
+	//steps
+	public List<Integer> getSteps() {
+		if (healthContainers.size()<1) {
+			return null;
+		}
+		
+		List<Integer> steps = new ArrayList<>();
+		
+		for (ShowHealthInfoContainer hContainer : healthContainers) {
+			steps.add(hContainer.getSteps());
+		}
+		
+		return steps;
+	}
+	
+	//restingHR
+	public List<Integer> getRestingHRs() {
+		if (healthContainers.size()<1) {
+			return null;
+		} 
+		
+		List<Integer> HRs = new ArrayList<>();
+		
+		for (ShowHealthInfoContainer hContainer : healthContainers) {
+			HRs.add(hContainer.getRestingHR());
+		}
+		
+		return HRs;
+	}
+
+	public List<ShowHealthInfoContainer> getHealthContainers() {
+		return healthContainers;
+	}
+
+	public void setContainerAllUsers(ShowAllUsersContainer containerAllUsers) {
+		this.containerAllUsers = containerAllUsers;
+	}
+
+
+	public String getBaseURI() {
+		return baseURI;
+	}
+
+
+	public void setContainerUser(ShowUserInfoContainer containerUser) {
+		this.containerUser = containerUser;
+	}
+
+
+	public ShowUserInfoContainer getContainerUser() {
+		return containerUser;
+	}
+
+
+	public List<Integer> getResult1() {
+		// Sandys generated method
+		
+		List<Integer> res1 = new ArrayList<>();
+		res1.add(1);
+		res1.add(1);
+		res1.add(0);
+		res1.add(1);
+		
+		return res1;
+	}
+	
+	public List<Integer> getResult2() {
+		// Sandys generated method
+		
+				List<Integer> res1 = new ArrayList<>();
+				res1.add(1);
+				res1.add(0);
+				res1.add(2);
+				res1.add(4);
+				
+				return res1;
+	}
+	
+	public List<Integer> getResult3() {
+		// Sandys generated method
+		
+				List<Integer> res1 = new ArrayList<>();
+				res1.add(1);
+				res1.add(2);
+				res1.add(3);
+				res1.add(4);
+				
+				return res1;
+	}
+	
+	public List<Integer> getResult4() {
+		// Sandys generated method
+		
+				List<Integer> res1 = new ArrayList<>();
+				res1.add(2);
+				res1.add(4);
+				res1.add(16);
+				res1.add(256);
+				
+				return res1;
+	}
 
 }
