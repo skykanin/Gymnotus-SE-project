@@ -4,6 +4,11 @@ import java.util.Date;
 
 public class ShowHealthInfoContainer {
 	
+	@Override
+	public String toString() {
+		return "ShowHealthInfoContainer [date=" + date + ", height=" + height + ", weight=" + weight + ", dailySteps="
+				+ dailySteps + ", restingHeartRate=" + restingHeartRate + ", userID=" + userID + "]";
+	}
 	private String date;
 	private int height;
 	private int weight;
