@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="660.0" prefWidth="1200.0" stylesheets="@styles/main.css" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tdt4140.gr1832.app.ui.TrainerMemberInfoController">
+<VBox prefHeight="660.0" prefWidth="1200.0" stylesheets="@styles/main.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tdt4140.gr1832.app.ui.TrainerMemberInfoController">
   <children>
     <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="660.0" prefWidth="12000.0" style="-fx-background-color: #FFFFFF;" stylesheets="@styles/main.css" VBox.vgrow="ALWAYS">
       <children>
@@ -106,12 +106,12 @@
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <JFXTextField fx:id="heightField" editable="false" focusColor="#405aa800" layoutX="155.0" layoutY="160.0" />
-                  <JFXTextField fx:id="weightField" editable="false" focusColor="#405aa800" layoutX="155.0" layoutY="220.0" />
-                  <JFXTextField fx:id="stepsField" editable="false" focusColor="#405aa800" layoutX="155.0" layoutY="280.0" />
-                  <JFXTextField fx:id="restingHRField" editable="false" focusColor="#405aa800" layoutX="155.0" layoutY="340.0" />
-                  <JFXTextField fx:id="dateField" editable="false" focusColor="#405aa800" layoutX="155.0" layoutY="100.0" />
-                  <JFXDatePicker fx:id="datePickerField" defaultColor="#0b87a1" editable="false" layoutX="155.0" layoutY="435.0" onAction="#datePicker" />
+                  <JFXTextField fx:id="heightField" editable="false" focusColor="#405aa800" layoutX="155.0" layoutY="160.0" prefHeight="27.0" prefWidth="190.0" />
+                  <JFXTextField fx:id="weightField" editable="false" focusColor="#405aa800" layoutX="155.0" layoutY="220.0" prefHeight="27.0" prefWidth="190.0" />
+                  <JFXTextField fx:id="stepsField" editable="false" focusColor="#405aa800" layoutX="155.0" layoutY="280.0" prefHeight="27.0" prefWidth="190.0" />
+                  <JFXTextField fx:id="restingHRField" editable="false" focusColor="#405aa800" layoutX="155.0" layoutY="340.0" prefHeight="27.0" prefWidth="190.0" />
+                  <JFXTextField fx:id="dateField" editable="false" focusColor="#405aa800" layoutX="155.0" layoutY="100.0" prefHeight="27.0" prefWidth="190.0" />
+                  <JFXDatePicker fx:id="datePickerField" defaultColor="#0b87a1" editable="false" layoutX="155.0" layoutY="435.0" onAction="#datePicker" prefWidth="190.0" />
                   <JFXButton fx:id="lastDay" layoutX="110.0" layoutY="489.0" onAction="#lastDay" prefHeight="29.0" prefWidth="90.0" style="-fx-background-color: #0b87a1;" text="Forrige dag" />
                   <JFXButton fx:id="nextDay" layoutX="261.0" layoutY="490.0" onAction="#nextDay" prefHeight="29.0" prefWidth="90.0" style="-fx-background-color: #0b87a1;" text="Neste dag" />
                </children>

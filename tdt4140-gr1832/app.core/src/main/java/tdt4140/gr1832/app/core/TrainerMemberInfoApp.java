@@ -189,6 +189,9 @@ public class TrainerMemberInfoApp {
 		containerHealth.add(e);
 	}
 	
+	public ShowUserInfoContainer getContainerUser() {
+		return containerUser;
+	}
 	public void setContianerUser(ShowUserInfoContainer c) {
 		this.containerUser = c;
 	}
