@@ -40,6 +40,7 @@ public class TrainerMemberInfoAppTest extends TestCase {
 	
 	@Test
 	public void testTrainerMemberInfoGetters() {
+		Assert.assertEquals(showUserInfoContainer, testapp.getContainerUser());
 		testapp.addContainerHealth(showHealthInfoContainer);
 		showUserInfoContainer.setUserId("007");
 		testapp.setAllUsersContainer(showAllUserContainer);
@@ -238,6 +239,7 @@ public class TrainerMemberInfoAppTest extends TestCase {
 		Assert.assertTrue("Ikke spesifisert".equals(testapp.checkNull("null")));
 		Assert.assertFalse("Ikke spesifisert".equals(testapp.checkNull("12")));
 	}
+
 	
 	
 }
