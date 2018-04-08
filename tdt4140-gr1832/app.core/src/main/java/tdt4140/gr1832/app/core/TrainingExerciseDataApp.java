@@ -298,13 +298,7 @@ public class TrainingExerciseDataApp {
 	public void clearSortedResultMap() {
 		sortedResultMap.clear();
 	}
-	
-	public static void main(String[] args) {
-		TrainingExerciseDataApp t = new TrainingExerciseDataApp();
-		t.requestHealthExerciseDataByProgramUserID(1, 1);
-		t.getExercises(0);
-		
-	}
+
 	
 	
 	
