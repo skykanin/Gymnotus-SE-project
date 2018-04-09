@@ -159,6 +159,7 @@ public class TrainerTrainingProgramAttendantsController extends WindowController
 		if(names.size() <1) {
 			names.add("Ingen medlemmer pameldt");
 			memberComboBox.setItems(names);
+			setDisableField(true);
 		} else {
 			memberComboBox.setItems(names);			
 		}
@@ -243,8 +244,8 @@ public class TrainerTrainingProgramAttendantsController extends WindowController
 			}
 			
 		}	else {
-			eDataApp.clearSortedResultMap();
-			setDisableField(false);
+			if (!"Ingen medlemmer pameldt".equals(name)){eDataApp.clearSortedResultMap();}
+			setDisableField(true);
 			updateInfoFieldsOnDate(-222222);
 			dayCounter = eDataApp.getDates().size() -1;
 			ageField.setText(eDataApp.getAge());
@@ -253,43 +254,42 @@ public class TrainerTrainingProgramAttendantsController extends WindowController
 	}
 	
 	public void updateInfoFieldsOnDate(int dayCounter) {
-//		if (dayCounter != -222222) {
-//			eDataApp.getExercises(dayCounter);	
-//		}
-		eDataApp.getExercises(dayCounter);
-		String date = eDataApp.getDate(dayCounter);
-		String ii = date.toLowerCase();
-		if (ii.length() == 11) {
-			ii = ii.substring(0,4) + "0"+ii.substring(4);
-		}
-		datePickerField.setValue(LocalDate.parse(ii, dateFormatter));
-		
-		datePickerField.setPromptText(eDataApp.getDate(dayCounter));
-		//Set health info
-		stepsField.setText(eDataApp.getSteps(dayCounter));
-		weightField.setText(eDataApp.getWeight(dayCounter));
-		restingHRField.setText(eDataApp.getRestingHR(dayCounter));
-		//Set ExerciseInfo
-		if(eDataApp.userIsSharingExerciseData()) {
-			if (eDataApp.getExercise1() == null) {
-				setFieldVisibility(false);
-				o1Label.setText("");
-				o2Label.setText("");
-				o3Label.setText("");
-				o4Label.setText("");
-				messageLabel.setText("Ingen okter gjennomfort denne dagen");
-			} else {
-				setFieldVisibility(true);
-				messageLabel.setText("");
-				o1Label.setText(eDataApp.getExercise1());
-				result1Field.setText(eDataApp.getResult1(dayCounter));
-				o2Label.setText(eDataApp.getExercise2());
-				result2Field.setText(eDataApp.getResult2(dayCounter));
-				o3Label.setText(eDataApp.getExercise3());
-				result3Field.setText(eDataApp.getResult3(dayCounter));
-				o4Label.setText(eDataApp.getExercise4());
-				result4Field.setText(eDataApp.getResult4(dayCounter));
+		if (dayCounter != -222222) {
+			eDataApp.getExercises(dayCounter);	
+			String date = eDataApp.getDate(dayCounter);
+			String ii = date.toLowerCase();
+			if (ii.length() == 11) {
+				ii = ii.substring(0,4) + "0"+ii.substring(4);
 			}
+			datePickerField.setValue(LocalDate.parse(ii, dateFormatter));
+			
+			datePickerField.setPromptText(eDataApp.getDate(dayCounter));
+			//Set health info
+			stepsField.setText(eDataApp.getSteps(dayCounter));
+			weightField.setText(eDataApp.getWeight(dayCounter));
+			restingHRField.setText(eDataApp.getRestingHR(dayCounter));
+			//Set ExerciseInfo
+			if(eDataApp.userIsSharingExerciseData()) {
+				if (eDataApp.getExercise1() == null) {
+					setFieldVisibility(false);
+					o1Label.setText("");
+					o2Label.setText("");
+					o3Label.setText("");
+					o4Label.setText("");
+					messageLabel.setText("Ingen okter gjennomfort denne dagen");
+				} else {
+					setFieldVisibility(true);
+					messageLabel.setText("");
+					o1Label.setText(eDataApp.getExercise1());
+					result1Field.setText(eDataApp.getResult1(dayCounter));
+					o2Label.setText(eDataApp.getExercise2());
+					result2Field.setText(eDataApp.getResult2(dayCounter));
+					o3Label.setText(eDataApp.getExercise3());
+					result3Field.setText(eDataApp.getResult3(dayCounter));
+					o4Label.setText(eDataApp.getExercise4());
+					result4Field.setText(eDataApp.getResult4(dayCounter));
+				}
+		}
 		}
 		
 	}
@@ -300,6 +300,7 @@ public class TrainerTrainingProgramAttendantsController extends WindowController
 		datePickerField.setPromptText("Ingen medlem valgt");
 		setDisableField(true);
 		setHealthFieldVisibility(false);
+		setFieldVisibility(false);
 		messageLabel.setText("");
 		stepsField.setText("");
 		weightField.setText("");

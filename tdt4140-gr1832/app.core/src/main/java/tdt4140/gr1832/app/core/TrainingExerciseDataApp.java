@@ -161,10 +161,14 @@ public class TrainingExerciseDataApp {
 	}
 	
 	public String getDate(int i) {
+		if (i == -222222) {
+			return "";
+		}
 		return availableDates.get(i);
 	}
 	
 	public String getAge() {
+	
 		return trainerMemberInfoApp.getAge();
 	}
 	
