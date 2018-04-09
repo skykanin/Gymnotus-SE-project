@@ -23,7 +23,7 @@ public class dateComparator implements Comparator<String> {
 			return 0;
 		}
 	}
-	
+	 
 	 public LocalDate fromString(String string) {
 		 string = string.toLowerCase();
 		 if (string.length() == pattern1.length()) {
