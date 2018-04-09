@@ -16,7 +16,7 @@ public class ShowUserInfoContainer {
 		private boolean shareExerciseData;
 		private boolean isTrainer;
 		
-		public ShowUserInfoContainer (String username, String password, String name, int age, int gender, String email, String phone,
+		public ShowUserInfoContainer(String username, String password, String name, int age, int gender, String email, String phone,
 				boolean isAnonymous, boolean shareHealthData, boolean shareExerciseData, boolean isTrainer) {
 			this.phone = phone;
 			this.name = name;
