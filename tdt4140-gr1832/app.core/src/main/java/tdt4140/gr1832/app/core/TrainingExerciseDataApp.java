@@ -25,11 +25,7 @@ import com.google.gson.reflect.TypeToken;
 
 public class TrainingExerciseDataApp {
 
-	private String baseURI = "http://146.185.153.244:8080/api/";
-	
-	private int currentprogramID;
-	
-	private int currentuserID;
+	public final String baseURI = "http://146.185.153.244:8080/api/";
 	
 	private ShowUserInfoContainer user;
 	
@@ -76,13 +72,16 @@ public class TrainingExerciseDataApp {
 	}
 	
 	private List<ShowUserInfoContainer> getUsersOnAProgram(int programID) {
-		
 		List<ShowUserInfoContainer> userContainers = new ArrayList<>();
 		Client client = ClientBuilder.newClient();
 		WebTarget webTarget = client.target(baseURI +"exercise_program/get_users?programID=" + programID);
 		String test = webTarget.request(MediaType.APPLICATION_JSON).get(String.class);
 		Gson gson = new Gson();
 		userContainers = gson.fromJson(test, new TypeToken<List<ShowUserInfoContainer>>(){}.getType());
+		return checkAndMakeAnonymous(userContainers);
+	}
+	
+	public List<ShowUserInfoContainer> checkAndMakeAnonymous(List<ShowUserInfoContainer> userContainers) {
 		for (ShowUserInfoContainer containerUser : userContainers) {
 			if(containerUser.getIsAnonymous()) {
 				containerUser.setUsername("Brukeren er anonym");
@@ -92,13 +91,10 @@ public class TrainingExerciseDataApp {
 			}
 		}
 		return userContainers;
-		
 	}
 	
 	public void requestHealthExerciseDataByProgramUserID(int programID, int userID){
-		this.currentprogramID = programID;
-		this.currentuserID = userID;
-		
+	
 		//request user information
 		trainerMemberInfoApp.requestUserInformation_ID(Integer.toString(userID));
 		user = trainerMemberInfoApp.getContainerUser();
@@ -121,11 +117,8 @@ public class TrainingExerciseDataApp {
 		}
 		
 		this.makeResultList();
-		
 	}
-
-	
-	private void makeResultList() {
+	public void makeResultList() {
 		int counter = 0;
 		while (counter < healthList.size() || counter < resultList.size()) {
 			
@@ -161,6 +154,9 @@ public class TrainingExerciseDataApp {
 	}
 	
 	public String getDate(int i) {
+		if (i> availableDates.size()-1) {
+			return null;
+		}
 		return availableDates.get(i);
 	}
 	
@@ -210,13 +206,15 @@ public class TrainingExerciseDataApp {
 	}
 	
 	public void getExercises(int i) {
-		returnList = new ArrayList<List<String>>();
-		String d = availableDates.get(i);
-		SortedSet<Object> liste = sortedResultMap.get(d);
-		for (Object container : liste) {
-			if (container instanceof ShowExerciseDataContainerFromProgram) {
-				 returnList.add(Arrays.asList(((ShowExerciseDataContainerFromProgram) container).getExerciseName(), "" + ((ShowExerciseDataContainerFromProgram) container).getResultParameter()));
-			}
+		if (i < availableDates.size()) {
+			returnList = new ArrayList<List<String>>();
+			String d = availableDates.get(i);
+			SortedSet<Object> liste = sortedResultMap.get(d);
+			for (Object container : liste) {
+				if (container instanceof ShowExerciseDataContainerFromProgram) {
+					returnList.add(Arrays.asList(((ShowExerciseDataContainerFromProgram) container).getExerciseName(), "" + ((ShowExerciseDataContainerFromProgram) container).getResultParameter()));
+				}
+			}			
 		}
 	}
 	
@@ -248,28 +246,28 @@ public class TrainingExerciseDataApp {
 		return null;
 	}
 	
-	public String getResult1(int i) {
+	public String getResult1() {
 		if(returnList.size() > 0) {
 			return returnList.get(0).get(1);
 		}
 		return null;
 	}
 	
-	public String getResult2(int i) {
+	public String getResult2() {
 		if(returnList.size() > 1) {
 			return returnList.get(1).get(1);
 		}
 		return null;
 	}
 	
-	public String getResult3(int i) {
+	public String getResult3() {
 		if(returnList.size() > 2) {
 			return returnList.get(2).get(1);
 		}
 		return null;
 	}
 	
-	public String getResult4(int i) {
+	public String getResult4() {
 		if(returnList.size() > 3) {
 			return returnList.get(3).get(1);
 		}
@@ -299,7 +297,18 @@ public class TrainingExerciseDataApp {
 		sortedResultMap.clear();
 	}
 
+	//Helpmethods for tests
 	
+	public void addContainerHealthList(ShowHealthInfoContainer hContainer) {
+		healthList.add(hContainer);
+	}
 	
+	public void addContainerExerciseList(ShowExerciseDataContainerFromProgram eContainer) {
+		resultList.add(eContainer);
+	}
+	
+	public void setMemberApp(TrainerMemberInfoApp app) {
+		this.trainerMemberInfoApp = app;
+	}
 	
 }

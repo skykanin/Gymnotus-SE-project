@@ -282,13 +282,13 @@ public class TrainerTrainingProgramAttendantsController extends WindowController
 				setFieldVisibility(true);
 				messageLabel.setText("");
 				o1Label.setText(eDataApp.getExercise1());
-				result1Field.setText(eDataApp.getResult1(dayCounter));
+				result1Field.setText(eDataApp.getResult1());
 				o2Label.setText(eDataApp.getExercise2());
-				result2Field.setText(eDataApp.getResult2(dayCounter));
+				result2Field.setText(eDataApp.getResult2());
 				o3Label.setText(eDataApp.getExercise3());
-				result3Field.setText(eDataApp.getResult3(dayCounter));
+				result3Field.setText(eDataApp.getResult3());
 				o4Label.setText(eDataApp.getExercise4());
-				result4Field.setText(eDataApp.getResult4(dayCounter));
+				result4Field.setText(eDataApp.getResult4());
 			}
 		}
 		

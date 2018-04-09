@@ -1,39 +1,132 @@
 package tdt4140.gr1832.app.core;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
 
 public class TrainingExerciseDataAppTest {
+	
 	TrainingExerciseDataApp testApp;
 	ShowExerciseDataContainerFromProgram exerciseContainer1;
 	ShowExerciseDataContainerFromProgram exerciseContainer2;
 	ShowExerciseDataContainerFromProgram exerciseContainer3;
+	ShowExerciseDataContainerFromProgram exerciseContainer4;
+	TrainerMemberInfoApp helpApp;
 	ShowHealthInfoContainer healthContainer1;
 	ShowHealthInfoContainer healthContainer2;
 	ShowHealthInfoContainer healthContainer3;
+	List<ShowUserInfoContainer> users;
 	
 	
 	@Before
 	public void setup() {
 		testApp = new TrainingExerciseDataApp();
-		exerciseContainer1 = new ShowExerciseDataContainerFromProgram(11, 1, "Beskrivelse1", 1, "Mar 01, 2018", 111);
-		exerciseContainer2 = new ShowExerciseDataContainerFromProgram(2, 1, "Beskrivelse2", 1, "Mar, 04 2018", 22);
-		exerciseContainer3 = new ShowExerciseDataContainerFromProgram(3, 1, "Beskrivelse3", 1, "Mar, 11 2018", 33);
-		healthContainer1 = new ShowHealthInfoContainer(4, 1, "Mar 02, 2018", 1111, 11, 333, 181, 81, false, true, true);
-		healthContainer2 = new ShowHealthInfoContainer(5, 1, "Mar 04, 2018", 2222, 11, 333, 182, 82, false, true, true);
-		healthContainer3 = new ShowHealthInfoContainer(6, 1, "Mar 011, 2018", 3333, 33, 333, 183, 83, false, true, true);
+		this.users = new ArrayList<>(Arrays.asList(new ShowUserInfoContainer("1", "Passord", "Navn", 20, 0, "Email", "1234", false, true, true,false), new ShowUserInfoContainer("2", "Passord2", "Navn2", 20, 0, "Email2", "12342", true, true, true,false)));
+		this.users.get(0).setUserId("1");
+		this.users.get(1).setUserId("2");
+		helpApp = new TrainerMemberInfoApp();
+		helpApp.setContainerUser(new ShowUserInfoContainer("Brukernavn", "passord", "navn", 22, 0, "email","1234", false, true, true, false));
+		testApp.setMemberApp(helpApp);
+		exerciseContainer1 = new ShowExerciseDataContainerFromProgram(11, 1, "Beskrivelse1", 1, "Mar 1, 2018", 111);
+		exerciseContainer2 = new ShowExerciseDataContainerFromProgram(2, 1, "Beskrivelse2", 2, "Mar 1, 2018", 22);
+		exerciseContainer3 = new ShowExerciseDataContainerFromProgram(3, 1, "Beskrivelse3", 3, "Mar 11, 2018", 33);
+		exerciseContainer4 = new ShowExerciseDataContainerFromProgram(4, 1, "Beskrivelse4", 4, "Mar 14, 2018", 44);
+		healthContainer1 = new ShowHealthInfoContainer(4, 1, "Mar 1, 2018", 1111, 11, 111, 181, 81, false, true, true);
+		healthContainer2 = new ShowHealthInfoContainer(5, 1, "Mar 04, 2018", 2222, 22, 222, 182, 82, false, true, true);
+		healthContainer3 = new ShowHealthInfoContainer(6, 1, "Mar 11, 2018", 3333, 33, 333, 183, 83, false, true, true);
+		testApp.addContainerExerciseList(exerciseContainer1);
+		testApp.addContainerExerciseList(exerciseContainer2);
+		testApp.addContainerExerciseList(exerciseContainer3);
+		testApp.addContainerExerciseList(exerciseContainer4);
+		testApp.addContainerHealthList(healthContainer2);
+		testApp.addContainerHealthList(healthContainer3);
+		testApp.addContainerHealthList(healthContainer1);
+		testApp.makeResultList();
+		
 	}
 	
+	@Test
+	public void testMemberInfo() {
+		Assert.assertEquals("22", testApp.getAge());
+		Assert.assertEquals("Mann", testApp.getGender());
+		Assert.assertEquals("11", testApp.getSteps(0));
+		Assert.assertEquals("111", testApp.getRestingHR(0));
+		Assert.assertEquals("81", testApp.getWeight(0));
+		Assert.assertEquals("22", testApp.getSteps(1));
+		Assert.assertEquals("222", testApp.getRestingHR(1));
+		Assert.assertEquals("82", testApp.getWeight(1));
+		Assert.assertEquals("33", testApp.getSteps(2));
+		Assert.assertEquals("333", testApp.getRestingHR(2));
+		Assert.assertEquals("83", testApp.getWeight(2));
+		Assert.assertEquals(Arrays.asList("Mar 1, 2018","Mar 04, 2018","Mar 11, 2018","Mar 14, 2018"),testApp.getDates());
+		Assert.assertEquals("Ikke spesifisert", testApp.getSteps(3));
+		Assert.assertEquals("Ikke spesifisert", testApp.getRestingHR(3));
+		Assert.assertEquals("Ikke spesifisert", testApp.getWeight(3));
+		
+	}
+	
+	@Test
+	public void testGetExercisesAndResultsAndMakeResults() {
+		Assert.assertEquals("Mar 1, 2018", testApp.getDate(0));
+		Assert.assertEquals("Mar 04, 2018", testApp.getDate(1));
+		Assert.assertEquals("Mar 11, 2018", testApp.getDate(2));
+		Assert.assertEquals("Mar 14, 2018", testApp.getDate(3));
+		Assert.assertEquals(null, testApp.getDate(4));
+		testApp.getExercises(0);
+		Assert.assertEquals("Beskrivelse1", testApp.getExercise1());
+		Assert.assertEquals("Beskrivelse2", testApp.getExercise2());
+		Assert.assertEquals(null, testApp.getExercise3());
+		Assert.assertEquals(null, testApp.getExercise4());
+		Assert.assertEquals("111", testApp.getResult1());
+		Assert.assertEquals("22", testApp.getResult2());
+		Assert.assertEquals(null, testApp.getResult3());
+		Assert.assertEquals(null, testApp.getResult4());
+		testApp.getExercises(1);
+		Assert.assertEquals(null, testApp.getExercise1());
+		Assert.assertEquals(null, testApp.getExercise2());
+		Assert.assertEquals(null, testApp.getExercise3());
+		Assert.assertEquals(null, testApp.getExercise4());
+		Assert.assertEquals(null, testApp.getResult1());
+		Assert.assertEquals(null, testApp.getResult2());
+		Assert.assertEquals(null, testApp.getResult3());
+		Assert.assertEquals(null, testApp.getResult4());
+		testApp.getExercises(2);
+		Assert.assertEquals("Beskrivelse3", testApp.getExercise1());
+		Assert.assertEquals(null, testApp.getExercise2());
+		Assert.assertEquals(null, testApp.getExercise3());
+		Assert.assertEquals(null, testApp.getExercise4());	
+		Assert.assertEquals("33", testApp.getResult1());
+		Assert.assertEquals(null, testApp.getResult2());
+		Assert.assertEquals(null, testApp.getResult3());
+		Assert.assertEquals(null, testApp.getResult4());
+	}
+	
+	@Test
+	public void testCheckAndMakeAnonymous() {
+	List<ShowUserInfoContainer> users = testApp.checkAndMakeAnonymous(this.users);
+	Assert.assertEquals("Navn", users.get(0).getName());
+	Assert.assertEquals("Anonym#2", users.get(1).getName());
+	
+	}
+	
+	
+	@Test
+	public void testBaseURI () {
+		Assert.assertEquals("http://146.185.153.244:8080/api/", testApp.baseURI);
+	}
 	
 	
 	@Test
 	public void testExerciseContainer() {
-		Assert.assertEquals("Mar 01, 2018", exerciseContainer1.getDate());
+		Assert.assertEquals("Mar 1, 2018", exerciseContainer1.getDate());
 		Assert.assertEquals(1, exerciseContainer1.getExerciseID());
 		Assert.assertEquals("Beskrivelse1", exerciseContainer1.getExerciseName());
 		Assert.assertEquals(11, exerciseContainer1.getResultID());
 		Assert.assertEquals(111, exerciseContainer1.getResultParameter());
 	}
+	
 }

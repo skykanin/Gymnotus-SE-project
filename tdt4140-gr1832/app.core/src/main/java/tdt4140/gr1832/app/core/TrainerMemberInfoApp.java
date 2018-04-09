@@ -192,7 +192,7 @@ public class TrainerMemberInfoApp {
 	public ShowUserInfoContainer getContainerUser() {
 		return containerUser;
 	}
-	public void setContianerUser(ShowUserInfoContainer c) {
+	public void setContainerUser(ShowUserInfoContainer c) {
 		this.containerUser = c;
 	}
 	
@@ -241,8 +241,5 @@ public class TrainerMemberInfoApp {
 			return i + "";
 		}	
 	}
-			
-
-
 }
 
