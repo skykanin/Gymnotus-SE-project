@@ -83,7 +83,7 @@
             </AnchorPane>
          </children>
       </VBox>
-      <LineChart fx:id="chartOne" layoutX="225.0" layoutY="150.0" prefHeight="250.0" prefWidth="500.0">
+      <LineChart fx:id="chart0" layoutX="225.0" layoutY="150.0" prefHeight="250.0" prefWidth="500.0">
          <xAxis>
             <CategoryAxis side="BOTTOM" />
          </xAxis>
@@ -91,7 +91,7 @@
             <NumberAxis side="LEFT" />
          </yAxis>
       </LineChart>
-      <LineChart fx:id="chartThree" layoutX="705.0" layoutY="150.0" prefHeight="250.0" prefWidth="500.0">
+      <LineChart fx:id="chart1" layoutX="705.0" layoutY="150.0" prefHeight="250.0" prefWidth="500.0">
          <xAxis>
             <CategoryAxis side="BOTTOM" />
          </xAxis>
@@ -99,7 +99,7 @@
             <NumberAxis side="LEFT" />
          </yAxis>
       </LineChart>
-      <LineChart fx:id="chartTwo" layoutX="225.0" layoutY="410.0" prefHeight="250.0" prefWidth="500.0">
+      <LineChart fx:id="chart2" layoutX="225.0" layoutY="410.0" prefHeight="250.0" prefWidth="500.0">
          <xAxis>
             <CategoryAxis side="BOTTOM" />
          </xAxis>
@@ -107,7 +107,7 @@
             <NumberAxis side="LEFT" />
          </yAxis>
       </LineChart>
-      <LineChart fx:id="chartFour" layoutX="705.0" layoutY="410.0" prefHeight="250.0" prefWidth="500.0">
+      <LineChart fx:id="chart3" layoutX="705.0" layoutY="410.0" prefHeight="250.0" prefWidth="500.0">
          <xAxis>
             <CategoryAxis side="BOTTOM" />
          </xAxis>
@@ -115,17 +115,17 @@
             <NumberAxis side="LEFT" />
          </yAxis>
       </LineChart>
-      <Label fx:id="labelOne" alignment="CENTER" layoutX="400.0" layoutY="135.0" prefHeight="27.0" prefWidth="189.0" text="ov1" />
-      <Label fx:id="labelFour" alignment="CENTER" layoutX="890.0" layoutY="395.0" prefHeight="27.0" prefWidth="189.0" text="ov4" />
-      <Label fx:id="labelTwo" alignment="CENTER" layoutX="400.0" layoutY="395.0" prefHeight="27.0" prefWidth="189.0" text="ov2" />
-      <Label fx:id="labelThree" alignment="CENTER" layoutX="890.0" layoutY="135.0" prefHeight="27.0" prefWidth="189.0" text="ov3" />
+      <Label fx:id="label0" alignment="CENTER" layoutX="400.0" layoutY="135.0" prefHeight="27.0" prefWidth="189.0" text="ov1" />
+      <Label fx:id="label3" alignment="CENTER" layoutX="890.0" layoutY="395.0" prefHeight="27.0" prefWidth="189.0" text="ov4" />
+      <Label fx:id="label2" alignment="CENTER" layoutX="400.0" layoutY="395.0" prefHeight="27.0" prefWidth="189.0" text="ov2" />
+      <Label fx:id="label1" alignment="CENTER" layoutX="890.0" layoutY="135.0" prefHeight="27.0" prefWidth="189.0" text="ov3" />
       <Label fx:id="infoText" alignment="CENTER" layoutX="250.0" layoutY="100.0" prefHeight="23.0" prefWidth="608.0" text="informasjon" textAlignment="RIGHT" textFill="#0b87a1">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
       <JFXComboBox fx:id="memberComboBox" focusColor="#4d4d4d00" layoutX="900.0" layoutY="100.0" onAction="#handleMemberComboBox" prefHeight="27.0" prefWidth="259.0" promptText="Liste over medlemmer" style="-fx-background-color: #e0e0e0;" unFocusColor="WHITE" />
-      <Label fx:id="programInfoTekst" alignment="CENTER" layoutX="250.0" layoutY="60.0" prefHeight="23.0" prefWidth="608.0" text="informasjon" textAlignment="RIGHT" textFill="#0b87a1">
+      <Label fx:id="programInfoText" alignment="CENTER" layoutX="250.0" layoutY="60.0" prefHeight="23.0" prefWidth="608.0" text="informasjon" textAlignment="RIGHT" textFill="#0b87a1">
          <font>
             <Font size="18.0" />
          </font>

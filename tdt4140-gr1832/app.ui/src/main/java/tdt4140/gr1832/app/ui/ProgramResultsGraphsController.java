@@ -5,6 +5,8 @@ import java.text.DecimalFormat;
 import java.text.ParseException;
 
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import com.jfoenix.controls.JFXButton;
@@ -30,6 +32,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import tdt4140.gr1832.app.core.ProgramResultsGraphsApp;
+import tdt4140.gr1832.app.core.ResultContainer;
 
 public class ProgramResultsGraphsController extends WindowController implements Initializable {
     
@@ -41,28 +44,35 @@ public class ProgramResultsGraphsController extends WindowController implements 
 	
 	@FXML Label infoText;
 	@FXML Label	programInfoText;
-	@FXML Label labelOne;
-	@FXML Label labelTwo;
-	@FXML Label labelThree;
-	@FXML Label labelFour;
+	
+	@FXML Label label0;
+	@FXML Label label1;
+	@FXML Label label2;
+	@FXML Label label3;
 	    
-	@FXML LineChart<String,Number> chartOne;
+	@FXML LineChart<String,Number> chart0;
 	@FXML CategoryAxis xAxisOne;
 	@FXML NumberAxis yAxisOne;
     
-	@FXML LineChart<String,Number> chartTwo;
+	@FXML LineChart<String,Number> chart1;
 	@FXML CategoryAxis xAxisTwo;
 	@FXML NumberAxis yAxisTwo;
     
-	@FXML LineChart<String,Number> chartThree;
+	@FXML LineChart<String,Number> chart2;
 	@FXML CategoryAxis xAxisThree;
 	@FXML NumberAxis yAxisThree;
     
-	@FXML LineChart<String,Number> chartFour;
+	@FXML LineChart<String,Number> chart3;
 	@FXML CategoryAxis xAxisFour;
 	@FXML NumberAxis yAxisFour;
      
 	ProgramResultsGraphsApp app = new ProgramResultsGraphsApp();
+	
+	private String exName;
+	private int exID;
+	private String programName;
+	private String userName;
+	
 	
     @FXML
     public void loadDialog(ActionEvent parentEvent) {
@@ -93,95 +103,229 @@ public class ProgramResultsGraphsController extends WindowController implements 
     @SuppressWarnings({ "unchecked", "rawtypes" })
 
     public void handleProgramComboBox(ActionEvent actionEvent) throws IOException, ParseException {
+    		
     	
+    		chart0.getData().clear();
+		chart1.getData().clear();
+		chart2.getData().clear();
+		chart3.getData().clear();
+		
+		
+		memberComboBox.getSelectionModel().clearSelection(); //FÅ ComboBox tilbake til default
+		
+    		
+		programName = programComboBox.getSelectionModel().getSelectedItem();
+		
+    		app.getExercisesOnAProgram(app.getProgramIDfromName(programName));
+    		
+    		
+    		exID = app.getExContainers().get(0).getExerciseID();
+		app.getResultsOfExercise(exID);
+    		
+		if (app.getResContainers() != null) {
+			
+			programInfoText.setText("Du ser informasjon til programmet " + programName + ". Se et annet: " );
+		
+			
+	    		for (int i = 0; i < app.getExContainers().size(); i++) {
+	    				
+	    			exName = app.getExContainers().get(i).getDescription();
+	    			exID = app.getExContainers().get(i).getExerciseID();
+	    			app.getResultsOfExercise(exID);
+	    				
+	    	        switch (i) {
+	    	        
+	    	            case 0: label0.setText(exName);
+	    	            			chart0.setOpacity(1);
+	    	            			
+	    	            			 XYChart.Series<String,Number> series0 = new XYChart.Series<>();
+	    	            			//FINNE ALLE RESULTATER TIL ØVELSEN, OG PLOTTE RESULTAT I Y OG DATO I X
+	    	            			for (int k = 0; k < app.getDates().size() ; k++) {
+	    	            				series0.getData().add(new XYChart.Data(app.getDates().get(k).substring(0,app.getDates().get(k).length()-6 ),app.getResults().get(k)));
+	    	            			}
+	    	            			
+	    	            			chart0.setCreateSymbols(false);
+	    	            			chart0.setAnimated(false);
+	    	            	        chart0.getData().add(series0);
+	    	            	      
+	    	            			break;
+	    	            			
+	    	            case 1: label1.setText(exName);
+	        					chart1.setOpacity(1);
+	        					
+	        					 XYChart.Series<String,Number> series1 = new XYChart.Series<>();
+	 	            			//FINNE ALLE RESULTATER TIL ØVELSEN, OG PLOTTE RESULTAT I Y OG DATO I X
+	 	            			for (int k = 0; k < app.getDates().size() ; k++) {
+	 	            				series1.getData().add(new XYChart.Data(app.getDates().get(k).substring(0,app.getDates().get(k).length()-6 ),app.getResults().get(k)));
+	 	            			}
+	 	            			
+	 	            			chart1.setCreateSymbols(false);
+	 	            			chart1.setAnimated(false);
+	 	            	        chart1.getData().add(series1);
+	    	                     break;
+	    	            case 2: label2.setText(exName);
+							chart2.setOpacity(1);
+							
+							 XYChart.Series<String,Number> series2 = new XYChart.Series<>();
+		            			//FINNE ALLE RESULTATER TIL ØVELSEN, OG PLOTTE RESULTAT I Y OG DATO I X
+		            			for (int k = 0; k < app.getDates().size() ; k++) {
+		            				series2.getData().add(new XYChart.Data(app.getDates().get(k).substring(0,app.getDates().get(k).length()-6 ),app.getResults().get(k)));
+		            			}
+		            			
+		            			chart2.setCreateSymbols(false);
+		            			chart2.setAnimated(false);
+		            	        chart2.getData().add(series2);
+							break;
+	    	            case 3: label3.setText(exName);
+							chart3.setOpacity(1);
+							
+							 XYChart.Series<String,Number> series3 = new XYChart.Series<>();
+		            			//FINNE ALLE RESULTATER TIL ØVELSEN, OG PLOTTE RESULTAT I Y OG DATO I X
+		            			for (int k = 0; k < app.getDates().size() ; k++) {
+		            				series3.getData().add(new XYChart.Data(app.getDates().get(k).substring(0,app.getDates().get(k).length()-6 ),app.getResults().get(k)));
+		            			}
+		            			
+		            			chart3.setCreateSymbols(false);
+		            			chart3.setAnimated(false);
+		            	        chart3.getData().add(series3);
+							break;
+				}
+	    		}
+		} else {
+			programInfoText.setText("Det finnes ikke resultater til programmet " + programName + ". Se et annet: " );
+			hidePageContent();
+	    	}
+		
+		//programComboBox.getSelectionModel().clearSelection(); //Få programComboBox tilbake til null
     }
+
     
     @SuppressWarnings({ "unchecked", "rawtypes" })
 
     public void handleMemberComboBox(ActionEvent actionEvent) throws IOException, ParseException {
     	// FYLL MED FUNKSJONALITET FRA DASHBOARDCONTROLLER
-
-    	String username = memberComboBox.getSelectionModel().getSelectedItem();
-	infoText.setText("Du ser " + username + "'s øvelseslogg. Se noen andre: " );
+    	
+    	String userName = memberComboBox.getSelectionModel().getSelectedItem();
+	
+	if (userName != null) {
 		
-	app.requestHealthInformation_ID(app.getIDfromName(username));
-	
-	if (app.getResult1() != null && app.getContainerUser().getShareExerciseData()) {
-	
-		chartOne.getData().clear();
-		chartTwo.getData().clear();
-		chartThree.getData().clear();
-		chartFour.getData().clear();
+		infoText.setText("Du sammenligner " + userName + "med snittet av resultater. Se noen andre: " );
 		
-	    XYChart.Series<String,Number> series = new XYChart.Series<>();
-	    XYChart.Series<String,Number> series2 = new XYChart.Series<>();
-	    XYChart.Series<String,Number> series3 = new XYChart.Series<>();
-	    XYChart.Series<String,Number> series4 = new XYChart.Series<>();
+		List<ResultContainer> resCons = new ArrayList<>();
+		
+		
+		app.requestUserInformation_ID(app.getIDfromName(userName));
+		int userID = Integer.parseInt(app.getIDfromName(userName));	
+		
+		
 	
-		for (int i = 0; i < app.getDates().size() ; i++) {
+    		
+    		
+	if (app.getContainerUser().getShareExerciseData()) {
+		
+		for (int i = 0; i < 4; i++) {
 			
-			//MERK: DET REFERERES TIL DUMMY-METODER I ttpeAPP, MÅ KOBLES TIL DATABASEN
-			series.getData().add(new XYChart.Data(app.getDates().get(i).substring(0,app.getDates().get(i).length()-6 ),app.getResult1().get(i)));
-			series2.getData().add(new XYChart.Data(app.getDates().get(i).substring(0,app.getDates().get(i).length()-6 ),app.getResult2().get(i)));
-			series3.getData().add(new XYChart.Data(app.getDates().get(i).substring(0,app.getDates().get(i).length()-6 ),app.getResult3().get(i)));
-			series4.getData().add(new XYChart.Data(app.getDates().get(i).substring(0,app.getDates().get(i).length()-6 ),app.getResult4().get(i)));
+		
+			exName = app.getExContainers().get(i).getDescription();
+			exID = app.getExContainers().get(i).getExerciseID();
+			resCons = app.getResultsOfExcerciseAndUser(exID, userID);
+			
+			
+			if (resCons !=  null) {
+				
+	    	        switch (i) {
+	    	        
+	    	            case 0: 	
+	    	            			label0.setText(exName);
+	    	            			chart0.setOpacity(1);
+	    	            			XYChart.Series<String,Number> userSeries0 = new XYChart.Series<>();
+	    	            			//FINNE ALLE RESULTATER TIL ØVELSEN, OG PLOTTE RESULTAT I Y OG DATO I X
+	    	            			for (int k = 0; k < app.getDatesFromList(resCons).size() ; k++) {
+	    	            				userSeries0.getData().add(new XYChart.Data(app.getDatesFromList(resCons).get(k).substring(0,app.getDatesFromList(resCons).get(k).length()-6 ),app.getResultsFromList(resCons).get(k)));
+	    	            			}
+	    	            			
+	    	            			chart0.setCreateSymbols(false);
+	    	            			chart0.setAnimated(false);
+	    	            	        chart0.getData().add(userSeries0);
+	    	            			break;
+	    	            case 1: 	
+	            			label1.setText(exName);
+	            			chart1.setOpacity(1);
+	            			XYChart.Series<String,Number> userSeries1 = new XYChart.Series<>();
+	            			//FINNE ALLE RESULTATER TIL ØVELSEN, OG PLOTTE RESULTAT I Y OG DATO I X
+	            			for (int k = 0; k < app.getDatesFromList(resCons).size() ; k++) {
+	            				userSeries1.getData().add(new XYChart.Data(app.getDatesFromList(resCons).get(k).substring(0,app.getDatesFromList(resCons).get(k).length()-6 ),app.getResultsFromList(resCons).get(k)));
+	            			}
+	            			
+	            			chart1.setCreateSymbols(false);
+	            			chart1.setAnimated(false);
+	            	        chart1.getData().add(userSeries1);
+	            			break;
+	            			
+	    	            case 2: 	
+	            			label2.setText(exName);
+	            			chart2.setOpacity(1);
+	            			XYChart.Series<String,Number> userSeries2 = new XYChart.Series<>();
+	            			//FINNE ALLE RESULTATER TIL ØVELSEN, OG PLOTTE RESULTAT I Y OG DATO I X
+	            			for (int k = 0; k < app.getDatesFromList(resCons).size() ; k++) {
+	            				userSeries2.getData().add(new XYChart.Data(app.getDatesFromList(resCons).get(k).substring(0,app.getDatesFromList(resCons).get(k).length()-6 ),app.getResultsFromList(resCons).get(k)));
+	            			}
+	            			
+	            			chart2.setCreateSymbols(false);
+	            			chart2.setAnimated(false);
+	            	        chart2.getData().add(userSeries2);
+	            			break;
+	            			
+	    	            case 3: 	
+	            			label3.setText(exName);
+	            			chart3.setOpacity(1);
+	            			XYChart.Series<String,Number> userSeries3 = new XYChart.Series<>();
+	            			//FINNE ALLE RESULTATER TIL ØVELSEN, OG PLOTTE RESULTAT I Y OG DATO I X
+	            			for (int k = 0; k < app.getDatesFromList(resCons).size() ; k++) {
+	            				userSeries3.getData().add(new XYChart.Data(app.getDatesFromList(resCons).get(k).substring(0,app.getDatesFromList(resCons).get(k).length()-6 ),app.getResultsFromList(resCons).get(k)));
+	            			}
+	            			
+	            			chart3.setCreateSymbols(false);
+	            			chart3.setAnimated(false);
+	            	        chart3.getData().add(userSeries3);
+	            			break;
+	    	            			
+
+	    	        		}
+				} else {
+					infoText.setText("Brukeren har ikke ført resultater i programmet " + programName + ". Se et annet: " );
+				}
+			}
+		
+				
+		} else {
+			infoText.setText("Brukeren har valgt å ikke vise info, se en annen: ");
 		}
-		
-		chartOne.setOpacity(1);
-		chartTwo.setOpacity(1);
-		chartThree.setOpacity(1);
-		chartFour.setOpacity(1);
-		
-		labelOne.setText("temp: Biceps");
-		labelTwo.setText("temp: Triceps");
-		labelThree.setText("temp: Qatroceps");
-		labelFour.setText("temp: Sinkoceps");
-		
-		chartOne.setCreateSymbols(false);
-		chartOne.setAnimated(false);
-        chartOne.getData().add(series);
-        
-        chartTwo.setCreateSymbols(false);
-        chartTwo.setAnimated(false);
-        chartTwo.getData().add(series2);
-        
-        chartThree.setCreateSymbols(false);
-        chartThree.setAnimated(false);
-        chartThree.getData().add(series3);
-        
-        chartFour.setCreateSymbols(false);
-        chartFour.setAnimated(false);
-        chartFour.getData().add(series4);
-
-	
-	} else if(!(app.getContainerUser().getShareExerciseData())) {
-		infoText.setText(username + " har valgt å ikke vise sin data, velg en ny venn: ");
-		hidePageContent();
-
 	} else {
-		infoText.setText(username + " har ikke registrert helsedata, velg en ny venn: ");
-		hidePageContent();
+		//Do not perform any action
 	}
+	
 		
-	}
-    
+}
+	
+
     //HJELPEMETODE
     private void hidePageContent() {
     	
-    		chartOne.setLegendVisible(false);
-		chartTwo.setLegendVisible(false);
-		chartThree.setLegendVisible(false);
-		chartFour.setLegendVisible(false);
+    		chart0.setLegendVisible(false);
+		chart1.setLegendVisible(false);
+		chart2.setLegendVisible(false);
+		chart3.setLegendVisible(false);
 		
-		chartOne.setOpacity(0);
-		chartTwo.setOpacity(0);
-		chartThree.setOpacity(0);
-		chartFour.setOpacity(0);
+		chart0.setOpacity(0);
+		chart1.setOpacity(0);
+		chart2.setOpacity(0);
+		chart3.setOpacity(0);
 		
-		labelOne.setText("");
-		labelTwo.setText("");
-		labelThree.setText("");
-		labelFour.setText("");
+		label0.setText("");
+		label1.setText("");
+		label2.setText("");
+		label3.setText("");
     }
     
 	@Override
@@ -191,14 +335,18 @@ public class ProgramResultsGraphsController extends WindowController implements 
 		infoText.setText("Velg en venn for å visualisere informasjon:");
 		programInfoText.setText("Velg en venn for å visualisere informasjon:");
 		
-		app.requestAllUserID();
-		
 		ObservableList<String> names = FXCollections.observableArrayList();
 		for (String name : app.getNames()) {
 			names.add(name);
 		}
 		
+		ObservableList<String> programs = FXCollections.observableArrayList();
+		for (String program : app.getNamesOfPrograms()) {
+			programs.add(program);
+		}
+
 		memberComboBox.setItems(names);
+		programComboBox.setItems(programs);
 		
 	}
     

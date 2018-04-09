@@ -19,6 +19,7 @@ public class ShowExerciseDataContainerFromProgram {
 		this.resultParameter = resultParameter;
 		this.description = description;
 	}
+	
 	public int getResultID() {
 		return resultID;
 	}
