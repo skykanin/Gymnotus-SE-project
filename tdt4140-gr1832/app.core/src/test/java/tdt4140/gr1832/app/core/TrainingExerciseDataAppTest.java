@@ -31,11 +31,11 @@ public class TrainingExerciseDataAppTest {
 		helpApp = new TrainerMemberInfoApp();
 		helpApp.setContainerUser(new ShowUserInfoContainer("Brukernavn", "passord", "navn", 22, 0, "email","1234", false, true, true, false));
 		testApp.setMemberApp(helpApp);
-		exerciseContainer1 = new ShowExerciseDataContainerFromProgram(11, 1, "Beskrivelse1", 1, "Mar 1, 2018", 111);
-		exerciseContainer2 = new ShowExerciseDataContainerFromProgram(2, 1, "Beskrivelse2", 2, "Mar 1, 2018", 22);
+		exerciseContainer1 = new ShowExerciseDataContainerFromProgram(11, 1, "Beskrivelse1", 1, "Mar 01, 2018", 111);
+		exerciseContainer2 = new ShowExerciseDataContainerFromProgram(2, 1, "Beskrivelse2", 2, "Mar 01, 2018", 22);
 		exerciseContainer3 = new ShowExerciseDataContainerFromProgram(3, 1, "Beskrivelse3", 3, "Mar 11, 2018", 33);
 		exerciseContainer4 = new ShowExerciseDataContainerFromProgram(4, 1, "Beskrivelse4", 4, "Mar 14, 2018", 44);
-		healthContainer1 = new ShowHealthInfoContainer(4, 1, "Mar 1, 2018", 1111, 11, 111, 181, 81, false, true, true);
+		healthContainer1 = new ShowHealthInfoContainer(4, 1, "Mar 01, 2018", 1111, 11, 111, 181, 81, false, true, true);
 		healthContainer2 = new ShowHealthInfoContainer(5, 1, "Mar 04, 2018", 2222, 22, 222, 182, 82, false, true, true);
 		healthContainer3 = new ShowHealthInfoContainer(6, 1, "Mar 11, 2018", 3333, 33, 333, 183, 83, false, true, true);
 		testApp.addContainerExerciseList(exerciseContainer1);
@@ -62,7 +62,7 @@ public class TrainingExerciseDataAppTest {
 		Assert.assertEquals("33", testApp.getSteps(2));
 		Assert.assertEquals("333", testApp.getRestingHR(2));
 		Assert.assertEquals("83", testApp.getWeight(2));
-		Assert.assertEquals(Arrays.asList("Mar 1, 2018","Mar 04, 2018","Mar 11, 2018","Mar 14, 2018"),testApp.getDates());
+		Assert.assertEquals(Arrays.asList("Mar 01, 2018","Mar 04, 2018","Mar 11, 2018","Mar 14, 2018"),testApp.getDates());
 		Assert.assertEquals("Ikke spesifisert", testApp.getSteps(3));
 		Assert.assertEquals("Ikke spesifisert", testApp.getRestingHR(3));
 		Assert.assertEquals("Ikke spesifisert", testApp.getWeight(3));
@@ -71,7 +71,7 @@ public class TrainingExerciseDataAppTest {
 	
 	@Test
 	public void testGetExercisesAndResultsAndMakeResults() {
-		Assert.assertEquals("Mar 1, 2018", testApp.getDate(0));
+		Assert.assertEquals("Mar 01, 2018", testApp.getDate(0));
 		Assert.assertEquals("Mar 04, 2018", testApp.getDate(1));
 		Assert.assertEquals("Mar 11, 2018", testApp.getDate(2));
 		Assert.assertEquals("Mar 14, 2018", testApp.getDate(3));
@@ -122,7 +122,7 @@ public class TrainingExerciseDataAppTest {
 	
 	@Test
 	public void testExerciseContainer() {
-		Assert.assertEquals("Mar 1, 2018", exerciseContainer1.getDate());
+		Assert.assertEquals("Mar 01, 2018", exerciseContainer1.getDate());
 		Assert.assertEquals(1, exerciseContainer1.getExerciseID());
 		Assert.assertEquals("Beskrivelse1", exerciseContainer1.getExerciseName());
 		Assert.assertEquals(11, exerciseContainer1.getResultID());
