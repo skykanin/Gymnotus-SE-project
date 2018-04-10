@@ -26,15 +26,9 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
-import javafx.stage.Stage;
 import javafx.util.Callback;
 import javafx.util.StringConverter;
-import tdt4140.gr1832.app.core.ExerciseProgramContainer;
-import tdt4140.gr1832.app.core.ShowExerciseDataContainerFromProgram;
 import tdt4140.gr1832.app.core.ShowUserInfoContainer;
-import tdt4140.gr1832.app.core.TrainerDashboardApp;
-import tdt4140.gr1832.app.core.TrainerMemberInfoApp;
-import tdt4140.gr1832.app.core.TrainerTrainingProgramOverviewApp;
 import tdt4140.gr1832.app.core.TrainingExerciseDataApp;
 
 public class TrainerTrainingProgramAttendantsController extends WindowController {
@@ -147,6 +141,7 @@ public class TrainerTrainingProgramAttendantsController extends WindowController
 		o3Label.setText("");
 		o4Label.setText("");
 		eDataApp = new TrainingExerciseDataApp();
+		eDataApp.TrainingExerciseDataAppSetup();
 		program.setText(eDataApp.getProgram(programCounter).getName());
 		datePickerField.setPromptText("Ingen medlem valgt");
 		

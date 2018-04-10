@@ -57,7 +57,7 @@ public class TrainingExerciseDataApp {
 	
 	
 	
-	public TrainingExerciseDataApp() {
+	public void  TrainingExerciseDataAppSetup() {
 		programApp.requestExerciseProgramInformation();
 		int counter = 0;
 		while (counter < programApp.getContainerExcerciseProgramLength()) {
@@ -148,7 +148,7 @@ public class TrainingExerciseDataApp {
 			counter++;
 		}
 		
-		sortedResultMap = new TreeMap<>(new dateComparator());
+		sortedResultMap = new TreeMap<>(new InfoDateComparator());
 		sortedResultMap.putAll(resultMap);
 		availableDates.addAll(sortedResultMap.keySet());		
 	}
@@ -161,11 +161,17 @@ public class TrainingExerciseDataApp {
 	}
 	
 	public String getAge() {
-		return trainerMemberInfoApp.getAge();
+		return "" + user.getAge();
 	}
 	
 	public String getGender() {
-		return trainerMemberInfoApp.getGender();
+		if (user.getGender() == 0) {
+			return "Mann";
+		} else if(user.getGender() == 1 ){
+			return "Kvinne";
+		} else {
+			return "Ikke spesifisert";
+		}
 	}
 	
 	public String getSteps(int i) {
@@ -202,7 +208,9 @@ public class TrainingExerciseDataApp {
 	}
 	
 	public boolean userIsSharingExerciseData() {
-		return user.getShareExerciseData();
+		if (user!= null) {
+			return user.getShareExerciseData();
+		} return false;
 	}
 	
 	public void getExercises(int i) {
@@ -275,7 +283,10 @@ public class TrainingExerciseDataApp {
 	}
 
 	public List<ShowUserInfoContainer> getUsersInProgram(int i) {
-		return usersInPrograms.get(i);
+		if (i < usersInPrograms.size()) {
+			return usersInPrograms.get(i);
+		}
+		return null;
 	}
 	
 	public ExerciseProgramContainer getProgram(int index) {
@@ -299,16 +310,27 @@ public class TrainingExerciseDataApp {
 
 	//Helpmethods for tests
 	
-	public void addContainerHealthList(ShowHealthInfoContainer hContainer) {
-		healthList.add(hContainer);
+	public void addContainerHealthList(List<ShowHealthInfoContainer> hContainers) {
+		healthList.addAll(hContainers);
 	}
 	
-	public void addContainerExerciseList(ShowExerciseDataContainerFromProgram eContainer) {
-		resultList.add(eContainer);
+	public void addContainerExerciseList(List <ShowExerciseDataContainerFromProgram> eContainers) {
+		resultList.addAll(eContainers);
 	}
 	
-	public void setMemberApp(TrainerMemberInfoApp app) {
-		this.trainerMemberInfoApp = app;
+	public void addUsersInProgram(List<ShowUserInfoContainer> cList) {
+		usersInPrograms.add(cList);
 	}
 	
+	public void setUser(ShowUserInfoContainer container) {
+		this.user = container;
+	}
+	
+	public void addPrograms(List<ExerciseProgramContainer> programs) {
+		this.programs.addAll(programs);
+	}
+	
+	public int getResultMapSize() {
+		return sortedResultMap.size();
+	}
 }
