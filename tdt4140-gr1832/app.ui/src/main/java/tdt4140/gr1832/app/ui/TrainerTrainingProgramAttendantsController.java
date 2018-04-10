@@ -141,6 +141,7 @@ public class TrainerTrainingProgramAttendantsController extends WindowController
 		o3Label.setText("");
 		o4Label.setText("");
 		eDataApp = new TrainingExerciseDataApp();
+		eDataApp.TrainingExerciseDataAppSetup();
 		program.setText(eDataApp.getProgram(programCounter).getName());
 		datePickerField.setPromptText("Ingen medlem valgt");
 		
@@ -153,7 +154,6 @@ public class TrainerTrainingProgramAttendantsController extends WindowController
 		if(names.size() <1) {
 			names.add("Ingen medlemmer pameldt");
 			memberComboBox.setItems(names);
-			setDisableField(true);
 		} else {
 			memberComboBox.setItems(names);			
 		}
@@ -207,7 +207,7 @@ public class TrainerTrainingProgramAttendantsController extends WindowController
 	
 	@FXML
 	public void handleMemberComboBox() {
-		String name = memberComboBox.getSelectionModel().getSelectedItem();
+String name = memberComboBox.getSelectionModel().getSelectedItem();
 		
 		if (!"Ingen medlemmer pameldt".equals(name)){
 			int userID = -1; 
@@ -283,9 +283,8 @@ public class TrainerTrainingProgramAttendantsController extends WindowController
 					o4Label.setText(eDataApp.getExercise4());
 					result4Field.setText(eDataApp.getResult4());
 				}
+			}
 		}
-		}
-		
 	}
 
 	public void updateProgram() {
@@ -322,7 +321,6 @@ public class TrainerTrainingProgramAttendantsController extends WindowController
 		} else {
 			memberComboBox.setItems(names);			
 		}
-		
 	}
 
 	@FXML
