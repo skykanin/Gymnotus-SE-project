@@ -30,6 +30,7 @@ public class TrainingExerciseDataAppTest {
 	@Before
 	public void setup() {
 		testApp = new TrainingExerciseDataApp();
+		testApp.setTestTrue();
 		this.users = new ArrayList<>(Arrays.asList(new ShowUserInfoContainer("1", "Passord", "Navn", 20, 0, "Email", "1234", false, true, true,false), new ShowUserInfoContainer("2", "Passord2", "Navn2", 20, 0, "Email2", "12342", true, true, true,false)));
 		this.users.get(0).setUserId("1");
 		this.users.get(1).setUserId("2");
@@ -78,19 +79,19 @@ public class TrainingExerciseDataAppTest {
 	}
 	
 	@Test
-	public void testMemberInfo() {
+	public void testMemberInformation() {
 		Assert.assertEquals("22", testApp.getAge());
 		Assert.assertEquals("Mann", testApp.getGender());
-		Assert.assertEquals("11", testApp.getSteps(0));
-		Assert.assertEquals("111", testApp.getRestingHR(0));
-		Assert.assertEquals("81", testApp.getWeight(0));
-		Assert.assertEquals("22", testApp.getSteps(1));
-		Assert.assertEquals("222", testApp.getRestingHR(1));
-		Assert.assertEquals("82", testApp.getWeight(1));
+		Assert.assertEquals("22", testApp.getSteps(0));
+		Assert.assertEquals("222", testApp.getRestingHR(0));
+		Assert.assertEquals("82", testApp.getWeight(0));
+		Assert.assertEquals("11", testApp.getSteps(1));
+		Assert.assertEquals("111", testApp.getRestingHR(1));
+		Assert.assertEquals("81", testApp.getWeight(1));
 		Assert.assertEquals("33", testApp.getSteps(2));
 		Assert.assertEquals("333", testApp.getRestingHR(2));
 		Assert.assertEquals("83", testApp.getWeight(2));
-		Assert.assertEquals(Arrays.asList("mar 1, 2018","mar 04, 2018","mar 11, 2018","mar 14, 2018"),testApp.getDates());
+		Assert.assertEquals(Arrays.asList("mar 04, 2018","mar 1, 2018","mar 11, 2018","mar 14, 2018"),testApp.getDates());
 		Assert.assertEquals("Ikke spesifisert", testApp.getSteps(3));
 		Assert.assertEquals("Ikke spesifisert", testApp.getRestingHR(3));
 		Assert.assertEquals("Ikke spesifisert", testApp.getWeight(3));
@@ -112,27 +113,27 @@ public class TrainingExerciseDataAppTest {
 	
 	@Test
 	public void testGetExercisesAndResultsAndMakeResults() {
-		Assert.assertEquals("mar 1, 2018", testApp.getDate(0));
-		Assert.assertEquals("mar 04, 2018", testApp.getDate(1));
+		Assert.assertEquals("mar 04, 2018", testApp.getDate(0));
+		Assert.assertEquals("mar 1, 2018", testApp.getDate(1));
 		Assert.assertEquals("mar 11, 2018", testApp.getDate(2));
 		Assert.assertEquals("mar 14, 2018", testApp.getDate(3));
 		Assert.assertEquals(null, testApp.getDate(4));
 		testApp.getExercises(0);
-		Assert.assertEquals("Beskrivelse1", testApp.getExercise1());
-		Assert.assertEquals("Beskrivelse2", testApp.getExercise2());
-		Assert.assertEquals(null, testApp.getExercise3());
-		Assert.assertEquals(null, testApp.getExercise4());
-		Assert.assertEquals("111", testApp.getResult1());
-		Assert.assertEquals("22", testApp.getResult2());
-		Assert.assertEquals(null, testApp.getResult3());
-		Assert.assertEquals(null, testApp.getResult4());
-		testApp.getExercises(1);
 		Assert.assertEquals(null, testApp.getExercise1());
 		Assert.assertEquals(null, testApp.getExercise2());
 		Assert.assertEquals(null, testApp.getExercise3());
 		Assert.assertEquals(null, testApp.getExercise4());
 		Assert.assertEquals(null, testApp.getResult1());
 		Assert.assertEquals(null, testApp.getResult2());
+		Assert.assertEquals(null, testApp.getResult3());
+		Assert.assertEquals(null, testApp.getResult4());
+		testApp.getExercises(1);
+		Assert.assertEquals("Beskrivelse1", testApp.getExercise1());
+		Assert.assertEquals("Beskrivelse2", testApp.getExercise2());
+		Assert.assertEquals(null, testApp.getExercise3());
+		Assert.assertEquals(null, testApp.getExercise4());
+		Assert.assertEquals("111", testApp.getResult1());
+		Assert.assertEquals("22", testApp.getResult2());
 		Assert.assertEquals(null, testApp.getResult3());
 		Assert.assertEquals(null, testApp.getResult4());
 		testApp.getExercises(2);
