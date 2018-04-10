@@ -100,7 +100,7 @@ public class ResultDAO {
 	@Path("/get_results_by_user_and_exercise")
 	public String getResultsByUserExercise(@QueryParam("user_id") Integer userID, 
 										  @QueryParam("exercise_id") Integer exerciseID) {
-		String query = "select * from Result where resultID=" + Integer.toString(exerciseID) +
+		String query = "select * from Result where exerciseID=" + Integer.toString(exerciseID) +
 						" and userID=" + Integer.toString(userID);
 		String json = createResultListJson(query);
 		return json;
