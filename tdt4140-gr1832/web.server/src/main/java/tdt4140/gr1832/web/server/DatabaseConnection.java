@@ -45,30 +45,6 @@ public class DatabaseConnection {
 			}
 		}
 	}
-
-   public static void reconnectToDB() {
-	try{
-	    conn.close();
-	}
-	catch (Exception e) {
-	    e.printStackTrace();
-	}
-	System.out.println("Reconnecting to DB...");
-	try {
-	    Class.forName("com.mysql.jdbc.Driver");
-	    conn = DriverManager.getConnection(URL, username, password);
-	    Statement stmt = conn.createStatement();
-	  
-	    String sql = "SELECT * FROM User";
-	    stmt.executeQuery(sql);
-	   
-	    System.out.println("Successfully executed a test query.");
-	  } 
-	  catch (Exception e) {
-	     e.printStackTrace();
-	  }
-    }
-
    
    public static void connectToDB() {
 	   Scanner scanner = null;

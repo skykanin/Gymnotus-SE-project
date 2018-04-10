@@ -19,6 +19,9 @@ public class UserTest {
 		user.setPhone("123");
 		user.setName("test");
 		user.setIsTrainer(true);
+		user.setIsAnonymous(true);
+		user.setShareExerciseData(true);
+		user.setShareHealthData(true);
 	}
 	
 	@Test
@@ -31,5 +34,8 @@ public class UserTest {
 		Assert.assertEquals("123", user.getPhone());
 		Assert.assertEquals("test", user.getName());
 		Assert.assertEquals(true, user.getIsTrainer());
+		Assert.assertEquals(true, user.getIsAnonymous());
+		Assert.assertEquals(true, user.getShareExerciseData());
+		Assert.assertEquals(true, user.getShareHealthData());
 	}
 }

@@ -82,6 +82,14 @@ public class HealthReportDAOTest {
     		return false;
     }
     
+    @Test 
+    public void testCreateFalseHealthData() {
+    		Response response = healthDAO.createHealthData(null, null, null, null, null, null, null);
+    		Assert.assertEquals(400, response.getStatus());
+    		Response response2 = healthDAO.createHealthData(10, "2018-01-01", 1, 1, 1, 1, 1);
+    		Assert.assertEquals(400, response2.getStatus());
+    }
+    
     @Test
     public void testGetAllReports() {
     		String json = HealthDataReportDAO.getAllHealthDataReports();

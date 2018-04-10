@@ -21,21 +21,24 @@ import org.eclipse.jetty.util.ssl.SslContextFactory;
 import org.glassfish.jersey.servlet.ServletContainer;
 
 public class ServerThread {
-	public static short HTTPS_PORT = 8443;
-	public static short HTTP_PORT = 8080;
+	public static final short HTTPS_PORT = 8443;
+	public static final short HTTP_PORT = 8080;
 	private static final String KEYSTORE_PATH = ServerThread.class.getClassLoader().getResource("keystore.jks").toExternalForm();
 
 	private static final String KEYSTORE_MANAGER_PASSWORD = "pugruppe32";
 	private static final String KEYSTORE_PASSWORD = "pugruppe32";
-
 	
-	private final Server server;
+	private Server server = null;
 	
-	ServerThread(Server server) {
+	public Server getServer() {
+		return server;
+	}
+	
+	public ServerThread(Server server) {
 		this.server = server;
 	}
-
-    public static ServerThread start() {
+	
+    public static ServerThread start(Boolean doConnect) {
         Server server = new Server();
         
         ServerConnector connector = new ServerConnector(server);
@@ -71,24 +74,26 @@ public class ServerThread {
         							"tdt4140.gr1832.web.dao");
         System.out.println("[INFO] Spawning server on port: " + HTTP_PORT);
         System.out.println("[INFO] Spawning secure server on port: " + HTTPS_PORT);
-
-        try {
-            server.start();
-            server.join();
-        } 
-        catch (Exception ex) {
-            Logger.getLogger(ServerThread.class.getName()).log(Level.SEVERE, null, ex);
-	    try(Writer w = new FileWriter("file.log", true)) {
-		ex.printStackTrace(new PrintWriter(new BufferedWriter(w)));
-		ex.printStackTrace();
-	    }
-	    catch (Exception e) {
-		e.printStackTrace();
-	    }
-	    System.out.println("[INFO] ERROR date: " + (new java.util.Date()));
-        } 
-        finally {
-            server.destroy();
+	
+        if(doConnect) {
+	        try {
+	            server.start();
+	            server.join();
+	        } 
+	        catch (Exception ex) {
+	            Logger.getLogger(ServerThread.class.getName()).log(Level.SEVERE, null, ex);
+		    try(Writer w = new FileWriter("file.log", true)) {
+			ex.printStackTrace(new PrintWriter(new BufferedWriter(w)));
+			ex.printStackTrace();
+		    }
+		    catch (Exception e) {
+			e.printStackTrace();
+		    }
+		    System.out.println("[INFO] ERROR date: " + (new java.util.Date()));
+	        } 
+	        finally {
+	            server.destroy();
+	        }
         }
         
         return new ServerThread(server);
@@ -107,7 +112,7 @@ public class ServerThread {
     public static void main(String[] args) throws InterruptedException, IOException {
     	java.util.Date start = new java.util.Date();
 	DatabaseConnection.connectToDB();
-        start();
+        start(true);
     	java.util.Date end = new java.util.Date();
 
 	System.out.println("[INFO] Start date: " + start);
