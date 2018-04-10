@@ -24,12 +24,10 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 public class TrainingExerciseDataApp {
+	
+	private boolean test = true;
 
-	private String baseURI = "http://146.185.153.244:8080/api/";
-	
-	private int currentprogramID;
-	
-	private int currentuserID;
+	public final String baseURI = "http://146.185.153.244:8080/api/";
 	
 	private ShowUserInfoContainer user;
 	
@@ -96,9 +94,6 @@ public class TrainingExerciseDataApp {
 	}
 	
 	public void requestHealthExerciseDataByProgramUserID(int programID, int userID){
-		this.currentprogramID = programID;
-		this.currentuserID = userID;
-		
 		//request user information
 		trainerMemberInfoApp.requestUserInformation_ID(Integer.toString(userID));
 		user = trainerMemberInfoApp.getContainerUser();
@@ -155,7 +150,7 @@ public class TrainingExerciseDataApp {
 			counter++;
 		}
 		
-		sortedResultMap = new TreeMap<>(new dateComparator());
+		sortedResultMap = new TreeMap<>(new InfoDateComparator());
 		sortedResultMap.putAll(resultMap);
 		availableDates.addAll(sortedResultMap.keySet());		
 	}
@@ -252,28 +247,28 @@ public class TrainingExerciseDataApp {
 		return null;
 	}
 	
-	public String getResult1(int i) {
+	public String getResult1() {
 		if(returnList.size() > 0) {
 			return returnList.get(0).get(1);
 		}
 		return null;
 	}
 	
-	public String getResult2(int i) {
+	public String getResult2() {
 		if(returnList.size() > 1) {
 			return returnList.get(1).get(1);
 		}
 		return null;
 	}
 	
-	public String getResult3(int i) {
+	public String getResult3() {
 		if(returnList.size() > 2) {
 			return returnList.get(2).get(1);
 		}
 		return null;
 	}
 	
-	public String getResult4(int i) {
+	public String getResult4() {
 		if(returnList.size() > 3) {
 			return returnList.get(3).get(1);
 		}

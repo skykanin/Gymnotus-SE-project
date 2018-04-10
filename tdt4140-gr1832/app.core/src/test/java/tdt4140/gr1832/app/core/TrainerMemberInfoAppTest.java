@@ -29,7 +29,7 @@ public class TrainerMemberInfoAppTest extends TestCase {
 		showUserInfoContainer1 = new ShowUserInfoContainer("brukernavn", "passord", "navn",11, 1, "email", "telefon", false, true, true, false);
 		showUserInfoContainer2 = new ShowUserInfoContainer("brukernavn", "passord", "navn",11, 2, "email", "telefon", false, true, true, false);
 		showHealthInfoContainer = new ShowHealthInfoContainer(123, 007, "Mar, 2018", 85, 100, 60, 181, 80, false, true, true);
-		testapp.setContianerUser(showUserInfoContainer);
+		testapp.setContainerUser(showUserInfoContainer);
 	}
 	@Test
 	public void testShowAllUserInfoContainerAdd() {
@@ -40,6 +40,7 @@ public class TrainerMemberInfoAppTest extends TestCase {
 	
 	@Test
 	public void testTrainerMemberInfoGetters() {
+		Assert.assertEquals(showUserInfoContainer, testapp.getContainerUser());
 		testapp.addContainerHealth(showHealthInfoContainer);
 		showUserInfoContainer.setUserId("007");
 		testapp.setAllUsersContainer(showAllUserContainer);
@@ -57,9 +58,9 @@ public class TrainerMemberInfoAppTest extends TestCase {
 		Assert.assertEquals("80", testapp.getWeight());
 		Assert.assertEquals("Mar, 2018",testapp.getDate());
 		Assert.assertEquals(Arrays.asList("navn"), testapp.getNames());
-		testapp.setContianerUser(showUserInfoContainer1);
+		testapp.setContainerUser(showUserInfoContainer1);
 		Assert.assertEquals("Kvinne", testapp.getGender());
-		testapp.setContianerUser(showUserInfoContainer2);
+		testapp.setContainerUser(showUserInfoContainer2);
 		Assert.assertEquals("Uspesifisert", testapp.getGender());
 		Assert.assertEquals("1", testapp.getIDfromName("feil"));
 		Assert.assertEquals(Arrays.asList(showHealthInfoContainer),testapp.getContainerHealth());
@@ -238,6 +239,7 @@ public class TrainerMemberInfoAppTest extends TestCase {
 		Assert.assertTrue("Ikke spesifisert".equals(testapp.checkNull("null")));
 		Assert.assertFalse("Ikke spesifisert".equals(testapp.checkNull("12")));
 	}
+
 	
 	
 }

@@ -26,15 +26,9 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
-import javafx.stage.Stage;
 import javafx.util.Callback;
 import javafx.util.StringConverter;
-import tdt4140.gr1832.app.core.ExerciseProgramContainer;
-import tdt4140.gr1832.app.core.ShowExerciseDataContainerFromProgram;
 import tdt4140.gr1832.app.core.ShowUserInfoContainer;
-import tdt4140.gr1832.app.core.TrainerDashboardApp;
-import tdt4140.gr1832.app.core.TrainerMemberInfoApp;
-import tdt4140.gr1832.app.core.TrainerTrainingProgramOverviewApp;
 import tdt4140.gr1832.app.core.TrainingExerciseDataApp;
 
 public class TrainerTrainingProgramAttendantsController extends WindowController {
@@ -281,13 +275,13 @@ public class TrainerTrainingProgramAttendantsController extends WindowController
 					setFieldVisibility(true);
 					messageLabel.setText("");
 					o1Label.setText(eDataApp.getExercise1());
-					result1Field.setText(eDataApp.getResult1(dayCounter));
+					result1Field.setText(eDataApp.getResult1());
 					o2Label.setText(eDataApp.getExercise2());
-					result2Field.setText(eDataApp.getResult2(dayCounter));
+					result2Field.setText(eDataApp.getResult2());
 					o3Label.setText(eDataApp.getExercise3());
-					result3Field.setText(eDataApp.getResult3(dayCounter));
+					result3Field.setText(eDataApp.getResult3());
 					o4Label.setText(eDataApp.getExercise4());
-					result4Field.setText(eDataApp.getResult4(dayCounter));
+					result4Field.setText(eDataApp.getResult4());
 				}
 		}
 		}
