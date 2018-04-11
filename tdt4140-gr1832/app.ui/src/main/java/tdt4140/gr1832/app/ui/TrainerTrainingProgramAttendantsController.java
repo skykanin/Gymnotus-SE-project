@@ -120,9 +120,7 @@ public class TrainerTrainingProgramAttendantsController extends WindowController
 	
 	@FXML
 	DatePicker datePickerField; 
-	
-	private int programCounter = 0;
-	
+		
 	private int dayCounter = 0;
 	
 	String pattern = "LLL dd, yyyy";
@@ -142,13 +140,13 @@ public class TrainerTrainingProgramAttendantsController extends WindowController
 		o4Label.setText("");
 		eDataApp = new TrainingExerciseDataApp();
 		eDataApp.TrainingExerciseDataAppSetup();
-		program.setText(eDataApp.getProgram(programCounter).getName());
+		program.setText(eDataApp.getProgram(AS.getProgramCounter()).getName());
 		datePickerField.setPromptText("Ingen medlem valgt");
 		
 		
 		ObservableList<String> names = FXCollections.observableArrayList();
 		
-		for (ShowUserInfoContainer userContainer : eDataApp.getUsersInProgram(programCounter)) {
+		for (ShowUserInfoContainer userContainer : eDataApp.getUsersInProgram(AS.getProgramCounter())) {
 			names.add(userContainer.getName());
 		}
 		if(names.size() <1) {
@@ -211,13 +209,13 @@ String name = memberComboBox.getSelectionModel().getSelectedItem();
 		
 		if (!"Ingen medlemmer pameldt".equals(name)){
 			int userID = -1; 
-			for (ShowUserInfoContainer userContainer : eDataApp.getUsersInProgram(programCounter)) {
+			for (ShowUserInfoContainer userContainer : eDataApp.getUsersInProgram(AS.getProgramCounter())) {
 				if (name != null && name.equals(userContainer.getName())){
 					userID = Integer.parseInt(userContainer.getUserID());
 				}
 			}
 			if (userID != -1) {
-				eDataApp.requestHealthExerciseDataByProgramUserID(eDataApp.getProgram(programCounter).getProgramID(), userID);
+				eDataApp.requestHealthExerciseDataByProgramUserID(eDataApp.getProgram(AS.getProgramCounter()).getProgramID(), userID);
 			}
 			if (eDataApp.getDates().size() > 0) {
 				setDisableField(false);
@@ -289,7 +287,7 @@ String name = memberComboBox.getSelectionModel().getSelectedItem();
 
 	public void updateProgram() {
 		memberComboBox.setPromptText("Velg medlem...");
-		program.setText(eDataApp.getProgram(programCounter).getName());
+		program.setText(eDataApp.getProgram(AS.getProgramCounter()).getName());
 		datePickerField.setPromptText("Ingen medlem valgt");
 		setDisableField(true);
 		setHealthFieldVisibility(false);
@@ -312,7 +310,7 @@ String name = memberComboBox.getSelectionModel().getSelectedItem();
 		
 		ObservableList<String> names = FXCollections.observableArrayList();
 		
-		for (ShowUserInfoContainer userContainer : eDataApp.getUsersInProgram(programCounter)) {
+		for (ShowUserInfoContainer userContainer : eDataApp.getUsersInProgram(AS.getProgramCounter())) {
 			names.add(userContainer.getName());
 		}
 		if(names.size() <1) {
@@ -327,10 +325,10 @@ String name = memberComboBox.getSelectionModel().getSelectedItem();
 	public void nextProgram() {
 		memberComboBox.setItems(null);
 		memberComboBox.setPromptText("Velg medlem...");
-		if (programCounter < (eDataApp.getProgramsListSize()-1)) {
-			programCounter++;	
+		if (AS.getProgramCounter() < (eDataApp.getProgramsListSize()-1)) {
+			AS.increaseProgramCounter();	
 		} else {
-			programCounter = 0;
+			AS.setProgramCounter(0);;
 		}
 		updateProgram();
 	}
@@ -339,10 +337,10 @@ String name = memberComboBox.getSelectionModel().getSelectedItem();
 	public void lastProgram() {
 		memberComboBox.setItems(null);
 		memberComboBox.setPromptText("Velg medlem...");
-		if (programCounter > 0 ){
-			programCounter--;	
+		if (AS.getProgramCounter() > 0 ){
+			AS.decreaseProgramCounter();	
 		} else {
-		programCounter = eDataApp.getProgramsListSize()-1;
+		AS.setProgramCounter(eDataApp.getProgramsListSize()-1);
 		}
 		updateProgram();
 	}
