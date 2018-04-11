@@ -69,7 +69,7 @@ public class CommentDAOTest {
 	}
 	
 	@Test
-	public void testUpdateUser() {
+	public void testUpdateComment() {
 		Response response = commentDAO.updateComment(0,"test1", "2018-01-02");
 		Assert.assertEquals(200, response.getStatus());
 		
