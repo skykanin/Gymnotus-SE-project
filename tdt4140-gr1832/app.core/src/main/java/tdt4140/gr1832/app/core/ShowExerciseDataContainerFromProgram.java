@@ -36,11 +36,6 @@ public class ShowExerciseDataContainerFromProgram {
 		return description;
 	}
 
-	@Override
-	public String toString() {
-		return "ShowExerciseDataContainerFromProgram [exerciseID=" + exerciseID +", Navn=" +description +", date=" + date
-				+ ", resultParameter=" + resultParameter + "]";
-	}
 	public String getDate() {
 		return date;
 	}

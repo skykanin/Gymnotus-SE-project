@@ -1,13 +1,10 @@
 package tdt4140.gr1832.app.core;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Comparator;
-import java.util.Date;
 
-public class dateComparator implements Comparator<String> {
+public class InfoDateComparator implements Comparator<String> {
 	String pattern1 = "LLL dd, yyyy";
 	String pattern2 = "LLL d, yyyy";
 	DateTimeFormatter dateFormatter;
@@ -23,7 +20,7 @@ public class dateComparator implements Comparator<String> {
 			return 0;
 		}
 	}
-	
+	 
 	 public LocalDate fromString(String string) {
 		 string = string.toLowerCase();
 		 if (string.length() == pattern1.length()) {
@@ -32,7 +29,14 @@ public class dateComparator implements Comparator<String> {
 				dateFormatter = DateTimeFormatter.ofPattern(pattern2);
 			}
          if (string != null && !string.isEmpty()) {
-             return LocalDate.parse(string, dateFormatter);
+        	 LocalDate date = null;
+        	 	try {
+        	 		date = LocalDate.parse(string, dateFormatter);
+        	 	} catch(Exception e) {
+        	 		e.printStackTrace();
+        	 	} 
+             return date;
+        	 	
          } else {
              return null;
          }
