@@ -21,6 +21,7 @@ import com.google.gson.Gson;
 import tdt4140.gr1832.web.dao.data.Feedback;
 import tdt4140.gr1832.web.server.DatabaseConnection;
 
+@Path("/feedback")
 public class FeedbackDAO {
 	
 	public static Feedback createFeedback(ResultSet rs) throws SQLException {
@@ -159,6 +160,16 @@ public class FeedbackDAO {
 	public static String getFeedbackByID(@QueryParam("feedback_id")int id) {
 		String query = "select * from Feedback where feedbackID=" + Integer.toString(id);
 		String json = createFeedback(query); 
+		return json;
+	}
+	
+	
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
+	@Path("get_feedbacks_from_trainer")
+	public static String getFeedbackByTrainer(@QueryParam("trainer_id")int id) {
+		String query = "select * from Feedback where trainerID=" + Integer.toString(id);
+		String json = createFeedbackList(query); 
 		return json;
 	}
 	

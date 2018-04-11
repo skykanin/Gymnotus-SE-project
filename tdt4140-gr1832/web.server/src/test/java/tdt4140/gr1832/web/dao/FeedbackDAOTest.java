@@ -94,4 +94,16 @@ public class FeedbackDAOTest {
 		Assert.assertEquals(1, (int)feedback.getTrainerID());
 		Assert.assertEquals("2018-01-01", feedback.getDate().toString());
 	}
+	
+	@Test
+	public void testGetFeedbackByTrainer() {
+		feedbacks = gson.fromJson(feedbackDAO.getFeedbackByTrainer(1),  new TypeToken<List<Feedback>>(){}.getType());
+		Assert.assertEquals(1, feedbacks.size());
+		feedback = feedbacks.get(0);
+		Assert.assertEquals("test", feedback.getContent());
+		Assert.assertEquals(0, (int)feedback.getFeedbackID());
+		Assert.assertEquals(0, (int)feedback.getUserID());
+		Assert.assertEquals(1, (int)feedback.getTrainerID());
+		Assert.assertEquals("2018-01-01", feedback.getDate().toString());
+	}
 }
