@@ -74,7 +74,7 @@ public class ProgramResultsGraphsController extends WindowController implements 
 	private String exName;
 	private int exID;
 	private String programName;
-	private String userName;
+	
 	
 	private int globalCounter = 0;
 	private List<Integer> usersOnProgram;
@@ -134,12 +134,9 @@ public class ProgramResultsGraphsController extends WindowController implements 
 		memberComboBox.getSelectionModel().clearSelection(); //FÅ memberComboBox tilbake til default
 		
 		programName = programComboBox.getSelectionModel().getSelectedItem();
-		usersOnProgram = app.getUserIDsOnProgram(programName);
-    		app.getExercisesOnAProgram(app.getProgramIDfromName(programName));
-    		exID = app.getExContainers().get(0).getExerciseID();
-		app.getResultsOfExercise(exID);
-    		
-		if (app.getResContainers() != null) {
+		
+		usersOnProgram = app.getUserIDsOnProgram(programName);		
+    		app.getExercisesOnAProgram(app.getProgramIDfromName(programName));		
 		
 			programInfoText.setText("Du ser informasjon til programmet " + programName + ". Se et annet: " );
 			String seriesName;
@@ -149,6 +146,7 @@ public class ProgramResultsGraphsController extends WindowController implements 
 	    			exID = app.getExContainers().get(i).getExerciseID();
 	    			app.getResultsOfExercise(exID);
 	    			
+	    			if (app.getResContainers() != null) {
 	    	        switch (i) {
 	    	        
     	            		case 0: 	label0.setText(exName);
@@ -158,17 +156,21 @@ public class ProgramResultsGraphsController extends WindowController implements 
 	    	            			
 	    	            			for (int user : usersOnProgram) {
 	    	            				
-	    	            				app.getResultsOfExcerciseAndUser(exID, user);
-	    	            				app.requestUserInformation_ID(user+"");
-		    	            			seriesName = updateSeriesMap();
-		    	            			
-		    	            			for (int k = 0; k < app.getDates().size() ; k++) {
-		    	            				seriesMap.get(seriesName).getData().add(new XYChart.Data(app.getDates().get(k).substring(0,app.getDates().get(k).length()-6 ),app.getResults().get(k)));
-		    	            			}
 	    	            			
-		    	            		
-		    	            	        chart0.getData().add(seriesMap.get(seriesName));
-		    	            	    
+
+	    	            				app.getResultsOfExcerciseAndUser(exID, user);
+	    	            				
+	    	            				if (app.getResContainers() != null) {
+		    	            				app.requestUserInformation_ID(user+"");
+			    	            			seriesName = updateSeriesMap();
+			    	            			
+			    	            			for (int k = 0; k < app.getDates().size() ; k++) {
+			    	            				seriesMap.get(seriesName).getData().add(new XYChart.Data(app.getDates().get(k).substring(0,app.getDates().get(k).length()-6 ),app.getResults().get(k)));
+			    	            			}
+		    	            			
+			    	            		
+			    	            	        chart0.getData().add(seriesMap.get(seriesName));
+	    	            				}
 	    	            			}
 	    	            			break;
 	    	            			
@@ -180,16 +182,17 @@ public class ProgramResultsGraphsController extends WindowController implements 
 		            			for (int user : usersOnProgram) {
 		            				
 		            				app.getResultsOfExcerciseAndUser(exID, user);
+		            				if (app.getResContainers() != null) {
 		            				app.requestUserInformation_ID(user+"");
-			            			seriesName = updateSeriesMap();
+				            			seriesName = updateSeriesMap();
+				            			
+				            			for (int k = 0; k < app.getDates().size() ; k++) {
+				            				seriesMap.get(seriesName).getData().add(new XYChart.Data(app.getDates().get(k).substring(0,app.getDates().get(k).length()-6 ),app.getResults().get(k)));
+				            			}
 			            			
-			            			for (int k = 0; k < app.getDates().size() ; k++) {
-			            				seriesMap.get(seriesName).getData().add(new XYChart.Data(app.getDates().get(k).substring(0,app.getDates().get(k).length()-6 ),app.getResults().get(k)));
-			            			}
-		            			
-			            		
-			            	        chart1.getData().add(seriesMap.get(seriesName));
-			            	    
+				            		
+				            	        chart1.getData().add(seriesMap.get(seriesName));
+		            				}
 		            			}
 		            			break;
 	    	            case 2: 	label2.setText(exName);
@@ -200,16 +203,18 @@ public class ProgramResultsGraphsController extends WindowController implements 
 		            			for (int user : usersOnProgram) {
 		            				
 		            				app.getResultsOfExcerciseAndUser(exID, user);
-		            				app.requestUserInformation_ID(user+"");
-			            			seriesName = updateSeriesMap();
+		            				if (app.getResContainers() != null) {
+			            				app.requestUserInformation_ID(user+"");
+			            				
+				            			seriesName = updateSeriesMap();
+				            			
+				            			for (int k = 0; k < app.getDates().size() ; k++) {
+				            				seriesMap.get(seriesName).getData().add(new XYChart.Data(app.getDates().get(k).substring(0,app.getDates().get(k).length()-6 ),app.getResults().get(k)));
+				            			}
 			            			
-			            			for (int k = 0; k < app.getDates().size() ; k++) {
-			            				seriesMap.get(seriesName).getData().add(new XYChart.Data(app.getDates().get(k).substring(0,app.getDates().get(k).length()-6 ),app.getResults().get(k)));
-			            			}
-		            			
-			            		
-			            	        chart2.getData().add(seriesMap.get(seriesName));
-			            	    
+				            		
+				            	        chart2.getData().add(seriesMap.get(seriesName));
+		            				}
 		            			}
 		            			break;
 	    	            case 3: 	label3.setText(exName);
@@ -220,24 +225,25 @@ public class ProgramResultsGraphsController extends WindowController implements 
 		            			for (int user : usersOnProgram) {
 		            				
 		            				app.getResultsOfExcerciseAndUser(exID, user);
-		            				app.requestUserInformation_ID(user+"");
-			            			seriesName = updateSeriesMap();
+		            				if (app.getResContainers() != null) {
+			            				app.requestUserInformation_ID(user+"");
+				            			seriesName = updateSeriesMap();
+				            			
+				            			for (int k = 0; k < app.getDates().size() ; k++) {
+				            				seriesMap.get(seriesName).getData().add(new XYChart.Data(app.getDates().get(k).substring(0,app.getDates().get(k).length()-6 ),app.getResults().get(k)));
+				            			}
 			            			
-			            			for (int k = 0; k < app.getDates().size() ; k++) {
-			            				seriesMap.get(seriesName).getData().add(new XYChart.Data(app.getDates().get(k).substring(0,app.getDates().get(k).length()-6 ),app.getResults().get(k)));
-			            			}
-		            			
-			            		
-			            	        chart3.getData().add(seriesMap.get(seriesName));
-			            	    
+				            		
+				            	        chart3.getData().add(seriesMap.get(seriesName));
+		            				}
 		            			}
 		            			break;
-				}
+	    	        		}
+	    			} else {
+	    				programInfoText.setText("Det finnes ikke resultater til programmet " + programName + ". Se et annet: " );
+	    				hidePageContent();
+	    			}
 	    		}
-		} else {
-			programInfoText.setText("Det finnes ikke resultater til programmet " + programName + ". Se et annet: " );
-			hidePageContent();
-	    	}
 		
 		
     }
@@ -253,12 +259,9 @@ public class ProgramResultsGraphsController extends WindowController implements 
 	if (userName != null) {
 		
 		infoText.setText("Du sammenligner " + userName + " med resultatsnittet. Se andre: " );
-		
-		
-		
-		
-		app.requestUserInformation_ID(app.getIDfromName(userName));
+
 		int user = Integer.parseInt(app.getIDfromName(userName));	
+		app.requestUserInformation_ID(user+"");
 		
 		
 	
@@ -266,6 +269,8 @@ public class ProgramResultsGraphsController extends WindowController implements 
     		
 	if (app.getContainerUser().getShareExerciseData()) {
 		
+		
+			
 		for (int i = 0; i < 4; i++) {
 			
 		
@@ -273,9 +278,11 @@ public class ProgramResultsGraphsController extends WindowController implements 
 			exID = app.getExContainers().get(i).getExerciseID();
 			app.getResultsOfExcerciseAndUser(exID, user);
 			
-			
 			if (app.getDates() !=  null) {
-			String seriesName;	
+				
+				String seriesName;
+			
+				
 	    	        switch (i) {
 	    	        
 	    	            case 0: 	
@@ -286,7 +293,7 @@ public class ProgramResultsGraphsController extends WindowController implements 
     	            			chart0.setAnimated(false);
     	            			
     	            				
-    	            				app.getResultsOfExcerciseAndUser(exID, user);
+    	            				
     	            				app.requestUserInformation_ID(user+"");
 	    	            			seriesName = updateSeriesMap();
 
@@ -307,7 +314,7 @@ public class ProgramResultsGraphsController extends WindowController implements 
 	            			chart1.setAnimated(false);
 	            			
 	            				
-	            				app.getResultsOfExcerciseAndUser(exID, user);
+	            				
 	            				app.requestUserInformation_ID(user+"");
     	            			seriesName = updateSeriesMap();
 
@@ -328,7 +335,7 @@ public class ProgramResultsGraphsController extends WindowController implements 
 	            			chart2.setAnimated(false);
 	            			
 	            				
-	            				app.getResultsOfExcerciseAndUser(exID, user);
+	            				
 	            				app.requestUserInformation_ID(user+"");
     	            			seriesName = updateSeriesMap();
 
@@ -349,7 +356,7 @@ public class ProgramResultsGraphsController extends WindowController implements 
 	            			chart3.setAnimated(false);
 	            			
 	            				
-	            				app.getResultsOfExcerciseAndUser(exID, user);
+	            				
 	            				app.requestUserInformation_ID(user+"");
     	            			seriesName = updateSeriesMap();
 
@@ -367,7 +374,7 @@ public class ProgramResultsGraphsController extends WindowController implements 
 				} else {
 					infoText.setText("Brukeren har ikke ført resultater i programmet " + programName + ". Se et annet: " );
 				}
-			}
+			} 
 		
 				
 		} else {

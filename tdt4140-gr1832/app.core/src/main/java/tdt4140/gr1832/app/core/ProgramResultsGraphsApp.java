@@ -268,28 +268,12 @@ public class ProgramResultsGraphsApp {
 		return heights;
 	}
 
-	// KOMMENTERT UT: STANDARDISERT DATESFUNKSJON
-	
-//	public List<String> getDates() {
-//		String date1 = "Mar 1, 2018";
-//		String date2 = "Mar 2, 2018";
-//		String date3 = "Mar 3, 2018";
-//		String date4 = "Mar 4, 2018";
-//		
-//		List<String> dates = new ArrayList<>();
-//		
-//		dates.add(date1);
-//		dates.add(date2);
-//		dates.add(date3);
-//		dates.add(date4);
-//		
-//		return dates;
-//		
-//	}
 	
 	
 	public List<String> getDates() {
-		if (resContainers.size()<1) {
+		
+		if ((resContainers == null) || (resContainers.size()<1) ){
+			
 			return null;
 		}
 		
@@ -320,7 +304,7 @@ public class ProgramResultsGraphsApp {
 	
 	
 	public List<Integer> getResults() {
-		if (resContainers.size()<1) {
+		if ((resContainers == null) ||resContainers.size()<1) {
 			return null;
 		} 
 		
@@ -370,53 +354,5 @@ public class ProgramResultsGraphsApp {
 		return containerUser;
 	}
 
-
-	public List<Integer> getResult1() {
-		// Sandys generated method
-		
-		List<Integer> res1 = new ArrayList<>();
-		res1.add(1);
-		res1.add(1);
-		res1.add(0);
-		res1.add(1);
-		
-		return res1;
-	}
-	
-	public List<Integer> getResult2() {
-		// Sandys generated method
-		
-				List<Integer> res1 = new ArrayList<>();
-				res1.add(1);
-				res1.add(0);
-				res1.add(2);
-				res1.add(4);
-				
-				return res1;
-	}
-	
-	public List<Integer> getResult3() {
-		// Sandys generated method
-		
-				List<Integer> res1 = new ArrayList<>();
-				res1.add(1);
-				res1.add(2);
-				res1.add(3);
-				res1.add(4);
-				
-				return res1;
-	}
-	
-	public List<Integer> getResult4() {
-		// Sandys generated method
-		
-				List<Integer> res1 = new ArrayList<>();
-				res1.add(2);
-				res1.add(4);
-				res1.add(16);
-				res1.add(256);
-				
-				return res1;
-	}
 
 }
