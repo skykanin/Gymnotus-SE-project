@@ -18,6 +18,7 @@ import javax.ws.rs.core.Response;
 import com.google.gson.Gson;
 
 import tdt4140.gr1832.web.dao.data.Result;
+import tdt4140.gr1832.web.dao.data.User;
 import tdt4140.gr1832.web.server.DatabaseConnection;
 
 @Path("/result")
@@ -95,6 +96,30 @@ public class ResultDAO {
 		String json = createResultListJson(query);
 		return json;
 	}
+	
+	@GET
+	@Path("/get_users_added_results_to_exercise")
+	public String getUsersAddedResultsToExercise(@QueryParam("exercise_id") Integer exerciseID) {
+		String query = "select distinct * from Result natural join User where exerciseID=" + Integer.toString(exerciseID);
+		Connection conn = DatabaseConnection.getConnection();
+		
+		List<User> users = new ArrayList<User>();
+		PreparedStatement stmt;
+		try {
+			stmt = conn.prepareStatement(query);
+			ResultSet rs = stmt.executeQuery();
+			while(rs.next()) {
+				User user = UserDAO.createUser(rs);
+				users.add(user);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		Gson gson = new Gson();
+		String json = gson.toJson(users);  
+		return json;
+	}
+
 	
 	@GET
 	@Path("/get_results_by_user_and_exercise")

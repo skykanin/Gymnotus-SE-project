@@ -17,6 +17,7 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import tdt4140.gr1832.web.dao.data.Result;
+import tdt4140.gr1832.web.dao.data.User;
 import tdt4140.gr1832.web.server.DatabaseConnection;
 
 public class ResultDAOTest {
@@ -98,6 +99,27 @@ public class ResultDAOTest {
 		
 		Result new_result = results.get(0);
 		verifyEqualResult(result, new_result);
+	}
+	
+	@Test
+	public void testGetUsersAddedResultsToExercise() {
+		String json = resultDAO.getUsersAddedResultsToExercise(0);
+		List<User> results = gson.fromJson(json,new TypeToken<List<User>>(){}.getType());
+		
+		Assert.assertEquals(1, results.size());
+		User user = results.get(0);
+		
+		//"test", "test", "test", "test@test.com", "1234", 1, 18, true, true, true, true
+		Assert.assertEquals("test", user.getName());
+		Assert.assertEquals("test", user.getUsername());
+		Assert.assertEquals("test@test.com", user.getEmail());
+		Assert.assertEquals("1234", user.getPhone());
+		Assert.assertEquals(1, user.getGender());
+		Assert.assertEquals(18, (int)user.getAge());
+		Assert.assertTrue(user.getIsTrainer());
+		Assert.assertTrue(user.getShareExerciseData());
+		Assert.assertTrue(user.getShareHealthData());
+		Assert.assertFalse(user.getIsAnonymous());
 	}
 	
 	@Test

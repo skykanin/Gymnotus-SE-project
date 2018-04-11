@@ -159,7 +159,7 @@ public class FeedbackDAO {
 	@Path("get_feedback")
 	public static String getFeedbackByID(@QueryParam("feedback_id")int id) {
 		String query = "select * from Feedback where feedbackID=" + Integer.toString(id);
-		String json = createFeedback(query); 
+		String json = createFeedback(query); 	
 		return json;
 	}
 	
