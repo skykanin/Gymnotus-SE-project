@@ -5,8 +5,11 @@ import java.text.DecimalFormat;
 import java.text.ParseException;
 
 import java.net.URL;
+import java.nio.file.attribute.UserPrincipalLookupService;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.ResourceBundle;
 
 import com.jfoenix.controls.JFXButton;
@@ -73,6 +76,10 @@ public class ProgramResultsGraphsController extends WindowController implements 
 	private String programName;
 	private String userName;
 	
+	private int globalCounter = 0;
+	private List<Integer> usersOnProgram;
+	Map<String,XYChart.Series<String, Number>> seriesMap = new HashMap<String,XYChart.Series<String, Number>>();
+	
 	
     @FXML
     public void loadDialog(ActionEvent parentEvent) {
@@ -100,95 +107,131 @@ public class ProgramResultsGraphsController extends WindowController implements 
         dialog.show();
     }
 
+    private String updateSeriesMap() {
+    	
+    		String name = "series" + globalCounter;
+    		
+    		seriesMap.put("series" + globalCounter, new XYChart.Series<String, Number>());   		
+    		globalCounter ++;
+    		return name;
+    }
+    
     @SuppressWarnings({ "unchecked", "rawtypes" })
-
     public void handleProgramComboBox(ActionEvent actionEvent) throws IOException, ParseException {
     		
+    	// LAGE TIL SLIK AT FOR HVER BRUKER SOM HAR RESULTAT I PROGRAMMET, LAGES EN NY SERIE
+    	
+    	
+    	// http://<ip-addresse>:<port>/api/result/get_results_by_user_and_exercise?user_id=<user_id>&exercise_id=<exercise_id>
+    	// http://<ip-addresse>:<port>/api/exercise_program/get_users?programID=<id>
+    	
     	
     		chart0.getData().clear();
 		chart1.getData().clear();
 		chart2.getData().clear();
 		chart3.getData().clear();
+
+		memberComboBox.getSelectionModel().clearSelection(); //FÅ memberComboBox tilbake til default
 		
-		
-		memberComboBox.getSelectionModel().clearSelection(); //FÅ ComboBox tilbake til default
-		
-    		
 		programName = programComboBox.getSelectionModel().getSelectedItem();
-		
+		usersOnProgram = app.getUserIDsOnProgram(programName);
     		app.getExercisesOnAProgram(app.getProgramIDfromName(programName));
-    		
-    		
     		exID = app.getExContainers().get(0).getExerciseID();
 		app.getResultsOfExercise(exID);
     		
 		if (app.getResContainers() != null) {
-			
-			programInfoText.setText("Du ser informasjon til programmet " + programName + ". Se et annet: " );
 		
-			
+			programInfoText.setText("Du ser informasjon til programmet " + programName + ". Se et annet: " );
+			String seriesName;
 	    		for (int i = 0; i < app.getExContainers().size(); i++) {
 	    				
 	    			exName = app.getExContainers().get(i).getDescription();
 	    			exID = app.getExContainers().get(i).getExerciseID();
 	    			app.getResultsOfExercise(exID);
-	    				
+	    			
 	    	        switch (i) {
 	    	        
-	    	            case 0: label0.setText(exName);
+    	            		case 0: 	label0.setText(exName);
 	    	            			chart0.setOpacity(1);
-	    	            			
-	    	            			 XYChart.Series<String,Number> series0 = new XYChart.Series<>();
-	    	            			//FINNE ALLE RESULTATER TIL ØVELSEN, OG PLOTTE RESULTAT I Y OG DATO I X
-	    	            			for (int k = 0; k < app.getDates().size() ; k++) {
-	    	            				series0.getData().add(new XYChart.Data(app.getDates().get(k).substring(0,app.getDates().get(k).length()-6 ),app.getResults().get(k)));
-	    	            			}
-	    	            			
 	    	            			chart0.setCreateSymbols(false);
 	    	            			chart0.setAnimated(false);
-	    	            	        chart0.getData().add(series0);
-	    	            	      
+	    	            			
+	    	            			for (int user : usersOnProgram) {
+	    	            				
+	    	            				app.getResultsOfExcerciseAndUser(exID, user);
+	    	            				app.requestUserInformation_ID(user+"");
+		    	            			seriesName = updateSeriesMap();
+		    	            			
+		    	            			for (int k = 0; k < app.getDates().size() ; k++) {
+		    	            				seriesMap.get(seriesName).getData().add(new XYChart.Data(app.getDates().get(k).substring(0,app.getDates().get(k).length()-6 ),app.getResults().get(k)));
+		    	            			}
+	    	            			
+		    	            		
+		    	            	        chart0.getData().add(seriesMap.get(seriesName));
+		    	            	    
+	    	            			}
 	    	            			break;
 	    	            			
-	    	            case 1: label1.setText(exName);
-	        					chart1.setOpacity(1);
-	        					
-	        					 XYChart.Series<String,Number> series1 = new XYChart.Series<>();
-	 	            			//FINNE ALLE RESULTATER TIL ØVELSEN, OG PLOTTE RESULTAT I Y OG DATO I X
-	 	            			for (int k = 0; k < app.getDates().size() ; k++) {
-	 	            				series1.getData().add(new XYChart.Data(app.getDates().get(k).substring(0,app.getDates().get(k).length()-6 ),app.getResults().get(k)));
-	 	            			}
-	 	            			
-	 	            			chart1.setCreateSymbols(false);
-	 	            			chart1.setAnimated(false);
-	 	            	        chart1.getData().add(series1);
-	    	                     break;
-	    	            case 2: label2.setText(exName);
-							chart2.setOpacity(1);
-							
-							 XYChart.Series<String,Number> series2 = new XYChart.Series<>();
-		            			//FINNE ALLE RESULTATER TIL ØVELSEN, OG PLOTTE RESULTAT I Y OG DATO I X
-		            			for (int k = 0; k < app.getDates().size() ; k++) {
-		            				series2.getData().add(new XYChart.Data(app.getDates().get(k).substring(0,app.getDates().get(k).length()-6 ),app.getResults().get(k)));
-		            			}
+	    	        		case 1: label1.setText(exName);
+		            			chart1.setOpacity(1);
+		            			chart1.setCreateSymbols(false);
+		            			chart1.setAnimated(false);
 		            			
+		            			for (int user : usersOnProgram) {
+		            				
+		            				app.getResultsOfExcerciseAndUser(exID, user);
+		            				app.requestUserInformation_ID(user+"");
+			            			seriesName = updateSeriesMap();
+			            			
+			            			for (int k = 0; k < app.getDates().size() ; k++) {
+			            				seriesMap.get(seriesName).getData().add(new XYChart.Data(app.getDates().get(k).substring(0,app.getDates().get(k).length()-6 ),app.getResults().get(k)));
+			            			}
+		            			
+			            		
+			            	        chart1.getData().add(seriesMap.get(seriesName));
+			            	    
+		            			}
+		            			break;
+	    	            case 2: 	label2.setText(exName);
+		            			chart2.setOpacity(1);
 		            			chart2.setCreateSymbols(false);
 		            			chart2.setAnimated(false);
-		            	        chart2.getData().add(series2);
-							break;
-	    	            case 3: label3.setText(exName);
-							chart3.setOpacity(1);
-							
-							 XYChart.Series<String,Number> series3 = new XYChart.Series<>();
-		            			//FINNE ALLE RESULTATER TIL ØVELSEN, OG PLOTTE RESULTAT I Y OG DATO I X
-		            			for (int k = 0; k < app.getDates().size() ; k++) {
-		            				series3.getData().add(new XYChart.Data(app.getDates().get(k).substring(0,app.getDates().get(k).length()-6 ),app.getResults().get(k)));
-		            			}
 		            			
+		            			for (int user : usersOnProgram) {
+		            				
+		            				app.getResultsOfExcerciseAndUser(exID, user);
+		            				app.requestUserInformation_ID(user+"");
+			            			seriesName = updateSeriesMap();
+			            			
+			            			for (int k = 0; k < app.getDates().size() ; k++) {
+			            				seriesMap.get(seriesName).getData().add(new XYChart.Data(app.getDates().get(k).substring(0,app.getDates().get(k).length()-6 ),app.getResults().get(k)));
+			            			}
+		            			
+			            		
+			            	        chart2.getData().add(seriesMap.get(seriesName));
+			            	    
+		            			}
+		            			break;
+	    	            case 3: 	label3.setText(exName);
+		            			chart3.setOpacity(1);
 		            			chart3.setCreateSymbols(false);
 		            			chart3.setAnimated(false);
-		            	        chart3.getData().add(series3);
-							break;
+		            			
+		            			for (int user : usersOnProgram) {
+		            				
+		            				app.getResultsOfExcerciseAndUser(exID, user);
+		            				app.requestUserInformation_ID(user+"");
+			            			seriesName = updateSeriesMap();
+			            			
+			            			for (int k = 0; k < app.getDates().size() ; k++) {
+			            				seriesMap.get(seriesName).getData().add(new XYChart.Data(app.getDates().get(k).substring(0,app.getDates().get(k).length()-6 ),app.getResults().get(k)));
+			            			}
+		            			
+			            		
+			            	        chart3.getData().add(seriesMap.get(seriesName));
+			            	    
+		            			}
+		            			break;
 				}
 	    		}
 		} else {
@@ -196,7 +239,7 @@ public class ProgramResultsGraphsController extends WindowController implements 
 			hidePageContent();
 	    	}
 		
-		//programComboBox.getSelectionModel().clearSelection(); //Få programComboBox tilbake til null
+		
     }
 
     
@@ -209,13 +252,13 @@ public class ProgramResultsGraphsController extends WindowController implements 
 	
 	if (userName != null) {
 		
-		infoText.setText("Du sammenligner " + userName + "med snittet av resultater. Se noen andre: " );
+		infoText.setText("Du sammenligner " + userName + " med resultatsnittet. Se andre: " );
 		
-		List<ResultContainer> resCons = new ArrayList<>();
+		
 		
 		
 		app.requestUserInformation_ID(app.getIDfromName(userName));
-		int userID = Integer.parseInt(app.getIDfromName(userName));	
+		int user = Integer.parseInt(app.getIDfromName(userName));	
 		
 		
 	
@@ -228,70 +271,99 @@ public class ProgramResultsGraphsController extends WindowController implements 
 		
 			exName = app.getExContainers().get(i).getDescription();
 			exID = app.getExContainers().get(i).getExerciseID();
-			resCons = app.getResultsOfExcerciseAndUser(exID, userID);
+			app.getResultsOfExcerciseAndUser(exID, user);
 			
 			
-			if (resCons !=  null) {
-				
+			if (app.getDates() !=  null) {
+			String seriesName;	
 	    	        switch (i) {
 	    	        
 	    	            case 0: 	
-	    	            			label0.setText(exName);
-	    	            			chart0.setOpacity(1);
-	    	            			XYChart.Series<String,Number> userSeries0 = new XYChart.Series<>();
-	    	            			//FINNE ALLE RESULTATER TIL ØVELSEN, OG PLOTTE RESULTAT I Y OG DATO I X
-	    	            			for (int k = 0; k < app.getDatesFromList(resCons).size() ; k++) {
-	    	            				userSeries0.getData().add(new XYChart.Data(app.getDatesFromList(resCons).get(k).substring(0,app.getDatesFromList(resCons).get(k).length()-6 ),app.getResultsFromList(resCons).get(k)));
+	    	            	
+    	            			label0.setText(exName);
+    	            			chart0.setOpacity(1);
+    	            			chart0.setCreateSymbols(false);
+    	            			chart0.setAnimated(false);
+    	            			
+    	            				
+    	            				app.getResultsOfExcerciseAndUser(exID, user);
+    	            				app.requestUserInformation_ID(user+"");
+	    	            			seriesName = updateSeriesMap();
+
+	    	            			for (int k = 0; k < app.getDates().size() ; k++) {
+	    	            				seriesMap.get(seriesName).getData().add(new XYChart.Data(app.getDates().get(k).substring(0,app.getDates().get(k).length()-6 ),app.getResults().get(k)));
 	    	            			}
-	    	            			
-	    	            			chart0.setCreateSymbols(false);
-	    	            			chart0.setAnimated(false);
-	    	            	        chart0.getData().add(userSeries0);
-	    	            			break;
+
+	    	            	        chart0.getData().add(seriesMap.get(seriesName));
+	    	            	    
+    	            			
+    	            			break;
+    	            			
 	    	            case 1: 	
-	            			label1.setText(exName);
+	    	            	
+	    	            		label1.setText(exName);
 	            			chart1.setOpacity(1);
-	            			XYChart.Series<String,Number> userSeries1 = new XYChart.Series<>();
-	            			//FINNE ALLE RESULTATER TIL ØVELSEN, OG PLOTTE RESULTAT I Y OG DATO I X
-	            			for (int k = 0; k < app.getDatesFromList(resCons).size() ; k++) {
-	            				userSeries1.getData().add(new XYChart.Data(app.getDatesFromList(resCons).get(k).substring(0,app.getDatesFromList(resCons).get(k).length()-6 ),app.getResultsFromList(resCons).get(k)));
-	            			}
-	            			
 	            			chart1.setCreateSymbols(false);
 	            			chart1.setAnimated(false);
-	            	        chart1.getData().add(userSeries1);
+	            			
+	            				
+	            				app.getResultsOfExcerciseAndUser(exID, user);
+	            				app.requestUserInformation_ID(user+"");
+    	            			seriesName = updateSeriesMap();
+
+    	            			for (int k = 0; k < app.getDates().size() ; k++) {
+    	            				seriesMap.get(seriesName).getData().add(new XYChart.Data(app.getDates().get(k).substring(0,app.getDates().get(k).length()-6 ),app.getResults().get(k)));
+    	            			}
+
+    	            	        chart1.getData().add(seriesMap.get(seriesName));
+    	            	    
+	            			
 	            			break;
 	            			
 	    	            case 2: 	
-	            			label2.setText(exName);
-	            			chart2.setOpacity(1);
-	            			XYChart.Series<String,Number> userSeries2 = new XYChart.Series<>();
-	            			//FINNE ALLE RESULTATER TIL ØVELSEN, OG PLOTTE RESULTAT I Y OG DATO I X
-	            			for (int k = 0; k < app.getDatesFromList(resCons).size() ; k++) {
-	            				userSeries2.getData().add(new XYChart.Data(app.getDatesFromList(resCons).get(k).substring(0,app.getDatesFromList(resCons).get(k).length()-6 ),app.getResultsFromList(resCons).get(k)));
-	            			}
 	            			
+	    	            		label2.setText(exName);
+	            			chart2.setOpacity(1);
 	            			chart2.setCreateSymbols(false);
 	            			chart2.setAnimated(false);
-	            	        chart2.getData().add(userSeries2);
+	            			
+	            				
+	            				app.getResultsOfExcerciseAndUser(exID, user);
+	            				app.requestUserInformation_ID(user+"");
+    	            			seriesName = updateSeriesMap();
+
+    	            			for (int k = 0; k < app.getDates().size() ; k++) {
+    	            				seriesMap.get(seriesName).getData().add(new XYChart.Data(app.getDates().get(k).substring(0,app.getDates().get(k).length()-6 ),app.getResults().get(k)));
+    	            			}
+
+    	            	        chart2.getData().add(seriesMap.get(seriesName));
+    	            	    
+	            			
 	            			break;
 	            			
-	    	            case 3: 	
-	            			label3.setText(exName);
+	    	            case 3:
+	    	            	
+	    	            		label3.setText(exName);
 	            			chart3.setOpacity(1);
-	            			XYChart.Series<String,Number> userSeries3 = new XYChart.Series<>();
-	            			//FINNE ALLE RESULTATER TIL ØVELSEN, OG PLOTTE RESULTAT I Y OG DATO I X
-	            			for (int k = 0; k < app.getDatesFromList(resCons).size() ; k++) {
-	            				userSeries3.getData().add(new XYChart.Data(app.getDatesFromList(resCons).get(k).substring(0,app.getDatesFromList(resCons).get(k).length()-6 ),app.getResultsFromList(resCons).get(k)));
-	            			}
-	            			
 	            			chart3.setCreateSymbols(false);
 	            			chart3.setAnimated(false);
-	            	        chart3.getData().add(userSeries3);
+	            			
+	            				
+	            				app.getResultsOfExcerciseAndUser(exID, user);
+	            				app.requestUserInformation_ID(user+"");
+    	            			seriesName = updateSeriesMap();
+
+    	            			for (int k = 0; k < app.getDates().size() ; k++) {
+    	            				seriesMap.get(seriesName).getData().add(new XYChart.Data(app.getDates().get(k).substring(0,app.getDates().get(k).length()-6 ),app.getResults().get(k)));
+    	            			}
+
+    	            	        chart3.getData().add(seriesMap.get(seriesName));
+    	            	    
+	            			
 	            			break;
-	    	            			
 
 	    	        		}
+	    	        
 				} else {
 					infoText.setText("Brukeren har ikke ført resultater i programmet " + programName + ". Se et annet: " );
 				}
@@ -326,6 +398,9 @@ public class ProgramResultsGraphsController extends WindowController implements 
 		label1.setText("");
 		label2.setText("");
 		label3.setText("");
+		
+		seriesMap.clear();
+		globalCounter=0;
     }
     
 	@Override

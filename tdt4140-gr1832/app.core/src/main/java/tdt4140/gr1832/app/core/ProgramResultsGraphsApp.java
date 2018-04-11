@@ -32,7 +32,6 @@ public class ProgramResultsGraphsApp {
 	
 	//START  INFORMATION ABOUT PROGRAMS
 
-		
 		public List<ExerciseContainer> getExContainers() {
 		return exContainers;
 	}
@@ -79,24 +78,25 @@ public class ProgramResultsGraphsApp {
 			return -1;
 		}
 		
-		public List<String> getUserIDsOnProgram(String programName){
+		public List<Integer> getUserIDsOnProgram(String programName){
 			
 			
-			List<ShowUserInfoContainer> users = new ArrayList<>(); 
-			List<String> userIDs = new ArrayList<>();
+			List<Integer> integerIDs = new ArrayList<>();
+			List<ShowUserInfoContainer> userIDs = new ArrayList<>();
 
 			Client client = ClientBuilder.newClient();
-			WebTarget webTarget = client.target(baseURI +"exercise/get_exercises?program_id=" + getProgramIDfromName(programName));
+			WebTarget webTarget = client.target(baseURI +"exercise_program/get_users?programID=" + getProgramIDfromName(programName));
 			String test = webTarget.request(MediaType.APPLICATION_JSON).get(String.class);
 			
 			Gson gson = new Gson();
-			userIDs = gson.fromJson(test, new TypeToken<List<ExerciseContainer>>(){}.getType());
+			userIDs = gson.fromJson(test, new TypeToken<List<ShowUserInfoContainer>>(){}.getType());
 			
-			for (ShowUserInfoContainer user : users) {
-				userIDs.add(user.getUserID());
+			
+			for (ShowUserInfoContainer user : userIDs) {
+				integerIDs.add(Integer.parseInt(user.getUserID()));
 			}
 			
-			return userIDs;
+			return integerIDs;
 		}
 		
 	
@@ -116,7 +116,6 @@ public class ProgramResultsGraphsApp {
 			exCons = gson.fromJson(test, new TypeToken<List<ExerciseContainer>>(){}.getType());
 			
 			exContainers = exCons;
-			
 		}
 		
 	//HVA MED EN METODE SOM GIR RESULTATER FOR EN SPESIFIKK EXERCISE
@@ -153,7 +152,7 @@ public class ProgramResultsGraphsApp {
 			return resCons.size();
 		}
 		
-		public List<ResultContainer> getResultsOfExcerciseAndUser(int exerciseID, int userID) {
+		public void getResultsOfExcerciseAndUser(int exerciseID, int userID) {
 			
 			List<ResultContainer> resCons = new ArrayList<>();
 			
@@ -166,9 +165,9 @@ public class ProgramResultsGraphsApp {
 			
 			
 			if (resCons.size() < 1) {
-				return null;
+				resContainers = null;
 			} else {				
-				return resCons;
+				resContainers = resCons;
 			}
 		}
 		
