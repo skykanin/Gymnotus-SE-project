@@ -100,7 +100,7 @@ public class ResultDAO {
 	@GET
 	@Path("/get_users_added_results_to_exercise")
 	public String getUsersAddedResultsToExercise(@QueryParam("exercise_id") Integer exerciseID) {
-		String query = "select distinct * from Result natural join User where exerciseID=" + Integer.toString(exerciseID);
+		String query = "select distinct userID,username,name,email,phoneumber,gender,age,isAnonymous,shareHealthData,shareExerciseData,isTrainer from Result natural join User where exerciseID=" + Integer.toString(exerciseID);
 		Connection conn = DatabaseConnection.getConnection();
 		
 		List<User> users = new ArrayList<User>();
