@@ -1,6 +1,8 @@
 package tdt4140.gr1832.app.core;
 
 public class ExerciseContainer {
+	
+
 	private int exerciseID;
 	private int programID;
 	private String description;
@@ -20,5 +22,32 @@ public class ExerciseContainer {
 		this.parameterDescription = parameterDescription;
 	}
 	
+	public int getExerciseID() {
+		return exerciseID;
+	}
+
+	public int getProgramID() {
+		return programID;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public int getSets() {
+		return sets;
+	}
+
+	public int getRepsPerSet() {
+		return repsPerSet;
+	}
+
+	public int getPauseBetweenSets() {
+		return pauseBetweenSets;
+	}
+
+	public String getParameterDescription() {
+		return parameterDescription;
+	}
 	
 	}
