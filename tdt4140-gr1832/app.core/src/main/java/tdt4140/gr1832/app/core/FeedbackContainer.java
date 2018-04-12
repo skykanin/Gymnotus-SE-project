@@ -5,9 +5,9 @@ import java.util.Date;
 public class FeedbackContainer {
 	//Container for feedback from trainer to user
 	
-	Integer feedbackID;
-	Integer trainerID;
-	Integer userID;
+	int feedbackID;
+	int trainerID;
+	int userID;
 	String date;
 	String content;
 	
@@ -19,24 +19,18 @@ public class FeedbackContainer {
 		this.date = date;
 		this.content = content;
 	}
-	public Integer getFeedbackID() {
+	public int getFeedbackID() {
 		return feedbackID;
 	}
-	public void setFeedbackID(Integer feedbackID) {
-		this.feedbackID = feedbackID;
-	}
-	public Integer getTrainerID() {
+
+	public int getTrainerID() {
 		return trainerID;
 	}
-	public void setTrainerID(Integer trainerID) {
-		this.trainerID = trainerID;
-	}
-	public Integer getUserID() {
+	
+	public int getUserID() {
 		return userID;
 	}
-	public void setUserID(Integer userID) {
-		this.userID = userID;
-	}
+	
 	public String getDate() {
 		return date;
 	}
@@ -44,7 +38,5 @@ public class FeedbackContainer {
 	public String getContent() {
 		return content;
 	}
-	public void setContent(String content) {
-		this.content = content;
-	}
+	
 }

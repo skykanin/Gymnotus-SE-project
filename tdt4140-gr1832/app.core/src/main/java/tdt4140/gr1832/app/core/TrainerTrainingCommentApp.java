@@ -110,6 +110,16 @@ public class TrainerTrainingCommentApp {
 		comments = gson.fromJson(test, new TypeToken<List<CommentContainer>>(){}.getType());
 	}
 	
+	public void requestPrograms() {
+		TrainerTrainingProgramOverviewApp progApp = new TrainerTrainingProgramOverviewApp();
+		progApp.requestExerciseProgramInformation();
+		for (int i = 0; i < progApp.getContainerExcerciseProgramLength(); i++) {
+			ExerciseProgramContainer progContainer = progApp.getExerciseProgramContainer(i);
+			programs.put(progContainer.getProgramID(), progContainer.getName());
+		}
+		
+	}
+	
 	public void requestUsers() {
 		TrainerMemberInfoApp infoApp = new TrainerMemberInfoApp();
 		infoApp.requestAllUserID();
@@ -162,15 +172,6 @@ public class TrainerTrainingCommentApp {
 	}
 	
 	
-	public void requestPrograms() {
-		TrainerTrainingProgramOverviewApp progApp = new TrainerTrainingProgramOverviewApp();
-		progApp.requestExerciseProgramInformation();
-		for (int i = 0; i < progApp.getContainerExcerciseProgramLength(); i++) {
-			ExerciseProgramContainer progContainer = progApp.getExerciseProgramContainer(i);
-			programs.put(progContainer.getProgramID(), progContainer.getName());
-		}
-
-	}
 	
 	public String getProgramById(int id) {
 		Integer i = id;
@@ -204,6 +205,14 @@ public class TrainerTrainingCommentApp {
 			}
 		}
 		return -1;
+	}
+	
+	public Map<Integer, String> getUsers() {
+		return users;
+	}
+	
+	public  Map<Integer, String> getPrograms() {
+		return programs;
 	}
 	
 	public static void main(String[] args) {

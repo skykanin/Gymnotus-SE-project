@@ -112,7 +112,7 @@ public class TrainerTrainingCommentController extends WindowController {
     @FXML
     public void editComment() {
     		String choose = givenComments.getSelectionModel().getSelectedItem();
-    		if (choose.length() > 0) {
+    		if (choose != null && choose.length() > 0) {
     			String[] sections = choose.split(":");
     			String[] sections2 = sections[0].split("\n");
     			if (isProgram2) {
@@ -133,28 +133,27 @@ public class TrainerTrainingCommentController extends WindowController {
     		if (editContent.length() > 0) {
     			boolean done = false;
     			if (isProgram2) {
-    				done = commentApp.updateComment(editId, editContent);
-    				this.addCommentsToCommentList(commentApp.getCommentsFromTrainer());
-    				givenComments.getItems().clear();
-        			givenComments.setItems(commentList);
+    				done = commentApp.updateComment(editId, editContent.trim());
+    				this.requestAndAddComments();
+    				givenComments.setItems(commentList);
     			} else {
-    				done = commentApp.updateFeedback(editId, editContent);
-    				this.addFeedbacksToFeedbackList(commentApp.getFeedbacksFromTrainer());
-    				givenComments.getItems().clear();
-    	    			givenComments.setItems(feedbackList);
+    				done = commentApp.updateFeedback(editId, editContent.trim());
+    				this.requestAndAddFeedbacks();
+    				givenComments.setItems(feedbackList);
     			}
     			if(done) {
     				messageLabel2.setVisible(true);
     				messageLabel2.setTextFill(Color.web("#000000"));
-    				messageLabel2.setText("Kommentarer er oppdatert");
+    				messageLabel2.setText("Kommentaren er oppdatert");
+    				messageLabel.setText("");
     			}else {
     				messageLabel2.setVisible(true);
     				messageLabel2.setTextFill(Color.web("#ff0000"));
     				messageLabel2.setText("Noe gikk galt, prøv igjen senere");
+    				messageLabel.setText("");
+    				
     			}
     		}
-    		changeCommentArea.setText("");
-    		changeCommentField.setText("");
     		changeCommentVisibility(false);
     }
     
@@ -236,13 +235,13 @@ public class TrainerTrainingCommentController extends WindowController {
     		if (content.length() > 0) {
     			if (isProgram) {
     				if (commentApp.makeCommentToGroup(id, content)) {
+    					messageLabel2.setVisible(false);
     					messageLabel.setTextFill(Color.web("#000000"));
     					messageLabel.setText("Kommentaren er sendt inn for programmet " + choose);
     					commentTextArea.setText(""); 
-    					this.addCommentsToCommentList(commentApp.getCommentsFromTrainer());
-    	    				givenComments.getItems().clear();
-    	    				givenComments.setItems(commentList);
+    					this.requestAndAddComments();
     					}else {
+    						messageLabel2.setVisible(false);
     					messageLabel.setTextFill(Color.web("#ff0000"));
     					messageLabel.setText("Noe gikk galt, prøv igjen senere.");
     					}
@@ -252,10 +251,10 @@ public class TrainerTrainingCommentController extends WindowController {
     					messageLabel.setTextFill(Color.web("#000000"));
     					messageLabel.setText("Kommentaren er sendt inn til bruker " + choose);
     					commentTextArea.setText("");
-    					this.addFeedbacksToFeedbackList(commentApp.getFeedbacksFromTrainer());
-    	    				givenComments.getItems().clear();
-    	    				givenComments.setItems(feedbackList);
+    					this.requestAndAddFeedbacks();
+    					messageLabel2.setVisible(false);
     				} else {
+    					messageLabel2.setVisible(false);
     					messageLabel.setTextFill(Color.web("#ff0000"));
     					messageLabel.setText("Noe gikk galt, prøv igjen senere.");
     					}
@@ -308,7 +307,16 @@ public class TrainerTrainingCommentController extends WindowController {
 		givenComments.setVisible(! value);
 		
     }
+    
+    private void requestAndAddFeedbacks() {
+    		commentApp.requestFeedbackGiven();
+		this.addFeedbacksToFeedbackList(commentApp.getFeedbacksFromTrainer());
+    }
 
+    private void requestAndAddComments() {
+    		commentApp.requestCommentGiven();
+		this.addCommentsToCommentList(commentApp.getCommentsFromTrainer());
+    }
     public static void main(String[] args) {
         launch(args);
     }
