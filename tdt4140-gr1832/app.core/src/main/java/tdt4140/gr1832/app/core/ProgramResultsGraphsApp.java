@@ -354,5 +354,45 @@ public class ProgramResultsGraphsApp {
 		return containerUser;
 	}
 
+	public void setResContainers(List<ResultContainer> resCons) {
+		this.resContainers = resCons;
+		
+	}
+
+	public void setBaseURI(String string) {
+		this.baseURI = string;
+		
+	}
+
+	public Object getUserIDs() {
+		
+		return userids;
+	}
+
+	public List<ExerciseProgramContainer> getContainerExercisePrograms() {
+		
+		return containerExercisePrograms;
+	}
+
+	public void setUserids(List<Integer> userids2) {
+		this.userids = userids2;
+		
+	}
+
+	public void setContainerExercisePrograms(List<ExerciseProgramContainer> exProgCons) {
+		this.containerExercisePrograms = exProgCons;
+		
+	}
+
+	public void setExContainers(List<ExerciseContainer> exCons) {
+		this.exContainers = exCons;
+		
+	}
+
+	public void setHealthContainers(List<ShowHealthInfoContainer> healthContainers2) {
+		this.healthContainers = healthContainers2;
+		
+	}
+
 
 }
