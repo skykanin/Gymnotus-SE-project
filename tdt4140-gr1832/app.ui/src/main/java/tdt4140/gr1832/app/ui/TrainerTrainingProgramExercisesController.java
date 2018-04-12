@@ -17,11 +17,11 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-<<<<<<< HEAD
+
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
 
-=======
+
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -34,7 +34,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import tdt4140.gr1832.app.core.TrainerTrainingProgramExercisesApp;
->>>>>>> 446142adaa946c1604d7b60019b399515504a32b
+
 
 public class TrainerTrainingProgramExercisesController extends WindowController implements Initializable {
     
