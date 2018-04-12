@@ -93,16 +93,13 @@ public class TrainerDashboardController extends WindowController implements Init
 		String username = memberComboBox.getSelectionModel().getSelectedItem();
 		infoText.setText("Du ser " + username + "'s helsedata. Se noen andre: " );
 		
-		System.out.println(username);
-		System.out.println(app.getIDfromName(username));
-		
 		app.requestHealthInformation_ID(app.getIDfromName(username));
 		
-		
+		//REGNE SNITT START
 		double meanHR = 0;
 		double meanSteps = 0;
 		
-		System.out.println(app.getContainerUser().getShareHealthData());
+		
 		
 		if (app.getRestingHRs() != null && app.getContainerUser().getShareHealthData()) {
 			
@@ -121,6 +118,8 @@ public class TrainerDashboardController extends WindowController implements Init
 			pulsSnittVerdi.setText(df.format(meanHR) + "");
 			stepsSnittTekst.setText(username +"'s snittsteps er:");
 			stepsSnittVerdi.setText(df.format(meanSteps) + "");
+			
+			//REGNE SNITT SLUTT
 			
 			// START PLOTT		
 			heartRateChart.getData().clear();
@@ -181,6 +180,7 @@ public class TrainerDashboardController extends WindowController implements Init
 			heartRateChart.setCreateSymbols(false);
 			heartRateChart.setAnimated(false);
 	        heartRateChart.getData().add(series);
+	        
 	        stepsChart.setCreateSymbols(false);
 	        stepsChart.setAnimated(false);
 	        stepsChart.getData().add(series2);
