@@ -41,7 +41,7 @@
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <Label alignment="CENTER" contentDisplay="CENTER" layoutX="200.0" layoutY="230.0" prefHeight="29.0" prefWidth="151.0" text="Helsedata">
+                  <Label alignment="CENTER" contentDisplay="CENTER" layoutX="188.0" layoutY="230.0" prefHeight="29.0" prefWidth="175.0" text="Medlemsdata">
                      <font>
                         <Font size="24.0" />
                      </font>
