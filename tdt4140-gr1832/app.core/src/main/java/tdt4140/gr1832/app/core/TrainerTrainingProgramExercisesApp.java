@@ -11,6 +11,9 @@ import javax.ws.rs.core.MediaType;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
+import containers.ShowAllUsersContainer;
+import containers.ShowHealthInfoContainer;
+import containers.ShowUserInfoContainer;
 import javafx.scene.chart.XYChart.Series;
 
 public class TrainerTrainingProgramExercisesApp {

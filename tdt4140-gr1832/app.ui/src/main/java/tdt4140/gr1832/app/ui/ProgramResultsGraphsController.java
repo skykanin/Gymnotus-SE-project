@@ -17,6 +17,7 @@ import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXDialog;
 import com.jfoenix.controls.JFXDialogLayout;
 
+import containers.ResultContainer;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -35,7 +36,6 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import tdt4140.gr1832.app.core.ProgramResultsGraphsApp;
-import tdt4140.gr1832.app.core.ResultContainer;
 
 public class ProgramResultsGraphsController extends WindowController implements Initializable {
     

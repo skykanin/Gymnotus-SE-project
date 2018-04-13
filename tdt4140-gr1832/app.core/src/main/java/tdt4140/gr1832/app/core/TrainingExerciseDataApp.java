@@ -15,6 +15,11 @@ import javax.ws.rs.core.MediaType;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
+import containers.ExerciseProgramContainer;
+import containers.ShowExerciseDataContainerFromProgram;
+import containers.ShowHealthInfoContainer;
+import containers.ShowUserInfoContainer;
+
 public class TrainingExerciseDataApp {
 	
 	private boolean test = false;

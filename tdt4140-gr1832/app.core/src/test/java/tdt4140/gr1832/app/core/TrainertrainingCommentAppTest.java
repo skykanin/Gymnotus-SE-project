@@ -8,6 +8,11 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import containers.CommentContainer;
+import containers.ExerciseProgramContainer;
+import containers.FeedbackContainer;
+import containers.ShowUserInfoContainer;
+
 
 
 public class TrainertrainingCommentAppTest {

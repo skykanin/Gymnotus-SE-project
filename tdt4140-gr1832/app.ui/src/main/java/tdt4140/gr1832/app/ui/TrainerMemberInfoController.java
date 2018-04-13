@@ -162,7 +162,8 @@ public class TrainerMemberInfoController extends WindowController {
 		app.requestHealthInformation_ID(userID);
 		
 		//Disable buttons if there are noe health info
-		if (app.getContainerHealth().size()<1) {
+		
+		if (app.getContainerHealth().size()<1 || (! app.getContainerUser().getShareHealthData())) {
 			lastDay.setDisable(true);
 			nextDay.setDisable(true);
 			datePickerField.setDisable(true);
@@ -216,7 +217,7 @@ public class TrainerMemberInfoController extends WindowController {
 		         }
 		     }
 		 });
-		  
+	
 		}
 		
 		

@@ -9,18 +9,24 @@ import javax.ws.rs.core.Response;
 
 import com.google.gson.Gson;
 
+import containers.ShowUserInfoContainer;
+
 public class ApplicationState {
 
     private final String baseURI = "http://146.185.153.244:8080/api/user/";
-    private ShowUserInfoContainer loggedInUser;
+    private static ShowUserInfoContainer loggedInUser;
     private String window_name;
+<<<<<<< HEAD
     private int programCounter = 0;
 
+=======
+ 
+>>>>>>> 6b3de888a64553a40a0db5d12361b7933dc68bf0
     public ApplicationState(String window_name) {
         this.window_name = window_name;
     }
 
-    public ShowUserInfoContainer getLoggedInUser() {
+    public static ShowUserInfoContainer getLoggedInUser() {
         return loggedInUser;
     }
 
