@@ -14,55 +14,43 @@ import com.jfoenix.controls.JFXDialogLayout;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import com.jfoenix.controls.JFXTextField;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
-
-
 import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Label;
+import javafx.stage.Stage;
+import tdt4140.gr1832.app.core.ExerciseProgramContainer;
+import tdt4140.gr1832.app.core.TrainerTrainingProgramOverviewApp;
 import tdt4140.gr1832.app.core.TrainerTrainingProgramExercisesApp;
 
-
 public class TrainerTrainingProgramExercisesController extends WindowController implements Initializable {
-    
+
+	TrainerTrainingProgramOverviewApp programApp = new TrainerTrainingProgramOverviewApp();
+	TrainerTrainingProgramExercisesApp app = new TrainerTrainingProgramExercisesApp();
+
 	@FXML
     private StackPane root;
-    
-    @FXML JFXButton tilProgram;
 
-	@FXML JFXComboBox<String> exMemberComboBox;
+    @FXML
+    private JFXTextField program;
+    
 	
-	@FXML Label exInfoText;
-	@FXML Label exLabelOne;
-	@FXML Label exLabelTwo;
-	@FXML Label exLabelThree;
-	@FXML Label exLabelFour;
-	
-	    
-	@FXML LineChart<String,Number> exChartOne;
-	@FXML CategoryAxis xAxisOne;
-	@FXML NumberAxis yAxisOne;
-    
-	@FXML LineChart<String,Number> exChartTwo;
-	@FXML CategoryAxis xAxisTwo;
-	@FXML NumberAxis yAxisTwo;
-    
-	@FXML LineChart<String,Number> exChartThree;
-	@FXML CategoryAxis xAxisThree;
-	@FXML NumberAxis yAxisThree;
-    
-	@FXML LineChart<String,Number> exChartFour;
-	@FXML CategoryAxis xAxisFour;
-	@FXML NumberAxis yAxisFour;
-     
-	TrainerTrainingProgramExercisesApp app = new TrainerTrainingProgramExercisesApp();
+	@FXML
+	public void initialize() {
+		root.setPickOnBounds(false);
+		programApp.requestExerciseProgramInformation();
+		ExerciseProgramContainer c = programApp.getExerciseProgramContainer(AS.getProgramCounter());
+		program.setText(c.getName());
+	}
     
     @FXML
     public void loadDialog(ActionEvent parentEvent) {
@@ -89,7 +77,91 @@ public class TrainerTrainingProgramExercisesController extends WindowController 
         content.setActions(buttonYes, buttonNo);
         dialog.show();
     }
+    
+	
+	public void update() {
+		ExerciseProgramContainer c = programApp.getExerciseProgramContainer(AS.getProgramCounter());
+		program.setText(c.getName());
+	}
 
+	@FXML
+	public void nextProgram() {
+		if (AS.getProgramCounter() < (programApp.getContainerExcerciseProgramLength()-1)) {
+			AS.increaseProgramCounter();	
+		} else {
+			AS.setProgramCounter(0);;
+		}
+		update();
+	}
+	
+	@FXML
+	public void lastProgram() {
+		if (AS.getProgramCounter() > 0 ){
+			AS.decreaseProgramCounter();	
+		} else {
+		AS.setProgramCounter(programApp.getContainerExcerciseProgramLength()-1);
+		}
+		update();
+	}
+	
+	
+	   	@FXML
+	   	JFXButton tilProgram;
+	
+	   	@FXML
+	   	JFXComboBox<String> exMemberComboBox;
+		
+	   	@FXML
+	   	Label exInfoText;
+	   
+	   	@FXML
+	   	Label exLabelOne;
+	   
+	   	@FXML
+	   	Label exLabelTwo;
+	   
+	   	@FXML
+	   	Label exLabelThree;
+	   
+	   	@FXML
+	   	Label exLabelFour;
+		    
+	   	@FXML
+	   	LineChart<String,Number> exChartOne;
+	   
+	   	@FXML
+	   	CategoryAxis xAxisOne;
+	   
+	   	@FXML
+	   	NumberAxis yAxisOne;
+	    
+	   	@FXML
+	   	LineChart<String,Number> exChartTwo;
+	   
+	   	@FXML
+	   	CategoryAxis xAxisTwo;
+	   
+	   	@FXML
+	   	NumberAxis yAxisTwo;
+	    
+	   	@FXML
+	   	LineChart<String,Number> exChartThree;
+		
+	   	@FXML
+	   	CategoryAxis xAxisThree;
+	   
+		@FXML
+		NumberAxis yAxisThree;
+		
+		@FXML
+		LineChart<String,Number> exChartFour;
+		
+		@FXML
+		CategoryAxis xAxisFour;
+		
+		@FXML
+		NumberAxis yAxisFour;
+	
     @SuppressWarnings({ "unchecked", "rawtypes" })
 	
 	public void exHandleMemberComboBox(ActionEvent actionEvent) throws IOException, ParseException {
@@ -162,7 +234,7 @@ public class TrainerTrainingProgramExercisesController extends WindowController 
     //HJELPEMETODE
     private void hidePageContent() {
     	
-    		exChartOne.setLegendVisible(false);
+    	exChartOne.setLegendVisible(false);
 		exChartTwo.setLegendVisible(false);
 		exChartThree.setLegendVisible(false);
 		exChartFour.setLegendVisible(false);
@@ -178,11 +250,16 @@ public class TrainerTrainingProgramExercisesController extends WindowController 
 		exLabelFour.setText("");
     }
     
+    
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
+		root.setPickOnBounds(false);
+		programApp.requestExerciseProgramInformation();
+		ExerciseProgramContainer c = programApp.getExerciseProgramContainer(AS.getProgramCounter());
+		program.setText(c.getName());
 		
 		hidePageContent();
-		exInfoText.setText("Velg en venn for Ã¥ visualisere informasjon:");
+		exInfoText.setText("Velg en venn for å visualisere informasjon:");
 		
 		app.requestAllUserID();
 		
@@ -194,9 +271,12 @@ public class TrainerTrainingProgramExercisesController extends WindowController 
 		exMemberComboBox.setItems(names);
 		
 	}
+
     
     public static void main(String[] args) {
         launch(args);
-    }
-
+    }   
+	
+	
+	
 }

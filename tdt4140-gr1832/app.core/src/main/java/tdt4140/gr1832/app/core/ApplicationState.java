@@ -14,6 +14,7 @@ public class ApplicationState {
     private final String baseURI = "http://146.185.153.244:8080/api/user/";
     private ShowUserInfoContainer loggedInUser;
     private String window_name;
+    private int programCounter = 0;
 
     public ApplicationState(String window_name) {
         this.window_name = window_name;
@@ -59,5 +60,21 @@ public class ApplicationState {
     
     public String getBaseURI() {
     		return baseURI;
+    }
+    
+    public void increaseProgramCounter() {
+    	programCounter++;
+    }
+    
+    public void decreaseProgramCounter() {
+    	programCounter--;
+    }
+    
+    public void setProgramCounter(int i) {
+    	programCounter = i;
+    }
+    
+    public int getProgramCounter() {
+    	return programCounter;
     }
 }

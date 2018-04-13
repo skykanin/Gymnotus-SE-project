@@ -23,22 +23,15 @@ import tdt4140.gr1832.app.core.TrainerTrainingProgramOverviewApp;
 
 public class TrainerTrainingProgramOverviewController extends WindowController  {
 
-	@FXML
-	FontAwesomeIconView programPilVenstre;
 	
 	@FXML
-	FontAwesomeIconView programPilHoyre;
-	
-	@FXML
-	JFXTextField overskrift;
+	JFXTextField program;
 	
 	@FXML
 	TextArea treningsprogramBeskrivelse;
 	
 	TrainerTrainingProgramOverviewApp programApp = new TrainerTrainingProgramOverviewApp();;
-	
-	private int programCounter = 0;
-	
+		
     @FXML
     private StackPane root;
 
@@ -49,33 +42,33 @@ public class TrainerTrainingProgramOverviewController extends WindowController  
 	public void initialize() {
 		root.setPickOnBounds(false);
 		programApp.requestExerciseProgramInformation();
-		ExerciseProgramContainer c = programApp.getExerciseProgramContainer(programCounter);
-		overskrift.setText(c.getName());
+		ExerciseProgramContainer c = programApp.getExerciseProgramContainer(AS.getProgramCounter());
+		program.setText(c.getName());
 		treningsprogramBeskrivelse.setText(c.getDescription());
 	}
 	
 	public void update() {
-		ExerciseProgramContainer c = programApp.getExerciseProgramContainer(programCounter);
-		overskrift.setText(c.getName());
+		ExerciseProgramContainer c = programApp.getExerciseProgramContainer(AS.getProgramCounter());
+		program.setText(c.getName());
 		treningsprogramBeskrivelse.setText(c.getDescription());
 	}
 
 	@FXML
-	public void nesteProgram() {
-		if (programCounter < (programApp.getContainerExcerciseProgramLength()-1)) {
-			programCounter++;	
+	public void nextProgram() {
+		if (AS.getProgramCounter() < (programApp.getContainerExcerciseProgramLength()-1)) {
+			AS.increaseProgramCounter();	
 		} else {
-			programCounter = 0;
+			AS.setProgramCounter(0);;
 		}
 		update();
 	}
 	
 	@FXML
-	public void forrigeProgram() {
-		if (programCounter > 0 ){
-			programCounter--;	
+	public void lastProgram() {
+		if (AS.getProgramCounter() > 0 ){
+			AS.decreaseProgramCounter();	
 		} else {
-		programCounter = programApp.getContainerExcerciseProgramLength()-1;
+		AS.setProgramCounter(programApp.getContainerExcerciseProgramLength()-1);
 		}
 		update();
 	}

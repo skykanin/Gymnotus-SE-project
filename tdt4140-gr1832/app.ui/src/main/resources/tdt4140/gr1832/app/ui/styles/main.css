@@ -1,7 +1,7 @@
 .VenstreMenyKnapp {
 	-fx-alignment: center-left;
 }
-
+/*
 .jfx-rippler {
     -fx-rippler-fill: lime;
 }
@@ -9,4 +9,9 @@
 .jfx-radio-button {
     -fx-selected-color: yellow !important;
     -fx-unselected-color: blue !important;
+}
+*/
+
+VBox [-fx-background-color= #01597f] {
+	-fx-background-image: url(https://static.vecteezy.com/system/resources/previews/000/139/911/non_2x/vector-grey-gradient-abstract-background.jpg) !important;
 }
