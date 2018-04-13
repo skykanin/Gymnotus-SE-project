@@ -32,6 +32,7 @@ public class LoginScreenControllerTest extends FxAppTest {
         stage.show();
     }
 
+    
     @Test
     public void testValidInputFields() {
         final KeyCode[] testString = {KeyCode.T, KeyCode.E, KeyCode.S, KeyCode.T};

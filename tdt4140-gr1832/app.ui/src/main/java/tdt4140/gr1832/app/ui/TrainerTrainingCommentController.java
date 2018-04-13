@@ -92,6 +92,7 @@ public class TrainerTrainingCommentController extends WindowController {
 
     @FXML
     public void initialize() {
+    	if (! FxApp.TEST) {
     		changeCommentVisibility(false);
     		progUserList.addAll("Program", "Medlem");
     		progUserComboBox2.setItems(progUserList);
@@ -107,8 +108,8 @@ public class TrainerTrainingCommentController extends WindowController {
     		givenComments.setVisible(false);
     		
     		 		
+    		}
     }
-    
     @FXML
     public void editComment() {
     		String choose = givenComments.getSelectionModel().getSelectedItem();

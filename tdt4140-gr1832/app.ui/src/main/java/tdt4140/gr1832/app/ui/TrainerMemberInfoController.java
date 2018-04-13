@@ -122,41 +122,9 @@ public class TrainerMemberInfoController extends WindowController {
 
 	@FXML
 	public void initialize() {
+		
+		if (!FxApp.TEST) {
 		root.setPickOnBounds(false);
-		if (userID == null) {
-			app = new TrainerMemberInfoApp();
-			app.requestUserInformation_ID("1");
-			app.requestHealthInformation_ID("1");
-			String height=app.getHeight();
-			String date=app.getDate();
-			String weight=app.getWeight();
-			String steps=app.getSteps();		
-			String restingHR=app.getRestingHR();
-			String name =app.getName();
-			String username = app.getUsername();
-			String email = app.getEmail();
-			String tlf = app.getTlf();
-			String age =app.getAge();
-			String gender = app.getGender();
-			
-			heightField.setText(height);
-			dateField.setText(date);		
-			weightField.setText(weight);
-			stepsField.setText(steps);
-			restingHRField.setText(restingHR);
-			nameField.setText(name);
-			usernameField.setText(username);		
-			emailField.setText(email);
-			tlfField.setText(tlf);
-			ageField.setText(age);
-			genderField.setText(gender);
-			
-			datePickerField.setPromptText(date);
-			
-		    Medlemsnavn.setText("Brukerinformasjonen til " + app.getName());		
-
-			
-		} else {
 		app = new TrainerMemberInfoApp();
 		app.requestUserInformation_ID(userID);
 		app.requestHealthInformation_ID(userID);
@@ -195,7 +163,6 @@ public class TrainerMemberInfoController extends WindowController {
 		dateField.setEditable(false);
 		Medlemsnavn.setText("Brukerinformasjonen til " + app.getName());
 		datePickerField.setPromptText(date);
-
 		datePickerField.setConverter(new StringConverter<LocalDate>() {
 
 		     @Override 
@@ -217,7 +184,6 @@ public class TrainerMemberInfoController extends WindowController {
 		         }
 		     }
 		 });
-	
 		}
 		
 		

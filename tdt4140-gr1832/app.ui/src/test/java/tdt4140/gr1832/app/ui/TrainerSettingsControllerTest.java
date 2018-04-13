@@ -20,14 +20,20 @@ public class TrainerSettingsControllerTest extends FxAppTest {
     private final String TilMedlemmerID = "#TilMedlemmer";
     private final String TilTreningsprogramID = "#TilTreningsprogram";
     private final String TilInnstillingerID = "#TilInnstillinger";
-//    
-//    @Before
-//    public void setuo() {
-//    		TrainerSettingsController.ISTEST = true;
-//    }
-//    
+
+   
+    @Before
+    public void setUp() {
+    		FxApp.TEST = true;
+    }
+    
+    @After
+    public void tearDown() {
+    		FxApp.TEST = false;
+    }
 	@Override
 	public void start(Stage stage) throws Exception {
+		FxApp.TEST = true;
 		FxApp.InitializeAS("TrainerSettings.fxml");
 		ShowUserInfoContainer user = new ShowUserInfoContainer("username", "password", "name", 10, 1, "email", "123", true, true, true, false);
 		FxApp.getAS().DUMMYsetuser(user);

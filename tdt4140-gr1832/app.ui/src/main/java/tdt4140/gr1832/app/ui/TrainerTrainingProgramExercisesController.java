@@ -180,7 +180,7 @@ public class TrainerTrainingProgramExercisesController extends WindowController 
     
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		
+		if (!FxApp.TEST) {
 		hidePageContent();
 		exInfoText.setText("Velg en venn for å visualisere informasjon:");
 		
@@ -192,6 +192,7 @@ public class TrainerTrainingProgramExercisesController extends WindowController 
 		}
 		
 		exMemberComboBox.setItems(names);
+		}
 		
 	}
     

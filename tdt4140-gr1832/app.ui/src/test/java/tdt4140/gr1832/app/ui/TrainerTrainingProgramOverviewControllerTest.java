@@ -1,5 +1,7 @@
 package tdt4140.gr1832.app.ui;
 
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 
@@ -26,8 +28,14 @@ public class TrainerTrainingProgramOverviewControllerTest extends FxAppTest {
     private final String TilTreningspameldteID = "#TilTreningspameldte";
 
     
+    @After
+    public void tearDown() {
+    		FxApp.TEST = false;
+    }
+    
 	@Override
 	public void start(Stage stage) throws Exception {
+		FxApp.TEST = true;
 		FxApp.InitializeAS("TrainerTrainingProgramOverview.fxml");
 		ShowUserInfoContainer user = new ShowUserInfoContainer("username", "password", "name", 10, 1, "email", "123", true, true, true, false);
 		FxApp.getAS().DUMMYsetuser(user);

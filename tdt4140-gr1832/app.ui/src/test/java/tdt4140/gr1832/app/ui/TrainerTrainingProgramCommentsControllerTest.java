@@ -4,6 +4,8 @@ import static org.junit.Assert.assertEquals;
 import static org.testfx.api.FxAssert.verifyThat;
 import static org.testfx.matcher.base.NodeMatchers.hasText;
 
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 
 import containers.ShowUserInfoContainer;
@@ -23,9 +25,19 @@ public class TrainerTrainingProgramCommentsControllerTest extends FxAppTest {
     private final String TilTreningskommentarID = "#TilTreningskommentar";
     private final String TilTreningspameldteID = "#TilTreningspameldte";
 
+    @Before
+    public void setUp() {
+    		FxApp.TEST = true;
+    }
+    
+    @After
+    public void tearDown() {
+    		FxApp.TEST = false;
+    }
     
 	@Override
 	public void start(Stage stage) throws Exception {
+		FxApp.TEST = true;
 		FxApp.InitializeAS("TrainerTrainingProgramComments.fxml");
 		ShowUserInfoContainer user = new ShowUserInfoContainer("username", "password", "name", 10, 1, "email", "123", true, true, true, false);
 		FxApp.getAS().DUMMYsetuser(user);

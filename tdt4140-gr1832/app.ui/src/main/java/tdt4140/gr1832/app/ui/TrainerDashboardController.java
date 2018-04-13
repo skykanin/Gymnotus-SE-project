@@ -30,11 +30,13 @@ import javafx.scene.chart.XYChart;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDialog;
 import com.jfoenix.controls.JFXDialogLayout;
+import com.sun.javafx.applet.FXApplet2;
 
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
 
 public class TrainerDashboardController extends WindowController implements Initializable {
+	
 	
 	@FXML JFXComboBox<String> memberComboBox;
     @FXML private Label Velkommen;
@@ -54,42 +56,44 @@ public class TrainerDashboardController extends WindowController implements Init
     @FXML Label heartRateChartTitle;
     @FXML Label stepsChartTitle;
     
-    TrainerDashboardApp app = new TrainerDashboardApp();
+    TrainerDashboardApp app;
 
     @FXML
 	private StackPane root;
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		
-		if (FxApp.getAS().getLoggedInUser() != null) {
-			Velkommen.setText("Velkommen, " + FxApp.getAS().getLoggedInUser().getName());
+		if (!FxApp.TEST) { 
+			System.out.println("hei");
+				app = new TrainerDashboardApp();
+			if (FxApp.getAS().getLoggedInUser() != null) {
+				Velkommen.setText("Velkommen, " + FxApp.getAS().getLoggedInUser().getName());
+			}
+			
+			heartRateChart.setLegendVisible(false);
+			stepsChart.setLegendVisible(false);
+			heartRateChart.setOpacity(0);
+			stepsChart.setOpacity(0);
+			infoText.setText("Velg et medlem for å visualisere informasjon:");
+			
+			app.requestAllUserID();
+			ObservableList<String> names = FXCollections.observableArrayList();
+			for (String name : app.getNames()) {
+				names.add(name);
+			}
+			
+			memberComboBox.setItems(names);
+			pulsSnittTekst.setText("");
+			pulsSnittVerdi.setText("");
+			stepsSnittTekst.setText("");
+			stepsSnittVerdi.setText("");
 		}
-		
-		heartRateChart.setLegendVisible(false);
-		stepsChart.setLegendVisible(false);
-		heartRateChart.setOpacity(0);
-		stepsChart.setOpacity(0);
-		infoText.setText("Velg en venn for å visualisere informasjon:");
-		
-		app.requestAllUserID();
-		ObservableList<String> names = FXCollections.observableArrayList();
-		for (String name : app.getNames()) {
-			names.add(name);
-		}
-		
-		memberComboBox.setItems(names);
-		pulsSnittTekst.setText("");
-		pulsSnittVerdi.setText("");
-		stepsSnittTekst.setText("");
-		stepsSnittVerdi.setText("");
-		
 	}
 	
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	
 	public void handleMemberComboBox(ActionEvent actionEvent) throws IOException, ParseException {
-		
+		if (!FxApp.TEST) {
 		String username = memberComboBox.getSelectionModel().getSelectedItem();
 		infoText.setText("Du ser " + username + "'s helsedata. Se noen andre: " );
 		
@@ -190,7 +194,7 @@ public class TrainerDashboardController extends WindowController implements Init
 			
 		} else if(!(app.getContainerUser().getShareHealthData())) {
 			
-			infoText.setText(username + " har valgt å ikke vise sin data, velg en ny venn: ");
+			infoText.setText(username + " har valgt å ikke vise sin data, velg et nytt medlem: ");
 			pulsSnittTekst.setText("");
 			pulsSnittVerdi.setText("");
 			stepsSnittTekst.setText("");
@@ -212,7 +216,7 @@ public class TrainerDashboardController extends WindowController implements Init
 			
 		}
 		else {
-			infoText.setText(username + " har ikke registrert helsedata, velg en ny venn: ");
+			infoText.setText(username + " har ikke registrert helsedata, velg et nytt medlem: ");
 			pulsSnittTekst.setText("");
 			pulsSnittVerdi.setText("");
 			stepsSnittTekst.setText("");
@@ -230,7 +234,7 @@ public class TrainerDashboardController extends WindowController implements Init
 			stepsChart.setOpacity(0);
 		}
 		
-		
+		}
 
 	}
 	
