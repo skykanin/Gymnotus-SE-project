@@ -131,7 +131,7 @@ public class ProgramResultsGraphsController extends WindowController implements 
 		chart2.getData().clear();
 		chart3.getData().clear();
 
-		memberComboBox.getSelectionModel().clearSelection(); //FÅ memberComboBox tilbake til default
+		//memberComboBox.getSelectionModel().clearSelection(); //FÅ memberComboBox tilbake til default
 		
 		programName = programComboBox.getSelectionModel().getSelectedItem();
 		

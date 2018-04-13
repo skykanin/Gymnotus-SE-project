@@ -47,10 +47,13 @@ public class TrainerTrainingProgramExercisesController extends WindowController 
 	
 	@FXML
 	public void initialize() {
+		//This if statement makes UI test not dependent of server
+		if(!FxApp.TEST) {
 		root.setPickOnBounds(false);
 		programApp.requestExerciseProgramInformation();
 		ExerciseProgramContainer c = programApp.getExerciseProgramContainer(AS.getProgramCounter());
 		program.setText(c.getName());
+	}
 	}
     
     @FXML
@@ -261,7 +264,7 @@ public class TrainerTrainingProgramExercisesController extends WindowController 
 		
 		if (!FxApp.TEST) {
 			hidePageContent();
-			exInfoText.setText("Velg en venn for å visualisere informasjon:");
+			exInfoText.setText("Velg en venn for ï¿½ visualisere informasjon:");
 		
 			app.requestAllUserID();
 			

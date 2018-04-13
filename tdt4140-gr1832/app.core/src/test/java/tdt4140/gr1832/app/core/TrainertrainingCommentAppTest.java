@@ -24,12 +24,12 @@ public class TrainertrainingCommentAppTest {
 	CommentContainer commentContainer2;
 	ShowUserInfoContainer userContainer1;
 	ShowUserInfoContainer userContainer2;
-	TrainerTrainingCommentApp testApp;
+	TrainerTrainingProgramGiveCommentsApp testApp;
 	
 	
 	@Before
 	public void setup() {
-		testApp = new TrainerTrainingCommentApp();
+		testApp = new TrainerTrainingProgramGiveCommentsApp();
 		programContainer1 = new ExerciseProgramContainer(1, "Program1", "Beskrivelse1");
 		programContainer2 = new ExerciseProgramContainer(2, "Program2", "Beskrivelse2");
 		feedbackContainer1 = new FeedbackContainer(1, 1, 11, "Mar 01, 2018", "Feedback1");

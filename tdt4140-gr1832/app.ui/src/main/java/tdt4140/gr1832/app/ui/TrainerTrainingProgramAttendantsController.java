@@ -5,6 +5,8 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
+import org.eclipse.jetty.server.handler.ContextHandler.Availability;
+
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXDatePicker;
@@ -121,7 +123,7 @@ public class TrainerTrainingProgramAttendantsController extends WindowController
 	@FXML
 	DatePicker datePickerField; 
 		
-	private int dayCounter = 0;
+	private int dayCounter;
 	
 	String pattern = "LLL dd, yyyy";
 	DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern(pattern);
@@ -386,9 +388,7 @@ String name = memberComboBox.getSelectionModel().getSelectedItem();
 
 		if (eDataApp.getDates().contains(dateS)) {
 			dayCounter = eDataApp.getDates().indexOf(dateS);	
-		} else {
-			dayCounter = 0;
-		}
+		} 
 		updateInfoFieldsOnDate(dayCounter);
 		 
 	}
@@ -396,7 +396,7 @@ String name = memberComboBox.getSelectionModel().getSelectedItem();
     @FXML
     public void lastDay() {
     		if (dayCounter > 0) {
-    			dayCounter--;
+    			dayCounter-= 1;
     		} else {
     			dayCounter = eDataApp.getDates().size()-1;
     		}
@@ -405,10 +405,10 @@ String name = memberComboBox.getSelectionModel().getSelectedItem();
     
     @FXML
     public void nextDay() {
-    	if (eDataApp.getDates().size() - 1 > dayCounter) {
-			dayCounter++;
+    	if ((eDataApp.getDates().size()-1) == dayCounter) {
+			dayCounter=0;
 		} else {
-			dayCounter = 0;
+			this.dayCounter += 1;
 		}
 		updateInfoFieldsOnDate(dayCounter);
     }

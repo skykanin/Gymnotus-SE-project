@@ -25,14 +25,14 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import tdt4140.gr1832.app.core.TrainerTrainingCommentApp;
+import tdt4140.gr1832.app.core.TrainerTrainingProgramGiveCommentsApp;
 
-public class TrainerTrainingCommentController extends WindowController {
+public class TrainerTrainingProgramGiveCommentsController extends WindowController {
 
     @FXML
     private StackPane root;
     
-    private TrainerTrainingCommentApp commentApp;
+    private TrainerTrainingProgramGiveCommentsApp commentApp;
     
     @FXML
     Label messageLabel2;
@@ -97,7 +97,7 @@ public class TrainerTrainingCommentController extends WindowController {
     		progUserList.addAll("Program", "Medlem");
     		progUserComboBox2.setItems(progUserList);
     		progUserComboBox.setItems(progUserList);
-    		commentApp = new TrainerTrainingCommentApp();
+    		commentApp = new TrainerTrainingProgramGiveCommentsApp();
     		root.setPickOnBounds(false);
     		commentApp.requestCommentGiven();
     		commentApp.requestPrograms();
@@ -121,8 +121,8 @@ public class TrainerTrainingCommentController extends WindowController {
     			} else {
     				editId = commentApp.getFeedbackId(sections2[1].trim(), sections[1].trim());
     			}
-    			changeCommentArea.setText(sections[1]);
-    			changeCommentField.setText(sections2[0]);
+    			changeCommentArea.setText(sections[1].trim());
+    			changeCommentField.setText(sections2[0].trim());
     			changeCommentVisibility(true);
     		}
     	
@@ -318,9 +318,7 @@ public class TrainerTrainingCommentController extends WindowController {
     		commentApp.requestCommentGiven();
 		this.addCommentsToCommentList(commentApp.getCommentsFromTrainer());
     }
-    public static void main(String[] args) {
-        launch(args);
-    }
+
 
 
 }

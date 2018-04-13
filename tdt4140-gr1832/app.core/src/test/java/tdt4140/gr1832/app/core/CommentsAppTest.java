@@ -8,7 +8,7 @@ import containers.ShowCommentsContainer;
 
 public class CommentsAppTest {
 	ShowCommentsContainer container;
-	CommentsApp testapp;
+	TrainerTrainingProgramSeeCommentsApp testapp;
 
 	
 			 
@@ -16,7 +16,7 @@ public class CommentsAppTest {
 		public void setUp() {
 			container = new ShowCommentsContainer(1, 2, 3, "date", "content");
 			//Integer commentID, Integer userID, Integer programID, String date, String content
-			testapp = new CommentsApp();
+			testapp = new TrainerTrainingProgramSeeCommentsApp();
 			
 		}
 		

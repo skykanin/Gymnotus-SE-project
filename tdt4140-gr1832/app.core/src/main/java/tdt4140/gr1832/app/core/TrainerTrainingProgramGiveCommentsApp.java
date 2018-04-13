@@ -29,7 +29,7 @@ import containers.ExerciseProgramContainer;
 import containers.FeedbackContainer;
 import containers.ShowUserInfoContainer;
 
-public class TrainerTrainingCommentApp {
+public class TrainerTrainingProgramGiveCommentsApp {
 	
 	private Client client;
 	private WebTarget webTarget;
@@ -74,7 +74,7 @@ public class TrainerTrainingCommentApp {
 	
 	
 	public boolean updateComment(int commentId, String content) {
-		this.setUpConnection(baseURI + "comment/update_comment");
+		this.setUpConnection("comment/update_comment");
 		Date date = new Date();
 		  MultivaluedMap<String, String> formData = new MultivaluedHashMap<String, String>();
 		  formData.add("comment_id", Integer.toString(commentId));
@@ -88,7 +88,7 @@ public class TrainerTrainingCommentApp {
 		this.setUpConnection("feedback/update_feedback");
 		Date date = new Date();
 		  MultivaluedMap<String, String> formData = new MultivaluedHashMap<String, String>();
-		  formData.add("feedback_id", feedbackId + "");
+		  formData.add("feedback_id", feedbackId +"");
 		  formData.add("content", content);
 		  formData.add("date", this.fromDate(date));
 		  Response response = webTarget.request().post(Entity.form(formData));

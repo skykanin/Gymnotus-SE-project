@@ -13,7 +13,7 @@ import com.google.gson.reflect.TypeToken;
 
 import containers.ShowCommentsContainer;
 
-public class CommentsApp {
+public class TrainerTrainingProgramSeeCommentsApp {
 	private List<ShowCommentsContainer> containerComments = new ArrayList<ShowCommentsContainer>();
 	private String baseURI = "http://146.185.153.244:8080/api/";
 	
@@ -61,13 +61,6 @@ public class CommentsApp {
 	public String toString() {
 		return ""+containerComments;
 	}
-public static void main ( String[] args) {
-	//System.out.println("WHAT");
-
-	CommentsApp a = new CommentsApp();
-	a.requestProgramComments(2);
-	System.out.println(a.getCommentList());
-}
 
 
 }

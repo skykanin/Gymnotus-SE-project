@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="660.0" prefWidth="1200.0" stylesheets="@styles/main.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tdt4140.gr1832.app.ui.TrainerTrainingCommentController">
+<VBox prefHeight="660.0" prefWidth="1200.0" stylesheets="@styles/main.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tdt4140.gr1832.app.ui.TrainerTrainingProgramGiveCommentsController">
   <children>
     <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="451.0" prefWidth="487.0" style="-fx-background-color: #FFFFFF;" stylesheets="@styles/main.css" VBox.vgrow="ALWAYS">
       <children>
@@ -121,7 +121,7 @@
                   <Font size="14.0" />
                </font>
             </Label>
-            <StackPane fx:id="root" layoutX="228.0" layoutY="47.0" prefHeight="613.0" prefWidth="965.0" />
+            <StackPane fx:id="root" layoutX="235.0" layoutY="47.0" prefHeight="613.0" prefWidth="965.0" />
       </children>
     </AnchorPane>
   </children>
