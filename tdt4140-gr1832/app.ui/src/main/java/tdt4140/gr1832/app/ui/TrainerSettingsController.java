@@ -20,7 +20,7 @@ import containers.ShowUserInfoContainer;
 import tdt4140.gr1832.app.core.TrainerSettingsApp;
 import tdt4140.gr1832.app.core.User;
  
-public class TrainerSettingsController extends WindowContr {
+public class TrainerSettingsController extends WindowController {
 	
 	@FXML
 	JFXTextField nameField;
