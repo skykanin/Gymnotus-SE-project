@@ -16,6 +16,10 @@ import javax.ws.rs.client.ClientBuilder;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
+import containers.ShowAllUsersContainer;
+import containers.ShowHealthInfoContainer;
+import containers.ShowUserInfoContainer;
+
 public class TrainerMemberInfoApp {
 	
 	int healtInfoIndex = 0;
@@ -68,6 +72,7 @@ public class TrainerMemberInfoApp {
 		Gson gson = new Gson();
 		containerHealth = gson.fromJson(test, new TypeToken<List<ShowHealthInfoContainer>>(){}.getType());
 		this.requestUserInformation_ID(id);
+		healtInfoIndex = containerHealth.size()-1;
 		if (containerUser != null && (!containerUser.getShareHealthData())) { //Hvis health er false, da vises ikke data
 			for (ShowHealthInfoContainer healtcontainer : containerHealth) {
 				healtcontainer.viewNoHealthData();

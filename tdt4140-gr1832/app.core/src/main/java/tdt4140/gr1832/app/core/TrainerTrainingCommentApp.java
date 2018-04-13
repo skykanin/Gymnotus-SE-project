@@ -24,6 +24,11 @@ import org.aopalliance.reflect.ProgramUnit;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
+import containers.CommentContainer;
+import containers.ExerciseProgramContainer;
+import containers.FeedbackContainer;
+import containers.ShowUserInfoContainer;
+
 public class TrainerTrainingCommentApp {
 	
 	private Client client;

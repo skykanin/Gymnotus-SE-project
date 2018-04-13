@@ -8,6 +8,13 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import containers.ExerciseContainer;
+import containers.ExerciseProgramContainer;
+import containers.ResultContainer;
+import containers.ShowAllUsersContainer;
+import containers.ShowHealthInfoContainer;
+import containers.ShowUserInfoContainer;
+
 public class ProgramResultsGraphsAppTest {
 	ShowUserInfoContainer userContainer;
 	ShowUserInfoContainer userContainer1;

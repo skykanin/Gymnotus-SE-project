@@ -12,6 +12,13 @@ import javax.ws.rs.core.MediaType;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
+import containers.ExerciseContainer;
+import containers.ExerciseProgramContainer;
+import containers.ResultContainer;
+import containers.ShowAllUsersContainer;
+import containers.ShowHealthInfoContainer;
+import containers.ShowUserInfoContainer;
+
 
 public class ProgramResultsGraphsApp {
 	

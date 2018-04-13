@@ -8,6 +8,10 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import containers.ShowAllUsersContainer;
+import containers.ShowHealthInfoContainer;
+import containers.ShowUserInfoContainer;
+
 public class TrainerDashboardAppTest {
 	ShowUserInfoContainer showUserInfoContainer;
 	ShowUserInfoContainer showUserInfoContainer1;
