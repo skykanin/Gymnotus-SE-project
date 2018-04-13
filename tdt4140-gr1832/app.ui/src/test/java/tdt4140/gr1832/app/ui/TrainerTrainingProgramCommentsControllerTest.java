@@ -41,10 +41,10 @@ public class TrainerTrainingProgramCommentsControllerTest extends FxAppTest {
 		FxApp.InitializeAS("TrainerTrainingProgramComments.fxml");
 		ShowUserInfoContainer user = new ShowUserInfoContainer("username", "password", "name", 10, 1, "email", "123", true, true, true, false);
 		FxApp.getAS().DUMMYsetuser(user);
-        Parent root = FXMLLoader.load(getClass().getResource("TrainerTrainingProgramComments.fxml"));
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+	    Parent root = FXMLLoader.load(getClass().getResource("TrainerTrainingProgramComments.fxml"));
+	    Scene scene = new Scene(root);
+	    stage.setScene(scene);
+	    stage.show();
 	}
 
     @Test
