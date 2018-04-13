@@ -227,6 +227,7 @@ public class TrainerTrainingProgramGiveCommentsController extends WindowControll
     			givenComments.setItems(feedbackList);
     			isProgram2 = false;
     		}
+    		changeCommentVisibility(false);
     }
 
     
