@@ -46,8 +46,7 @@ public class TrainerTrainingCommentApp {
 	private Map<Integer,String> programs = new HashMap<>();
 	
 	public boolean makeCommentToGroup(int programId, String content) {
-		client = ClientBuilder.newClient();
-		webTarget = client.target(baseURI + "comment/create_comment");
+		this.setUpConnection("comment/create_comment");
 		Date date = new Date();
 		 MultivaluedMap<String, String> formData = new MultivaluedHashMap<String, String>();
 		 formData.add("user_id", trainerId + "");
@@ -59,8 +58,7 @@ public class TrainerTrainingCommentApp {
 	}
 	
 	public boolean makeFeedbackToUser(String feedback, int userId) {
-		client = ClientBuilder.newClient();
-		webTarget = client.target(baseURI + "feedback/create_feedback");
+		this.setUpConnection("feedback/create_feedback");
 		Date date = new Date();
 		//POST
 		//user_id(int), program_id(int), content(String) og date(på format yyyy-mm-dd
@@ -76,8 +74,7 @@ public class TrainerTrainingCommentApp {
 	
 	
 	public boolean updateComment(int commentId, String content) {
-		client = ClientBuilder.newClient();
-		webTarget = client.target(baseURI + "comment/update_comment");
+		this.setUpConnection(baseURI + "comment/update_comment");
 		Date date = new Date();
 		  MultivaluedMap<String, String> formData = new MultivaluedHashMap<String, String>();
 		  formData.add("comment_id", Integer.toString(commentId));
@@ -88,8 +85,7 @@ public class TrainerTrainingCommentApp {
 	}
 	
 	public boolean updateFeedback(int feedbackId, String content) {
-		client = ClientBuilder.newClient();
-		webTarget = client.target(baseURI + "feedback/update_feedback");
+		this.setUpConnection("feedback/update_feedback");
 		Date date = new Date();
 		  MultivaluedMap<String, String> formData = new MultivaluedHashMap<String, String>();
 		  formData.add("feedback_id", feedbackId + "");
@@ -99,16 +95,19 @@ public class TrainerTrainingCommentApp {
 		  return response.getStatus() == 200 ? true : false;
 	}
 	public void requestFeedbackGiven() {
-		client = ClientBuilder.newClient();
-		webTarget = client.target(baseURI+"feedback/get_feedbacks_from_trainer?trainer_id="+trainerId);
+		this.setUpConnection("feedback/get_feedbacks_from_trainer?trainer_id="+trainerId);
 		test = webTarget.request(MediaType.APPLICATION_JSON).get(String.class);
 		gson = new Gson();
 		feedbacks = gson.fromJson(test, new TypeToken<List<FeedbackContainer>>(){}.getType());
 	}
 	
-	public void requestCommentGiven() {
+	private void setUpConnection(String URL) {
 		client = ClientBuilder.newClient();
-		webTarget = client.target(baseURI+"comment/get_comments_from_user?user_id="+trainerId);
+		webTarget = client.target(baseURI+URL);
+	}
+	
+	public void requestCommentGiven() {
+		this.setUpConnection("comment/get_comments_from_user?user_id="+trainerId);
 		test = webTarget.request(MediaType.APPLICATION_JSON).get(String.class);
 		gson = new Gson();
 		comments = gson.fromJson(test, new TypeToken<List<CommentContainer>>(){}.getType());
@@ -217,12 +216,5 @@ public class TrainerTrainingCommentApp {
 	
 	public  Map<Integer, String> getPrograms() {
 		return programs;
-	}
-	
-	public static void main(String[] args) {
-		Date date = new Date();
-		TrainerTrainingCommentApp t = new TrainerTrainingCommentApp();
-		System.out.println(t.updateComment(3, "Oppdatere"));
-		System.out.println(t.updateFeedback(161, "Oppdatere"));
 	}
 }
