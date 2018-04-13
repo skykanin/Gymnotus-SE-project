@@ -20,7 +20,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.StackPane;
-import javafx.scene.text.Text;
+import javafx.scene.text.Text; 
 import javafx.stage.Stage;
 import tdt4140.gr1832.app.core.TrainerTrainingProgramOverviewApp;
 import tdt4140.gr1832.app.core.ShowCommentsContainer;
