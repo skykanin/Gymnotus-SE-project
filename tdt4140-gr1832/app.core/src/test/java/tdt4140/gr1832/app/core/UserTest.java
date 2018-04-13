@@ -13,7 +13,8 @@ public class UserTest {
 	private User user;
 	
 	@Before
-	public void setUp() throws Exception{
+	public void setUp() throws Exception{ 
+		this.user = new User();
 		this.user = new User("OlaN", "hamstring","Ola Nordmann", 12, 0,  "ola.nordmann@gmail.com", "41546593");
 		
 	}
@@ -45,12 +46,35 @@ public class UserTest {
 	public void testSetPhone() {
 	user.setPhone("41546593");
 	assertTrue("41546593" == user.getPhone());
+	try {
+		user.setPhone("sdfsssds");
+		System.out.println("Should have thrown IllegalARgumentException.");
+		assert false;
+	}catch (IllegalArgumentException e) {
+		assert true;
+	}
+	try {
+		user.setPhone("");
+		System.out.println("Should have thrown IllegalARgumentException.");
+		assert false;
+	}catch (IllegalArgumentException e) {
+		assert true;
+	}
+	try {
+		user.setPhone("9");
+		System.out.println("Should have thrown IllegalARgumentException.");
+		assert false;
+	}catch (IllegalArgumentException e) {
+		assert true;
+	}
 		 
 	}
 	@Test
 	public void testGetGender() {
 	assertEquals(0, user.getGender());
 	}
+	
+	
 		 
 	@Test
 	public void testSetGender() {
@@ -76,6 +100,13 @@ public class UserTest {
 		}catch (IllegalArgumentException e) {
 			assert true;
 	}
+		try {
+			user.setEmail("stds");
+			System.out.println("Should have thrown IllegalARgumentException.");
+			assert false;
+		}catch (IllegalArgumentException e) {
+			assert true;
+	}
 	}
 	@Test
 	public void testGetEmail() {
@@ -86,6 +117,13 @@ public class UserTest {
 	public void testSetName() {
 		try {
 			user.setName("gdsgs7gdsg");
+			System.out.println("Should have thrown IllegalARgumentException.");
+			assert false;
+		}catch (IllegalArgumentException e) {
+			assert true;
+		}
+		try {
+			user.setName("");
 			System.out.println("Should have thrown IllegalARgumentException.");
 			assert false;
 		}catch (IllegalArgumentException e) {
@@ -107,6 +145,13 @@ public class UserTest {
 			}catch (IllegalArgumentException e) {
 				assert true;
 			}
+			try {
+				user.setUsername("");
+				System.out.println("Should have thrown IllegalARgumentException.");
+				assert false;
+			}catch (IllegalArgumentException e) {
+				assert true;
+			}
 		}
 		
 		@Test
@@ -117,8 +162,9 @@ public class UserTest {
 		@Test
 		public void testEmail() {
 			Assert.assertEquals("ola.nordmann@gmail.com", user.getEmail());
-			user.setEmail(null);
-			Assert.assertEquals(null, user.getEmail());
+		
+//			user.setEmail(null);
+//			Assert.assertEquals(null, user.getEmail());
 		}
 		
 		@Test
@@ -130,6 +176,7 @@ public class UserTest {
 			}catch (IllegalArgumentException e) {
 				assert true;
 			}
+			
 			
 		}
 		@Test

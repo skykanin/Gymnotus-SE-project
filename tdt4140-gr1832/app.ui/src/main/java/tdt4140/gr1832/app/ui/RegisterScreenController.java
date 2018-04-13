@@ -5,6 +5,8 @@ import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXRadioButton;
 import java.io.IOException;
 
+import javax.ws.rs.NotFoundException;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -95,6 +97,14 @@ public class RegisterScreenController extends WindowController {
 	@FXML
 	private void tilDashboard(ActionEvent event) {
 		initialize();
+		
+		try {
+            AS.verifyUsername(getStringFromTextField(setUsername));
+            	errorMessage.setText("Brukernavnet finnes fra før");
+            	return;
+        } catch (NotFoundException e) {
+            
+        }
 		try {
 			updateAllInfo();
 			System.out.println("Has been done");
@@ -106,7 +116,7 @@ public class RegisterScreenController extends WindowController {
 
 		}
 		catch (NumberFormatException e) {
-			errorMessage.setText("Age must be an integer between 0 and 100");
+			errorMessage.setText("Alder må være et tall mellom 0 og 100");
 		}
 		catch (IllegalArgumentException e) {
 			//e.printStackTrace();
