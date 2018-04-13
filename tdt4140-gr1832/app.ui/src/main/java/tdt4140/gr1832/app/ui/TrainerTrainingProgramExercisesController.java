@@ -259,17 +259,19 @@ public class TrainerTrainingProgramExercisesController extends WindowController 
 		ExerciseProgramContainer c = programApp.getExerciseProgramContainer(AS.getProgramCounter());
 		program.setText(c.getName());
 		
-		hidePageContent();
-		exInfoText.setText("Velg en venn for å visualisere informasjon:");
+		if (!FxApp.TEST) {
+			hidePageContent();
+			exInfoText.setText("Velg en venn for å visualisere informasjon:");
 		
-		app.requestAllUserID();
-		
-		ObservableList<String> names = FXCollections.observableArrayList();
-		for (String name : app.getNames()) {
-			names.add(name);
+			app.requestAllUserID();
+			
+			ObservableList<String> names = FXCollections.observableArrayList();
+			for (String name : app.getNames()) {
+				names.add(name);
 		}
 		
 		exMemberComboBox.setItems(names);
+		}
 		
 	}
 

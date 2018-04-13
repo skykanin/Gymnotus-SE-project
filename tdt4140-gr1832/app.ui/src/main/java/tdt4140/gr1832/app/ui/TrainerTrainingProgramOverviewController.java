@@ -40,11 +40,13 @@ public class TrainerTrainingProgramOverviewController extends WindowController  
 	
 	@FXML
 	public void initialize() {
+		if(!FxApp.TEST) {
 		root.setPickOnBounds(false);
 		programApp.requestExerciseProgramInformation();
 		ExerciseProgramContainer c = programApp.getExerciseProgramContainer(AS.getProgramCounter());
 		program.setText(c.getName());
 		treningsprogramBeskrivelse.setText(c.getDescription());
+		}
 	}
 	
 	public void update() {

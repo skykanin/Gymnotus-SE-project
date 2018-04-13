@@ -125,7 +125,7 @@ public class TrainerSettingsController extends WindowController {
 	
 	@FXML
 	public void initialize() {
-		
+		if(!FxApp.TEST) {
 		ShowUserInfoContainer user = FxApp.getAS().getLoggedInUser();
 
 		String name = user.getName();
@@ -155,6 +155,7 @@ public class TrainerSettingsController extends WindowController {
 		}
 		
 		root.setPickOnBounds(false);
+	}
 	}
 	
 	//Emailvalidator

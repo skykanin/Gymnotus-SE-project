@@ -130,6 +130,7 @@ public class TrainerTrainingProgramAttendantsController extends WindowController
 	
 	@FXML
 	public void initialize() {
+		if (! FxApp.TEST) {
 		root.setPickOnBounds(false);
 		setFieldVisibility(false);
 		setHealthFieldVisibility(false);
@@ -201,6 +202,7 @@ public class TrainerTrainingProgramAttendantsController extends WindowController
 		};
 		
 		datePickerField.setDayCellFactory(set);
+		}
 	}
 	
 	@FXML

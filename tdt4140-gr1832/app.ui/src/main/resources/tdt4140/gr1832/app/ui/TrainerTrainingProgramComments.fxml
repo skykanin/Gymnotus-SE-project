@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXListView?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import javafx.scene.control.Label?>
@@ -93,6 +94,7 @@
                   <Font size="18.0" />
                </font>
             </JFXTextField>
+            <JFXListView fx:id="commentList" layoutX="244.0" layoutY="224.0" prefHeight="431.0" prefWidth="950.0" style="-fx-border-color: #80bfb7;" />
             <StackPane fx:id="root" layoutX="235.0" layoutY="47.0" prefHeight="613.0" prefWidth="965.0" />
       </children>
     </AnchorPane>

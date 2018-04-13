@@ -34,6 +34,7 @@ public class TrainerMembersController extends WindowController {
 
 	@FXML
 	public void initialize() {
+		if(!FxApp.TEST) {
 		root.setPickOnBounds(false);
 		app.requestAllUserID();
 		ObservableList<String> names = FXCollections.observableArrayList();
@@ -48,11 +49,15 @@ public class TrainerMembersController extends WindowController {
 		}
 		trenerListe.setItems(trainers);
 		medlemsListe.setItems(names);
+		}
 	}
 	
 	
 	@FXML
 	private void velgMedlem(ActionEvent event) throws IOException {
+		if(FxApp.TEST) {
+			NavigerTilSide("TrainerMemberInfo.fxml", event, "1");
+		} else {
 		String preferedUser = medlemsListe.getSelectionModel().getSelectedItem();
 		if (preferedUser == null) {
 			valgMFeil.setText("Du har ikke valgt medlem");
@@ -60,11 +65,16 @@ public class TrainerMembersController extends WindowController {
 			valgMFeil.setText("");
 			String id = app.getIDfromName(preferedUser);
 			NavigerTilSide("TrainerMemberInfo.fxml", event, id);		
+			}
 		}
+		
 	}
 	
 	@FXML
 	private void velgTrener(ActionEvent event) throws IOException{
+		if(FxApp.TEST) {
+			NavigerTilSide("TrainerMemberInfo.fxml", event, "1");
+		} else {
 		String preferedUser = trenerListe.getSelectionModel().getSelectedItem();
 		if (preferedUser == null) {
 			valgTFeil.setText("Du har ikke valgt trener");
@@ -72,6 +82,7 @@ public class TrainerMembersController extends WindowController {
 			valgTFeil.setText("");
 			String id = app.getIDfromName(preferedUser);
 			NavigerTilSide("TrainerMemberInfo.fxml", event, id);
+		}
 		}
 	}
 	

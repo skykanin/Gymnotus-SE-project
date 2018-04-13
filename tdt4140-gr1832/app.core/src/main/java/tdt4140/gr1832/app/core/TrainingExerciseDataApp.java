@@ -15,6 +15,8 @@ import javax.ws.rs.core.MediaType;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
+import comparators.InfoDateComparator;
+import comparators.SortedSetComparator;
 import containers.ExerciseProgramContainer;
 import containers.ShowExerciseDataContainerFromProgram;
 import containers.ShowHealthInfoContainer;
