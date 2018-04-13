@@ -1,3 +1,20 @@
 .onHover{
     -fx-background-color: ORANGE;
 }
+.chart {
+	-fx-background-color: rgb(0,0,0,0);
+}
+.chart-content {
+	-fx-color:#00FF00;
+}
+
+.chart-plot-background {
+	-fx-background-color: #FFFFFF;	
+}
+.chart-series-line {    
+	-fx-stroke-width: 4px;
+	-fx-stroke: #0b87a1;
+}
+#SkrittGraf {
+	
+}

@@ -83,7 +83,7 @@
                   <Font size="34.0" />
                </font>
             </Label>
-            <LineChart fx:id="heartRateChart" accessibleRole="IMAGE_VIEW" animated="false" layoutX="258.0" layoutY="134.0" prefHeight="250.0" prefWidth="600.0">
+            <LineChart fx:id="heartRateChart" accessibleRole="IMAGE_VIEW" animated="false" layoutX="270.0" layoutY="134.0" prefHeight="250.0" prefWidth="600.0" stylesheets="@styles/chart.css">
               <xAxis>
                 <CategoryAxis side="BOTTOM" fx:id="xAxis" />
               </xAxis>
@@ -91,7 +91,7 @@
                 <NumberAxis fx:id="yAxis" side="LEFT" />
               </yAxis>
             </LineChart>
-            <LineChart fx:id="stepsChart" accessibleRole="IMAGE_VIEW" animated="false" layoutX="249.0" layoutY="393.0" prefHeight="250.0" prefWidth="600.0">
+            <LineChart id="SkrittGraf" fx:id="stepsChart" accessibleRole="IMAGE_VIEW" animated="false" layoutX="270.0" layoutY="393.0" prefHeight="250.0" prefWidth="600.0" stylesheets="@styles/chart.css">
                <xAxis>
                   <CategoryAxis side="BOTTOM" fx:id="xAxis1" />
                </xAxis>

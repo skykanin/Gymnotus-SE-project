@@ -28,9 +28,10 @@ import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
-import tdt4140.gr1832.app.core.ExerciseProgramContainer;
 import tdt4140.gr1832.app.core.TrainerTrainingProgramOverviewApp;
 import tdt4140.gr1832.app.core.TrainerTrainingProgramExercisesApp;
+import containers.ExerciseProgramContainer;
+
 
 public class TrainerTrainingProgramExercisesController extends WindowController implements Initializable {
 

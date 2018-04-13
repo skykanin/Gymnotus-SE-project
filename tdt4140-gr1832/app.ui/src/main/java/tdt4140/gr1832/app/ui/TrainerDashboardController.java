@@ -84,6 +84,7 @@ public class TrainerDashboardController extends WindowController implements Init
 		stepsSnittTekst.setText("");
 		stepsSnittVerdi.setText("");
 		
+		root.setPickOnBounds(false);
 	}
 	
 	@SuppressWarnings({ "unchecked", "rawtypes" })

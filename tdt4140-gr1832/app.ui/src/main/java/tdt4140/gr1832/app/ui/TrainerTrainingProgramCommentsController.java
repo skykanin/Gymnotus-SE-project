@@ -24,10 +24,11 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 import javafx.util.StringConverter;
-import tdt4140.gr1832.app.core.ExerciseProgramContainer;
-import tdt4140.gr1832.app.core.ShowUserInfoContainer;
+import containers.ShowUserInfoContainer;
 import tdt4140.gr1832.app.core.TrainerTrainingProgramOverviewApp;
 import tdt4140.gr1832.app.core.TrainingExerciseDataApp;
+import containers.ExerciseProgramContainer;
+
 
 public class TrainerTrainingProgramCommentsController extends WindowController {
 
