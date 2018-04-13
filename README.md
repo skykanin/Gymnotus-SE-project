@@ -20,6 +20,20 @@ Du vil trenge det følgende for å kjøre programmet:
  - [Maven](https://maven.apache.org/guides/getting-started/maven-in-five-minutes.html)
  - [Java 8](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)
 
+## Verktøy
+Her er en liste over verktøy som vi bruker i prosjektet vårt:
+- [GSON](https://github.com/google/gson): google sin json parser for java. REST apien vår sender data fra serveren som json objekter og derfor bruker vi Gson til å konvertere disse til javaobjekter.
+- [HSQLDB](http://hsqldb.org/): databasesystem for java som vi bruker til å teste REST apien vår på serversiden ved å lage en lokal database.
+- JavaFX: java sitt standardbibliotek for å lage GUI applikasjoner i java.
+- [jBCrypt](https://github.com/jeremyh/jBCrypt): en java implementasjon av hashingalgoritmen [bcrypt](https://en.wikipedia.org/wiki/Bcrypt). Dette bruker vi til å hashe passordene før de legges inn i databasen.
+- [JDBC](http://www.oracle.com/technetwork/java/javase/jdbc/index.html): Oracle sin standard grensesnitt for å kommunisere med databaser. Vi bruker dette til å kommunisere med MySQL databasen vår.
+- [Jersey](https://jersey.github.io/): java rammeverk for å utvikle REST-apier. Dette bruker vi på serversiden til å enkelt tilby en REST-api til klienten.
+- [Jetty](https://www.eclipse.org/jetty/): java web server og servlet. Vi bruker jetty til å svare på requests som blir sendt til REST-apien.
+- [JUnit](https://junit.org/junit4/): java rammeverk for å skrive tester. Dette er testrammeverket vi bruker til å skrive alle testene våre.
+- [TestFX](https://github.com/TestFX/TestFX): utvidelse av JUnit rammeverket for å skrive unit tester til JavaFX.
+- [JFoenix](http://www.jfoenix.com/): biblotek som implementerer google sin material ui standard i JavaFX elementer. Dette bruker vi til å style brukergrensesnittet vårt. 
+- [Fontawesomefx](https://bitbucket.org/Jerady/fontawesomefx): java implementasjon av fontawesome vektorikoner. Dette bruker vi for alle ikonene våre i brukergrensesnittet.
+
 ## Bygging av programmet
 
 For å bygge programmet gjennom terminal må du først passe på at du er i mappen `32/tdt4140-gr1832`. Deretter kjører du følgende kommando for å bygge programmet:
