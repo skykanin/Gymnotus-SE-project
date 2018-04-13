@@ -28,7 +28,7 @@ Her er en liste over verktøy som vi bruker i prosjektet vårt:
 - [jBCrypt](https://github.com/jeremyh/jBCrypt): en java implementasjon av hashingalgoritmen [bcrypt](https://en.wikipedia.org/wiki/Bcrypt). Dette bruker vi til å hashe passordene før de legges inn i databasen.
 - [JDBC](http://www.oracle.com/technetwork/java/javase/jdbc/index.html): Oracle sin standard grensesnitt for å kommunisere med databaser. Vi bruker dette til å kommunisere med MySQL databasen vår.
 - [Jersey](https://jersey.github.io/): java rammeverk for å utvikle REST-apier. Dette bruker vi på serversiden til å enkelt tilby en REST-api til klienten.
-- [Jetty](https://www.eclipse.org/jetty/): java web server og servlet. Vi bruker jetty til å svare på requests som blir sendt til REST-apien.
+- [Jetty](https://www.eclipse.org/jetty/): eclipse sin java web server og servlet. Vi bruker Jetty til å sette opp en lightweight servlet som skal tilby klienter å koble til serveren gjennom bl.a. HTTP/HTTPS, websocket, OSGI og mange andre intregrasjoner
 - [JUnit](https://junit.org/junit4/): java rammeverk for å skrive tester. Dette er testrammeverket vi bruker til å skrive alle testene våre.
 - [TestFX](https://github.com/TestFX/TestFX): utvidelse av JUnit rammeverket for å skrive unit tester til JavaFX.
 - [JFoenix](http://www.jfoenix.com/): biblotek som implementerer google sin material ui standard i JavaFX elementer. Dette bruker vi til å style brukergrensesnittet vårt. 
