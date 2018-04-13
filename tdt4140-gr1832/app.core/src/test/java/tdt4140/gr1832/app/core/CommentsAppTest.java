@@ -4,6 +4,8 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import containers.ShowCommentsContainer;
+
 public class CommentsAppTest {
 	ShowCommentsContainer container;
 	CommentsApp testapp;

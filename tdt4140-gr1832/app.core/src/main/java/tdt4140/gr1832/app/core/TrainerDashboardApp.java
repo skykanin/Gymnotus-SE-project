@@ -84,6 +84,7 @@ public class TrainerDashboardApp {
 	
 	public String getIDfromName(String name) {
 		for (ShowUserInfoContainer user : containerAllUsers.getUsers()){
+			if(name == null || user.getName() == null) continue;
 			if (user.getName().equals(name)) {
 				return user.getUserID();
 			}

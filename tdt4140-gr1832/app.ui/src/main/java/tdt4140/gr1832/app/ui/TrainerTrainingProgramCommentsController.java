@@ -12,6 +12,7 @@ import com.jfoenix.controls.JFXListView;
 import com.jfoenix.controls.JFXTextField;
 
 import containers.ExerciseProgramContainer;
+import containers.ShowCommentsContainer;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -34,7 +35,6 @@ import containers.ShowUserInfoContainer;
 import tdt4140.gr1832.app.core.TrainerTrainingProgramOverviewApp;
 import tdt4140.gr1832.app.core.TrainingExerciseDataApp;
 import containers.ExerciseProgramContainer;
-import tdt4140.gr1832.app.core.ShowCommentsContainer;
 import tdt4140.gr1832.app.core.CommentsApp;
 
 

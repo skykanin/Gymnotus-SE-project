@@ -104,9 +104,7 @@ public class TrainerDashboardController extends WindowController implements Init
 		double meanHR = 0;
 		double meanSteps = 0;
 		
-		
-		
-		if (app.getRestingHRs() != null && app.getContainerUser().getShareHealthData()) {
+		if (app.getRestingHRs() != null && app.getContainerUser().getShareHealthData() && app.getHealthContainers().size() > 0) {
 			
 			for (int i = 0; i < app.getRestingHRs().size(); i++) {
 				

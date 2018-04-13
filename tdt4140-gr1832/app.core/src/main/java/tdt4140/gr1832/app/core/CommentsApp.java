@@ -11,6 +11,8 @@ import javax.ws.rs.core.MediaType;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
+import containers.ShowCommentsContainer;
+
 public class CommentsApp {
 	private List<ShowCommentsContainer> containerComments = new ArrayList<ShowCommentsContainer>();
 	private String baseURI = "http://146.185.153.244:8080/api/";
