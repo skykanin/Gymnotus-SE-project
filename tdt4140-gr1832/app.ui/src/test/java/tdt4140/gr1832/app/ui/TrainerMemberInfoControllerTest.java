@@ -10,11 +10,11 @@ import org.junit.Test;
 import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXTextField;
 
+import containers.ShowUserInfoContainer;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import tdt4140.gr1832.app.core.ShowUserInfoContainer;
 
 public class TrainerMemberInfoControllerTest extends FxAppTest {
 

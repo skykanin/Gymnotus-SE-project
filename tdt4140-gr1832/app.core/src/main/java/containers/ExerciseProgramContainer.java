@@ -1,4 +1,4 @@
-package tdt4140.gr1832.app.core;
+package containers;
 
 public class ExerciseProgramContainer {
 	Integer programID;
@@ -14,19 +14,13 @@ public class ExerciseProgramContainer {
 	public Integer getProgramID() {
 		return programID;
 	}
-	public void setProgramID(Integer programID) {
-		this.programID = programID;
-	}
+	
 	public String getName() {
 		return name;
 	}
-	public void setName(String name) {
-		this.name = name;
-	}
+	
 	public String getDescription() {
 		return description;
 	}
-	public void setDescription(String description) {
-		this.description = description;
-	}
+	
 }

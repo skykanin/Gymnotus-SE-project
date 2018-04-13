@@ -6,6 +6,7 @@ import javax.mail.internet.InternetAddress;
 
 import com.jfoenix.controls.*;
 
+import containers.ShowUserInfoContainer;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -15,7 +16,6 @@ import javafx.scene.Scene;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import tdt4140.gr1832.app.core.ShowUserInfoContainer;
 import tdt4140.gr1832.app.core.TrainerSettingsApp;
 
 public class TrainerSettingsController extends WindowController {

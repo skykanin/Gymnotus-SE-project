@@ -7,6 +7,11 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import containers.ExerciseProgramContainer;
+import containers.ShowExerciseDataContainerFromProgram;
+import containers.ShowHealthInfoContainer;
+import containers.ShowUserInfoContainer;
+
 
 public class TrainingExerciseDataAppTest {
 	

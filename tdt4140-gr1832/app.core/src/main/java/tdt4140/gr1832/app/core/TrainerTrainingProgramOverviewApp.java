@@ -11,6 +11,8 @@ import javax.ws.rs.core.MediaType;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
+import containers.ExerciseProgramContainer;
+
 public class TrainerTrainingProgramOverviewApp {
 	
 	private List<ExerciseProgramContainer> containerExercisePrograms = new ArrayList<ExerciseProgramContainer>();
