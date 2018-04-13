@@ -4,6 +4,8 @@ import static org.junit.Assert.assertEquals;
 import static org.testfx.api.FxAssert.verifyThat;
 import static org.testfx.matcher.base.NodeMatchers.hasText;
 
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 
 import javafx.fxml.FXMLLoader;
@@ -18,7 +20,12 @@ public class TrainerSettingsControllerTest extends FxAppTest {
     private final String TilMedlemmerID = "#TilMedlemmer";
     private final String TilTreningsprogramID = "#TilTreningsprogram";
     private final String TilInnstillingerID = "#TilInnstillinger";
-    
+//    
+//    @Before
+//    public void setuo() {
+//    		TrainerSettingsController.ISTEST = true;
+//    }
+//    
 	@Override
 	public void start(Stage stage) throws Exception {
 		FxApp.InitializeAS("TrainerSettings.fxml");
@@ -64,5 +71,10 @@ public class TrainerSettingsControllerTest extends FxAppTest {
 //        assertEquals(FxApp.getAS().getWindowName(),"TrainerSettings.fxml");
 //        clickOn(TilInnstillingerID);
 //        assertEquals(FxApp.getAS().getWindowName(),"TrainerSettings.fxml");
+//    }
+//    
+//    @After
+//    public void tearDown() {
+//    		TrainerSettingsController.ISTEST = false;
 //    }
 }

@@ -36,8 +36,7 @@ public class TrainerTrainingCommentApp {
 	private List<FeedbackContainer> feedbacks = new ArrayList<>();
 	
 	private static final String baseURI = "http://146.185.153.244:8080/api/";
-	//private String trainerId = ApplicationState.getLoggedInUser().getUserID();
-	private String trainerId = "1";
+	private String trainerId = ApplicationState.getLoggedInUser().getUserID();
 	private Map<Integer,String> users = new HashMap<>();
 	private Map<Integer,String> programs = new HashMap<>();
 	

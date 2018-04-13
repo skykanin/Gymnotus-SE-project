@@ -12,14 +12,14 @@ import com.google.gson.Gson;
 public class ApplicationState {
 
     private final String baseURI = "http://146.185.153.244:8080/api/user/";
-    private ShowUserInfoContainer loggedInUser;
+    private static ShowUserInfoContainer loggedInUser;
     private String window_name;
-
+ 
     public ApplicationState(String window_name) {
         this.window_name = window_name;
     }
 
-    public ShowUserInfoContainer getLoggedInUser() {
+    public static ShowUserInfoContainer getLoggedInUser() {
         return loggedInUser;
     }
 

@@ -34,74 +34,74 @@ public class TrainerTrainingProgramExercisesControllerTest extends FxAppTest {
         stage.setScene(scene);
         stage.show();
 	}
-//
+
+    @Test
+    public void verifyButtons() {
+        verifyThat(TilDashboardID, hasText("    DASHBOARD"));
+        verifyThat(TilTreningsprogramID, hasText("    TRENINGSPROGRAM"));
+        verifyThat(TilMedlemmerID, hasText("    MEDLEMMER"));
+        verifyThat(TilInnstillingerID, hasText("    INNSTILLINGER"));
+        
+        verifyThat(TilTreningsovelseID, hasText("OVELSER"));
+        verifyThat(TilTreningskommentarID, hasText("KOMMENTAR"));
+        verifyThat(TilTreningspameldteID, hasText("PAMELDTE"));
+        verifyThat(TilTreningsoversiktID, hasText("OVERSIKT"));
+    }
+    
+    @Test
+    public void verifyNavigationDashboard() {
+        assertEquals("TrainerTrainingProgramExercises.fxml", FxApp.getAS().getWindowName());
+        clickOn(TilDashboardID);
+        assertEquals("TrainerDashboard.fxml", FxApp.getAS().getWindowName());
+    }
+    
+    @Test
+    public void verifyNavigationTrainingProgram() {
+        assertEquals("TrainerTrainingProgramExercises.fxml", FxApp.getAS().getWindowName());
+        clickOn(TilTreningsprogramID);
+        assertEquals("TrainerTrainingProgramOverview.fxml", FxApp.getAS().getWindowName());
+    }
+    
+    @Test
+    public void verifyNavigationMembers() {
+        assertEquals("TrainerTrainingProgramExercises.fxml", FxApp.getAS().getWindowName());
+        clickOn(TilMedlemmerID);
+        assertEquals("TrainerMembers.fxml", FxApp.getAS().getWindowName());
+    }
+    
 //    @Test
-//    public void verifyButtons() {
-//        verifyThat(TilDashboardID, hasText("    DASHBOARD"));
-//        verifyThat(TilTreningsprogramID, hasText("    TRENINGSPROGRAM"));
-//        verifyThat(TilMedlemmerID, hasText("    MEDLEMMER"));
-//        verifyThat(TilInnstillingerID, hasText("    INNSTILLINGER"));
-//        
-//        verifyThat(TilTreningsovelseID, hasText("OVELSER"));
-//        verifyThat(TilTreningskommentarID, hasText("KOMMENTAR"));
-//        verifyThat(TilTreningspameldteID, hasText("PAMELDTE"));
-//        verifyThat(TilTreningsoversiktID, hasText("OVERSIKT"));
-//    }
-//    
-//    @Test
-//    public void verifyNavigationDashboard() {
+//    public void verifyNavigationSettings() {
 //        assertEquals("TrainerTrainingProgramExercises.fxml", FxApp.getAS().getWindowName());
-//        clickOn(TilDashboardID);
-//        assertEquals("TrainerDashboard.fxml", FxApp.getAS().getWindowName());
+//        clickOn(TilInnstillingerID);
+//        assertEquals("TrainerSettings.fxml", FxApp.getAS().getWindowName());
 //    }
-//    
-//    @Test
-//    public void verifyNavigationTrainingProgram() {
-//        assertEquals("TrainerTrainingProgramExercises.fxml", FxApp.getAS().getWindowName());
-//        clickOn(TilTreningsprogramID);
-//        assertEquals("TrainerTrainingProgramOverview.fxml", FxApp.getAS().getWindowName());
-//    }
-//    
-//    @Test
-//    public void verifyNavigationMembers() {
-//        assertEquals("TrainerTrainingProgramExercises.fxml", FxApp.getAS().getWindowName());
-//        clickOn(TilMedlemmerID);
-//        assertEquals("TrainerMembers.fxml", FxApp.getAS().getWindowName());
-//    }
-//    
-////    @Test
-////    public void verifyNavigationSettings() {
-////        assertEquals("TrainerTrainingProgramExercises.fxml", FxApp.getAS().getWindowName());
-////        clickOn(TilInnstillingerID);
-////        assertEquals("TrainerSettings.fxml", FxApp.getAS().getWindowName());
-////    }
-//    
-//    @Test
-//    public void verifyNavigationOverview() {
-//        assertEquals("TrainerTrainingProgramExercises.fxml", FxApp.getAS().getWindowName());
-//        clickOn(TilTreningsoversiktID);
-//        assertEquals("TrainerTrainingProgramOverview.fxml", FxApp.getAS().getWindowName());
-//    }
-//    
-//    @Test
-//    public void verifyNavigationExercises() {
-//        assertEquals("TrainerTrainingProgramExercises.fxml", FxApp.getAS().getWindowName());
-//        clickOn(TilTreningsovelseID);
-//        assertEquals("TrainerTrainingProgramExercises.fxml", FxApp.getAS().getWindowName());
-//    }
-//    
-//    @Test
-//    public void verifyNavigationComments() {
-//        assertEquals("TrainerTrainingProgramExercises.fxml", FxApp.getAS().getWindowName());
-//        clickOn(TilTreningskommentarID);
-//        assertEquals("TrainerTrainingProgramComments.fxml", FxApp.getAS().getWindowName());
-//    }
-//    
-//    @Test
-//    public void verifyNavigationAttendants() {
-//        assertEquals("TrainerTrainingProgramExercises.fxml", FxApp.getAS().getWindowName());
-//        clickOn(TilTreningspameldteID);
-//        assertEquals("TrainerTrainingProgramAttendants.fxml", FxApp.getAS().getWindowName());
-//    }
+    
+    @Test
+    public void verifyNavigationOverview() {
+        assertEquals("TrainerTrainingProgramExercises.fxml", FxApp.getAS().getWindowName());
+        clickOn(TilTreningsoversiktID);
+        assertEquals("TrainerTrainingProgramOverview.fxml", FxApp.getAS().getWindowName());
+    }
+    
+    @Test
+    public void verifyNavigationExercises() {
+        assertEquals("TrainerTrainingProgramExercises.fxml", FxApp.getAS().getWindowName());
+        clickOn(TilTreningsovelseID);
+        assertEquals("TrainerTrainingProgramExercises.fxml", FxApp.getAS().getWindowName());
+    }
+    
+    @Test
+    public void verifyNavigationComments() {
+        assertEquals("TrainerTrainingProgramExercises.fxml", FxApp.getAS().getWindowName());
+        clickOn(TilTreningskommentarID);
+        assertEquals("TrainerTrainingProgramComments.fxml", FxApp.getAS().getWindowName());
+    }
+    
+    @Test
+    public void verifyNavigationAttendants() {
+        assertEquals("TrainerTrainingProgramExercises.fxml", FxApp.getAS().getWindowName());
+        clickOn(TilTreningspameldteID);
+        assertEquals("TrainerTrainingProgramAttendants.fxml", FxApp.getAS().getWindowName());
+    }
     
 }
