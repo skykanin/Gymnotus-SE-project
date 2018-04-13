@@ -142,8 +142,8 @@ public class UserDAOTest {
 		String json = UserDAO.getUserInfoByID(0);
 		Assert.assertNotNull(json);
 		
-		User user_info = new User();
-		user_info = gson.fromJson(json, User.class);
+		//User user_info = new User();
+		User user_info = gson.fromJson(json, User.class);
 		
 		Assert.assertNotNull(user_info);
 		Assert.assertTrue(isEqual(user, user_info));
