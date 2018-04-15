@@ -95,7 +95,8 @@ public class TrainingExerciseDataApp {
 	}
 	
 	public void requestHealthExerciseDataByProgramUserID(int programID, int userID){
-	
+		healthList.clear();
+		resultList.clear();
 		//request user information
 		trainerMemberInfoApp.requestUserInformation_ID(Integer.toString(userID));
 		user = trainerMemberInfoApp.getContainerUser();
@@ -121,6 +122,7 @@ public class TrainingExerciseDataApp {
 	}
 	public void makeResultList() {
 		int counter = 0;
+		resultMap.clear();
 		while (counter < healthList.size() || counter < resultList.size()) {
 			
 			
@@ -160,6 +162,7 @@ public class TrainingExerciseDataApp {
 			sortedResultMap = new TreeMap<>();
 			sortedResultMap.putAll(resultMap);
 		}
+		availableDates.clear();
 		availableDates.addAll(sortedResultMap.keySet());		
 	}
 	

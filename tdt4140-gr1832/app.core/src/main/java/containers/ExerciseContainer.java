@@ -50,4 +50,14 @@ public class ExerciseContainer {
 		return parameterDescription;
 	}
 	
+	public String toString() {
+		String result = "";
+		result += "Navn: "+description + "\n";
+		result += "Antall sett: " + sets + "\n";
+		result += "Lengde på intervall: " + repsPerSet + "\n";
+		result += "Pause mellom settene: " + sets + " min\n";
+		result += "Øvelsebeskrivelse: " + parameterDescription;
+		return result;
+		
+	}
 	}

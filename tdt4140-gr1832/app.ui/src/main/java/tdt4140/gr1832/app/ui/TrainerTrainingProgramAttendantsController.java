@@ -209,7 +209,7 @@ public class TrainerTrainingProgramAttendantsController extends WindowController
 	
 	@FXML
 	public void handleMemberComboBox() {
-String name = memberComboBox.getSelectionModel().getSelectedItem();
+		String name = memberComboBox.getSelectionModel().getSelectedItem();
 		
 		if (!"Ingen medlemmer pameldt".equals(name)){
 			int userID = -1; 
