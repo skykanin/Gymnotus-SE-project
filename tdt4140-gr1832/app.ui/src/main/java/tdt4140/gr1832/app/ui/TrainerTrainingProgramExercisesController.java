@@ -129,8 +129,7 @@ public class TrainerTrainingProgramExercisesController extends WindowController 
 		
     }
 		
-    
-    //HJELPEMETODE
+
     private void hidePageContent() {
     	
     		chart1.setLegendVisible(false);
@@ -141,11 +140,6 @@ public class TrainerTrainingProgramExercisesController extends WindowController 
 		globalCounter = 0;
     }
     
-    @FXML
-	private void tilProgramGraphs(ActionEvent event) throws IOException {
-		NavigerTilSide("ProgramResultsGraphs.fxml", event);
-	}
-	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		

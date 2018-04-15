@@ -22,13 +22,13 @@ public class TrainerTrainingProgramResultsController extends WindowController{
 	}
 	
 	@FXML
-	public void handleComment(ActionEvent event)throws IOException {
-		NavigerTilSide("TrainerTrainingProgramSeeComments.fxml", event);
+	public void handleExercises(ActionEvent event)throws IOException {
+		NavigerTilSide("TrainerTrainingProgramExercises.fxml", event);
 	}
 	
 	@FXML
-	public void handleChangeComment(ActionEvent event) throws IOException {
-		NavigerTilSide("TrainerTrainingProgramGiveComments.fxml", event);
+	public void handlePrograms(ActionEvent event) throws IOException {
+		NavigerTilSide("TrainerTrainingProgramPrograms.fxml", event);
 	}
 	
 	@FXML

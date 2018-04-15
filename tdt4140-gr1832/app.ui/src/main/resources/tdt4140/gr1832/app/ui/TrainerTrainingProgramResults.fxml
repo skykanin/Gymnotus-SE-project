@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="660.0" prefWidth="1200.0" stylesheets="@styles/main.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tdt4140.gr1832.app.ui.TrainerTrainingProgramCommentsController">
+<VBox prefHeight="660.0" prefWidth="1200.0" stylesheets="@styles/main.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tdt4140.gr1832.app.ui.TrainerTrainingProgramResultsController">
   <children>
     <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="451.0" prefWidth="487.0" style="-fx-background-color: #FFFFFF;" stylesheets="@styles/main.css" VBox.vgrow="ALWAYS">
       <children>
@@ -83,12 +83,12 @@
                </children>
             </VBox>
             <StackPane fx:id="root" layoutX="235.0" layoutY="47.0" prefHeight="613.0" prefWidth="965.0" />
-            <JFXButton layoutX="555.0" layoutY="360.0" onAction="#handleChangeComment" prefHeight="82.0" prefWidth="341.0" style="-fx-background-color: #80bfb7;" text="Gi/Endre kommentar">
+            <JFXButton layoutX="525.0" layoutY="259.0" onAction="#handleExercises" prefHeight="82.0" prefWidth="401.0" style="-fx-background-color: #80bfb7;" text="Se resultater for enkeltøvelser">
                <font>
                   <Font size="18.0" />
                </font>
             </JFXButton>
-            <JFXButton layoutX="555.0" layoutY="259.0" onAction="#handleComment" prefHeight="82.0" prefWidth="341.0" style="-fx-background-color: #80bfb7;" text="Se kommentarer fra medlemmer">
+            <JFXButton layoutX="525.0" layoutY="360.0" onAction="#handlePrograms" prefHeight="82.0" prefWidth="401.0" style="-fx-background-color: #80bfb7;" text="Se resultater for programmer og enkeltbrukere">
                <font>
                   <Font size="18.0" />
                </font>
