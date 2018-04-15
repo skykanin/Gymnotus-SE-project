@@ -73,7 +73,6 @@ public class User {
 	}
 		String[] splitLastName=email.split("@");
 
-		System.out.println(splitLastName.length);
 		if (splitLastName.length !=2) {
 			throw new IllegalArgumentException("Ugyldig email");
 		}
@@ -125,7 +124,7 @@ public class User {
 
 	//name:
 	public void setName(String name) { //ingen tall
-		String comparatorString = name.replaceAll("[^a-zA-ZøæåØÆÅ\\s]", "");
+		String comparatorString = name.replaceAll("[^a-zA-Zï¿½ï¿½ï¿½ï¿½ï¿½ï¿½\\s]", "");
 		if (name == null || name.isEmpty()) {
 			throw new IllegalArgumentException("Feltet for navn mangler.");
 		}
