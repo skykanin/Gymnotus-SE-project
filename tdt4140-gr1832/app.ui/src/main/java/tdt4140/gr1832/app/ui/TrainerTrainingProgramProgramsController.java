@@ -138,7 +138,7 @@ public class TrainerTrainingProgramProgramsController extends WindowController i
 		usersOnProgram = app.getUserIDsOnProgram(programName);		
     		app.getExercisesOnAProgram(app.getProgramIDfromName(programName));		
 		
-			programInfoText.setText("Du ser resultater til programmet " + programName + ". Se et annet: " );
+			programInfoText.setText("Du ser resultater til programmet '" + programName + "'. Se et annet: " );
 			String seriesName;
 	    		for (int i = 0; i < app.getExContainers().size(); i++) {
 	    				
@@ -240,7 +240,7 @@ public class TrainerTrainingProgramProgramsController extends WindowController i
 		            			break;
 	    	        		}
 	    			} else {
-	    				programInfoText.setText("Finnes ikke resultater til programmet " + programName + ". Se et annet: " );
+	    				programInfoText.setText("Finnes ikke resultater til programmet '" + programName + "'. Se et annet: " );
 	    				hidePageContent();
 	    			}
 	    		}
@@ -258,7 +258,7 @@ public class TrainerTrainingProgramProgramsController extends WindowController i
 	
 	if (userName != null) {
 		
-		infoText.setText(userName + "sine resultater ble farget. Se andre: " );
+		infoText.setText(userName + " sine resultater skiftet farge. Se andre: " );
 
 		int user = Integer.parseInt(app.getIDfromName(userName));	
 		app.requestUserInformation_ID(user+"");

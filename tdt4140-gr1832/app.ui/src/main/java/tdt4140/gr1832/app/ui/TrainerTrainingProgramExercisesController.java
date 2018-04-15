@@ -95,7 +95,7 @@ public class TrainerTrainingProgramExercisesController extends WindowController 
 		chart1.getData().clear();
 			
 	    	String exName = exerciseComboBox.getSelectionModel().getSelectedItem();
-		exInfoText.setText("Du ser informasjon om " + exName + ". Bytt øvelse her: " );
+		exInfoText.setText("Du visualiserer resultatene til '" + exName + "'. Bytt øvelse her: " );
 		
 
 		int exID = app.getIDfromExerciseName(exName);
@@ -124,7 +124,7 @@ public class TrainerTrainingProgramExercisesController extends WindowController 
 			}
 		} else {
 			hidePageContent();
-			exInfoText.setText(exName + " har ingen registrerte resultat, velg ny øvelse: ");	
+			exInfoText.setText("'"+exName + "' har ingen registrerte resultat, velg ny øvelse: ");	
 		}
 		
     }
@@ -145,7 +145,7 @@ public class TrainerTrainingProgramExercisesController extends WindowController 
 		
 		hidePageContent();
 
-		exInfoText.setText("Velg et program for å visualisere informasjon:");
+		exInfoText.setText("Velg en øvelse for å visualisere resultater:");
 		app.requestExerciseContainers();
 		
 		exerciseComboBox.setItems(app.getNamesOfExercises());
