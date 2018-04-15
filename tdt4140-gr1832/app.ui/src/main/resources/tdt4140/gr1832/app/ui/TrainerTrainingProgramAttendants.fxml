@@ -18,7 +18,7 @@
       <children>
             <AnchorPane layoutX="235.0" layoutY="47.0" prefHeight="613.0" prefWidth="965.0">
                <children>
-                  <JFXComboBox fx:id="memberComboBox" layoutX="370.0" layoutY="193.0" onAction="#handleMemberComboBox" prefHeight="27.0" prefWidth="254.0" promptText="Velg medlem" />
+                  <JFXComboBox fx:id="memberComboBox" focusColor="#01597f" layoutX="370.0" layoutY="193.0" onAction="#handleMemberComboBox" prefHeight="27.0" prefWidth="254.0" promptText="Velg medlem" />
                   <Label fx:id="weightLabel" layoutX="100.0" layoutY="380.0" text="Vekt" textFill="#0b87a1">
                      <font>
                         <Font size="18.0" />
@@ -42,9 +42,9 @@
                         <Cursor fx:constant="TEXT" />
                      </cursor>
                   </Label>
-                  <JFXTextField fx:id="weightField" alignment="CENTER" editable="false" focusColor="#405aa800" layoutX="200.0" layoutY="380.0" />
-                  <JFXTextField fx:id="stepsField" alignment="CENTER" editable="false" focusColor="#405aa800" layoutX="200.0" layoutY="430.0" />
-                  <JFXTextField fx:id="restingHRField" alignment="CENTER" editable="false" focusColor="#405aa800" layoutX="200.0" layoutY="480.0" />
+                  <JFXTextField fx:id="weightField" alignment="CENTER" editable="false" focusColor="#405aa800" layoutX="200.0" layoutY="380.0" prefWidth="170.0" />
+                  <JFXTextField fx:id="stepsField" alignment="CENTER" editable="false" focusColor="#405aa800" layoutX="200.0" layoutY="430.0" prefWidth="170.0" />
+                  <JFXTextField fx:id="restingHRField" alignment="CENTER" editable="false" focusColor="#405aa800" layoutX="200.0" layoutY="480.0" prefWidth="170.0" />
                   <JFXDatePicker fx:id="datePickerField" defaultColor="#0b87a1" editable="false" layoutX="408.0" layoutY="516.0" onAction="#datePicker" />
                   <Label fx:id="ageLabel" layoutX="100.0" layoutY="280.0" text="Alder" textFill="#0b87a1">
                      <font>
@@ -56,14 +56,14 @@
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <JFXTextField fx:id="genderField" alignment="CENTER" editable="false" focusColor="#4d4d4d00" layoutX="200.0" layoutY="330.0" prefHeight="27.0" prefWidth="151.0" />
-                  <JFXTextField fx:id="ageField" alignment="CENTER" editable="false" focusColor="#4d4d4d00" layoutX="200.0" layoutY="280.0" prefHeight="27.0" prefWidth="151.0" />
+                  <JFXTextField fx:id="genderField" alignment="CENTER" editable="false" focusColor="#4d4d4d00" layoutX="200.0" layoutY="330.0" prefHeight="27.0" prefWidth="170.0" />
+                  <JFXTextField fx:id="ageField" alignment="CENTER" editable="false" focusColor="#4d4d4d00" layoutX="200.0" layoutY="280.0" prefHeight="27.0" prefWidth="170.0" />
                   <Label fx:id="o1Label" alignment="CENTER" layoutX="509.0" layoutY="280.0" prefHeight="23.0" prefWidth="187.0" style="-fx-alignment: CENTER;" text="O1" textFill="#0b87a1">
                      <font>
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <Label alignment="CENTER" contentDisplay="CENTER" layoutX="647.0" layoutY="230.0" prefHeight="29.0" prefWidth="151.0" text="Resultater" textAlignment="CENTER">
+                  <Label alignment="CENTER" contentDisplay="CENTER" layoutX="665.0" layoutY="230.0" prefHeight="29.0" prefWidth="151.0" text="Resultater" textAlignment="CENTER">
                      <font>
                         <Font size="24.0" />
                      </font>

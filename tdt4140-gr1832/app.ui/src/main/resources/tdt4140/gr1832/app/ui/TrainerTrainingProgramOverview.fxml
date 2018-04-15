@@ -93,7 +93,7 @@
                </font></TextArea>
             <FontAwesomeIconView fx:id="programPilVenstre" accessibleRole="BUTTON" fill="#0b87a1" glyphName="ARROW_LEFT" layoutX="403.0" layoutY="105.0" size="40.0" />
             <FontAwesomeIconView fx:id="programPilHoyre" fill="#0d889e" glyphName="ARROW_RIGHT" layoutX="976.0" layoutY="105.0" size="40.0" />
-            <JFXComboBox fx:id="ovelseComboBox" layoutX="525.0" layoutY="189.0" onAction="#handleComboBox" prefHeight="27.0" prefWidth="359.0" promptText="Velg ovelse eller se oversikt for hele programmet" />
+            <JFXComboBox fx:id="ovelseComboBox" focusColor="#01597f" layoutX="525.0" layoutY="189.0" onAction="#handleComboBox" prefHeight="27.0" prefWidth="359.0" promptText="Velg ovelse eller se oversikt for hele programmet" />
             <JFXButton fx:id="lastProgram" layoutX="400.0" layoutY="70.0" onAction="#lastProgram" prefHeight="43.0" prefWidth="42.0" text="  " />
             <JFXButton fx:id="nextProgram" layoutX="972.0" layoutY="70.0" onAction="#nextProgram" prefHeight="43.0" prefWidth="42.0" text="  " />
             <JFXTextField fx:id="program" alignment="CENTER" editable="false" focusColor="#405aa800" layoutX="480.0" layoutY="70.0" prefHeight="40.0" prefWidth="463.0" style="-fx-alignment: Center;" styleClass="DosisCaps">
@@ -101,9 +101,8 @@
                   <Font size="18.0" />
                </font>
             </JFXTextField>
-            <StackPane fx:id="root" layoutX="235.0" layoutY="47.0" prefHeight="613.0" prefWidth="965.0" />
+            <StackPane fx:id="root" prefHeight="660.0" prefWidth="1200.0" />
       </children>
     </AnchorPane>
   </children>
 </VBox>
-
