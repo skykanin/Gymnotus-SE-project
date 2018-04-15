@@ -94,7 +94,7 @@
                   <Font size="18.0" />
                </font>
             </JFXTextField>
-            <JFXListView fx:id="commentList" layoutX="244.0" layoutY="224.0" prefHeight="431.0" prefWidth="950.0" style="-fx-border-color: #80bfb7;" />
+            <JFXListView fx:id="commentList" layoutX="244.0" layoutY="224.0" prefHeight="431.0" prefWidth="950.0" style="-fx-border-color: #0b87a1;" />
             <StackPane fx:id="root" layoutX="0.0" layoutY="0.0" prefHeight="660.0" prefWidth="1200.0" />
       </children>
     </AnchorPane>

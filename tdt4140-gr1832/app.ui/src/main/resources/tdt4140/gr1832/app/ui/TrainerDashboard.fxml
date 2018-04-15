@@ -71,7 +71,7 @@
                   </AnchorPane>
                </children>
             </VBox>
-            <JFXComboBox fx:id="memberComboBox" focusColor="#4d4d4d00" layoutX="891.0" layoutY="63.0" onAction="#handleMemberComboBox" prefHeight="27.0" prefWidth="259.0" promptText="Liste over medlemmer" style="-fx-background-color: #e0e0e0;" unFocusColor="WHITE" />
+            <JFXComboBox fx:id="memberComboBox" focusColor="#01597f" layoutX="891.0" layoutY="63.0" onAction="#handleMemberComboBox" prefHeight="27.0" prefWidth="259.0" promptText="Liste over medlemmer" />
             <Label fx:id="infoText" alignment="CENTER" layoutX="249.0" layoutY="65.0" prefHeight="23.0" prefWidth="608.0" text="Label" textAlignment="RIGHT" textFill="#0b87a1">
                <font>
                   <Font size="18.0" />
