@@ -41,5 +41,6 @@ public class TrainerTrainingProgramOverviewAppTest {
 		Assert.assertEquals("Navn: Benkpress\nAntall sett: 5\nLengde på intervall: 8\nPause mellom settene: 5 min\nØvelsebeskrivelse: test for beskrivelse av ovelse",testapp.getExerciseContainertoString("Benkpress"));
 		Assert.assertEquals("Benkpress", testapp.getExerciseContainer(0).getDescription());
 		Assert.assertEquals(Arrays.asList("Benkpress"), testapp.getExerciseList());
+		Assert.assertEquals("Ingen informasjon", testapp.getExerciseContainertoString("test"));
 	}
 }
