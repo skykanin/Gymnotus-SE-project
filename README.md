@@ -20,6 +20,8 @@ Du vil trenge det følgende for å kjøre programmet:
  - [Maven](https://maven.apache.org/guides/getting-started/maven-in-five-minutes.html)
  - [Java 8](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)
 
+De resterende avhengigheter og annet verktøy blir installert av Maven før byggingen av applikasjonen skjer.
+
 ## Verktøy
 Her er en liste over verktøy som vi bruker i prosjektet vårt:
 - [GSON](https://github.com/google/gson): google sin json parser for java. REST apien vår sender data fra serveren som json objekter og derfor bruker vi Gson til å konvertere disse til javaobjekter.
