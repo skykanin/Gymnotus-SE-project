@@ -171,9 +171,9 @@ public class TrainingExerciseDataAppTest {
 	
 	@Test
 	public void testComparators() {
-//		List<String> listTest = Arrays.asList("Mar 4, 2018","Jan 14, 2018", "Mar 18, 2018");
-//		Collections.sort(listTest, new InfoDateComparator());
-//		System.out.println(listTest);
+		List<String> listTest = Arrays.asList("Mar 4, 2018","Jan 14, 2018", "Mar 18, 2018");
+		Collections.sort(listTest, new InfoDateComparator());
+		System.out.println(listTest);
 //		Collections.sort(listTest, new SortedSetComparator());
 //		Assert.assertEquals(Arrays.asList("mar 14, 2018","jan 14, 2018", "mar 18, 2018"), listTest);
 //		Assert.assertEquals(Arrays.asList("jan 14, 2018", "mar 14, 2018", "mar 18, 2018"), listTest);

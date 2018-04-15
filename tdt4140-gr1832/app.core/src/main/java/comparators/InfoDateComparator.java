@@ -55,7 +55,6 @@ public class InfoDateComparator implements Comparator<String> {
 		 }else{
 			 day = "0" + string.substring(4, 5);
 		 }
-		 System.out.println(year+"-"+month+"-"+day);
          if (string != null && !string.isEmpty()) {
         	 LocalDate date = null;
         	 	try {
