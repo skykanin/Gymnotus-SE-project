@@ -68,7 +68,7 @@ public class RegisterScreenController extends WindowController {
 	public void radioButtonChanged() {
 
 		if (this.genderGroup.getSelectedToggle() == null) {
-			throw new IllegalArgumentException("No sex selected");
+			throw new IllegalArgumentException("intet kjonn valgt");
 		} else if (this.genderGroup.getSelectedToggle().equals(this.updateGenderMale)) {
 			this.gender = 0;
 		} else if (this.genderGroup.getSelectedToggle().equals(this.updateGenderFemale)) {
@@ -100,7 +100,7 @@ public class RegisterScreenController extends WindowController {
 		
 		try {
             AS.verifyUsername(getStringFromTextField(setUsername));
-            	errorMessage.setText("Brukernavnet finnes fra før");
+            	errorMessage.setText("Brukernavnet finnes fra for");
             	return;
         } catch (NotFoundException e) {
             
@@ -116,7 +116,7 @@ public class RegisterScreenController extends WindowController {
 
 		}
 		catch (NumberFormatException e) {
-			errorMessage.setText("Alder må være et tall mellom 0 og 100");
+			errorMessage.setText("Alder ma vaere et tall mellom 0 og 100");
 		}
 		catch (IllegalArgumentException e) {
 			//e.printStackTrace();

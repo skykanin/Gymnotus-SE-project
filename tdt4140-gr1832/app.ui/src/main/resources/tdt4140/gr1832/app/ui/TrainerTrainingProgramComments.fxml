@@ -82,12 +82,12 @@
                   </AnchorPane>
                </children>
             </VBox>
-            <JFXButton layoutX="555.0" layoutY="360.0" onAction="#handleChangeComment" prefHeight="82.0" prefWidth="341.0" style="-fx-background-color: #80bfb7;" text="Gi/Endre kommentar">
+            <JFXButton layoutX="555.0" layoutY="360.0" onAction="#handleChangeComment" prefHeight="82.0" prefWidth="341.0" style="-fx-background-color: #80bfb7;" text="Gi/endre kommentar">
                <font>
                   <Font size="18.0" />
                </font>
             </JFXButton>
-            <JFXButton layoutX="555.0" layoutY="259.0" onAction="#handleComment" prefHeight="82.0" prefWidth="341.0" style="-fx-background-color: #80bfb7;" text="Se kommentarer fra medlemmer">
+            <JFXButton layoutX="555.0" layoutY="259.0" onAction="#handleComment" prefHeight="82.0" prefWidth="341.0" style="-fx-background-color: #80bfb7;" text="Se kommentarer til programmer">
                <font>
                   <Font size="18.0" />
                </font>

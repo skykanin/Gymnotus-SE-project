@@ -73,7 +73,7 @@ public class TrainerDashboardController extends WindowController implements Init
 			stepsChart.setLegendVisible(false);
 			heartRateChart.setOpacity(0);
 			stepsChart.setOpacity(0);
-			infoText.setText("Velg et medlem for å visualisere informasjon:");
+			infoText.setText("Velg et medlem for a visualisere informasjon:");
 			
 			app.requestAllUserID();
 			ObservableList<String> names = FXCollections.observableArrayList();
@@ -96,7 +96,7 @@ public class TrainerDashboardController extends WindowController implements Init
 	public void handleMemberComboBox(ActionEvent actionEvent) throws IOException, ParseException {
 		if (!FxApp.TEST) {
 		String username = memberComboBox.getSelectionModel().getSelectedItem();
-		infoText.setText("Du ser " + username + "'s helsedata. Se noen andre: " );
+		infoText.setText("Du ser " + username + "s helsedata. Se noen andre: " );
 		
 		app.requestHealthInformation_ID(app.getIDfromName(username));
 		
@@ -112,14 +112,14 @@ public class TrainerDashboardController extends WindowController implements Init
 				meanSteps += (double) (app.getSteps().get(i))/(double) (app.getSteps().size());
 			} 
 			
-			heartRateChartTitle.setText(username + "'s puls");
-			stepsChartTitle.setText(username + "'s steps");
+			heartRateChartTitle.setText(username + "s puls");
+			stepsChartTitle.setText(username + "s skritt");
 		
 			DecimalFormat df = new DecimalFormat(" .#");
 			
-			pulsSnittTekst.setText(username +"'s snittpuls er:");
+			pulsSnittTekst.setText(username +"s snittpuls er:");
 			pulsSnittVerdi.setText(df.format(meanHR) + "");
-			stepsSnittTekst.setText(username +"'s snittsteps er:");
+			stepsSnittTekst.setText(username +"s snittskritt er:");
 			stepsSnittVerdi.setText(df.format(meanSteps) + "");
 			
 			//REGNE SNITT SLUTT
@@ -193,7 +193,7 @@ public class TrainerDashboardController extends WindowController implements Init
 			
 		} else if(!(app.getContainerUser().getShareHealthData())) {
 			
-			infoText.setText(username + " har valgt å ikke vise sin data, velg et nytt medlem: ");
+			infoText.setText(username + " har valgt a ikke vise sin data, velg et nytt medlem: ");
 			pulsSnittTekst.setText("");
 			pulsSnittVerdi.setText("");
 			stepsSnittTekst.setText("");
@@ -246,7 +246,7 @@ public class TrainerDashboardController extends WindowController implements Init
 	public void loadDialog(ActionEvent parentEvent) {
 		JFXDialogLayout content = new JFXDialogLayout();
 		content.setHeading(new Text("Logg ut bekreftelse"));
-		content.setBody(new Text("Er du sikker på at du vil logge ut?"));
+		content.setBody(new Text("Er du sikker pa at du vil logge ut?"));
 		JFXDialog dialog = new JFXDialog(root, content, JFXDialog.DialogTransition.CENTER);
 		JFXButton buttonYes = new JFXButton("Ja");
 		JFXButton buttonNo = new JFXButton("Nei");
