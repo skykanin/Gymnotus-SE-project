@@ -3,6 +3,7 @@ package tdt4140.gr1832.web.dao;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.List;
 
 import javax.ws.rs.core.Response;
 
@@ -11,6 +12,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 import tdt4140.gr1832.web.dao.data.User;
 import tdt4140.gr1832.web.server.DatabaseConnection;
@@ -65,6 +67,21 @@ public class UserDAOTest {
     }
     
     @Test
+    public void testGetAllID() {
+    		String response = userDAO.getAllID();
+    		List<Integer> ids = gson.fromJson(response, new TypeToken<List<Integer>>(){}.getType());
+    		Assert.assertEquals(1, ids.size());
+    		Assert.assertEquals(0, (int)ids.get(0));
+    }
+    
+    @Test
+    public void testDeleteUser() {
+    		Response response = userDAO.deleteUser("test", "test");
+    		Assert.assertEquals(200, response.getStatus());
+    		Assert.assertEquals(404, UserDAO.userExists("test").getStatus());
+    }
+    
+    @Test
     public void testGetStringColumnData() {
 		String data = UserDAO.getStringColumnData("test", "username");
 		Assert.assertNotNull(data);
@@ -102,12 +119,31 @@ public class UserDAOTest {
     }
     
     @Test
+    public void testUpdateUser() {
+    		Response response = userDAO.updateUser("test", "test", "new_name", "new_email", "1111", 1, 22, false, false, false, false);
+    		Assert.assertEquals(200, response.getStatus());
+    		String json = UserDAO.getUserInfoByID(0);
+    		Assert.assertNotNull(json);
+    		User updatedUser = gson.fromJson(json, User.class);
+    		
+    		Assert.assertEquals("new_name", updatedUser.getName());
+    		Assert.assertEquals("new_email", updatedUser.getEmail());
+    		Assert.assertEquals("1111", updatedUser.getPhone());
+    		Assert.assertEquals(1, (int)updatedUser.getGender());
+    		Assert.assertEquals(22, (int)updatedUser.getAge());
+    		Assert.assertFalse(updatedUser.getIsAnonymous());
+    		Assert.assertFalse(updatedUser.getIsTrainer());
+    		Assert.assertFalse(updatedUser.getShareExerciseData());
+    		Assert.assertFalse(updatedUser.getShareHealthData());
+    }
+    
+    @Test
     public void testGetUserInfoByID() {
 		String json = UserDAO.getUserInfoByID(0);
 		Assert.assertNotNull(json);
 		
-		User user_info = new User();
-		user_info = gson.fromJson(json, User.class);
+		//User user_info = new User();
+		User user_info = gson.fromJson(json, User.class);
 		
 		Assert.assertNotNull(user_info);
 		Assert.assertTrue(isEqual(user, user_info));

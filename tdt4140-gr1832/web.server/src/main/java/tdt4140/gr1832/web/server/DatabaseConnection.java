@@ -8,8 +8,9 @@ import java.sql.Statement;
 import java.util.Scanner;
 
 public class DatabaseConnection {
-   public static final String URL = "jdbc:mysql://localhost/gymnotus";
+   public static final String URL = "jdbc:mysql://localhost/gymnotus?failOverReadOnly=false&maxReconnects=10&autoReconnect=true";
    private static Connection conn = null;
+   private static String username, password;
    
    public static Connection getConnection() {
 	   return conn;
@@ -44,7 +45,6 @@ public class DatabaseConnection {
 			}
 		}
 	}
-
    
    public static void connectToDB() {
 	   Scanner scanner = null;
@@ -55,7 +55,6 @@ public class DatabaseConnection {
 			
 			scanner = new Scanner(System.in);
 
-			String username, password;
 			System.out.println("Write in the username for the database: ");
 			username = scanner.nextLine();
 			System.out.println("Write the password: (blank means no password)");

@@ -18,6 +18,7 @@ import javax.ws.rs.core.Response;
 import com.google.gson.Gson;
 
 import tdt4140.gr1832.web.dao.data.Result;
+import tdt4140.gr1832.web.dao.data.User;
 import tdt4140.gr1832.web.server.DatabaseConnection;
 
 @Path("/result")
@@ -97,10 +98,34 @@ public class ResultDAO {
 	}
 	
 	@GET
+	@Path("/get_users_added_results_to_exercise")
+	public String getUsersAddedResultsToExercise(@QueryParam("exercise_id") Integer exerciseID) {
+		String query = "select distinct userID,username,name,email,phoneumber,gender,age,isAnonymous,shareHealthData,shareExerciseData,isTrainer from Result natural join User where exerciseID=" + Integer.toString(exerciseID);
+		Connection conn = DatabaseConnection.getConnection();
+		
+		List<User> users = new ArrayList<User>();
+		PreparedStatement stmt;
+		try {
+			stmt = conn.prepareStatement(query);
+			ResultSet rs = stmt.executeQuery();
+			while(rs.next()) {
+				User user = UserDAO.createUser(rs);
+				users.add(user);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		Gson gson = new Gson();
+		String json = gson.toJson(users);  
+		return json;
+	}
+
+	
+	@GET
 	@Path("/get_results_by_user_and_exercise")
 	public String getResultsByUserExercise(@QueryParam("user_id") Integer userID, 
 										  @QueryParam("exercise_id") Integer exerciseID) {
-		String query = "select * from Result where resultID=" + Integer.toString(exerciseID) +
+		String query = "select * from Result where exerciseID=" + Integer.toString(exerciseID) +
 						" and userID=" + Integer.toString(userID);
 		String json = createResultListJson(query);
 		return json;
@@ -129,6 +154,33 @@ public class ResultDAO {
 		String query = "select * from Result where month(date)=" + Integer.toString(month) +
 											" and day(date)=" + Integer.toString(day);
 		String json = createResultListJson(query);
+		return json;
+	}
+	
+	@GET
+	@Path("get_results_by_program_and_user")
+	public String getResultsByProgramUser(@QueryParam("user_id") Integer userID, 
+										 @QueryParam("program_id") Integer programID)  {
+		String query = "select * from Result natural join Exercise" +
+						" where programID=" + Integer.toString(programID) + 
+						" and userID=" + Integer.toString(userID);
+		Connection conn = DatabaseConnection.getConnection();
+		
+		List<Result> results = new ArrayList<Result>();
+		PreparedStatement stmt;
+		try {
+			stmt = conn.prepareStatement(query);
+			ResultSet rs = stmt.executeQuery();
+			while(rs.next()) {
+				Result result = createResult(rs);
+				result.setDescription(rs.getString("description"));
+				results.add(result);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		Gson gson = new Gson();
+		String json = gson.toJson(results);  
 		return json;
 	}
 	

@@ -8,6 +8,7 @@ public class Result {
 	Integer exerciseID;
 	Date date;
 	Integer resultParameter;
+	String description;
 	public Integer getResultID() {
 		return resultID;
 	}
@@ -37,6 +38,12 @@ public class Result {
 	}
 	public void setResultParameter(Integer resultParameter) {
 		this.resultParameter = resultParameter;
+	}
+	public void setDescription(String description) {
+		this.description = description;
+	}
+	public String getDescription() {
+		return this.description;
 	}
 	
 }

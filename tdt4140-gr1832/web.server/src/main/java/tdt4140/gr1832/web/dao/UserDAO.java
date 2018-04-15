@@ -15,6 +15,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import com.google.gson.Gson;
+import org.mindrot.jbcrypt.*;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -138,11 +139,12 @@ public class UserDAO {
 		username = username.toLowerCase();
 		String userExists = userExists(username).getEntity().toString();
 		if(username != null && password != null && userExists.equals("false")) {
+			String hashed_password = BCrypt.hashpw(password, BCrypt.gensalt());
 			try {
 				prepared_stmt = conn.prepareStatement(insertUserSQL);
 				
 				prepared_stmt.setString(1, username);
-				prepared_stmt.setString(2, password);
+				prepared_stmt.setString(2, hashed_password);
 				prepared_stmt.setString(3, name);
 				prepared_stmt.setString(4, email);
 				prepared_stmt.setString(5, phone);
@@ -174,14 +176,15 @@ public class UserDAO {
 		int status = 400;
 		Integer num_rows_affected = 0;
 
-		String deleteUserSQL = "delete from User where username=? and password=?";
+		String deleteUserSQL = "delete from User where username=?";
 		String userExists = userExists(username).getEntity().toString();
-		if(username != null && password != null && userExists.equals("true")) {
+		if(username != null && password != null && verifyPassword(username, password).getStatus() == 200
+				&& userExists.equals("true")) {
+
 			try {
 				prepared_stmt = conn.prepareStatement(deleteUserSQL);
 				
 				prepared_stmt.setString(1, username);
-				prepared_stmt.setString(2, password);
 
 				num_rows_affected = prepared_stmt.executeUpdate();
 				status = 200;
@@ -190,7 +193,6 @@ public class UserDAO {
 				status = 400;
 			}
 		}
-		
 		return Response.status(status).entity(num_rows_affected).build();
 	}
 	
@@ -216,7 +218,12 @@ public class UserDAO {
 			if(new_phone != null) updateColumn(username, "phoneumber", new_phone, "string");
 			if(new_gender > -1) updateColumn(username, "gender", new_gender, "int");
 			if(new_age != 0) updateColumn(username, "age", new_age, "int");
-			if(new_password != null) updateColumn(username, "password", new_password, "string");
+			if(new_password != null) {
+				//new password gets hashed first
+				new_password = BCrypt.hashpw(new_password, BCrypt.gensalt());
+				updateColumn(username, "password", new_password, "string");
+
+			}
 			if(isAnonymous != null) updateColumn(username, "isAnonymous", isAnonymous, "bool");
 			if(shareHealthData != null) updateColumn(username, "shareHealthData", shareHealthData, "bool");
 			if(shareExerciseData != null) updateColumn(username, "shareExerciseData", shareExerciseData, "bool");
@@ -241,7 +248,7 @@ public class UserDAO {
 	public static Response verifyPassword(@PathParam("username") String username, 
 								  @QueryParam("password") String password) {
 		String dbPassword = getStringColumnData(username.toLowerCase(), "password");
-		Boolean isSame = dbPassword == null ? false : dbPassword.equals(password);
+		Boolean isSame = dbPassword != null && BCrypt.checkpw(password, dbPassword);
 		int status = dbPassword != null ? 200 : 404;
 		return Response.status(status).entity(isSame.toString()).build();
 	}
