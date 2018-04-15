@@ -2,11 +2,14 @@ package tdt4140.gr1832.app.core;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import comparators.InfoDateComparator;
+import comparators.SortedSetComparator;
 import containers.ExerciseProgramContainer;
 import containers.ShowExerciseDataContainerFromProgram;
 import containers.ShowHealthInfoContainer;
@@ -166,6 +169,14 @@ public class TrainingExerciseDataAppTest {
 		Assert.assertEquals("http://146.185.153.244:8080/api/", testApp.baseURI);
 	}
 	
+	@Test
+	public void testComparators() {
+		List<String> listTest = Arrays.asList("mar 14, 2018","jan 14, 2018", "mar 18, 2018");
+		Collections.sort(listTest, new SortedSetComparator());
+		Assert.assertEquals(Arrays.asList("mar 14, 2018","jan 14, 2018", "mar 18, 2018"), listTest);
+		Collections.sort(listTest, new InfoDateComparator());
+		Assert.assertEquals(Arrays.asList("jan 14, 2018", "mar 14, 2018", "mar 18, 2018"), listTest);
+	}
 	
 	@Test
 	public void testExerciseContainer() {
