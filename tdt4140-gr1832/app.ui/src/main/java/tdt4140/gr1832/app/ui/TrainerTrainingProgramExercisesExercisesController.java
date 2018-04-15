@@ -123,20 +123,19 @@ public class TrainerTrainingProgramExercisesExercisesController extends WindowCo
 		
 		Collections.sort(globalDatesList, new InfoDateComparator());
 		
-
 		
-		for (ResultContainer resCon : app.getResContainers()) {
+		
+		for (String date : globalDatesList) {
 			
-			globalResultsMap.put(resCon.getDate(), new ArrayList<>());
+			globalResultsMap.put(date, new ArrayList<>());
 		}
 		
-		globalResultsMap.put("Jan 1, 2018", new ArrayList<>());
-		globalDatesList.add(0, "Jan 1, 2018");
 		
-		System.out.println("\n\n Ny omgang: \n\n");
-		for (int i = 1; i < 2; i++) { //må iterere gjennom brukere med indeks
+
+		for (int i = 0; i < app.requestUserIDsOnExercise(exID).size(); i++) { 
 				
-				app.getResultsOfExcerciseAndUser(exID, i);
+				app.getResultsOfExcerciseAndUser(exID, app.requestUserIDsOnExercise(exID).get(i));
+				
 				app.requestUserInformation_ID(i+"");
 			
 			for (ResultContainer resCon : app.getResContainers()) {
@@ -151,7 +150,7 @@ public class TrainerTrainingProgramExercisesExercisesController extends WindowCo
 		    while (it.hasNext()) {
 		        Map.Entry pair = (Map.Entry)it.next();
 
-		        if (((List<Integer>) pair.getValue()).size() < i) {
+		        if (((List<Integer>) pair.getValue()).size() < i+1) {
 
 		        		List<Integer> temp = globalResultsMap.get((String) pair.getKey());
 		        		
@@ -160,20 +159,8 @@ public class TrainerTrainingProgramExercisesExercisesController extends WindowCo
 					globalResultsMap.replace((String) pair.getKey(), temp);
 					
 		        }
-		        
-		        
 		    }
-			
-		    System.out.println( "\nbegynner forløkke\n");
-		    
-			for (String date : globalDatesList) {
-				System.out.println(globalResultsMap.get(date));
-			
-			}
-			
-			
 		}
-		
 
 		label1.setText(exName);
 		chart1.setOpacity(1);
@@ -182,7 +169,7 @@ public class TrainerTrainingProgramExercisesExercisesController extends WindowCo
 		
 		if (app.getResults() != null) {
 			
-			for (int k = 0 ;  k < 1; k++) { //app.requestUserIDsOnExercise(exID).size(); k++ ) {
+			for (int k = 0 ;  k < app.requestUserIDsOnExercise(exID).size(); k++ ) {
 				
 				String seriesName = updateSeriesMap();
 				
@@ -190,8 +177,6 @@ public class TrainerTrainingProgramExercisesExercisesController extends WindowCo
 
 						if ((globalResultsMap.get(date).get(k)) != null){
 							
-							System.out.println(date.substring(0,date.length()-6));
-							System.out.println(globalResultsMap.get(date).get(k));
 							
 							seriesMap.get(seriesName).getData().add(new XYChart.Data(
 									date.substring(0,date.length()-6)
