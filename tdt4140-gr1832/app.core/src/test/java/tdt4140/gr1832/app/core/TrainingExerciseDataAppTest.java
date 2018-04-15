@@ -2,11 +2,13 @@ package tdt4140.gr1832.app.core;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import tdt4140.gr1832.app.comparators.InfoDateComparator;
 import tdt4140.gr1832.app.containers.ExerciseProgramContainer;
 import tdt4140.gr1832.app.containers.ShowExerciseDataContainerFromProgram;
 import tdt4140.gr1832.app.containers.ShowHealthInfoContainer;
@@ -65,6 +67,13 @@ public class TrainingExerciseDataAppTest {
 		testApp.TrainingExerciseDataAppSetup();
 		Assert.assertNotNull(testApp.getUsersInProgram(0));
 		Assert.assertEquals(1, testApp.getUsersInProgram(0).size());
+	}
+	
+	@Test
+	public void testComparator() {
+		List<String> listTest = Arrays.asList("Mar 4, 2018", "Jan 11, 2018", "Mar 14, 2018");
+		Collections.sort(listTest, new InfoDateComparator());
+		Assert.assertEquals(Arrays.asList("Jan 11, 2018","Mar 4, 2018" ,"Mar 14, 2018"), listTest);
 	}
 	
 	@Test
