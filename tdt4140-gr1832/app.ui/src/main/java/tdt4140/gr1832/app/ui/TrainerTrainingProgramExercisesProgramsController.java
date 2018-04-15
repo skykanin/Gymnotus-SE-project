@@ -412,7 +412,8 @@ public class TrainerTrainingProgramExercisesProgramsController extends WindowCon
     
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		
+		root.setPickOnBounds(false);
+
 		hidePageContent();
 		infoText.setText("Velg et medlem for å visualisere resultater");
 		programInfoText.setText("Velg et program for å visualisere resultater");

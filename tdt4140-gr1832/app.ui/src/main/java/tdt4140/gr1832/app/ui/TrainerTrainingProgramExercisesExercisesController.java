@@ -146,7 +146,8 @@ public class TrainerTrainingProgramExercisesExercisesController extends WindowCo
     
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		
+		root.setPickOnBounds(false);
+
 		hidePageContent();
 
 		exInfoText.setText("Velg en øvelse for å visualisere resultater:");

@@ -94,8 +94,6 @@
                   <Font size="22.0" />
                </font>
             </Label>
-            
-                       <StackPane fx:id="root" layoutX="235.0" layoutY="47.0" prefHeight="613.0" prefWidth="965.0" />
             <FontAwesomeIconView fx:id="programPilVenstre" accessibleRole="BUTTON" fill="#0b87a1" glyphName="ARROW_LEFT" layoutX="403.0" layoutY="105.0" size="40.0" />
             <FontAwesomeIconView fx:id="programPilHoyre" fill="#0d889e" glyphName="ARROW_RIGHT" layoutX="976.0" layoutY="105.0" size="40.0" />
             <JFXButton fx:id="lastProgram" layoutX="400.0" layoutY="70.0" onAction="#lastProgram" prefHeight="43.0" prefWidth="42.0" text="  " />
@@ -105,6 +103,8 @@
                   <Font size="18.0" />
                </font>
             </JFXTextField>
+            
+                       <StackPane fx:id="root" prefHeight="660.0" prefWidth="1200.0" />
       </children>
     </AnchorPane>
   </children>

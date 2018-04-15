@@ -92,6 +92,7 @@ public class TrainerTrainingProgramGiveCommentsController extends WindowControll
 
     @FXML
     public void initialize() {
+		root.setPickOnBounds(false);
     	if (! FxApp.TEST) {
     		changeCommentVisibility(false);
     		progUserList.addAll("Program", "Medlem");

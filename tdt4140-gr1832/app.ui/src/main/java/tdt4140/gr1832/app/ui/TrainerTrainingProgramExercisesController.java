@@ -11,13 +11,13 @@ import javafx.fxml.FXML;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
 
-public class TrainerTrainingProgramExercisesController extends WindowController{
+public class TrainerTrainingProgramExercisesController extends WindowController {
 	//comment
 	@FXML 
 	StackPane root;
 	
 	@FXML
-	public void intitialize () {
+	public void initialize() {
 		root.setPickOnBounds(false);
 	}
 	
