@@ -35,7 +35,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import tdt4140.gr1832.app.core.ProgramResultsGraphsApp;
+import tdt4140.gr1832.app.core.TrainerTrainingProgramProgramsApp;
 
 public class ProgramResultsGraphsController extends WindowController implements Initializable {
     
@@ -69,7 +69,7 @@ public class ProgramResultsGraphsController extends WindowController implements 
 	@FXML CategoryAxis xAxisFour;
 	@FXML NumberAxis yAxisFour;
      
-	ProgramResultsGraphsApp app = new ProgramResultsGraphsApp();
+	TrainerTrainingProgramProgramsApp app = new TrainerTrainingProgramProgramsApp();
 	
 	private String exName;
 	private int exID;

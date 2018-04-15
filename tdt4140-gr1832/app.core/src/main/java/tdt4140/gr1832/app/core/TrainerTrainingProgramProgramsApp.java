@@ -20,7 +20,7 @@ import containers.ShowHealthInfoContainer;
 import containers.ShowUserInfoContainer;
 
 
-public class ProgramResultsGraphsApp {
+public class TrainerTrainingProgramProgramsApp {
 	
 	private ShowUserInfoContainer containerUser;
 
@@ -177,16 +177,6 @@ public class ProgramResultsGraphsApp {
 				resContainers = resCons;
 			}
 		}
-		
-		
-		
-	public static void main(String[] args) {
-//		ProgramResultsGraphsApp app = new ProgramResultsGraphsApp();
-//		app.getResultsOfExercise(1);
-//		System.out.println(app.getResContainers().get(0).getResultParameter());
-//		
-	}
-		
 		
 		
 	//END INFORMATION ABOUT EXERCISES IN PROGRAM

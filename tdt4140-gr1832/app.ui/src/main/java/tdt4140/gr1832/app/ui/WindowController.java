@@ -76,7 +76,7 @@ public class WindowController extends FxApp {
 	
 	@FXML
 	private void TilTreningsovelse(ActionEvent event) throws IOException {
-		NavigerTilSide("TrainerTrainingProgramExercises.fxml", event);
+		NavigerTilSide("TrainerTrainingProgramResults.fxml", event);
 	}
 	
 
