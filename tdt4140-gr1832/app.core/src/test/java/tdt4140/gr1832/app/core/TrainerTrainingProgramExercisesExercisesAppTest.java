@@ -14,7 +14,7 @@ import containers.ResultContainer;
 import containers.ShowAllUsersContainer;
 import containers.ShowUserInfoContainer;
 
-public class TrainerTrainingProgramExercisesAppTest{
+public class TrainerTrainingProgramExercisesExercisesAppTest{
 	
 	ShowUserInfoContainer userContainer;
 	ShowUserInfoContainer userContainer1;
@@ -22,7 +22,7 @@ public class TrainerTrainingProgramExercisesAppTest{
 	
 	
 	ShowAllUsersContainer showAllUserContainer; 
-	TrainerTrainingProgramExercisesApp testapp = new TrainerTrainingProgramExercisesApp();
+	TrainerTrainingProgramExercisesExercisesApp testapp = new TrainerTrainingProgramExercisesExercisesApp();
 	List<ExerciseContainer> exCons = new ArrayList<>();
 	ExerciseContainer exCon;
 	ExerciseProgramContainer exProgCon;

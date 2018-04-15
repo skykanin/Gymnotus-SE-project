@@ -15,14 +15,14 @@ import containers.ShowAllUsersContainer;
 import containers.ShowHealthInfoContainer;
 import containers.ShowUserInfoContainer;
 
-public class TrainerTrainingProgramProgramsAppTest {
+public class TrainerTrainingProgramExercisesProgramsAppTest {
 	ShowUserInfoContainer userContainer;
 	ShowUserInfoContainer userContainer1;
 	ShowUserInfoContainer userContainer2;
 	ShowHealthInfoContainer healthContainer;
 	List<ShowHealthInfoContainer> healthContainers = new ArrayList<>();
 	ShowAllUsersContainer showAllUserContainer; 
-	TrainerTrainingProgramProgramsApp testapp = new TrainerTrainingProgramProgramsApp();
+	TrainerTrainingProgramExercisesProgramsApp testapp = new TrainerTrainingProgramExercisesProgramsApp();
 	List<ExerciseContainer> exCons = new ArrayList<>();
 	ExerciseContainer exCon;
 	ExerciseProgramContainer exProgCon;

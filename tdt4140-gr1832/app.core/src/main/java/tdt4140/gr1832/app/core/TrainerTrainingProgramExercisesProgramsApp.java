@@ -20,7 +20,7 @@ import containers.ShowHealthInfoContainer;
 import containers.ShowUserInfoContainer;
 
 
-public class TrainerTrainingProgramProgramsApp {
+public class TrainerTrainingProgramExercisesProgramsApp {
 	
 	private ShowUserInfoContainer containerUser;
 
