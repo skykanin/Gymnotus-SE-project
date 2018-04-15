@@ -179,7 +179,10 @@ public class TrainerTrainingProgramExercisesExercisesApp {
 		List<String> dates = new ArrayList<>();
 		
 		for (ResultContainer resCon : resContainers) {
-			dates.add(resCon.getDate());
+			if (!dates.contains(resCon.getDate())){
+				
+				dates.add(resCon.getDate());
+			}
 		}
 		
 		return dates;

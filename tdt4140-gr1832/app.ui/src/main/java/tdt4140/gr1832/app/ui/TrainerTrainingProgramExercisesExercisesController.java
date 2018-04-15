@@ -4,7 +4,11 @@ import java.io.IOException;
 import java.text.ParseException;
 
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
 
@@ -13,6 +17,8 @@ import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXDialog;
 import com.jfoenix.controls.JFXDialogLayout;
 
+import comparators.InfoDateComparator;
+import containers.ResultContainer;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -25,6 +31,7 @@ import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
+import javafx.scene.chart.XYChart.Series;
 import javafx.scene.control.Label;
 import tdt4140.gr1832.app.core.TrainerTrainingProgramExercisesExercisesApp;
 
@@ -50,8 +57,12 @@ public class TrainerTrainingProgramExercisesExercisesController extends WindowCo
 
 	private int globalCounter = 0;
 
-	private Map<String, XYChart.Series<String, Number>> seriesMap = new HashMap<>();
 	
+
+	private Map<String, XYChart.Series<String, Number>> seriesMap = new HashMap<>();
+	private Map<String, List<Integer>> globalResultsMap = new HashMap<>();
+	List<String> globalDatesList = new ArrayList<>();
+	private Map<String, Integer> userResultsMap = new HashMap<>();
     
     @FXML
     public void loadDialog(ActionEvent parentEvent) {
@@ -88,36 +99,118 @@ public class TrainerTrainingProgramExercisesExercisesController extends WindowCo
 		return name;
     }
 
-    @SuppressWarnings({ "unchecked", "rawtypes" })
+@SuppressWarnings({ "unchecked", "rawtypes" })
 	
 	public void handleExerciseComboBox(ActionEvent actionEvent) throws IOException, ParseException {
- 
+    	
+    		
 		chart1.getData().clear();
 		seriesMap.clear();	
 	    	String exName = exerciseComboBox.getSelectionModel().getSelectedItem();
+
 	    	
 		exInfoText.setText("Du visualiserer resultatene til '" + exName + "'. Bytt øvelse her: " );
 		
 		int exID = app.getIDfromExerciseName(exName);
+		
 		app.getResultsOfExercise(exID);
 		
-		label1.setText(exName);
 		
+
+		
+		
+		globalDatesList = app.getDates(); 
+		
+		Collections.sort(globalDatesList, new InfoDateComparator());
+		
+
+		
+		for (ResultContainer resCon : app.getResContainers()) {
+			
+			globalResultsMap.put(resCon.getDate(), new ArrayList<>());
+		}
+		
+		globalResultsMap.put("Jan 1, 2018", new ArrayList<>());
+		globalDatesList.add(0, "Jan 1, 2018");
+		
+		System.out.println("\n\n Ny omgang: \n\n");
+		for (int i = 1; i < 2; i++) { //må iterere gjennom brukere med indeks
+				
+				app.getResultsOfExcerciseAndUser(exID, i);
+				app.requestUserInformation_ID(i+"");
+			
+			for (ResultContainer resCon : app.getResContainers()) {
+				List<Integer> temp = globalResultsMap.get(resCon.getDate());
+				temp.add(resCon.getResultParameter());
+				globalResultsMap.replace(resCon.getDate(), temp);
+			}
+			
+			
+		    Iterator it = globalResultsMap.entrySet().iterator();
+		    
+		    while (it.hasNext()) {
+		        Map.Entry pair = (Map.Entry)it.next();
+
+		        if (((List<Integer>) pair.getValue()).size() < i) {
+
+		        		List<Integer> temp = globalResultsMap.get((String) pair.getKey());
+		        		
+					temp.add(null);
+					
+					globalResultsMap.replace((String) pair.getKey(), temp);
+					
+		        }
+		        
+		        
+		    }
+			
+		    System.out.println( "\nbegynner forløkke\n");
+		    
+			for (String date : globalDatesList) {
+				System.out.println(globalResultsMap.get(date));
+			
+			}
+			
+			
+		}
+		
+
+		label1.setText(exName);
 		chart1.setOpacity(1);
 		chart1.setCreateSymbols(false);
 		chart1.setAnimated(false);
 		
 		if (app.getResults() != null) {
 			
-			for (int user : app.requestUserIDsOnExercise(exID)) {
+			for (int k = 0 ;  k < 1; k++) { //app.requestUserIDsOnExercise(exID).size(); k++ ) {
 				
+				String seriesName = updateSeriesMap();
+				
+					for (String date : globalDatesList) {
+
+						if ((globalResultsMap.get(date).get(k)) != null){
+							
+							System.out.println(date.substring(0,date.length()-6));
+							System.out.println(globalResultsMap.get(date).get(k));
+							
+							seriesMap.get(seriesName).getData().add(new XYChart.Data(
+									date.substring(0,date.length()-6)
+										,globalResultsMap.get(date).get(k)));
+						}
+					}
+					
+				chart1.getData().add(seriesMap.get(seriesName));
+			}
+			
+			/*
+			for (int user : app.requestUserIDsOnExercise(exID)) {
+	
 				app.getResultsOfExcerciseAndUser(exID, user);
 
 				app.requestUserInformation_ID(user+"");
 				
 				String seriesName = updateSeriesMap();
-					
-					
+				
 					for (int k = 0; k < app.getResults().size() ; k++) {
 						seriesMap.get(seriesName).getData().add(new XYChart.Data(
 							app.getDates().get(k).substring(0,app.getDates().get(k).length()-6)
@@ -126,12 +219,14 @@ public class TrainerTrainingProgramExercisesExercisesController extends WindowCo
 					
 				chart1.getData().add(seriesMap.get(seriesName));
 			}
+			
+			 */
 		} else {
 			hidePageContent();
 			exInfoText.setText("'" + exName + "' har ingen registrerte resultat, velg ny øvelse: ");	
 		}
-		
     }
+		
 		
 
     private void hidePageContent() {
