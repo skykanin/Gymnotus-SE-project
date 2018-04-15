@@ -35,9 +35,9 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import tdt4140.gr1832.app.core.ProgramResultsGraphsApp;
+import tdt4140.gr1832.app.core.TrainerTrainingProgramProgramsApp;
 
-public class ProgramResultsGraphsController extends WindowController implements Initializable {
+public class TrainerTrainingProgramProgramsController extends WindowController implements Initializable {
     
 	@FXML
     private StackPane root;
@@ -69,7 +69,7 @@ public class ProgramResultsGraphsController extends WindowController implements 
 	@FXML CategoryAxis xAxisFour;
 	@FXML NumberAxis yAxisFour;
      
-	ProgramResultsGraphsApp app = new ProgramResultsGraphsApp();
+	TrainerTrainingProgramProgramsApp app = new TrainerTrainingProgramProgramsApp();
 	
 	private String exName;
 	private int exID;
@@ -138,7 +138,7 @@ public class ProgramResultsGraphsController extends WindowController implements 
 		usersOnProgram = app.getUserIDsOnProgram(programName);		
     		app.getExercisesOnAProgram(app.getProgramIDfromName(programName));		
 		
-			programInfoText.setText("Du ser informasjon til programmet " + programName + ". Se et annet: " );
+			programInfoText.setText("Du ser resultater til programmet '" + programName + "'. Se et annet: " );
 			String seriesName;
 	    		for (int i = 0; i < app.getExContainers().size(); i++) {
 	    				
@@ -240,7 +240,7 @@ public class ProgramResultsGraphsController extends WindowController implements 
 		            			break;
 	    	        		}
 	    			} else {
-	    				programInfoText.setText("Det finnes ikke resultater til programmet " + programName + ". Se et annet: " );
+	    				programInfoText.setText("Finnes ikke resultater til programmet '" + programName + "'. Se et annet: " );
 	    				hidePageContent();
 	    			}
 	    		}
@@ -258,7 +258,7 @@ public class ProgramResultsGraphsController extends WindowController implements 
 	
 	if (userName != null) {
 		
-		infoText.setText("Du sammenligner " + userName + " med resultatsnittet. Se andre: " );
+		infoText.setText(userName + " sine resultater skiftet farge. Se andre: " );
 
 		int user = Integer.parseInt(app.getIDfromName(userName));	
 		app.requestUserInformation_ID(user+"");
@@ -372,13 +372,13 @@ public class ProgramResultsGraphsController extends WindowController implements 
 	    	        		}
 	    	        
 				} else {
-					infoText.setText("Brukeren har ikke ført resultater i programmet " + programName + ". Se et annet: " );
+					infoText.setText(userName + " har ikke resultater i programmet. Se nytt medlem: " );
 				}
 			} 
 		
 				
 		} else {
-			infoText.setText("Brukeren har valgt å ikke vise info, se en annen: ");
+			infoText.setText(userName + " har valgt å ikke vise treningsresultater, se nytt medlem: ");
 		}
 	} else {
 		//Do not perform any action
@@ -414,8 +414,8 @@ public class ProgramResultsGraphsController extends WindowController implements 
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		
 		hidePageContent();
-		infoText.setText("Velg en venn for å visualisere informasjon:");
-		programInfoText.setText("Velg en venn for å visualisere informasjon:");
+		infoText.setText("Velg et medlem for å visualisere resultater");
+		programInfoText.setText("Velg et program for å visualisere resultater");
 		
 		ObservableList<String> names = FXCollections.observableArrayList();
 		for (String name : app.getNames()) {
