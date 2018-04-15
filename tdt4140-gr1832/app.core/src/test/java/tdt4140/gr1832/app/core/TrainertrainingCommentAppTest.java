@@ -14,7 +14,6 @@ import containers.FeedbackContainer;
 import containers.ShowUserInfoContainer;
 
 
-
 public class TrainertrainingCommentAppTest {
 	ExerciseProgramContainer programContainer1;
 	ExerciseProgramContainer programContainer2;
@@ -29,6 +28,7 @@ public class TrainertrainingCommentAppTest {
 	
 	@Before
 	public void setup() {
+		testApp.setTest(true);
 		testApp = new TrainerTrainingProgramGiveCommentsApp();
 		programContainer1 = new ExerciseProgramContainer(1, "Program1", "Beskrivelse1");
 		programContainer2 = new ExerciseProgramContainer(2, "Program2", "Beskrivelse2");
@@ -40,6 +40,55 @@ public class TrainertrainingCommentAppTest {
 		userContainer2 = new ShowUserInfoContainer("brukernavnM", "123456", "Medlem", 22, 0, "email@email.com", "99887766", false, true, true, false);
 		userContainer1.setUserId("1");
 		userContainer2.setUserId("2");
+	}
+	
+	@Test
+	public void testRequestFeedbackGiven() {
+		testApp.requestFeedbackGiven();
+		Assert.assertEquals(1, testApp.getFeedbacksFromTrainer().size());
+	}
+	
+	@Test
+	public void testRequestPrograms() {
+		testApp.requestPrograms();
+		Assert.assertEquals(1, testApp.getProgramNames().size());
+		Assert.assertEquals("Bryst og skuldre", testApp.getProgramNames().get(0));
+	}
+	
+	@Test
+	public void testUpdateFeedback() {
+		boolean success = testApp.updateFeedback(1, "test");
+		Assert.assertTrue(success);
+	}
+	
+	@Test
+	public void testRequestUsers() {
+		testApp.requestUsers();
+		Assert.assertEquals(1, testApp.getUserNames().size());
+	}
+	
+	@Test
+	public void testRequestCommentGiven() {
+		testApp.requestCommentGiven();
+		Assert.assertEquals(1, testApp.getCommentsFromTrainer().size());
+	}
+	
+	@Test
+	public void testUpdateComment() {
+		boolean success = testApp.updateComment(1, "test");
+		Assert.assertTrue(success);
+	}
+	
+	@Test
+	public void testMakeFeedbackToUser() {
+		boolean success = testApp.makeCommentToGroup(1, "test");
+		Assert.assertTrue(success);
+	}
+	
+	@Test
+	public void makeCommentToGroup() {
+		boolean success = testApp.makeFeedbackToUser("test",1);
+		Assert.assertTrue(success);
 	}
 	
 	@Test
@@ -74,7 +123,7 @@ public class TrainertrainingCommentAppTest {
 		Assert.assertEquals(-1, testApp.getIdFromUsername(null));
 		Assert.assertEquals(-1, testApp.getIdFromUsername("Trener"));
 	}
-	
+
 	@SuppressWarnings("deprecation")
 	@Test
 	public void testFromDate() {

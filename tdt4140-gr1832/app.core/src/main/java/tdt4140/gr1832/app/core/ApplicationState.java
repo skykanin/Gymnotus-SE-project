@@ -17,6 +17,12 @@ public class ApplicationState {
     private static ShowUserInfoContainer loggedInUser;
     private String window_name;
     private int programCounter = 0;
+    
+    private static boolean TEST = false;
+    public static void setTest(boolean b) {
+    	TEST = b;
+    }
+    
     public ApplicationState(String window_name) {
         this.window_name = window_name;
     }
@@ -28,21 +34,22 @@ public class ApplicationState {
     public void verifyUsername(String username) throws NotFoundException {
         Client client = ClientBuilder.newClient();
         WebTarget webTarget = client.target(baseURI + "user_exists?username=" + username);
-        Response response = webTarget.request().get();
+        Response response = TEST ? Response.status(200).build() : webTarget.request().get();
         if(response.getStatus() == 404) throw new NotFoundException();
     }
 
     public boolean verifyPassword(String username, String password) throws NotFoundException {
         Client client = ClientBuilder.newClient();
-        WebTarget webTarget = client.target(baseURI + username + "/verify_password?password=" + password);
-        Response response = webTarget.request().get();
-        return Boolean.parseBoolean(response.readEntity(String.class));
+        WebTarget webTarget = client.target(baseURI + username + "/verify_password?password=" + password); 
+        Response response = TEST ? Response.status(200).entity("true").build() :  webTarget.request().get();        	
+        return Boolean.parseBoolean(TEST ? (String)response.getEntity() : response.readEntity(String.class));
     }
 
     public void setCurrentUser(String username) {
         Client client = ClientBuilder.newClient();
         WebTarget webTarget = client.target(baseURI + username + "/user_info");
-        String test = webTarget.request(MediaType.APPLICATION_JSON).get(String.class);
+        String test = TEST ? "{\"userID\":1,\"username\":\"testbruker\",\"name\":\"Henrik Giske Fosse\",\"email\":\"henrik@fosse.no\",\"phone\":\"23443443\",\"gender\":0,\"age\":23,\"isAnonymous\":false,\"shareExerciseData\":true,\"shareHealthData\":true,\"isTrainer\":true}" 
+        					: webTarget.request(MediaType.APPLICATION_JSON).get(String.class);
         Gson gson = new Gson();
         loggedInUser = gson.fromJson(test, ShowUserInfoContainer.class);
     }

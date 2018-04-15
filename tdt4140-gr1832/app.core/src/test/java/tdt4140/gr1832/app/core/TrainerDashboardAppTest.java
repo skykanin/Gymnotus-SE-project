@@ -22,6 +22,7 @@ public class TrainerDashboardAppTest {
 	
 	@Before
 	public void setup() {
+		testapp.setTest(true);
 		showAllUserContainer = new ShowAllUsersContainer(); 
 		showUserInfoContainer = new ShowUserInfoContainer("brukernavn", "passord", "navn1",11, 0, "email", "telefon", false, true, true, false);
 		showUserInfoContainer1 = new ShowUserInfoContainer("brukernavn", "passord", "navn",11, 1, "email", "telefon", false, true, true, false);
@@ -29,6 +30,30 @@ public class TrainerDashboardAppTest {
 		showHealthInfoContainer = new ShowHealthInfoContainer(123, 007, "Mar, 2018", 85, 100, 60, 181, 80, false, true, true);
 		testapp.setContainerUser(showUserInfoContainer);
 	}
+	
+	@Test
+	public void testRequestUserInformation_ID() {
+		testapp.requestUserInformation_ID("1");
+		ShowUserInfoContainer user = testapp.getContainerUser();
+		Assert.assertEquals(true, user.getIsAnonymous());
+		Assert.assertEquals("Brukeren er anonym", user.getUsername());
+		Assert.assertEquals("1", user.getUserID());
+	}
+	
+	@Test
+	public void testHealthInformation_ID() {
+		testapp.requestHealthInformation_ID("1");
+		Assert.assertEquals(1, testapp.getHealthContainers().size());
+	}
+	
+	@Test
+	public void testRequestAllUserID() {
+		testapp.requestAllUserID();
+		ShowUserInfoContainer user = testapp.getContainerUser();
+		Assert.assertEquals("1", user.getUserID());
+		Assert.assertEquals("Brukeren er anonym", user.getUsername());
+	}
+	
 	
 	@Test
 	public void testGetters() {

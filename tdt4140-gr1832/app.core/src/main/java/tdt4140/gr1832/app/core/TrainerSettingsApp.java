@@ -20,6 +20,12 @@ public class TrainerSettingsApp {
 	// HER HENTER VI BRUKERINFORMASJON
 	
 	private static String baseURI = "http://146.185.153.244:8080/api/";
+	
+	private static Response response;
+	private static boolean TEST = false;
+	public void setTest(boolean val) {
+		TEST = val;
+	}
 
 	
 	public String checkNull(String in) {
@@ -27,6 +33,10 @@ public class TrainerSettingsApp {
 			return "Ikke spesifisert";
 		}
 		return in;
+	}
+	
+	public static Response getResponse() {
+		return response;
 	}
 
 	//Her starter endringen av brukerinformasjonen.
@@ -45,16 +55,12 @@ public class TrainerSettingsApp {
 	  formData.add("new_phone", new_phone);
 	  formData.add("new_age", new_age);
 	  formData.add("new_gender",new_gender);
-		 // formData.add("password", this.user.getPassword());
-	  Response response = webTarget.request().post(Entity.form(formData));
+	  //formData.add("password", this.user.getPassword());
+	  response = Response.status(400).build();
+	  if(!TEST) {
+		  response = webTarget.request().post(Entity.form(formData));		  
+	  }
 	  
 	  return response.getStatus() == 200 ? true : false;
-	}
-	
-	/*
-	 MANGLER PASSORD-endringer
-	 */
-	public String getBaseURI() {
-		return baseURI;
 	}
 }

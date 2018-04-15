@@ -27,11 +27,17 @@ public class TrainerDashboardApp {
 	
 	private String baseURI = "http://146.185.153.244:8080/api/";
 	
+	private static boolean TEST = false;
+	public static void setTest(boolean b) {
+		TEST = b;
+	}
+	
 	public void requestUserInformation_ID(String id) {
 
 		Client client = ClientBuilder.newClient();
 		WebTarget webTarget = client.target(baseURI + "user/"+id+"/user_info_id");
-		String test = webTarget.request(MediaType.APPLICATION_JSON).get(String.class);
+		String test = TEST ? "{\"userID\":1,\"username\":\"testbruker\",\"name\":\"Henrik Giske Fosse\",\"email\":\"henrik@fosse.no\",\"phone\":\"23443443\",\"gender\":0,\"age\":23,\"isAnonymous\":true,\"shareExerciseData\":true,\"shareHealthData\":true,\"isTrainer\":true}" 
+							: webTarget.request(MediaType.APPLICATION_JSON).get(String.class);
 		Gson gson = new Gson();
 		containerUser = gson.fromJson(test, ShowUserInfoContainer.class);
 		containerUser.setUserId(id);
@@ -42,14 +48,13 @@ public class TrainerDashboardApp {
 			containerUser.setPhone("Brukeren er anonym");
 			containerUser.setEmail("Brukeren er anonym");
 		}
-		
 	}
 
 	
 	public void requestAllUserID() {
 		Client client = ClientBuilder.newClient();
 		WebTarget webTarget = client.target(baseURI +"user/get_all_ids");
-		String test = webTarget.request(MediaType.APPLICATION_JSON).get(String.class);
+		String test = TEST ? "[1]" :webTarget.request(MediaType.APPLICATION_JSON).get(String.class);
 		Gson gson = new Gson();
 		userids = gson.fromJson(test, new TypeToken<List<Integer>>(){}.getType());
 		
@@ -65,7 +70,8 @@ public class TrainerDashboardApp {
 		WebTarget webTarget = client.target(baseURI + "health_data/id/"+id);
 		this.requestUserInformation_ID(id);
 		
-		String test = webTarget.request(MediaType.APPLICATION_JSON).get(String.class);
+		String test = TEST ? "[{\"reportID\":154,\"userID\":1,\"date\":\"Jan 10, 2018\",\"bloodPressure\":120,\"dailySteps\":7912,\"restingHeartRate\":65,\"height\":187,\"weight\":73}]" 
+							:  webTarget.request(MediaType.APPLICATION_JSON).get(String.class);
 		Gson gson = new Gson();
 		healthContainers = gson.fromJson(test, new TypeToken<List<ShowHealthInfoContainer>>(){}.getType());
 	}
