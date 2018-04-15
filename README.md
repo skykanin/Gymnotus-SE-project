@@ -61,3 +61,11 @@ $ mvn exec:java -pl app.ui -Dexec.mainClass=FxApp
 
 Dersom du skal kjøre programmet gjennom et ønsket utviklingsmiljø så må du kjøre main-funksjonen i [FxApp.java](https://gitlab.stud.iie.ntnu.no/tdt4140-2018/32/blob/master/tdt4140-gr1832/app.ui/src/main/java/tdt4140/gr1832/app/ui/FxApp.java).
 Med Eclipse så kan du gjøre dette ved å høyreklikke filen og velge Run as > Run as java-application.
+
+## Struktur og design 
+
+Applikasjonen følger MVC-arkitekturen som blir implementert og representert i modulene app.ui, app.core og web.server.
+Brukeren benytter seg av en kontroller i app.ui som interagerer med modellen(som inneholder all relevnat loggikk) implementert i app.core som videre manipulerer dataen i en database ved å kommunisere med koden i web.server gjennom et REST-api. 
+Med data fra serveren kan modellen i app.core så melde fra om nye oppdateringer til kontrolleren som deretter kan oppdatere skjermen brukeren ser på med forespurt data.
+
+Mer om design og struktur av app.core står [her](https://gitlab.stud.iie.ntnu.no/tdt4140-2018/32/blob/Development/tdt4140-gr1832/app.core/README.md), mens mer info om web.server står [her](https://gitlab.stud.iie.ntnu.no/tdt4140-2018/32/blob/Development/tdt4140-gr1832/web.server/README.md)
