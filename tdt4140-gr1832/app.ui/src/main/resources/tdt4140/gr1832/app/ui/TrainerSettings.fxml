@@ -78,7 +78,7 @@
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <JFXTextField fx:id="usernameField" focusColor="#0b88a1" layoutX="229.0" layoutY="85.0" prefHeight="27.0" prefWidth="190.0" unFocusColor="#4d4d4d" />
+                  <JFXTextField fx:id="usernameField" editable="false" focusColor="#0b88a1" layoutX="229.0" layoutY="85.0" prefHeight="27.0" prefWidth="190.0" unFocusColor="#4d4d4d" />
                   <Label layoutX="77.0" layoutY="203.0" text="Epost" textFill="#0b87a1">
                      <font>
                         <Font size="18.0" />

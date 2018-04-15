@@ -90,8 +90,8 @@
                   <JFXTextField fx:id="result2Field" alignment="CENTER" editable="false" focusColor="#4d4d4d00" layoutX="692.0" layoutY="328.0" prefHeight="27.0" prefWidth="151.0" />
                   <JFXTextField fx:id="result3Field" alignment="CENTER" editable="false" focusColor="#4d4d4d00" layoutX="692.0" layoutY="380.0" prefHeight="27.0" prefWidth="151.0" />
                   <JFXTextField fx:id="result4Field" alignment="CENTER" editable="false" focusColor="#4d4d4d00" layoutX="692.0" layoutY="430.0" prefHeight="27.0" prefWidth="151.0" />
-                  <JFXButton fx:id="lastDay" layoutX="382.0" layoutY="570.0" onAction="#lastDay" prefHeight="29.0" prefWidth="90.0" style="-fx-background-color: #0b87a1;" text="Forrige dag" />
-                  <JFXButton fx:id="nextDay" layoutX="502.0" layoutY="570.0" onAction="#nextDay" prefHeight="29.0" prefWidth="90.0" style="-fx-background-color: #0b87a1;" text="Neste dag" />
+                  <JFXButton fx:id="lastDay" layoutX="382.0" layoutY="570.0" onAction="#lastDay" prefHeight="29.0" prefWidth="90.0" style="-fx-background-color: #0b87a1;" text="Forrige dag" textFill="WHITE" />
+                  <JFXButton fx:id="nextDay" layoutX="502.0" layoutY="570.0" onAction="#nextDay" prefHeight="29.0" prefWidth="90.0" style="-fx-background-color: #0b87a1;" text="Neste dag" textFill="WHITE" />
                   <Label fx:id="messageLabel" alignment="CENTER" layoutX="584.0" layoutY="355.0" prefHeight="34.0" prefWidth="277.0" textAlignment="CENTER" />
                </children>
             </AnchorPane>

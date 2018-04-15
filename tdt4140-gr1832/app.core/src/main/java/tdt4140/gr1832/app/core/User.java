@@ -43,7 +43,7 @@ public class User {
 		for ( int i=0; i<lengde;i++) {
 			char c= phoneNumber.charAt(i);
 			if (!(Character.isDigit(c))) {
-				throw new IllegalArgumentException("Telefonnummer mÃ¥ inneholde tall.");
+				throw new IllegalArgumentException("Telefonnummer ma inneholde tall.");
 			}
 		}
 		if(lengde != 8) {
@@ -125,16 +125,15 @@ public class User {
 
 	//name:
 	public void setName(String name) { //ingen tall
+		String comparatorString = name.replaceAll("[^a-zA-ZøæåØÆÅ\\s]", "");
 		if (name == null || name.isEmpty()) {
 			throw new IllegalArgumentException("Feltet for navn mangler.");
 		}
-		for (int i=0; i<name.length(); i++) {
-			if (Character.isDigit(name.charAt(i))) {
-				throw new IllegalArgumentException("Navn kan ikke inneholde noen tall");
-			}
-			this.name=name;
-
+		if (!name.equals(comparatorString)) {
+			throw new IllegalArgumentException("Navn kan kun inneholde bokstaver");
 		}
+		this.name=name;
+	
 	}
 	public String getName() {
 		return this.name;
@@ -198,7 +197,7 @@ public class User {
 //password:
 	public void setPassword(String password) {			
 		if (password.length() <= 5) {
-			throw new IllegalArgumentException("Passordet mÃ¥ inneholde seks eller flere karakterer.");
+			throw new IllegalArgumentException("Passordet ma inneholde seks eller flere karakterer.");
 		}
 		else {
 			this.password=password;

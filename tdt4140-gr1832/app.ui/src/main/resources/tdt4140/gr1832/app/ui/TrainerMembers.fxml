@@ -59,14 +59,14 @@
                <children>
                   <AnchorPane prefHeight="89.0" prefWidth="963.0" stylesheets="@styles/main.css">
                      <children>
-                        <Label layoutX="606.0" layoutY="4.0" prefHeight="40.0" prefWidth="250.0" styleClass="DosisCaps" text=" MEDLEMSLISTE" textAlignment="CENTER" textFill="WHITE">
+                        <Label alignment="CENTER" layoutX="606.0" layoutY="4.0" prefHeight="40.0" prefWidth="257.0" styleClass="DosisCaps" text="MEDLEMSLISTE" textAlignment="CENTER" textFill="WHITE">
                            <font>
-                              <Font size="28.0" />
+                              <Font size="24.0" />
                            </font>
                         </Label>
-                        <Label alignment="CENTER" layoutX="129.0" layoutY="7.0" prefHeight="34.0" prefWidth="250.0" styleClass="DosisCaps" text="TRENERLISTE" textAlignment="CENTER" textFill="WHITE">
+                        <Label alignment="CENTER" layoutX="122.0" layoutY="7.0" prefHeight="35.0" prefWidth="257.0" styleClass="DosisCaps" text="TRENERLISTE" textAlignment="CENTER" textFill="WHITE">
                            <font>
-                              <Font size="28.0" />
+                              <Font size="24.0" />
                            </font>
                         </Label>
                      </children>
