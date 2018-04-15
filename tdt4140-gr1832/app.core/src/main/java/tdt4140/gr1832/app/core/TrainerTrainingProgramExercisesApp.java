@@ -11,23 +11,144 @@ import javax.ws.rs.core.MediaType;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
-import containers.ShowAllUsersContainer;
-import containers.ShowHealthInfoContainer;
+import containers.ExerciseContainer;
+import containers.ExerciseProgramContainer;
+import containers.ResultContainer;
 import containers.ShowUserInfoContainer;
-import javafx.scene.chart.XYChart.Series;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 public class TrainerTrainingProgramExercisesApp {
 	
 	private ShowUserInfoContainer containerUser;
-
-	private List<Integer> userids = new ArrayList<Integer>();
-	
-	private List<ShowHealthInfoContainer> healthContainers = new ArrayList<ShowHealthInfoContainer>();
-	
-	private ShowAllUsersContainer containerAllUsers = new ShowAllUsersContainer();
 	
 	private String baseURI = "http://146.185.153.244:8080/api/";
 	
+	private List<ExerciseContainer> exContainers = new ArrayList<>();
+	
+	private List<ResultContainer> resContainers;
+	
+	private ObservableList<String> namesOfExercises = FXCollections.observableArrayList();
+	
+	private List<ExerciseProgramContainer> containerExercisePrograms = new ArrayList<ExerciseProgramContainer>();
+	
+	//START  INFORMATION ABOUT PROGRAMS
+
+	public List<ExerciseContainer> getExContainers() {
+		return exContainers;
+	}
+
+	public void requestExerciseProgramInformation() {
+			
+		Client client = ClientBuilder.newClient();
+		WebTarget webTarget = client.target(baseURI + "exercise_program/all_programs");
+		String test = webTarget.request(MediaType.APPLICATION_JSON).get(String.class);
+		Gson gson = new Gson();
+		containerExercisePrograms = gson.fromJson(test, new TypeToken<List<ExerciseProgramContainer>>(){}.getType());
+	}
+	
+	
+	//END  INFORMATION ABOUT PROGRAMS
+		
+	//START INFORMATION ABOUT EXERCISES IN PROGRAM
+		
+	public List<Integer> requestUserIDsOnExercise(int exID){
+		List<Integer> userIDs = new ArrayList<>();
+		
+		Client client = ClientBuilder.newClient();
+		WebTarget webTarget = client.target(baseURI + "result/get_users_added_results_to_exercise?exercise_id=" + exID);
+		String test = webTarget.request(MediaType.APPLICATION_JSON).get(String.class);
+		Gson gson = new Gson();
+		List<ShowUserInfoContainer> users = gson.fromJson(test, new TypeToken<List<ShowUserInfoContainer>>(){}.getType());
+		
+		for (ShowUserInfoContainer user: users) {
+			userIDs.add(Integer.parseInt(user.getUserID()));
+		}
+		
+		return userIDs;
+	}
+		
+	public void requestExerciseContainers() {
+		
+		namesOfExercises.clear();
+		
+		Client client = ClientBuilder.newClient();
+		
+		requestExerciseProgramInformation();
+		
+		for (ExerciseProgramContainer epc : containerExercisePrograms) {
+		WebTarget webTarget = client.target(baseURI + "exercise/get_exercises?program_id=" + epc.getProgramID());
+		String test = webTarget.request(MediaType.APPLICATION_JSON).get(String.class);
+		Gson gson = new Gson();
+		List<ExerciseContainer> exCons = gson.fromJson(test, new TypeToken<List<ExerciseContainer>>(){}.getType());
+			for (ExerciseContainer exCon : exCons) {
+				exContainers.add(exCon);
+				namesOfExercises.add(exCon.getDescription());
+			}
+		}
+	}
+		
+		
+	public int getIDfromExerciseName(String exName) {
+		for (ExerciseContainer exCon : exContainers) {
+			if (exCon.getDescription().equals(exName)) {
+				return exCon.getProgramID();
+			}
+		}
+		return -1;
+	}
+		
+
+	public ObservableList<String> getNamesOfExercises() {
+		return namesOfExercises;
+	}
+
+
+	public void getResultsOfExercise(int exerciseID) {
+		
+		List<ResultContainer> resCons = new ArrayList<>();
+		
+		Client client = ClientBuilder.newClient();
+		WebTarget webTarget = client.target(baseURI + "result/get_results_by_exercise?exercise_id=" + exerciseID);
+		String test = webTarget.request(MediaType.APPLICATION_JSON).get(String.class);
+		
+		Gson gson = new Gson();
+		resCons = gson.fromJson(test, new TypeToken<List<ResultContainer>>(){}.getType());
+		
+		if (resCons.size() < 1) {
+			resContainers = null;
+		} else {				
+			resContainers = resCons;
+		}
+		
+	}
+	
+	public void getResultsOfExcerciseAndUser(int exerciseID, int userID) {
+		
+		List<ResultContainer> resCons = new ArrayList<>();
+		
+		Client client = ClientBuilder.newClient();
+		WebTarget webTarget = client.target(baseURI + "result/get_results_by_user_and_exercise?user_id="+userID+"&exercise_id="+exerciseID);
+		String test = webTarget.request(MediaType.APPLICATION_JSON).get(String.class);
+		
+		Gson gson = new Gson();
+		resCons = gson.fromJson(test, new TypeToken<List<ResultContainer>>(){}.getType());
+		
+		
+		if (resCons.size() < 1) {
+			resContainers = null;
+		} else {				
+			resContainers = resCons;
+		}
+	}
+	
+
+	//END INFORMATION ABOUT EXERCISES IN PROGRAM
+	
+	public List<ResultContainer> getResContainers() {
+		return resContainers;
+	}
+
 	public void requestUserInformation_ID(String id) {
 
 		Client client = ClientBuilder.newClient();
@@ -35,6 +156,7 @@ public class TrainerTrainingProgramExercisesApp {
 		String test = webTarget.request(MediaType.APPLICATION_JSON).get(String.class);
 		Gson gson = new Gson();
 		containerUser = gson.fromJson(test, ShowUserInfoContainer.class);
+		
 		containerUser.setUserId(id);
 		
 		if(containerUser.getIsAnonymous()) {
@@ -45,152 +167,37 @@ public class TrainerTrainingProgramExercisesApp {
 		}
 		
 	}
-
 	
-	public void requestAllUserID() {
-		Client client = ClientBuilder.newClient();
-		WebTarget webTarget = client.target(baseURI +"user/get_all_ids");
-		String test = webTarget.request(MediaType.APPLICATION_JSON).get(String.class);
-		Gson gson = new Gson();
-		userids = gson.fromJson(test, new TypeToken<List<Integer>>(){}.getType());
-		
-		for(Integer i : userids) {
-			requestUserInformation_ID(i.toString());
-			containerAllUsers.addUserInfo(containerUser);
-		}
-	}
-	
-	public void requestHealthInformation_ID(String id) {
-		
-		Client client = ClientBuilder.newClient();
-		WebTarget webTarget = client.target(baseURI + "health_data/id/"+id);
-		this.requestUserInformation_ID(id);
-		
-		String test = webTarget.request(MediaType.APPLICATION_JSON).get(String.class);
-		Gson gson = new Gson();
-		healthContainers = gson.fromJson(test, new TypeToken<List<ShowHealthInfoContainer>>(){}.getType());
-	}
-	
-	public List<String> getNames(){
-		List<String> usernames = new ArrayList<>();
-		for (ShowUserInfoContainer user : containerAllUsers.getUsers()){
-			String name = user.getName();
-			if (name != null) {
-				usernames.add(name);
-			}
-			}
-		
-		return usernames;
-		}
-	
-	public String getIDfromName(String name) {
-		for (ShowUserInfoContainer user : containerAllUsers.getUsers()){
-			if (user.getName().equals(name)) {
-				return user.getUserID();
-			}
-		}
-		return "1";
-	}
-	
-	public List<Integer> getHeights() {
-		if (healthContainers.size()<1) {
-			return null;
-		}
-		
-		List<Integer> heights = new ArrayList<>();
-		
-		for (ShowHealthInfoContainer hContainer : healthContainers) {
-			heights.add(hContainer.getHeight());
-		}
-		
-		return heights;
-	}
-
-	// STANDARDISERT DATESFUNKSJON, DEN EKTE ER KOMMENTERT UT UNDER
 	
 	public List<String> getDates() {
-		String date1 = "Mar 1, 2018";
-		String date2 = "Mar 2, 2018";
-		String date3 = "Mar 3, 2018";
-		String date4 = "Mar 4, 2018";
+		
+		if ((resContainers == null) || (resContainers.size()<1) ){
+			
+			return null;
+		}
 		
 		List<String> dates = new ArrayList<>();
 		
-		dates.add(date1);
-		dates.add(date2);
-		dates.add(date3);
-		dates.add(date4);
+		for (ResultContainer resCon : resContainers) {
+			dates.add(resCon.getDate());
+		}
 		
 		return dates;
-		
 	}
+
 	
-	
-//	public List<String> getDates() {
-//		if (healthContainers.size()<1) {
-//			return null;
-//		}
-//		
-//		List<String> dates = new ArrayList<>();
-//		
-//		for (ShowHealthInfoContainer hContainer : healthContainers) {
-//			dates.add(hContainer.getDate());
-//		}
-//		
-//		return dates;
-//	}
-	
-	//weight
-	public List<Integer> getWeights() {
-		if (healthContainers.size()<1) {
-			return null;
-		}
-		
-		List<Integer> weights = new ArrayList<>();
-		
-		for (ShowHealthInfoContainer hContainer : healthContainers) {
-			weights.add(hContainer.getWeight());
-		}
-		
-		return weights;
-	}
-	
-	//steps
-	public List<Integer> getSteps() {
-		if (healthContainers.size()<1) {
-			return null;
-		}
-		
-		List<Integer> steps = new ArrayList<>();
-		
-		for (ShowHealthInfoContainer hContainer : healthContainers) {
-			steps.add(hContainer.getSteps());
-		}
-		
-		return steps;
-	}
-	
-	//restingHR
-	public List<Integer> getRestingHRs() {
-		if (healthContainers.size()<1) {
+	public List<Integer> getResults() {
+		if ((resContainers == null) ||resContainers.size()<1) {
 			return null;
 		} 
 		
-		List<Integer> HRs = new ArrayList<>();
+		List<Integer> results = new ArrayList<>();
 		
-		for (ShowHealthInfoContainer hContainer : healthContainers) {
-			HRs.add(hContainer.getRestingHR());
+		for (ResultContainer resCon : resContainers) {
+			results.add(resCon.getResultParameter());
 		}
 		
-		return HRs;
-	}
-
-	public List<ShowHealthInfoContainer> getHealthContainers() {
-		return healthContainers;
-	}
-
-	public void setContainerAllUsers(ShowAllUsersContainer containerAllUsers) {
-		this.containerAllUsers = containerAllUsers;
+		return results;
 	}
 
 
@@ -208,53 +215,29 @@ public class TrainerTrainingProgramExercisesApp {
 		return containerUser;
 	}
 
-
-	public List<Integer> getResult1() {
-		// Sandys generated method
+	public void setResContainers(List<ResultContainer> resCons) {
+		this.resContainers = resCons;
 		
-		List<Integer> res1 = new ArrayList<>();
-		res1.add(1);
-		res1.add(1);
-		res1.add(0);
-		res1.add(1);
-		
-		return res1;
-	}
-	
-	public List<Integer> getResult2() {
-		// Sandys generated method
-		
-				List<Integer> res1 = new ArrayList<>();
-				res1.add(1);
-				res1.add(0);
-				res1.add(2);
-				res1.add(4);
-				
-				return res1;
-	}
-	
-	public List<Integer> getResult3() {
-		// Sandys generated method
-		
-				List<Integer> res1 = new ArrayList<>();
-				res1.add(1);
-				res1.add(2);
-				res1.add(3);
-				res1.add(4);
-				
-				return res1;
-	}
-	
-	public List<Integer> getResult4() {
-		// Sandys generated method
-		
-				List<Integer> res1 = new ArrayList<>();
-				res1.add(2);
-				res1.add(4);
-				res1.add(16);
-				res1.add(256);
-				
-				return res1;
 	}
 
+	public void setBaseURI(String string) {
+		this.baseURI = string;
+		
+	}
+
+	public List<ExerciseProgramContainer> getContainerExercisePrograms() {
+		
+		return containerExercisePrograms;
+	}
+
+
+	public void setContainerExercisePrograms(List<ExerciseProgramContainer> exProgCons) {
+		this.containerExercisePrograms = exProgCons;
+		
+	}
+
+	public void setExContainers(List<ExerciseContainer> exCons) {
+		this.exContainers = exCons;
+		
+	}
 }

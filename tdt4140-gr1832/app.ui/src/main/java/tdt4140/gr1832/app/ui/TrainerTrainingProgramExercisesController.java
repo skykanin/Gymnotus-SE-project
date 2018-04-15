@@ -1,10 +1,11 @@
 package tdt4140.gr1832.app.ui;
 
 import java.io.IOException;
-import java.text.DecimalFormat;
 import java.text.ParseException;
 
 import java.net.URL;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.ResourceBundle;
 
 import com.jfoenix.controls.JFXButton;
@@ -12,49 +13,45 @@ import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXDialog;
 import com.jfoenix.controls.JFXDialogLayout;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import com.jfoenix.controls.JFXTextField;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
+
+
 import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Label;
-import javafx.stage.Stage;
-import tdt4140.gr1832.app.core.TrainerTrainingProgramOverviewApp;
 import tdt4140.gr1832.app.core.TrainerTrainingProgramExercisesApp;
-import containers.ExerciseProgramContainer;
 
 
 public class TrainerTrainingProgramExercisesController extends WindowController implements Initializable {
-
-	TrainerTrainingProgramOverviewApp programApp = new TrainerTrainingProgramOverviewApp();
-	TrainerTrainingProgramExercisesApp app = new TrainerTrainingProgramExercisesApp();
-
+    
 	@FXML
     private StackPane root;
+    
+    @FXML JFXButton tilProgram;
+	@FXML JFXComboBox<String> exerciseComboBox;
 
-    @FXML
-    private JFXTextField program;
+	@FXML Label exInfoText;
+	
+	@FXML Label label1;
+	
+	@FXML LineChart<String,Number> chart1;
+	@FXML CategoryAxis xAxisOne;
+	@FXML NumberAxis yAxisOne;
     
 	
-	@FXML
-	public void initialize() {
-		//This if statement makes UI test not dependent of server
-		if(!FxApp.TEST) {
-		root.setPickOnBounds(false);
-		programApp.requestExerciseProgramInformation();
-		ExerciseProgramContainer c = programApp.getExerciseProgramContainer(AS.getProgramCounter());
-		program.setText(c.getName());
-	}
-	}
+	TrainerTrainingProgramExercisesApp app = new TrainerTrainingProgramExercisesApp();
+
+	private int globalCounter = 0;
+
+	private Map<String, XYChart.Series<String, Number>> seriesMap = new HashMap<>();
+	
     
     @FXML
     public void loadDialog(ActionEvent parentEvent) {
@@ -82,207 +79,87 @@ public class TrainerTrainingProgramExercisesController extends WindowController 
         dialog.show();
     }
     
-	
-	public void update() {
-		ExerciseProgramContainer c = programApp.getExerciseProgramContainer(AS.getProgramCounter());
-		program.setText(c.getName());
-	}
+    private String updateSeriesMap() {
+    	
+		String name = "series" + globalCounter ;
+		
+		seriesMap.put("series" + globalCounter, new XYChart.Series<String, Number>());   		
+		globalCounter ++;
+		return name;
+    }
 
-	@FXML
-	public void nextProgram() {
-		if (AS.getProgramCounter() < (programApp.getContainerExcerciseProgramLength()-1)) {
-			AS.increaseProgramCounter();	
-		} else {
-			AS.setProgramCounter(0);;
-		}
-		update();
-	}
-	
-	@FXML
-	public void lastProgram() {
-		if (AS.getProgramCounter() > 0 ){
-			AS.decreaseProgramCounter();	
-		} else {
-		AS.setProgramCounter(programApp.getContainerExcerciseProgramLength()-1);
-		}
-		update();
-	}
-	
-	
-	   	@FXML
-	   	JFXButton tilProgram;
-	
-	   	@FXML
-	   	JFXComboBox<String> exMemberComboBox;
-		
-	   	@FXML
-	   	Label exInfoText;
-	   
-	   	@FXML
-	   	Label exLabelOne;
-	   
-	   	@FXML
-	   	Label exLabelTwo;
-	   
-	   	@FXML
-	   	Label exLabelThree;
-	   
-	   	@FXML
-	   	Label exLabelFour;
-		    
-	   	@FXML
-	   	LineChart<String,Number> exChartOne;
-	   
-	   	@FXML
-	   	CategoryAxis xAxisOne;
-	   
-	   	@FXML
-	   	NumberAxis yAxisOne;
-	    
-	   	@FXML
-	   	LineChart<String,Number> exChartTwo;
-	   
-	   	@FXML
-	   	CategoryAxis xAxisTwo;
-	   
-	   	@FXML
-	   	NumberAxis yAxisTwo;
-	    
-	   	@FXML
-	   	LineChart<String,Number> exChartThree;
-		
-	   	@FXML
-	   	CategoryAxis xAxisThree;
-	   
-		@FXML
-		NumberAxis yAxisThree;
-		
-		@FXML
-		LineChart<String,Number> exChartFour;
-		
-		@FXML
-		CategoryAxis xAxisFour;
-		
-		@FXML
-		NumberAxis yAxisFour;
-	
     @SuppressWarnings({ "unchecked", "rawtypes" })
 	
-	public void exHandleMemberComboBox(ActionEvent actionEvent) throws IOException, ParseException {
-    	// FYLL MED FUNKSJONALITET FRA DASHBOARDCONTROLLER
-
-    	String username = exMemberComboBox.getSelectionModel().getSelectedItem();
-	exInfoText.setText("Du ser " + username + "'s øvelseslogg. Se noen andre: " );
-		
-	app.requestHealthInformation_ID(app.getIDfromName(username));
-	
-	if (app.getResult1() != null && app.getContainerUser().getShareExerciseData()) {
-	
-		exChartOne.getData().clear();
-		exChartTwo.getData().clear();
-		exChartThree.getData().clear();
-		exChartFour.getData().clear();
-		
-	    XYChart.Series<String,Number> series = new XYChart.Series<>();
-	    XYChart.Series<String,Number> series2 = new XYChart.Series<>();
-	    XYChart.Series<String,Number> series3 = new XYChart.Series<>();
-	    XYChart.Series<String,Number> series4 = new XYChart.Series<>();
-	
-		for (int i = 0; i < app.getDates().size() ; i++) {
+	public void handleExerciseComboBox(ActionEvent actionEvent) throws IOException, ParseException {
+ 
+		chart1.getData().clear();
 			
-			//MERK: DET REFERERES TIL DUMMY-METODER I ttpeAPP, MÅ KOBLES TIL DATABASEN
-			series.getData().add(new XYChart.Data(app.getDates().get(i).substring(0,app.getDates().get(i).length()-6 ),app.getResult1().get(i)));
-			series2.getData().add(new XYChart.Data(app.getDates().get(i).substring(0,app.getDates().get(i).length()-6 ),app.getResult2().get(i)));
-			series3.getData().add(new XYChart.Data(app.getDates().get(i).substring(0,app.getDates().get(i).length()-6 ),app.getResult3().get(i)));
-			series4.getData().add(new XYChart.Data(app.getDates().get(i).substring(0,app.getDates().get(i).length()-6 ),app.getResult4().get(i)));
+	    	String exName = exerciseComboBox.getSelectionModel().getSelectedItem();
+		exInfoText.setText("Du ser informasjon om " + exName + ". Bytt øvelse her: " );
+		
+
+		int exID = app.getIDfromExerciseName(exName);
+		app.getResultsOfExercise(exID);
+		
+		label1.setText(exName);
+		
+		chart1.setOpacity(1);
+		chart1.setCreateSymbols(false);
+		chart1.setAnimated(false);
+		
+		if (app.getResults() != null) {
+			for (int user : app.requestUserIDsOnExercise(exID)) {
+				
+				app.getResultsOfExcerciseAndUser(exID, user);
+
+				app.requestUserInformation_ID(user+"");
+					String seriesName = updateSeriesMap();
+					
+					for (int k = 0; k < app.getResults().size() ; k++) {
+						seriesMap.get(seriesName).getData().add(new XYChart.Data(
+							app.getDates().get(k).substring(0,app.getDates().get(k).length()-6)
+										,app.getResults().get(k)));
+					}
+					chart1.getData().add(seriesMap.get(seriesName));
+			}
+		} else {
+			hidePageContent();
+			exInfoText.setText(exName + " har ingen registrerte resultat, velg ny øvelse: ");	
 		}
 		
-		exChartOne.setOpacity(1);
-		exChartTwo.setOpacity(1);
-		exChartThree.setOpacity(1);
-		exChartFour.setOpacity(1);
+    }
 		
-		exLabelOne.setText("temp: Biceps");
-		exLabelTwo.setText("temp: Triceps");
-		exLabelThree.setText("temp: Qatroceps");
-		exLabelFour.setText("temp: Sinkoceps");
-		
-		exChartOne.setCreateSymbols(false);
-		exChartOne.setAnimated(false);
-        exChartOne.getData().add(series);
-        
-        exChartTwo.setCreateSymbols(false);
-        exChartTwo.setAnimated(false);
-        exChartTwo.getData().add(series2);
-        
-        exChartThree.setCreateSymbols(false);
-        exChartThree.setAnimated(false);
-        exChartThree.getData().add(series3);
-        
-        exChartFour.setCreateSymbols(false);
-        exChartFour.setAnimated(false);
-        exChartFour.getData().add(series4);
-
-	
-	} else if(!(app.getContainerUser().getShareExerciseData())) {
-		exInfoText.setText(username + " har valgt å ikke vise sin data, velg en ny venn: ");
-		hidePageContent();
-
-	} else {
-		exInfoText.setText(username + " har ikke registrert helsedata, velg en ny venn: ");
-		hidePageContent();
-	}
-		
-	}
     
     //HJELPEMETODE
     private void hidePageContent() {
     	
-    	exChartOne.setLegendVisible(false);
-		exChartTwo.setLegendVisible(false);
-		exChartThree.setLegendVisible(false);
-		exChartFour.setLegendVisible(false);
-		
-		exChartOne.setOpacity(0);
-		exChartTwo.setOpacity(0);
-		exChartThree.setOpacity(0);
-		exChartFour.setOpacity(0);
-		
-		exLabelOne.setText("");
-		exLabelTwo.setText("");
-		exLabelThree.setText("");
-		exLabelFour.setText("");
+    		chart1.setLegendVisible(false);
+		chart1.setOpacity(0);
+		label1.setText("");
+
+		seriesMap.clear();
+		globalCounter = 0;
     }
     
-    
+    @FXML
+	private void tilProgramGraphs(ActionEvent event) throws IOException {
+		NavigerTilSide("ProgramResultsGraphs.fxml", event);
+	}
+	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		root.setPickOnBounds(false);
-		programApp.requestExerciseProgramInformation();
-		ExerciseProgramContainer c = programApp.getExerciseProgramContainer(AS.getProgramCounter());
-		program.setText(c.getName());
 		
-		if (!FxApp.TEST) {
-			hidePageContent();
-			exInfoText.setText("Velg en venn for � visualisere informasjon:");
+		hidePageContent();
+
+		exInfoText.setText("Velg et program for å visualisere informasjon:");
+		app.requestExerciseContainers();
 		
-			app.requestAllUserID();
-			
-			ObservableList<String> names = FXCollections.observableArrayList();
-			for (String name : app.getNames()) {
-				names.add(name);
-		}
-		
-		exMemberComboBox.setItems(names);
-		}
+		exerciseComboBox.setItems(app.getNamesOfExercises());
 		
 	}
-
     
     public static void main(String[] args) {
         launch(args);
-    }   
-	
-	
-	
+    }
+
 }
