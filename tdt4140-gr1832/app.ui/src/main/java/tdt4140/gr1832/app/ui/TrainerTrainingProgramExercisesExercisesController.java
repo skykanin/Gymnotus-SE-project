@@ -93,11 +93,11 @@ public class TrainerTrainingProgramExercisesExercisesController extends WindowCo
 	public void handleExerciseComboBox(ActionEvent actionEvent) throws IOException, ParseException {
  
 		chart1.getData().clear();
-			
+		seriesMap.clear();	
 	    	String exName = exerciseComboBox.getSelectionModel().getSelectedItem();
+	    	
 		exInfoText.setText("Du visualiserer resultatene til '" + exName + "'. Bytt øvelse her: " );
 		
-
 		int exID = app.getIDfromExerciseName(exName);
 		app.getResultsOfExercise(exID);
 		
@@ -108,23 +108,27 @@ public class TrainerTrainingProgramExercisesExercisesController extends WindowCo
 		chart1.setAnimated(false);
 		
 		if (app.getResults() != null) {
+			
 			for (int user : app.requestUserIDsOnExercise(exID)) {
 				
 				app.getResultsOfExcerciseAndUser(exID, user);
 
 				app.requestUserInformation_ID(user+"");
-					String seriesName = updateSeriesMap();
+				
+				String seriesName = updateSeriesMap();
+					
 					
 					for (int k = 0; k < app.getResults().size() ; k++) {
 						seriesMap.get(seriesName).getData().add(new XYChart.Data(
 							app.getDates().get(k).substring(0,app.getDates().get(k).length()-6)
 										,app.getResults().get(k)));
 					}
-					chart1.getData().add(seriesMap.get(seriesName));
+					
+				chart1.getData().add(seriesMap.get(seriesName));
 			}
 		} else {
 			hidePageContent();
-			exInfoText.setText("'"+exName + "' har ingen registrerte resultat, velg ny øvelse: ");	
+			exInfoText.setText("'" + exName + "' har ingen registrerte resultat, velg ny øvelse: ");	
 		}
 		
     }
