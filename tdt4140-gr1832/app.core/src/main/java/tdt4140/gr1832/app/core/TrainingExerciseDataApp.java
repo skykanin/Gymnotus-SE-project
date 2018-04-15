@@ -23,8 +23,6 @@ import tdt4140.gr1832.app.containers.ShowHealthInfoContainer;
 import tdt4140.gr1832.app.containers.ShowUserInfoContainer;
 
 public class TrainingExerciseDataApp {
-	
-	private boolean test = false;
 
 	public final String baseURI = "http://146.185.153.244:8080/api/";
 	
@@ -83,7 +81,7 @@ public class TrainingExerciseDataApp {
 		Client client = ClientBuilder.newClient();
 		WebTarget webTarget = client.target(baseURI +"exercise_program/get_users?programID=" + programID);
 		String test = "[{\"userID\":37,\"username\":\"stianismar\",\"name\":\"Stian Ismar\",\"email\":\"Stismar@gmail.com\",\"phone\":\"12345678\",\"gender\":0,\"age\":17,\"isAnonymous\":true,\"shareExerciseData\":true,\"shareHealthData\":true,\"isTrainer\":false}]";
-		if(!this.test) {			
+		if(!TEST) {			
 			test = webTarget.request(MediaType.APPLICATION_JSON).get(String.class);
 		}
 		Gson gson = new Gson();
@@ -169,9 +167,9 @@ public class TrainingExerciseDataApp {
 		//But all og the main features will still be testet, Infocomparator will not.
 		//InfoDate Comparator are tested manually. An important notice is that 
 		//InfoComparator is working on mvn locally
-		if (!test) {
-		sortedResultMap = new TreeMap<>(new InfoDateComparator());
-		sortedResultMap.putAll(resultMap);
+		if (!TEST) {
+			sortedResultMap = new TreeMap<>(new InfoDateComparator());
+			sortedResultMap.putAll(resultMap);
 		} else {
 			sortedResultMap = new TreeMap<>();
 			sortedResultMap.putAll(resultMap);
@@ -376,7 +374,7 @@ public class TrainingExerciseDataApp {
 		return sortedResultMap.size();
 	}
 	
-	public void setTestTrue() {
-		this.test = true;
+	public static void setTestTrue() {
+		TEST = true;
 	}
 }
