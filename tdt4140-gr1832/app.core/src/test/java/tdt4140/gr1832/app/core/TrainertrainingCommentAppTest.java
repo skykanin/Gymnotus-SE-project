@@ -8,10 +8,10 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import containers.CommentContainer;
-import containers.ExerciseProgramContainer;
-import containers.FeedbackContainer;
-import containers.ShowUserInfoContainer;
+import tdt4140.gr1832.app.containers.CommentContainer;
+import tdt4140.gr1832.app.containers.ExerciseProgramContainer;
+import tdt4140.gr1832.app.containers.FeedbackContainer;
+import tdt4140.gr1832.app.containers.ShowUserInfoContainer;
 
 
 public class TrainertrainingCommentAppTest {

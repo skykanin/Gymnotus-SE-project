@@ -8,9 +8,9 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import containers.ShowAllUsersContainer;
-import containers.ShowHealthInfoContainer;
-import containers.ShowUserInfoContainer;
+import tdt4140.gr1832.app.containers.ShowAllUsersContainer;
+import tdt4140.gr1832.app.containers.ShowHealthInfoContainer;
+import tdt4140.gr1832.app.containers.ShowUserInfoContainer;
 
 public class TrainerDashboardAppTest {
 	ShowUserInfoContainer showUserInfoContainer;

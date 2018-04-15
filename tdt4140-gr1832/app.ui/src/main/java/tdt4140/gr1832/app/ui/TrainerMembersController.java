@@ -6,7 +6,6 @@ import com.jfoenix.controls.JFXDialog;
 import com.jfoenix.controls.JFXDialogLayout;
 import com.jfoenix.controls.JFXListView;
 
-import containers.ShowUserInfoContainer;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -19,6 +18,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import tdt4140.gr1832.app.containers.ShowUserInfoContainer;
 import tdt4140.gr1832.app.core.ApplicationState;
 import tdt4140.gr1832.app.core.TrainerMemberInfoApp;
 

@@ -1,4 +1,4 @@
-package comparators;
+package tdt4140.gr1832.app.comparators;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;

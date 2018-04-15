@@ -17,8 +17,6 @@ import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXDialog;
 import com.jfoenix.controls.JFXDialogLayout;
 
-import comparators.InfoDateComparator;
-import containers.ResultContainer;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -33,6 +31,8 @@ import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import javafx.scene.chart.XYChart.Series;
 import javafx.scene.control.Label;
+import tdt4140.gr1832.app.comparators.InfoDateComparator;
+import tdt4140.gr1832.app.containers.ResultContainer;
 import tdt4140.gr1832.app.core.TrainerTrainingProgramExercisesExercisesApp;
 
 

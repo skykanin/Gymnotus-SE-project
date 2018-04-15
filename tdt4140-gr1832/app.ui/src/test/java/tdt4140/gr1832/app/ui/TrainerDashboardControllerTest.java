@@ -14,11 +14,11 @@ import org.junit.runners.JUnit4;
 import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXTextField;
 
-import containers.ShowUserInfoContainer;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import tdt4140.gr1832.app.containers.ShowUserInfoContainer;
 
 public class TrainerDashboardControllerTest extends FxAppTest {
     private final String TilDashboardID = "#TilDashboard";

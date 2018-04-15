@@ -1,4 +1,4 @@
-package containers;
+package tdt4140.gr1832.app.containers;
 
 public class ExerciseContainer {
 	
@@ -54,7 +54,7 @@ public class ExerciseContainer {
 		String result = "";
 		result += "Navn: "+description + "\n";
 		result += "Antall sett: " + sets + "\n";
-		result += "Lengde på intervall: " + repsPerSet + "\n";
+		result += "Antall repitisjoner: " + repsPerSet + "\n";
 		result += "Pause mellom settene: " + sets + " min\n";
 		result += "Øvelsebeskrivelse: " + parameterDescription;
 		return result;

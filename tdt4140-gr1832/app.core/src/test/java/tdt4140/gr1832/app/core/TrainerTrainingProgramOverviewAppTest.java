@@ -6,7 +6,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import containers.ExerciseProgramContainer;
+import tdt4140.gr1832.app.containers.ExerciseProgramContainer;
 
 
 public class TrainerTrainingProgramOverviewAppTest {

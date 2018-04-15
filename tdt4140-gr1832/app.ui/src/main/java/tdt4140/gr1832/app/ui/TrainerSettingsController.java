@@ -16,7 +16,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import containers.ShowUserInfoContainer;
+import tdt4140.gr1832.app.containers.ShowUserInfoContainer;
 import tdt4140.gr1832.app.core.TrainerSettingsApp;
 import tdt4140.gr1832.app.core.User;
  

@@ -11,10 +11,10 @@ import javax.ws.rs.core.MediaType;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
-import containers.ShowCommentsContainer;
+import tdt4140.gr1832.app.containers.CommentContainer;
 
 public class TrainerTrainingProgramSeeCommentsApp {
-	private List<ShowCommentsContainer> containerComments = new ArrayList<ShowCommentsContainer>();
+	private List<CommentContainer> containerComments = new ArrayList<CommentContainer>();
 	private String baseURI = "http://146.185.153.244:8080/api/";
 	
 	private static boolean TEST = false;
@@ -31,7 +31,7 @@ public class TrainerTrainingProgramSeeCommentsApp {
         	test = webTarget.request(MediaType.APPLICATION_JSON).get(String.class);        	
         }
         Gson gson = new Gson();
-        containerComments = gson.fromJson(test, new TypeToken<List<ShowCommentsContainer>>(){}.getType());
+        containerComments = gson.fromJson(test, new TypeToken<List<CommentContainer>>(){}.getType());
 
 
 	}
@@ -39,7 +39,7 @@ public class TrainerTrainingProgramSeeCommentsApp {
 		TrainerMemberInfoApp a = new TrainerMemberInfoApp();
 		
 		List<String> l = new ArrayList<>();
-		for (ShowCommentsContainer containerComment : containerComments ) {
+		for (CommentContainer containerComment : containerComments ) {
 			a.requestUserInformation_ID(Integer.toString(containerComment.getUserID()));
 			String n= a.getName();
 			l.add(n +", " + containerComment.getDate() + ": " + containerComment.getContent());

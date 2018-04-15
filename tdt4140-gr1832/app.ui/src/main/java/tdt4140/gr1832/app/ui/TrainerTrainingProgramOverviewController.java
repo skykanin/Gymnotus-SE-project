@@ -8,8 +8,6 @@ import com.jfoenix.controls.JFXDialog;
 import com.jfoenix.controls.JFXDialogLayout;
 import com.jfoenix.controls.JFXTextField;
 
-
-import containers.ExerciseProgramContainer;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -17,7 +15,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
-
+import tdt4140.gr1832.app.containers.ExerciseProgramContainer;
 import tdt4140.gr1832.app.core.TrainerTrainingProgramOverviewApp;
 
 

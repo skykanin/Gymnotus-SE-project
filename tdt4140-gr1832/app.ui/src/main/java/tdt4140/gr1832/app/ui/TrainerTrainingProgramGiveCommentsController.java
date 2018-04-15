@@ -11,8 +11,6 @@ import com.jfoenix.controls.JFXListView;
 import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
 
-import containers.CommentContainer;
-import containers.FeedbackContainer;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -25,6 +23,8 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import tdt4140.gr1832.app.containers.CommentContainer;
+import tdt4140.gr1832.app.containers.FeedbackContainer;
 import tdt4140.gr1832.app.core.TrainerTrainingProgramGiveCommentsApp;
 
 public class TrainerTrainingProgramGiveCommentsController extends WindowController {

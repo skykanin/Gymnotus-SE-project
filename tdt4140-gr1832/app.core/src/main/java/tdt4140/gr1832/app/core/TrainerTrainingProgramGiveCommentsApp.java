@@ -24,10 +24,10 @@ import org.aopalliance.reflect.ProgramUnit;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
-import containers.CommentContainer;
-import containers.ExerciseProgramContainer;
-import containers.FeedbackContainer;
-import containers.ShowUserInfoContainer;
+import tdt4140.gr1832.app.containers.CommentContainer;
+import tdt4140.gr1832.app.containers.ExerciseProgramContainer;
+import tdt4140.gr1832.app.containers.FeedbackContainer;
+import tdt4140.gr1832.app.containers.ShowUserInfoContainer;
 
 public class TrainerTrainingProgramGiveCommentsApp {
 	

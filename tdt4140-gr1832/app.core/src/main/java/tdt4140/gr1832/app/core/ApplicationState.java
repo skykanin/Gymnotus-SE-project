@@ -9,7 +9,7 @@ import javax.ws.rs.core.Response;
 
 import com.google.gson.Gson;
 
-import containers.ShowUserInfoContainer;
+import tdt4140.gr1832.app.containers.ShowUserInfoContainer;
 
 public class ApplicationState {
 

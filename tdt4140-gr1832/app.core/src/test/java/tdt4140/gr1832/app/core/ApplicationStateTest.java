@@ -4,7 +4,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import containers.ShowUserInfoContainer;
+import tdt4140.gr1832.app.containers.ShowUserInfoContainer;
 
 
 

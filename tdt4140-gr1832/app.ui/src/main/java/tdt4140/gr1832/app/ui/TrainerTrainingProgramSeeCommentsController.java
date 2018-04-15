@@ -1,7 +1,6 @@
 package tdt4140.gr1832.app.ui;
 
 import java.io.IOException;
-import java.time.LocalDate;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDialog;
@@ -9,32 +8,20 @@ import com.jfoenix.controls.JFXDialogLayout;
 import com.jfoenix.controls.JFXTextField;
 
 import com.jfoenix.controls.JFXListView;
-import com.jfoenix.controls.JFXTextField;
 
-import containers.ExerciseProgramContainer;
-import containers.ShowCommentsContainer;
-import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.DateCell;
-import javafx.scene.control.DatePicker;
 
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text; 
-import javafx.stage.Stage;
-import javafx.util.Callback;
-import javafx.util.StringConverter;
-import containers.ShowUserInfoContainer;
+
+import tdt4140.gr1832.app.containers.ExerciseProgramContainer;
+
 import tdt4140.gr1832.app.core.TrainerTrainingProgramOverviewApp;
-import tdt4140.gr1832.app.core.TrainingExerciseDataApp;
-import containers.ExerciseProgramContainer;
+
 import tdt4140.gr1832.app.core.TrainerTrainingProgramSeeCommentsApp;
 
 

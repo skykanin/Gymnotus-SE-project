@@ -4,16 +4,16 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import containers.ShowCommentsContainer;
+import tdt4140.gr1832.app.containers.CommentContainer;
 
 public class CommentsAppTest {
-	ShowCommentsContainer container;
+	CommentContainer container;
 	TrainerTrainingProgramSeeCommentsApp testapp;
 
 		@Before
 		public void setUp() {
 			testapp.setTest(true);
-			container = new ShowCommentsContainer(1, 2, 3, "date", "content");
+			container = new CommentContainer(1, 2, 3, "date", "content");
 			//Integer commentID, Integer userID, Integer programID, String date, String content
 			testapp = new TrainerTrainingProgramSeeCommentsApp();
 		}

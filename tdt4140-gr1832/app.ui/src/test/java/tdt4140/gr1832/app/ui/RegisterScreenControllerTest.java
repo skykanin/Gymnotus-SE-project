@@ -9,12 +9,12 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import containers.ShowUserInfoContainer;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
+import tdt4140.gr1832.app.containers.ShowUserInfoContainer;
 
 public class RegisterScreenControllerTest extends FxAppTest {
 	    private final String name = "#setName";

@@ -11,12 +11,12 @@ import javax.ws.rs.core.MediaType;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
-import containers.ExerciseContainer;
-import containers.ExerciseProgramContainer;
-import containers.ResultContainer;
-import containers.ShowUserInfoContainer;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import tdt4140.gr1832.app.containers.ExerciseContainer;
+import tdt4140.gr1832.app.containers.ExerciseProgramContainer;
+import tdt4140.gr1832.app.containers.ResultContainer;
+import tdt4140.gr1832.app.containers.ShowUserInfoContainer;
 
 public class TrainerTrainingProgramExercisesExercisesApp {
 	

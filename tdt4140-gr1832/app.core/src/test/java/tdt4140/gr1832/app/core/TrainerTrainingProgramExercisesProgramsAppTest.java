@@ -8,12 +8,12 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import containers.ExerciseContainer;
-import containers.ExerciseProgramContainer;
-import containers.ResultContainer;
-import containers.ShowAllUsersContainer;
-import containers.ShowHealthInfoContainer;
-import containers.ShowUserInfoContainer;
+import tdt4140.gr1832.app.containers.ExerciseContainer;
+import tdt4140.gr1832.app.containers.ExerciseProgramContainer;
+import tdt4140.gr1832.app.containers.ResultContainer;
+import tdt4140.gr1832.app.containers.ShowAllUsersContainer;
+import tdt4140.gr1832.app.containers.ShowHealthInfoContainer;
+import tdt4140.gr1832.app.containers.ShowUserInfoContainer;
 
 public class TrainerTrainingProgramExercisesProgramsAppTest {
 	ShowUserInfoContainer userContainer;

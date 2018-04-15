@@ -5,10 +5,9 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
+import tdt4140.gr1832.app.containers.ShowUserInfoContainer;
 
 import org.junit.Test;
-
-import containers.ShowUserInfoContainer;
 
 import static org.junit.Assert.assertEquals;
 import static org.testfx.api.FxAssert.verifyThat;

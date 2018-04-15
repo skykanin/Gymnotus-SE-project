@@ -14,7 +14,6 @@ import com.jfoenix.controls.JFXDialog;
 import com.jfoenix.controls.JFXDialogLayout;
 import com.jfoenix.controls.JFXTextField;
 
-import containers.ShowUserInfoContainer;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -31,6 +30,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
 import javafx.util.Callback;
 import javafx.util.StringConverter;
+import tdt4140.gr1832.app.containers.ShowUserInfoContainer;
 import tdt4140.gr1832.app.core.TrainingExerciseDataApp;
 
 public class TrainerTrainingProgramAttendantsController extends WindowController {

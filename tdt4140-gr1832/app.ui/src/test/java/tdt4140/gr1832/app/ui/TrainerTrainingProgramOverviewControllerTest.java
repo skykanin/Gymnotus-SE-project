@@ -5,8 +5,6 @@ import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 
-import containers.ShowUserInfoContainer;
-
 import static org.junit.Assert.assertEquals;
 import static org.testfx.api.FxAssert.verifyThat;
 import static org.testfx.matcher.base.NodeMatchers.hasText;
@@ -14,6 +12,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import tdt4140.gr1832.app.containers.ShowUserInfoContainer;
 
 
 public class TrainerTrainingProgramOverviewControllerTest extends FxAppTest {

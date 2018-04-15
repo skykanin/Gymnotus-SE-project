@@ -3,7 +3,6 @@ package tdt4140.gr1832.app.core;
 import org.junit.Before;
 import org.junit.Test;
 
-import containers.ShowCommentsContainer;
 import junit.framework.Assert;
 
 public class TrainerSettingsAppTest {

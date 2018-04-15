@@ -7,10 +7,10 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import containers.ExerciseProgramContainer;
-import containers.ShowExerciseDataContainerFromProgram;
-import containers.ShowHealthInfoContainer;
-import containers.ShowUserInfoContainer;
+import tdt4140.gr1832.app.containers.ExerciseProgramContainer;
+import tdt4140.gr1832.app.containers.ShowExerciseDataContainerFromProgram;
+import tdt4140.gr1832.app.containers.ShowHealthInfoContainer;
+import tdt4140.gr1832.app.containers.ShowUserInfoContainer;
 
 
 public class TrainingExerciseDataAppTest {

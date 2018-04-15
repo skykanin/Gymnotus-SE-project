@@ -15,12 +15,12 @@ import javax.ws.rs.core.MediaType;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
-import comparators.InfoDateComparator;
-import comparators.SortedSetComparator;
-import containers.ExerciseProgramContainer;
-import containers.ShowExerciseDataContainerFromProgram;
-import containers.ShowHealthInfoContainer;
-import containers.ShowUserInfoContainer;
+import tdt4140.gr1832.app.comparators.InfoDateComparator;
+import tdt4140.gr1832.app.comparators.SortedSetComparator;
+import tdt4140.gr1832.app.containers.ExerciseProgramContainer;
+import tdt4140.gr1832.app.containers.ShowExerciseDataContainerFromProgram;
+import tdt4140.gr1832.app.containers.ShowHealthInfoContainer;
+import tdt4140.gr1832.app.containers.ShowUserInfoContainer;
 
 public class TrainingExerciseDataApp {
 	
@@ -202,34 +202,49 @@ public class TrainingExerciseDataApp {
 	}
 	
 	public String getSteps(int i) {
+		String result = "";
 		String d = availableDates.get(i);
 		SortedSet<Object> liste = sortedResultMap.get(d);
 		for (Object container : liste) {
 			if (container instanceof ShowHealthInfoContainer) {
-				return "" + ((ShowHealthInfoContainer) container).getSteps();
+				result = "" + ((ShowHealthInfoContainer) container).getSteps();
+				if(result.equals("-1")) {
+					result = "Brukeren viser ikke helsedata";
+				}
+				return result;
 			}
 		}
 		return "Ikke spesifisert";
 	}
 	
 	public String getWeight(int i) {
+		String result = "";
 		String d = availableDates.get(i);
 		SortedSet<Object> liste = sortedResultMap.get(d);
 		for (Object container : liste) {
 			if (container instanceof ShowHealthInfoContainer) {
-				return "" + ((ShowHealthInfoContainer) container).getWeight();
+				result="" + ((ShowHealthInfoContainer) container).getWeight();
 			}
+			if(result.equals("-1")) {
+				result = "Brukeren viser ikke helsedata";
+			}
+			return result;
 		}
 		return "Ikke spesifisert";
 	}
 	
 	public String getRestingHR(int i) {
+		String result = "";
 		String d = availableDates.get(i);
 		SortedSet<Object> liste = sortedResultMap.get(d);
 		for (Object container : liste) {
 			if (container instanceof ShowHealthInfoContainer) {
-				return "" + ((ShowHealthInfoContainer) container).getRestingHR();
+				result =  "" + ((ShowHealthInfoContainer) container).getRestingHR();
 			}
+			if(result.equals("-1")) {
+				result = "Brukeren viser ikke helsedata";
+			}
+			return result;
 		}
 		return "Ikke spesifisert";
 	}
