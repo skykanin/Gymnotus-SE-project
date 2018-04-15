@@ -17,7 +17,7 @@ public class TrainerTrainingProgramCommentsController extends WindowController{
 	StackPane root;
 	
 	@FXML
-	public void intitialize () {
+	public void initialize() {
 		root.setPickOnBounds(false);
 	}
 	

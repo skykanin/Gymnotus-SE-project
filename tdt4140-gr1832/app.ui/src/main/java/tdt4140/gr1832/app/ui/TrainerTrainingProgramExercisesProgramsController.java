@@ -35,9 +35,9 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import tdt4140.gr1832.app.core.TrainerTrainingProgramProgramsApp;
+import tdt4140.gr1832.app.core.TrainerTrainingProgramExercisesProgramsApp;
 
-public class TrainerTrainingProgramProgramsController extends WindowController implements Initializable {
+public class TrainerTrainingProgramExercisesProgramsController extends WindowController implements Initializable {
     
 	@FXML
     private StackPane root;
@@ -69,7 +69,7 @@ public class TrainerTrainingProgramProgramsController extends WindowController i
 	@FXML CategoryAxis xAxisFour;
 	@FXML NumberAxis yAxisFour;
      
-	TrainerTrainingProgramProgramsApp app = new TrainerTrainingProgramProgramsApp();
+	TrainerTrainingProgramExercisesProgramsApp app = new TrainerTrainingProgramExercisesProgramsApp();
 	
 	private String exName;
 	private int exID;
@@ -412,7 +412,8 @@ public class TrainerTrainingProgramProgramsController extends WindowController i
     
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		
+		root.setPickOnBounds(false);
+
 		hidePageContent();
 		infoText.setText("Velg et medlem for å visualisere resultater");
 		programInfoText.setText("Velg et program for å visualisere resultater");

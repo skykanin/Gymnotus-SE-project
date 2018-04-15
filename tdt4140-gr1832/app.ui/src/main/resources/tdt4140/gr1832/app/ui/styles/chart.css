@@ -1,11 +1,5 @@
-.onHover{
-    -fx-background-color: ORANGE;
-}
 .chart {
 	-fx-background-color: rgb(0,0,0,0);
-}
-.chart-content {
-	-fx-color:#00FF00;
 }
 
 .chart-plot-background {
@@ -13,8 +7,28 @@
 }
 .chart-series-line {    
 	-fx-stroke-width: 4px;
-	-fx-stroke: #0b87a1;
 }
+
+#small {
+		-fx-stroke-width: 1px;
+}
+
+#medium {
+		-fx-stroke-width: 1px;
+}
+
+#big {
+		-fx-stroke-width: 1px;
+}
+/*
+.default-color0.chart-series-line { -fx-stroke: #0b87a1; }
+.default-color1.chart-series-line { -fx-stroke: #01597f; }
+.default-color2.chart-series-line { -fx-stroke: #003b55; }
+.default-color3.chart-series-line { -fx-stroke: #80bfb7; }
+.default-color4.chart-series-line { -fx-stroke: #d3ebd5; }
+
+
 #SkrittGraf {
 
 }
+*/

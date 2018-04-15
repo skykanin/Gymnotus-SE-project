@@ -18,7 +18,7 @@ import containers.ShowUserInfoContainer;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-public class TrainerTrainingProgramExercisesApp {
+public class TrainerTrainingProgramExercisesExercisesApp {
 	
 	private ShowUserInfoContainer containerUser;
 	

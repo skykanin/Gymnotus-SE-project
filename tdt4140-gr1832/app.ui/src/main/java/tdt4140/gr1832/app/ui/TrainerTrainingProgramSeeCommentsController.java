@@ -51,8 +51,8 @@ public class TrainerTrainingProgramSeeCommentsController extends WindowControlle
     @FXML private StackPane root;
   
     @FXML public void initialize() {
+    	root.setPickOnBounds(false);
     	if (!FxApp.TEST) {
-		root.setPickOnBounds(false);
 		app.requestExerciseProgramInformation();
 		ExerciseProgramContainer c = app.getExerciseProgramContainer(AS.getProgramCounter());
 		program.setText(c.getName());

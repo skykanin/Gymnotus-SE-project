@@ -122,9 +122,9 @@ public class TrainerMemberInfoController extends WindowController {
 
 	@FXML
 	public void initialize() {
+		root.setPickOnBounds(false);
 		
 		if (!FxApp.TEST) {
-		root.setPickOnBounds(false);
 		app = new TrainerMemberInfoApp();
 		app.requestUserInformation_ID(userID);
 		app.requestHealthInformation_ID(userID);

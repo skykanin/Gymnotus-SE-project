@@ -34,8 +34,8 @@ public class TrainerMembersController extends WindowController {
 
 	@FXML
 	public void initialize() {
-		if(!FxApp.TEST) {
 		root.setPickOnBounds(false);
+		if(!FxApp.TEST) {
 		app.requestAllUserID();
 		ObservableList<String> names = FXCollections.observableArrayList();
 		ObservableList<String> trainers = FXCollections.observableArrayList();
