@@ -1,6 +1,7 @@
 package tdt4140.gr1832.app.core;
 
 import java.util.Arrays;
+import java.util.List;
 
 import org.junit.Assert;
 import org.junit.Before;
@@ -32,12 +33,28 @@ public class TrainerMemberInfoAppTest extends TestCase {
 		showUserInfoContainer2 = new ShowUserInfoContainer("brukernavn", "passord", "navn",11, 2, "email", "telefon", false, true, true, false);
 		showHealthInfoContainer = new ShowHealthInfoContainer(123, 007, "Mar, 2018", 85, 100, 60, 181, 80, false, true, true);
 		testapp.setContainerUser(showUserInfoContainer);
+		testapp.setTest(true);
 	}
 	@Test
 	public void testShowAllUserInfoContainerAdd() {
 		assertEquals(Arrays.asList(), showAllUserContainer.getUsers());
 		showAllUserContainer.addUserInfo(showUserInfoContainer);
 		assertEquals(Arrays.asList(showUserInfoContainer), showAllUserContainer.getUsers());
+	}
+	
+	@Test
+	public void testRequestAllID() {
+		testapp.requestAllUserID();
+		Assert.assertEquals(1, testapp.getContainerAllUsers().getUsers().size());
+		Assert.assertEquals("Brukeren er anonym", testapp.getUsername());
+	}
+	
+	@Test
+	public void testRequestHealthInformationID() {
+		testapp.requestHealthInformation_ID("1");
+		List<ShowHealthInfoContainer> containers = testapp.getContainerHealth();
+		Assert.assertEquals(1, containers.size());
+		Assert.assertEquals(-1, containers.get(0).getHeight());
 	}
 	
 	@Test

@@ -2,14 +2,11 @@ package tdt4140.gr1832.app.core;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import comparators.InfoDateComparator;
-import comparators.SortedSetComparator;
 import containers.ExerciseProgramContainer;
 import containers.ShowExerciseDataContainerFromProgram;
 import containers.ShowHealthInfoContainer;
@@ -61,6 +58,19 @@ public class TrainingExerciseDataAppTest {
 		testApp.addContainerHealthList(Arrays.asList(healthContainer1, healthContainer2, healthContainer3));
 		testApp.makeResultList();
 		
+	}
+	
+	@Test
+	public void testTrainingExerciseDataAppSetup() {
+		testApp.TrainingExerciseDataAppSetup();
+		Assert.assertNotNull(testApp.getUsersInProgram(0));
+		Assert.assertEquals(1, testApp.getUsersInProgram(0).size());
+	}
+	
+	@Test
+	public void testRequestHealthExercixeDataByProgramUserID() {
+		testApp.requestHealthExerciseDataByProgramUserID(1, 1);
+		Assert.assertNotNull(testApp.getHealthList());
 	}
 	
 	@Test
@@ -167,16 +177,6 @@ public class TrainingExerciseDataAppTest {
 	@Test
 	public void testBaseURI () {
 		Assert.assertEquals("http://146.185.153.244:8080/api/", testApp.baseURI);
-	}
-	
-	@Test
-	public void testComparators() {
-		List<String> listTest = Arrays.asList("Mar 4, 2018","Jan 14, 2018", "Mar 18, 2018");
-		Collections.sort(listTest, new InfoDateComparator());
-		System.out.println(listTest);
-//		Collections.sort(listTest, new SortedSetComparator());
-//		Assert.assertEquals(Arrays.asList("mar 14, 2018","jan 14, 2018", "mar 18, 2018"), listTest);
-//		Assert.assertEquals(Arrays.asList("jan 14, 2018", "mar 14, 2018", "mar 18, 2018"), listTest);
 	}
 	
 	@Test

@@ -45,6 +45,11 @@ public class TrainerTrainingProgramGiveCommentsApp {
 	private Map<Integer,String> users = new HashMap<>();
 	private Map<Integer,String> programs = new HashMap<>();
 	
+	private static boolean TEST = false;
+	public static void setTest(boolean b) {
+		TEST = b;
+	}
+	
 	public boolean makeCommentToGroup(int programId, String content) {
 		this.setUpConnection("comment/create_comment");
 		Date date = new Date();
@@ -53,7 +58,7 @@ public class TrainerTrainingProgramGiveCommentsApp {
 		 formData.add("program_id", programId + "");
 		 formData.add("content", content);
 		 formData.add("date", this.fromDate(date));
-		 Response response = webTarget.request().post(Entity.form(formData)); 
+		 Response response = TEST ? Response.status(200).build() : webTarget.request().post(Entity.form(formData)); 
 		 return response.getStatus() == 200 ? true : false;
 	}
 	
@@ -67,7 +72,7 @@ public class TrainerTrainingProgramGiveCommentsApp {
 		  formData.add("trainer_id", trainerId + "");
 		  formData.add("content", feedback);
 		  formData.add("date", this.fromDate(date));
-		  Response response = webTarget.request().post(Entity.form(formData));
+		  Response response = TEST ? Response.status(200).build() : webTarget.request().post(Entity.form(formData));
 		  
 		  return response.getStatus() == 200 ? true : false;
 	}
@@ -80,7 +85,7 @@ public class TrainerTrainingProgramGiveCommentsApp {
 		  formData.add("comment_id", Integer.toString(commentId));
 		  formData.add("content", content);
 		  formData.add("date", this.fromDate(date));
-		  Response response = webTarget.request().post(Entity.form(formData));
+		  Response response = TEST ? Response.status(200).build() : webTarget.request().post(Entity.form(formData));
 		  return response.getStatus() == 200 ? true : false;
 	}
 	
@@ -91,12 +96,13 @@ public class TrainerTrainingProgramGiveCommentsApp {
 		  formData.add("feedback_id", feedbackId +"");
 		  formData.add("content", content);
 		  formData.add("date", this.fromDate(date));
-		  Response response = webTarget.request().post(Entity.form(formData));
+		  Response response = TEST ? Response.status(200).build() : webTarget.request().post(Entity.form(formData));
 		  return response.getStatus() == 200 ? true : false;
 	}
+	
 	public void requestFeedbackGiven() {
 		this.setUpConnection("feedback/get_feedbacks_from_trainer?trainer_id="+trainerId);
-		test = webTarget.request(MediaType.APPLICATION_JSON).get(String.class);
+		test = TEST ? "[{\"feedbackID\":7,\"trainerID\":1,\"userID\":39,\"date\":\"Apr 13, 2018\",\"content\":\"Gi alt na!! \\nSnart i mal Sander\"}]" : webTarget.request(MediaType.APPLICATION_JSON).get(String.class);
 		gson = new Gson();
 		feedbacks = gson.fromJson(test, new TypeToken<List<FeedbackContainer>>(){}.getType());
 	}
@@ -108,23 +114,29 @@ public class TrainerTrainingProgramGiveCommentsApp {
 	
 	public void requestCommentGiven() {
 		this.setUpConnection("comment/get_comments_from_user?user_id="+trainerId);
-		test = webTarget.request(MediaType.APPLICATION_JSON).get(String.class);
+		test = TEST ? "[{\"commentID\":23,\"userID\":1,\"programID\":3,\"date\":\"Apr 15, 2018\",\"content\":\"Na som det begynner a bli varmt, sa er det mulig a ta oktene utendors for okt motivasjon.\"}]" 
+				: webTarget.request(MediaType.APPLICATION_JSON).get(String.class);
 		gson = new Gson();
 		comments = gson.fromJson(test, new TypeToken<List<CommentContainer>>(){}.getType());
 	}
 	
 	public void requestPrograms() {
 		TrainerTrainingProgramOverviewApp progApp = new TrainerTrainingProgramOverviewApp();
+		if(TEST) {
+			progApp.setTest(true);
+		}
 		progApp.requestExerciseProgramInformation();
 		for (int i = 0; i < progApp.getContainerExcerciseProgramLength(); i++) {
 			ExerciseProgramContainer progContainer = progApp.getExerciseProgramContainer(i);
 			programs.put(progContainer.getProgramID(), progContainer.getName());
 		}
-		
 	}
 	
 	public void requestUsers() {
 		TrainerMemberInfoApp infoApp = new TrainerMemberInfoApp();
+		if(TEST) {
+			infoApp.setTest(true);
+		}
 		infoApp.requestAllUserID();
 		List<ShowUserInfoContainer> userList = infoApp.getContainerAllUsers().getUsers();
 		for (ShowUserInfoContainer uContainer : userList) {

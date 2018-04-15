@@ -55,11 +55,17 @@ public class TrainingExerciseDataApp {
 	//List with programs - corresponding usersInPrograms
 	private List<ExerciseProgramContainer> programs = new ArrayList<>();
 	
+	public static boolean TEST = false;	
 	
+	public List<ShowHealthInfoContainer> getHealthList() {
+		return healthList;
+	}
 	
-	
-	public void  TrainingExerciseDataAppSetup() {
-		programApp.requestExerciseProgramInformation();
+	public void TrainingExerciseDataAppSetup() {
+		if(TEST) {
+			programApp.setTest(true);
+		}
+		programApp.requestExerciseProgramInformation();			
 		int counter = 0;
 		while (counter < programApp.getContainerExcerciseProgramLength()) {
 			//Add programInfo to programs
@@ -76,7 +82,10 @@ public class TrainingExerciseDataApp {
 		List<ShowUserInfoContainer> userContainers = new ArrayList<>();
 		Client client = ClientBuilder.newClient();
 		WebTarget webTarget = client.target(baseURI +"exercise_program/get_users?programID=" + programID);
-		String test = webTarget.request(MediaType.APPLICATION_JSON).get(String.class);
+		String test = "[{\"userID\":37,\"username\":\"stianismar\",\"name\":\"Stian Ismar\",\"email\":\"Stismar@gmail.com\",\"phone\":\"12345678\",\"gender\":0,\"age\":17,\"isAnonymous\":true,\"shareExerciseData\":true,\"shareHealthData\":true,\"isTrainer\":false}]";
+		if(!this.test) {			
+			test = webTarget.request(MediaType.APPLICATION_JSON).get(String.class);
+		}
 		Gson gson = new Gson();
 		userContainers = gson.fromJson(test, new TypeToken<List<ShowUserInfoContainer>>(){}.getType());
 		return checkAndMakeAnonymous(userContainers);
@@ -104,12 +113,17 @@ public class TrainingExerciseDataApp {
 		//request exercise result information
 		Client client = ClientBuilder.newClient();
 		WebTarget webTarget = client.target(baseURI + "result/get_results_by_program_and_user?user_id="+userID+"&program_id="+programID);
-		String test = webTarget.request(MediaType.APPLICATION_JSON).get(String.class);
+		String test = "[{\"resultID\":30,\"userID\":1,\"exerciseID\":1,\"date\":\"Jan 10, 2018\",\"resultParameter\":70,\"description\":\"Benkpress\"}]";
+		if(!TEST) {
+			test = webTarget.request(MediaType.APPLICATION_JSON).get(String.class);			
+		}
 		Gson gson = new Gson();
 		resultList = gson.fromJson(test, new TypeToken<List<ShowExerciseDataContainerFromProgram>>(){}.getType());
-		
 		webTarget = client.target(baseURI + "health_data/id/"+userID);
-		test = webTarget.request(MediaType.APPLICATION_JSON).get(String.class);
+		test = "[{\"reportID\":154,\"userID\":1,\"date\":\"Jan 10, 2018\",\"bloodPressure\":120,\"dailySteps\":7912,\"restingHeartRate\":65,\"height\":187,\"weight\":73}]";
+		if(!TEST) {
+			test = webTarget.request(MediaType.APPLICATION_JSON).get(String.class);			
+		}
 		gson = new Gson();
 		healthList = gson.fromJson(test, new TypeToken<List<ShowHealthInfoContainer>>(){}.getType());
 		if (user != null && (!user.getShareHealthData())) { //Hvis health er false, da vises ikke data

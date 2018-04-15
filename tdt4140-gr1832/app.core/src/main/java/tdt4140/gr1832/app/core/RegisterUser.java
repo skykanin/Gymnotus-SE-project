@@ -20,6 +20,16 @@ public class RegisterUser {
 	User user = new User();
 	String baseURI = "http://146.185.153.244:8080/api/";
 	
+	private Response response;
+	private static boolean TEST = false;
+	public void setTest(boolean val) {
+		TEST = val;
+	}
+	
+	public Response getResponse() {
+		return this.response;
+	}
+	
 	public void registerUser(User u) {
 		this.user= u;
 		
@@ -39,7 +49,10 @@ public class RegisterUser {
 	  formData.add("gender",Integer.toString(this.user.getGender()));
 	  formData.add("age", Integer.toString(this.user.getAge()));
 	  
-	  Response response = webTarget.request().post(Entity.form(formData));
+	  response = Response.status(400).build();
+	  if(!TEST) {
+		  response = webTarget.request().post(Entity.form(formData));		  		  
+	  }
 	  
 	  System.out.println(response.getStatus());
 		

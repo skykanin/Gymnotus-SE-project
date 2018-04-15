@@ -17,11 +17,19 @@ public class TrainerTrainingProgramSeeCommentsApp {
 	private List<ShowCommentsContainer> containerComments = new ArrayList<ShowCommentsContainer>();
 	private String baseURI = "http://146.185.153.244:8080/api/";
 	
+	private static boolean TEST = false;
+	public static void setTest(boolean val) {
+		TEST = val;
+	}
+	
 	public void requestProgramComments(int id) {
 		
 		Client client = ClientBuilder.newClient();
         WebTarget webTarget = client.target(baseURI+"comment/get_comments_from_program?program_id="+id);
-        String test = webTarget.request(MediaType.APPLICATION_JSON).get(String.class);
+        String test = "[{\"commentID\":4,\"userID\":36,\"programID\":1,\"date\":\"Apr 3, 2018\",\"content\":\"Jeg likte godt øvelsene i denne økten.\"}]";
+        if(!TEST) {
+        	test = webTarget.request(MediaType.APPLICATION_JSON).get(String.class);        	
+        }
         Gson gson = new Gson();
         containerComments = gson.fromJson(test, new TypeToken<List<ShowCommentsContainer>>(){}.getType());
 
@@ -38,29 +46,9 @@ public class TrainerTrainingProgramSeeCommentsApp {
 		}
 		return l;
 	}
-	
-	public ShowCommentsContainer getProgramCommentsContainer(int i) {
-		return containerComments.get(i);
-	}
-	
-	public int getContainerExcerciseProgramLength() {
-		return (int)containerComments.size();
-	}
-
-	//public void addContainerTocontainerExercisePrograms(ShowCommentsContainer container) {
-	//	containerComments.add(container);
-		
-	//}
 
 	public Object getBaseURI() {
 		return baseURI;
 	}
-	
-	
-	
-	public String toString() {
-		return ""+containerComments;
-	}
-
 
 }
