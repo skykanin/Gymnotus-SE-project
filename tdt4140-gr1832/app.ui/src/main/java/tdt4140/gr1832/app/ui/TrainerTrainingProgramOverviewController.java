@@ -44,9 +44,9 @@ public class TrainerTrainingProgramOverviewController extends WindowController  
 	
 	@FXML
 	public void initialize() {
+		root.setPickOnBounds(false);
 		if(!FxApp.TEST) {
 		treningsprogramBeskrivelse.setVisible(false);
-		root.setPickOnBounds(false);
 		app.requestExerciseProgramInformation();
 		program.setText(app.getExerciseProgramContainer(AS.getProgramCounter()).getName());
 		app.requestExerciseInformationFromProgramID(app.getExerciseProgramContainer(AS.getProgramCounter()).getProgramID());
