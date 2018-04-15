@@ -132,8 +132,8 @@ public class TrainerTrainingProgramAttendantsController extends WindowController
 	
 	@FXML
 	public void initialize() {
-		if (! FxApp.TEST) {
 		root.setPickOnBounds(false);
+		if (! FxApp.TEST) {
 		setFieldVisibility(false);
 		setHealthFieldVisibility(false);
 		setDisableField(true);
