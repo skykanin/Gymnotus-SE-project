@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="451.0" prefWidth="487.0" style="-fx-background-color: #FFFFFF;" stylesheets="@styles/main.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tdt4140.gr1832.app.ui.TrainerTrainingProgramExercisesProgramsController">
+   <children>
+      <VBox prefHeight="660.0" prefWidth="235.0" style="-fx-background-color: #0b87a1;">
+         <children>
+            <AnchorPane prefHeight="667.0" prefWidth="245.0" stylesheets="@styles/main.css">
+               <children>
+                  <Label layoutX="28.0" layoutY="98.0" styleClass="DosisCaps" text="GYMNOTUS" textFill="WHITE">
+                     <font>
+                        <Font size="28.0" />
+                     </font>
+                  </Label>
+                  <JFXButton maxHeight="0.0" maxWidth="0.0" opacity="0.0" text=" ">
+                     <font>
+                        <Font size="1.0" />
+                     </font>
+                  </JFXButton>
+                  <JFXButton fx:id="TilDashboard" layoutY="176.0" onAction="#TilDashboard" prefHeight="47.0" prefWidth="236.0" styleClass="VenstreMenyKnapp" text="    DASHBOARD" textFill="WHITE">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </JFXButton>
+                  <JFXButton fx:id="TilTreningsprogram" layoutY="223.0" onAction="#TilTreningsprogram" prefHeight="47.0" prefWidth="236.0" style="-fx-background-color: #01597f;" styleClass="VenstreMenyKnapp" text="    TRENINGSPROGRAM" textFill="WHITE">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </JFXButton>
+                  <JFXButton fx:id="TilMedlemmer" layoutY="270.0" onAction="#TilMedlemmer" prefHeight="47.0" prefWidth="236.0" styleClass="VenstreMenyKnapp" text="    MEDLEMMER" textFill="WHITE">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </JFXButton>
+                  <JFXButton fx:id="TilInnstillinger" layoutY="317.0" onAction="#TilInnstillinger" prefHeight="47.0" prefWidth="236.0" styleClass="VenstreMenyKnapp" text="    INNSTILLINGER" textFill="WHITE">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </JFXButton>
+                  <JFXButton fx:id="TilLoggUt" layoutY="567.0" onAction="#loadDialog" prefHeight="47.0" prefWidth="236.0" styleClass="VenstreMenyKnapp" text="    LOGG UT" textFill="WHITE">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </JFXButton>
+               </children>
+            </AnchorPane>
+         </children>
+      </VBox>
+      <VBox layoutX="235.0" prefHeight="47.0" prefWidth="965.0" style="-fx-background-color: #01597f;">
+         <children>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" stylesheets="@styles/main.css">
+               <children>
+                  <JFXButton fx:id="TilTreningsoversikt" onAction="#TilTreningsoversikt" prefHeight="47.0" prefWidth="241.0" styleClass="ToppMenyKnapp" text="OVERSIKT" textFill="WHITE">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </JFXButton>
+                  <JFXButton fx:id="TilTreningsovelse" layoutX="241.0" onAction="#TilTreningsovelse" prefHeight="47.0" prefWidth="241.0" styleClass="ToppMenyKnapp" text="OVELSER" textFill="WHITE">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </JFXButton>
+                  <JFXButton fx:id="TilTreningskommentar" layoutX="482.0" onAction="#TilTreningskommentar" prefHeight="47.0" prefWidth="241.0" styleClass="ToppMenyKnapp" text="KOMMENTAR" textFill="WHITE">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </JFXButton>
+                  <JFXButton fx:id="TilTreningspameldte" layoutX="723.0" onAction="#TilTreningspameldte" prefHeight="47.0" prefWidth="241.0" styleClass="ToppMenyKnapp" text="PAMELDTE" textFill="WHITE">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </JFXButton>
+               </children>
+            </AnchorPane>
+         </children>
+      </VBox>
+      <LineChart id="small" fx:id="chart0" layoutX="250.0" layoutY="153.0" prefHeight="225.0" prefWidth="450.0" stylesheets="@styles/chart.css">
+         <xAxis>
+            <CategoryAxis fx:id="xAxis0" side="BOTTOM" />
+         </xAxis>
+         <yAxis>
+            <NumberAxis fx:id="yAxis0" side="LEFT" />
+         </yAxis>
+      </LineChart>
+      <LineChart id="small" fx:id="chart1" layoutX="730.0" layoutY="153.0" prefHeight="225.0" prefWidth="450.0" stylesheets="@styles/chart.css">
+         <xAxis>
+            <CategoryAxis fx:id="xAxis1" side="BOTTOM" />
+         </xAxis>
+         <yAxis>
+            <NumberAxis fx:id="yAxis1" side="LEFT" />
+         </yAxis>
+      </LineChart>
+      <LineChart id="small" fx:id="chart2" layoutX="250.0" layoutY="413.0" prefHeight="225.0" prefWidth="450.0" stylesheets="@styles/chart.css">
+         <xAxis>
+            <CategoryAxis fx:id="xAxis2" side="BOTTOM" />
+         </xAxis>
+         <yAxis>
+            <NumberAxis fx:id="yAxis2" side="LEFT" />
+         </yAxis>
+      </LineChart>
+      <LineChart id="small" fx:id="chart3" layoutX="730.0" layoutY="413.0" prefHeight="225.0" prefWidth="450.0" stylesheets="@styles/chart.css">
+         <xAxis>
+            <CategoryAxis fx:id="xAxis3" side="BOTTOM" />
+         </xAxis>
+         <yAxis>
+            <NumberAxis fx:id="yAxis3" side="LEFT" />
+         </yAxis>
+      </LineChart>
+      <Label fx:id="label0" alignment="CENTER" layoutX="400.0" layoutY="135.0" prefHeight="27.0" prefWidth="189.0" text="ov1" />
+      <Label fx:id="label3" alignment="CENTER" layoutX="890.0" layoutY="395.0" prefHeight="27.0" prefWidth="189.0" text="ov4" />
+      <Label fx:id="label2" alignment="CENTER" layoutX="400.0" layoutY="395.0" prefHeight="27.0" prefWidth="189.0" text="ov2" />
+      <Label fx:id="label1" alignment="CENTER" layoutX="890.0" layoutY="135.0" prefHeight="27.0" prefWidth="189.0" text="ov3" />
+      <Label fx:id="infoText" alignment="CENTER" layoutX="250.0" layoutY="100.0" prefHeight="23.0" prefWidth="608.0" text="informasjon" textAlignment="RIGHT" textFill="#0b87a1">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <JFXComboBox fx:id="memberComboBox" focusColor="#01597f" layoutX="900.0" layoutY="100.0" onAction="#handleMemberComboBox" prefHeight="27.0" prefWidth="259.0" promptText="Liste over medlemmer" />
+      <Label fx:id="programInfoText" alignment="CENTER" layoutX="250.0" layoutY="60.0" prefHeight="23.0" prefWidth="608.0" text="informasjon" textAlignment="RIGHT" textFill="#0b87a1">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <JFXComboBox fx:id="programComboBox" focusColor="#01597f" layoutX="900.0" layoutY="60.0" onAction="#handleProgramComboBox" prefHeight="27.0" prefWidth="259.0" promptText="Liste over programmer" />
+            <StackPane fx:id="root" layoutX="0.0" layoutY="0.0" prefHeight="660.0" prefWidth="1200.0" />
+   </children>
+</AnchorPane>

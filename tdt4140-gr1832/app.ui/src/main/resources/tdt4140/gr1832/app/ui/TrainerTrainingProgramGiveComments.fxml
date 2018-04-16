@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXListView?>
+<?import com.jfoenix.controls.JFXTextArea?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox prefHeight="660.0" prefWidth="1200.0" stylesheets="@styles/main.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tdt4140.gr1832.app.ui.TrainerTrainingProgramGiveCommentsController">
+  <children>
+    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="451.0" prefWidth="487.0" style="-fx-background-color: #FFFFFF;" stylesheets="@styles/main.css" VBox.vgrow="ALWAYS">
+      <children>
+            <VBox prefHeight="660.0" prefWidth="235.0" style="-fx-background-color: #0b87a1;">
+               <children>
+                  <AnchorPane prefHeight="667.0" prefWidth="245.0" stylesheets="@styles/main.css">
+                     <children>
+                        <Label layoutX="28.0" layoutY="98.0" styleClass="DosisCaps" text="GYMNOTUS" textFill="WHITE">
+                           <font>
+                              <Font size="28.0" />
+                           </font>
+                        </Label>
+                        <JFXButton maxHeight="0.0" maxWidth="0.0" opacity="0.0" text=" ">
+                           <font>
+                              <Font size="1.0" />
+                           </font>
+                        </JFXButton>
+                        <JFXButton fx:id="TilDashboard" layoutY="176.0" onAction="#TilDashboard" prefHeight="47.0" prefWidth="236.0" styleClass="VenstreMenyKnapp" text="    DASHBOARD" textFill="WHITE">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </JFXButton>
+                        <JFXButton fx:id="TilTreningsprogram" layoutY="223.0" onAction="#TilTreningsprogram" prefHeight="47.0" prefWidth="236.0" style="-fx-background-color: #01597f;" styleClass="VenstreMenyKnapp" text="    TRENINGSPROGRAM" textFill="WHITE">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </JFXButton>
+                        <JFXButton fx:id="TilMedlemmer" layoutY="270.0" onAction="#TilMedlemmer" prefHeight="47.0" prefWidth="236.0" styleClass="VenstreMenyKnapp" text="    MEDLEMMER" textFill="WHITE">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </JFXButton>
+                        <JFXButton fx:id="TilInnstillinger" layoutY="317.0" onAction="#TilInnstillinger" prefHeight="47.0" prefWidth="236.0" styleClass="VenstreMenyKnapp" text="    INNSTILLINGER" textFill="WHITE">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </JFXButton>
+                        <JFXButton fx:id="TilLoggUt" layoutY="567.0" onAction="#loadDialog" prefHeight="47.0" prefWidth="236.0" styleClass="VenstreMenyKnapp" text="    LOGG UT" textFill="WHITE">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </JFXButton>
+                     </children>
+                  </AnchorPane>
+               </children>
+            </VBox>
+            <JFXListView fx:id="givenComments" layoutX="356.0" layoutY="231.0" onMouseClicked="#editComment" prefHeight="299.0" prefWidth="248.0" />
+            <VBox layoutX="235.0" prefHeight="47.0" prefWidth="965.0" style="-fx-background-color: #01597f;">
+               <children>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0" stylesheets="@styles/main.css">
+                     <children>
+                        <JFXButton fx:id="TilTreningsoversikt" onAction="#TilTreningsoversikt" prefHeight="47.0" prefWidth="241.0" styleClass="ToppMenyKnapp" text="OVERSIKT" textFill="WHITE">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </JFXButton>
+                        <JFXButton fx:id="TilTreningsovelse" layoutX="241.0" onAction="#TilTreningsovelse" prefHeight="47.0" prefWidth="241.0" styleClass="ToppMenyKnapp" text="OVELSER" textFill="WHITE">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </JFXButton>
+                        <JFXButton fx:id="TilTreningskommentar" layoutX="482.0" onAction="#TilTreningskommentar" prefHeight="47.0" prefWidth="241.0" styleClass="ToppMenyKnapp" text="KOMMENTAR" textFill="WHITE">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </JFXButton>
+                        <JFXButton fx:id="TilTreningspameldte" layoutX="723.0" onAction="#TilTreningspameldte" prefHeight="47.0" prefWidth="241.0" styleClass="ToppMenyKnapp" text="PAMELDTE" textFill="WHITE">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </JFXButton>
+                     </children>
+                  </AnchorPane>
+               </children>
+            </VBox>
+            <Label alignment="CENTER" layoutX="360.0" layoutY="122.0" prefHeight="17.0" prefWidth="241.0" text="Dine kommentarer:">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" layoutX="822.0" layoutY="122.0" prefHeight="17.0" prefWidth="241.0" text="Skriv kommentar:">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <JFXButton fx:id="giveCommentButton" layoutX="884.0" layoutY="547.0" onAction="#giveComment" prefHeight="35.0" prefWidth="117.0" style="-fx-background-color: #0b87a1;" text="Gi kommentar" textFill="WHITE" />
+            <JFXTextArea fx:id="commentTextArea" focusColor="#01597f" layoutX="822.0" layoutY="302.0" prefHeight="228.0" prefWidth="248.0" />
+            <JFXComboBox fx:id="progUserComboBox" focusColor="#01597f" layoutX="836.0" layoutY="173.0" onAction="#handleProgUserComboBox" prefHeight="27.0" prefWidth="221.0" promptText="Kommenter til Bruker/Program" />
+            <JFXComboBox fx:id="comboBox2" focusColor="#01597f" layoutX="836.0" layoutY="231.0" onAction="#handleComboBox2" prefHeight="27.0" prefWidth="221.0" />
+            <JFXComboBox fx:id="progUserComboBox2" focusColor="#01597f" layoutX="370.0" layoutY="173.0" onAction="#handleProgUserComboBox2" prefHeight="27.0" prefWidth="221.0" promptText="Kommentar til Bruker/Program" />
+            <Label fx:id="commentToLabel" layoutX="356.0" layoutY="222.0" text="Kommentar til:">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="messageLabel" alignment="CENTER" layoutX="819.0" layoutY="588.0" prefHeight="58.0" prefWidth="248.0" wrapText="true">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <JFXButton fx:id="changeCommentButton" layoutX="480.0" layoutY="547.0" onAction="#changeComment" prefHeight="35.0" prefWidth="117.0" style="-fx-background-color: #0b87a1;" text="Utfør endring" textFill="WHITE" />
+            <JFXTextField fx:id="changeCommentField" editable="false" focusColor="#405aa800" layoutX="370.0" layoutY="241.0" prefHeight="27.0" prefWidth="221.0" />
+            <JFXTextArea fx:id="changeCommentArea" focusColor="#01597f" layoutX="356.0" layoutY="302.0" prefHeight="228.0" prefWidth="248.0" />
+            <JFXButton fx:id="changeCommentBackButton" layoutX="356.0" layoutY="547.0" onAction="#changeCommentBack" prefHeight="35.0" prefWidth="117.0" style="-fx-background-color: #0b87a1;" text="Tilbake" textFill="WHITE" />
+            <Label fx:id="messageLabel2" alignment="CENTER" layoutX="356.0" layoutY="588.0" prefHeight="58.0" prefWidth="248.0" wrapText="true">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <StackPane fx:id="root" layoutX="0.0" layoutY="0.0" prefHeight="660.0" prefWidth="1200.0" />
+      </children>
+    </AnchorPane>
+  </children>
+</VBox>

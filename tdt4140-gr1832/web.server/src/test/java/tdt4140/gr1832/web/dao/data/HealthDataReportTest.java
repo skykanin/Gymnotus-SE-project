@@ -22,6 +22,7 @@ public class HealthDataReportTest {
 		report.setHeight(1);
 		report.setWeight(1);
 		report.setUserID(1);
+		report.setReportID(1);
 	}
 	
 	@SuppressWarnings("deprecation")
@@ -34,5 +35,6 @@ public class HealthDataReportTest {
 		Assert.assertEquals(1, report.getHeight());
 		Assert.assertEquals(1, report.getWeight());
 		Assert.assertEquals(1, report.getUserID());
+		Assert.assertEquals(1, report.getReportID());
 	}
 }

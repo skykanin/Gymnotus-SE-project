@@ -19,7 +19,8 @@ import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
 public class WindowController extends FxApp {
-
+	@FXML StackPane root;
+	
 	protected void NavigerTilSide(String filnavn, ActionEvent event) throws IOException {
 		Parent LoginScreen_parent = FXMLLoader.load(getClass().getResource(filnavn));
 		Scene LoginScreen_scene = new Scene(LoginScreen_parent);
@@ -36,7 +37,6 @@ public class WindowController extends FxApp {
 		Stage app_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		app_stage.setScene(LoginScreen_scene);
 		app_stage.show();
-		   
 	}
 
 	@FXML
@@ -79,4 +79,29 @@ public class WindowController extends FxApp {
 		NavigerTilSide("TrainerTrainingProgramExercises.fxml", event);
 	}
 
+	  @FXML
+    public void loadDialog(ActionEvent parentEvent) {
+        JFXDialogLayout content = new JFXDialogLayout();
+        content.setHeading(new Text("'Logg ut'-bekreftelse"));
+        content.setBody(new Text("Er du sikker pa at du vil logge ut?"));
+        JFXDialog dialog = new JFXDialog(root, content, JFXDialog.DialogTransition.CENTER);
+        JFXButton buttonYes = new JFXButton("Ja");
+        JFXButton buttonNo = new JFXButton("Nei");
+
+        buttonYes.setOnAction((event) -> {
+            dialog.close();
+            try {
+                NavigerTilSide("LoginScreen.fxml", parentEvent);
+                FxApp.getAS().DUMMYsetuser(null);
+            } catch (IOException e) {
+                System.out.println(e.getMessage());
+            }
+        });
+
+        buttonNo.setOnAction((event) -> {
+            dialog.close();
+        });
+        content.setActions(buttonYes, buttonNo);
+        dialog.show();
+    }
 }

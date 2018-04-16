@@ -4,3 +4,6 @@
 
 # Remove IntelliJ files
 *.iml
+
+# Remove DS_Store filed
+.DS_Store

@@ -8,12 +8,14 @@ import javafx.stage.Stage;
 import tdt4140.gr1832.app.core.ApplicationState;
 
 public class FxApp extends Application {
-    private Parent root;
-    protected Scene scene;
+	public static boolean TEST = false;
+    protected Parent root;
+    private Scene scene;
     protected static ApplicationState AS;
 
     @Override
     public void start(Stage stage) throws Exception {
+    	TEST = false;
     	InitializeAS("LoginScreen.fxml");
         root = FXMLLoader.load(getClass().getResource("LoginScreen.fxml"));
         scene = new Scene(root);

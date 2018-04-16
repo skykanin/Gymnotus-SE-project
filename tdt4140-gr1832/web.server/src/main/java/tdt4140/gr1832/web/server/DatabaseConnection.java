@@ -8,8 +8,9 @@ import java.sql.Statement;
 import java.util.Scanner;
 
 public class DatabaseConnection {
-   public static final String URL = "jdbc:mysql://localhost/gymnotus";
+   public static final String URL = "jdbc:mysql://localhost/gymnotus?failOverReadOnly=false&maxReconnects=10&autoReconnect=true";
    private static Connection conn = null;
+   private static String username, password;
    
    public static Connection getConnection() {
 	   return conn;
@@ -44,22 +45,19 @@ public class DatabaseConnection {
 			}
 		}
 	}
-
    
    public static void connectToDB() {
 	   Scanner scanner = null;
-	   //Console console = System.console();
 
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 			
 			scanner = new Scanner(System.in);
 
-			String username, password;
 			System.out.println("Write in the username for the database: ");
 			username = scanner.nextLine();
 			System.out.println("Write the password: (blank means no password)");
-		    password =  scanner.nextLine();//new String(console.readPassword("Please enter your password: "));
+		    password =  scanner.nextLine();
 		    
 		    scanner.close();
 		
@@ -70,8 +68,7 @@ public class DatabaseConnection {
 		  
 		    String sql = "SELECT * FROM User";
 		    stmt.executeQuery(sql);
-		   
-		    	System.out.println("Successfully executed a test query.");
+		    System.out.println("Successfully executed a test query.");
 		  } 
 		  catch (Exception e) {
 		     e.printStackTrace();

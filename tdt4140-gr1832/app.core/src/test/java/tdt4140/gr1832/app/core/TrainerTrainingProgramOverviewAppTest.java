@@ -1,24 +1,27 @@
 package tdt4140.gr1832.app.core;
 
+import java.util.Arrays;
+
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+
+import tdt4140.gr1832.app.containers.ExerciseProgramContainer;
 
 
 public class TrainerTrainingProgramOverviewAppTest {
 	ExerciseProgramContainer container; 
 	TrainerTrainingProgramOverviewApp testapp;
 	
-	 
-	
 	@Before
 	public void setUp() {
-		container = new ExerciseProgramContainer(11, "Overskrift", "Dette beskriver programmet");
+		testapp.setTest(true);
 		testapp = new TrainerTrainingProgramOverviewApp();
+		testapp.requestExerciseProgramInformation();
+		testapp.requestExerciseInformationFromProgramID(1);
+		container = new ExerciseProgramContainer(11, "Overskrift", "Dette beskriver programmet");
 	}
-	
-	
-	
+
 	@Test
 	public void testContainerConstructor() {
 		Assert.assertEquals("Overskrift", container.getName());
@@ -28,9 +31,12 @@ public class TrainerTrainingProgramOverviewAppTest {
 	
 	@Test
 	public void testGettersApp() {
-		testapp.addContainerTocontainerExercisePrograms(container);
 		Assert.assertEquals("http://146.185.153.244:8080/api/", testapp.getBaseURI());
-		Assert.assertEquals(container, testapp.getExerciseProgramContainer(0));
+		Assert.assertEquals("test for programbeskrivelse", testapp.getExerciseProgramContainer(0).getDescription());
 		Assert.assertEquals(1, (int) testapp.getContainerExcerciseProgramLength());
+		Assert.assertEquals("Navn: Benkpress\nAntall sett: 5\nAntall repetisjoner: 8\nPause mellom settene: 5 min\nOvelsebeskrivelse: test for beskrivelse av ovelse",testapp.getExerciseContainertoString("Benkpress"));
+		Assert.assertEquals("Benkpress", testapp.getExerciseContainer(0).getDescription());
+		Assert.assertEquals(Arrays.asList("Benkpress"), testapp.getExerciseList());
+		Assert.assertEquals("Ingen informasjon", testapp.getExerciseContainertoString("test"));
 	}
 }

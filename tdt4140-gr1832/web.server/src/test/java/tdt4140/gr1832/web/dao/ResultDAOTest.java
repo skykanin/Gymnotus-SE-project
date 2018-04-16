@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.List;
 
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Response;
 
 import org.junit.After;
@@ -16,6 +17,7 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import tdt4140.gr1832.web.dao.data.Result;
+import tdt4140.gr1832.web.dao.data.User;
 import tdt4140.gr1832.web.server.DatabaseConnection;
 
 public class ResultDAOTest {
@@ -54,7 +56,6 @@ public class ResultDAOTest {
 		result = gson.fromJson(resultDAO.getResult(0), Result.class);
 		//Check if getResult worked
 		Assert.assertNotNull(result);
-		
 		
 		testNum++;
 	}
@@ -97,6 +98,26 @@ public class ResultDAOTest {
 		
 		Result new_result = results.get(0);
 		verifyEqualResult(result, new_result);
+	}
+	
+	@Test
+	public void testGetUsersAddedResultsToExercise() {
+		String json = resultDAO.getUsersAddedResultsToExercise(0);
+		List<User> results = gson.fromJson(json,new TypeToken<List<User>>(){}.getType());
+		
+		Assert.assertEquals(1, results.size());
+		User user = results.get(0);
+		
+		Assert.assertEquals("test", user.getName());
+		Assert.assertEquals("test", user.getUsername());
+		Assert.assertEquals("test@test.com", user.getEmail());
+		Assert.assertEquals("1234", user.getPhone());
+		Assert.assertEquals(1, user.getGender());
+		Assert.assertEquals(18, (int)user.getAge());
+		Assert.assertTrue(user.getIsTrainer());
+		Assert.assertTrue(user.getShareExerciseData());
+		Assert.assertTrue(user.getShareHealthData());
+		Assert.assertFalse(user.getIsAnonymous());
 	}
 	
 	@Test
@@ -143,4 +164,20 @@ public class ResultDAOTest {
 		Result new_result = results.get(0);
 		verifyEqualResult(result, new_result);
 	}
+	
+	@Test
+	public void testGetResultsByProgramUser() {
+		Response response = exerciseDAO.createExercise(0, "test1", 2, 2, 2, "test1");
+		Assert.assertEquals(200, response.getStatus());
+		
+		Response response1 = resultDAO.createResult(0, 1, 100, "2018-02-02");
+		Assert.assertEquals(200, response1.getStatus());
+		
+		String json = resultDAO.getResultsByProgramUser(0, 0);
+		List<Result> results = gson.fromJson(json,new TypeToken<List<Result>>(){}.getType());
+		
+		Assert.assertEquals(2, results.size());
+		Assert.assertEquals("test1", results.get(1).getDescription());
+	}
+
 }

@@ -30,12 +30,12 @@ import javafx.scene.chart.XYChart;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDialog;
 import com.jfoenix.controls.JFXDialogLayout;
+import com.sun.javafx.applet.FXApplet2;
 
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
 
 public class TrainerDashboardController extends WindowController implements Initializable {
-	
 	@FXML JFXComboBox<String> memberComboBox;
     @FXML private Label Velkommen;
     @FXML Label infoText;
@@ -54,57 +54,53 @@ public class TrainerDashboardController extends WindowController implements Init
     @FXML Label heartRateChartTitle;
     @FXML Label stepsChartTitle;
     
-    TrainerDashboardApp app = new TrainerDashboardApp();
+    TrainerDashboardApp app;
 
-    @FXML
-	private StackPane root;
+    @FXML StackPane root;
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		
-		if (FxApp.getAS().getLoggedInUser() != null) {
-			Velkommen.setText("Velkommen, " + FxApp.getAS().getLoggedInUser().getName());
+		if (!FxApp.TEST) { 
+			app = new TrainerDashboardApp();
+			if (FxApp.getAS().getLoggedInUser() != null) {
+				Velkommen.setText("Velkommen, " + FxApp.getAS().getLoggedInUser().getName());
+			}
+			
+			heartRateChart.setLegendVisible(false);
+			stepsChart.setLegendVisible(false);
+			heartRateChart.setOpacity(0);
+			stepsChart.setOpacity(0);
+			infoText.setText("Velg et medlem for a visualisere informasjon:");
+			
+			app.requestAllUserID();
+			ObservableList<String> names = FXCollections.observableArrayList();
+			for (String name : app.getNames()) {
+				names.add(name);
+			}
+			
+			memberComboBox.setItems(names);
+			pulsSnittTekst.setText("");
+			pulsSnittVerdi.setText("");
+			stepsSnittTekst.setText("");
+			stepsSnittVerdi.setText("");
 		}
 		
-		heartRateChart.setLegendVisible(false);
-		stepsChart.setLegendVisible(false);
-		heartRateChart.setOpacity(0);
-		stepsChart.setOpacity(0);
-		infoText.setText("Velg en venn for å visualisere informasjon:");
-		
-		app.requestAllUserID();
-		ObservableList<String> names = FXCollections.observableArrayList();
-		for (String name : app.getNames()) {
-			names.add(name);
-		}
-		
-		memberComboBox.setItems(names);
-		pulsSnittTekst.setText("");
-		pulsSnittVerdi.setText("");
-		stepsSnittTekst.setText("");
-		stepsSnittVerdi.setText("");
-		
+		root.setPickOnBounds(false);
 	}
 	
 	@SuppressWarnings({ "unchecked", "rawtypes" })
-	
 	public void handleMemberComboBox(ActionEvent actionEvent) throws IOException, ParseException {
-		
+		if (!FxApp.TEST) {
 		String username = memberComboBox.getSelectionModel().getSelectedItem();
-		infoText.setText("Du ser " + username + "'s helsedata. Se noen andre: " );
-		
-		System.out.println(username);
-		System.out.println(app.getIDfromName(username));
+		infoText.setText("Du ser " + username + "s helsedata. Se noen andre: " );
 		
 		app.requestHealthInformation_ID(app.getIDfromName(username));
 		
-		
+		//REGNE SNITT START
 		double meanHR = 0;
 		double meanSteps = 0;
 		
-		System.out.println(app.getContainerUser().getShareHealthData());
-		
-		if (app.getRestingHRs() != null && app.getContainerUser().getShareHealthData()) {
+		if (app.getRestingHRs() != null && app.getContainerUser().getShareHealthData() && app.getHealthContainers().size() > 0) {
 			
 			for (int i = 0; i < app.getRestingHRs().size(); i++) {
 				
@@ -112,15 +108,17 @@ public class TrainerDashboardController extends WindowController implements Init
 				meanSteps += (double) (app.getSteps().get(i))/(double) (app.getSteps().size());
 			} 
 			
-			heartRateChartTitle.setText(username + "'s puls");
-			stepsChartTitle.setText(username + "'s steps");
+			heartRateChartTitle.setText(username + "s puls");
+			stepsChartTitle.setText(username + "s skritt");
 		
 			DecimalFormat df = new DecimalFormat(" .#");
 			
-			pulsSnittTekst.setText(username +"'s snittpuls er:");
+			pulsSnittTekst.setText(username +"s snittpuls er:");
 			pulsSnittVerdi.setText(df.format(meanHR) + "");
-			stepsSnittTekst.setText(username +"'s snittsteps er:");
+			stepsSnittTekst.setText(username +"s snittskritt er:");
 			stepsSnittVerdi.setText(df.format(meanSteps) + "");
+			
+			//REGNE SNITT SLUTT
 			
 			// START PLOTT		
 			heartRateChart.getData().clear();
@@ -181,22 +179,19 @@ public class TrainerDashboardController extends WindowController implements Init
 			heartRateChart.setCreateSymbols(false);
 			heartRateChart.setAnimated(false);
 	        heartRateChart.getData().add(series);
+	        
 	        stepsChart.setCreateSymbols(false);
 	        stepsChart.setAnimated(false);
 	        stepsChart.getData().add(series2);
-
-			
-		
-			
+	
 		} else if(!(app.getContainerUser().getShareHealthData())) {
 			
-			infoText.setText(username + " har valgt å ikke vise sin data, velg en ny venn: ");
+			infoText.setText(username + " har valgt a ikke vise sin data, velg et nytt medlem: ");
 			pulsSnittTekst.setText("");
 			pulsSnittVerdi.setText("");
 			stepsSnittTekst.setText("");
 			stepsSnittVerdi.setText("");
 			
-					
 			heartRateChart.getData().clear();
 			stepsChart.getData().clear();
 			
@@ -206,13 +201,9 @@ public class TrainerDashboardController extends WindowController implements Init
 			
 			heartRateChart.setOpacity(0);
 			stepsChart.setOpacity(0);
-			
-	     
-
-			
 		}
 		else {
-			infoText.setText(username + " har ikke registrert helsedata, velg en ny venn: ");
+			infoText.setText(username + " har ikke registrert helsedata, velg et nytt medlem: ");
 			pulsSnittTekst.setText("");
 			pulsSnittVerdi.setText("");
 			stepsSnittTekst.setText("");
@@ -221,48 +212,14 @@ public class TrainerDashboardController extends WindowController implements Init
 			heartRateChartTitle.setText("");
 			stepsChartTitle.setText("");
 			
-			
 			heartRateChart.getData().clear();
 			stepsChart.getData().clear();
 		
-
 			heartRateChart.setOpacity(0);
 			stepsChart.setOpacity(0);
 		}
 		
-		
-
-	}
-	
-	
-		
-	    public static void main(String[] args) {
-	        launch(args);
-	    }
-	@FXML
-	public void loadDialog(ActionEvent parentEvent) {
-		JFXDialogLayout content = new JFXDialogLayout();
-		content.setHeading(new Text("Logg ut bekreftelse"));
-		content.setBody(new Text("Er du sikker på at du vil logge ut?"));
-		JFXDialog dialog = new JFXDialog(root, content, JFXDialog.DialogTransition.CENTER);
-		JFXButton buttonYes = new JFXButton("Ja");
-		JFXButton buttonNo = new JFXButton("Nei");
-
-		buttonYes.setOnAction((event) -> {
-			dialog.close();
-			try {
-				NavigerTilSide("LoginScreen.fxml", parentEvent);
-				FxApp.getAS().DUMMYsetuser(null);
-			} catch (IOException e) {
-				System.out.println(e.getMessage());
-			}
-		});
-
-		buttonNo.setOnAction((event) -> {
-			dialog.close();
-		});
-		content.setActions(buttonYes, buttonNo);
-		dialog.show();
+		}
 	}
 }
 

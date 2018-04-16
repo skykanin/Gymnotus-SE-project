@@ -76,7 +76,7 @@
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <Label contentDisplay="CENTER" layoutX="142.0" layoutY="13.0" text="SLETT PROFILEN DIN">
+                  <Label contentDisplay="CENTER" layoutX="175.0" layoutY="13.0" text="Slett profilen din">
                      <font>
                         <Font size="36.0" />
                      </font>
@@ -84,8 +84,8 @@
                         <Cursor fx:constant="TEXT" />
                      </cursor>
                   </Label>
-                  <JFXButton fx:id="SlettProfil" buttonType="FLAT" contentDisplay="CENTER" layoutX="360.0" layoutY="361.0" onAction="#SlettProfil" prefHeight="39.0" prefWidth="101.0" ripplerFill="WHITE" style="-fx-background-color: #80bfb7;" text="SLETT PROFIL" />
-                  <JFXButton fx:id="Avbryt" buttonType="FLAT" contentDisplay="CENTER" layoutX="159.0" layoutY="361.0" onAction="#Avbryt" prefHeight="39.0" prefWidth="101.0" ripplerFill="WHITE" style="-fx-background-color: #80bfb7;" text="AVBRYT" />
+                  <JFXButton fx:id="SlettProfil" buttonType="FLAT" contentDisplay="CENTER" layoutX="360.0" layoutY="361.0" onAction="#SlettProfil" prefHeight="39.0" prefWidth="101.0" ripplerFill="WHITE" style="-fx-background-color: #80bfb7;" text="Slett profil" />
+                  <JFXButton fx:id="Avbryt" buttonType="FLAT" contentDisplay="CENTER" layoutX="159.0" layoutY="361.0" onAction="#Avbryt" prefHeight="39.0" prefWidth="101.0" ripplerFill="WHITE" style="-fx-background-color: #80bfb7;" text="Avbryt" />
                   <JFXPasswordField fx:id="Passord" labelFloat="true" layoutX="220.0" layoutY="185.0" promptText="Passord">
                      <font>
                         <Font size="16.0" />
@@ -98,7 +98,7 @@
                   </Label>
                </children>
             </AnchorPane>
-            <StackPane fx:id="root" layoutX="235.0" layoutY="47.0" prefHeight="613.0" prefWidth="965.0" />
+            <StackPane fx:id="root" layoutX="0.0" layoutY="0.0" prefHeight="660.0" prefWidth="1200.0" />
       </children>
     </AnchorPane>
   </children>

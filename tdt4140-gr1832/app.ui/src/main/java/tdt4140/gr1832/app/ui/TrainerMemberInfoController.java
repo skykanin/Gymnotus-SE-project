@@ -73,96 +73,25 @@ public class TrainerMemberInfoController extends WindowController {
 	
 	
 	@FXML
-	private StackPane root;
+	StackPane root;
 
 	public static String userID;
-	//for dateString converter
-	String pattern = "LLL dd, yyyy";
+	String pattern = "LLL dd, yyyy"; //for dateString converter
 	DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern(pattern);
 	
 	tdt4140.gr1832.app.core.TrainerMemberInfoApp app;
-	
-	//start
-	public void start(Stage stage) throws Exception {
-		//launches from the fxml-file
-		//HVORDAN SJEKKER JEG OM ANON ER TRUE HER? 
-		//HVIS DET ER TRUE VIL JEG HELLER ÅPNE ANONYMOUSTrainerMemberInfo.fxml
-		Parent root = FXMLLoader.load(getClass().getResource("TrainerMemberInfo.fxml")); //Husk å endre til tilhørende fxml fil sitt navn.
-		Scene scene = new Scene(root, 1200, 660);
-        stage.setTitle("MemberInfoView");
-        stage.setScene(scene);
-        stage.show();
-	}
-
-	@FXML
-	public void loadDialog(ActionEvent parentEvent) {
-		JFXDialogLayout content = new JFXDialogLayout();
-		content.setHeading(new Text("Logg ut bekreftelse"));
-		content.setBody(new Text("Er du sikker på at du vil logge ut?"));
-		JFXDialog dialog = new JFXDialog(root, content, JFXDialog.DialogTransition.CENTER);
-		JFXButton buttonYes = new JFXButton("Ja");
-		JFXButton buttonNo = new JFXButton("Nei");
-
-		buttonYes.setOnAction((event) -> {
-			dialog.close();
-			try {
-				NavigerTilSide("LoginScreen.fxml", parentEvent);
-				FxApp.getAS().DUMMYsetuser(null);
-			} catch (IOException e) {
-				System.out.println(e.getMessage());
-			}
-		});
-
-		buttonNo.setOnAction((event) -> {
-			dialog.close();
-		});
-		content.setActions(buttonYes, buttonNo);
-		dialog.show();
-	}
 
 	@FXML
 	public void initialize() {
 		root.setPickOnBounds(false);
-		if (userID == null) {
-			app = new TrainerMemberInfoApp();
-			app.requestUserInformation_ID("1");
-			app.requestHealthInformation_ID("1");
-			String height=app.getHeight();
-			String date=app.getDate();
-			String weight=app.getWeight();
-			String steps=app.getSteps();		
-			String restingHR=app.getRestingHR();
-			String name =app.getName();
-			String username = app.getUsername();
-			String email = app.getEmail();
-			String tlf = app.getTlf();
-			String age =app.getAge();
-			String gender = app.getGender();
-			
-			heightField.setText(height);
-			dateField.setText(date);		
-			weightField.setText(weight);
-			stepsField.setText(steps);
-			restingHRField.setText(restingHR);
-			nameField.setText(name);
-			usernameField.setText(username);		
-			emailField.setText(email);
-			tlfField.setText(tlf);
-			ageField.setText(age);
-			genderField.setText(gender);
-			
-			datePickerField.setPromptText(date);
-			
-		    Medlemsnavn.setText("Brukerinformasjonen til " + app.getName());		
-
-			
-		} else {
+		
+		if (!FxApp.TEST) {
 		app = new TrainerMemberInfoApp();
 		app.requestUserInformation_ID(userID);
 		app.requestHealthInformation_ID(userID);
 		
-		//Disable buttons if there are noe health info
-		if (app.getContainerHealth().size()<1) {
+		//Disable buttons if there are no health info
+		if (app.getContainerHealth().size()<1 || (! app.getContainerUser().getShareHealthData())) {
 			lastDay.setDisable(true);
 			nextDay.setDisable(true);
 			datePickerField.setDisable(true);
@@ -194,14 +123,12 @@ public class TrainerMemberInfoController extends WindowController {
 		dateField.setEditable(false);
 		Medlemsnavn.setText("Brukerinformasjonen til " + app.getName());
 		datePickerField.setPromptText(date);
-
 		datePickerField.setConverter(new StringConverter<LocalDate>() {
 
 		     @Override 
 		     public String toString(LocalDate date) {
 		         if (date != null) {
-		        	 	return dateFormatter.format(date);
-		        	 	//result = result.substring(0, 1).toUpperCase()+ result.substring(1)
+		        	 return dateFormatter.format(date);
 		         } else {
 		             return "";
 		         }
@@ -216,7 +143,6 @@ public class TrainerMemberInfoController extends WindowController {
 		         }
 		     }
 		 });
-		  
 		}
 		
 		
@@ -224,7 +150,6 @@ public class TrainerMemberInfoController extends WindowController {
 			
 			@Override
 			public DateCell call(DatePicker param) {
-				// TODO Auto-generated method stub
 				return new DateCell() {
 					public void updateItem(LocalDate item, boolean empty) {
 						super.updateItem(item, empty);
@@ -232,7 +157,6 @@ public class TrainerMemberInfoController extends WindowController {
 						if(checkStringDate(dateS,app.getDates())) {
 							setDisable(true);
 							setStyle("-fx-background-color: #0b88a10a");
-							//setStyle("fx")
 						} else {
 							//do nothing
 						}	
@@ -262,6 +186,7 @@ public class TrainerMemberInfoController extends WindowController {
 		}
 		datePickerField.setValue(LocalDate.parse(ii, dateFormatter));
 	}
+	
 	@FXML
 	public void datePicker() {
 		LocalDate date = datePickerField.getValue();
@@ -274,7 +199,6 @@ public class TrainerMemberInfoController extends WindowController {
 		int i = app.getDates().indexOf(dateS);
 		app.giveDateIndex(i);
 		updateHealtInfo();
-		 
 	}
 	
 	@FXML
@@ -301,6 +225,4 @@ public class TrainerMemberInfoController extends WindowController {
 		}
 		return true;
 	}
-
-
 }

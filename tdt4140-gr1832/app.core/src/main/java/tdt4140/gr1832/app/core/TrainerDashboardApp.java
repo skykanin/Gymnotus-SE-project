@@ -11,6 +11,10 @@ import javax.ws.rs.core.MediaType;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
+import tdt4140.gr1832.app.containers.ShowAllUsersContainer;
+import tdt4140.gr1832.app.containers.ShowHealthInfoContainer;
+import tdt4140.gr1832.app.containers.ShowUserInfoContainer;
+
 public class TrainerDashboardApp {
 	
 	private ShowUserInfoContainer containerUser;
@@ -23,11 +27,17 @@ public class TrainerDashboardApp {
 	
 	private String baseURI = "http://146.185.153.244:8080/api/";
 	
+	private static boolean TEST = false;
+	public static void setTest(boolean b) {
+		TEST = b;
+	}
+	
 	public void requestUserInformation_ID(String id) {
 
 		Client client = ClientBuilder.newClient();
 		WebTarget webTarget = client.target(baseURI + "user/"+id+"/user_info_id");
-		String test = webTarget.request(MediaType.APPLICATION_JSON).get(String.class);
+		String test = TEST ? "{\"userID\":1,\"username\":\"testbruker\",\"name\":\"Henrik Giske Fosse\",\"email\":\"henrik@fosse.no\",\"phone\":\"23443443\",\"gender\":0,\"age\":23,\"isAnonymous\":true,\"shareExerciseData\":true,\"shareHealthData\":true,\"isTrainer\":true}" 
+							: webTarget.request(MediaType.APPLICATION_JSON).get(String.class);
 		Gson gson = new Gson();
 		containerUser = gson.fromJson(test, ShowUserInfoContainer.class);
 		containerUser.setUserId(id);
@@ -38,14 +48,13 @@ public class TrainerDashboardApp {
 			containerUser.setPhone("Brukeren er anonym");
 			containerUser.setEmail("Brukeren er anonym");
 		}
-		
 	}
 
 	
 	public void requestAllUserID() {
 		Client client = ClientBuilder.newClient();
 		WebTarget webTarget = client.target(baseURI +"user/get_all_ids");
-		String test = webTarget.request(MediaType.APPLICATION_JSON).get(String.class);
+		String test = TEST ? "[1]" :webTarget.request(MediaType.APPLICATION_JSON).get(String.class);
 		Gson gson = new Gson();
 		userids = gson.fromJson(test, new TypeToken<List<Integer>>(){}.getType());
 		
@@ -53,7 +62,6 @@ public class TrainerDashboardApp {
 			requestUserInformation_ID(i.toString());
 			containerAllUsers.addUserInfo(containerUser);
 		}
-		
 	}
 	
 	public void requestHealthInformation_ID(String id) {
@@ -61,8 +69,9 @@ public class TrainerDashboardApp {
 		Client client = ClientBuilder.newClient();
 		WebTarget webTarget = client.target(baseURI + "health_data/id/"+id);
 		this.requestUserInformation_ID(id);
-		System.out.println("i req.health:" + containerUser.getName());
-		String test = webTarget.request(MediaType.APPLICATION_JSON).get(String.class);
+		
+		String test = TEST ? "[{\"reportID\":154,\"userID\":1,\"date\":\"Jan 10, 2018\",\"bloodPressure\":120,\"dailySteps\":7912,\"restingHeartRate\":65,\"height\":187,\"weight\":73}]" 
+							:  webTarget.request(MediaType.APPLICATION_JSON).get(String.class);
 		Gson gson = new Gson();
 		healthContainers = gson.fromJson(test, new TypeToken<List<ShowHealthInfoContainer>>(){}.getType());
 	}
@@ -74,13 +83,14 @@ public class TrainerDashboardApp {
 			if (name != null) {
 				usernames.add(name);
 			}
-			}
+		}
 		
 		return usernames;
-		}
+	}
 	
 	public String getIDfromName(String name) {
 		for (ShowUserInfoContainer user : containerAllUsers.getUsers()){
+			if(name == null || user.getName() == null) continue;
 			if (user.getName().equals(name)) {
 				return user.getUserID();
 			}
@@ -116,7 +126,6 @@ public class TrainerDashboardApp {
 		return dates;
 	}
 	
-	//weight
 	public List<Integer> getWeights() {
 		if (healthContainers.size()<1) {
 			return null;
@@ -131,7 +140,6 @@ public class TrainerDashboardApp {
 		return weights;
 	}
 	
-	//steps
 	public List<Integer> getSteps() {
 		if (healthContainers.size()<1) {
 			return null;
@@ -146,7 +154,6 @@ public class TrainerDashboardApp {
 		return steps;
 	}
 	
-	//restingHR
 	public List<Integer> getRestingHRs() {
 		if (healthContainers.size()<1) {
 			return null;
@@ -169,20 +176,15 @@ public class TrainerDashboardApp {
 		this.containerAllUsers = containerAllUsers;
 	}
 
-
 	public String getBaseURI() {
 		return baseURI;
 	}
-
 
 	public void setContainerUser(ShowUserInfoContainer containerUser) {
 		this.containerUser = containerUser;
 	}
 
-
 	public ShowUserInfoContainer getContainerUser() {
 		return containerUser;
 	}
-
-
 }

@@ -1,5 +1,7 @@
 package tdt4140.gr1832.app.ui;
 
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 
@@ -10,7 +12,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import tdt4140.gr1832.app.core.ShowUserInfoContainer;
+import tdt4140.gr1832.app.containers.ShowUserInfoContainer;
 
 
 public class TrainerTrainingProgramOverviewControllerTest extends FxAppTest {
@@ -24,9 +26,14 @@ public class TrainerTrainingProgramOverviewControllerTest extends FxAppTest {
     private final String TilTreningskommentarID = "#TilTreningskommentar";
     private final String TilTreningspameldteID = "#TilTreningspameldte";
 
+    @After
+    public void tearDown() {
+    		FxApp.TEST = false;
+    }
     
 	@Override
 	public void start(Stage stage) throws Exception {
+		FxApp.TEST = true;
 		FxApp.InitializeAS("TrainerTrainingProgramOverview.fxml");
 		ShowUserInfoContainer user = new ShowUserInfoContainer("username", "password", "name", 10, 1, "email", "123", true, true, true, false);
 		FxApp.getAS().DUMMYsetuser(user);
@@ -69,15 +76,7 @@ public class TrainerTrainingProgramOverviewControllerTest extends FxAppTest {
         clickOn(TilMedlemmerID);
         assertEquals("TrainerMembers.fxml", FxApp.getAS().getWindowName());
     }
-    
-//    @Test
-//    public void verifyNavigationSettings() {
-//        assertEquals("TrainerTrainingProgramOverview.fxml", FxApp.getAS().getWindowName());
-//        clickOn(TilInnstillingerID);
-//        assertEquals("TrainerSettings.fxml", FxApp.getAS().getWindowName());
-//    }
 
-    
     @Test
     public void verifyNavigationOverview() {
         assertEquals("TrainerTrainingProgramOverview.fxml", FxApp.getAS().getWindowName());
