@@ -54,9 +54,9 @@ public class ExerciseContainer {
 		String result = "";
 		result += "Navn: "+description + "\n";
 		result += "Antall sett: " + sets + "\n";
-		result += "Antall repitisjoner: " + repsPerSet + "\n";
+		result += "Antall repetisjoner: " + repsPerSet + "\n";
 		result += "Pause mellom settene: " + sets + " min\n";
-		result += "Øvelsebeskrivelse: " + parameterDescription;
+		result += "Ovelsebeskrivelse: " + parameterDescription;
 		return result;
 		
 	}

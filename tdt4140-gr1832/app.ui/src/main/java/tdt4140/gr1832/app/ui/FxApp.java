@@ -9,8 +9,8 @@ import tdt4140.gr1832.app.core.ApplicationState;
 
 public class FxApp extends Application {
 	public static boolean TEST = false;
-    private Parent root;
-    protected Scene scene;
+    protected Parent root;
+    private Scene scene;
     protected static ApplicationState AS;
 
     @Override

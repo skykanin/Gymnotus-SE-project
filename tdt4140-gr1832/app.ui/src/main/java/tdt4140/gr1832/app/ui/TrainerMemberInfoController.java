@@ -73,7 +73,7 @@ public class TrainerMemberInfoController extends WindowController {
 	
 	
 	@FXML
-	private StackPane root;
+	StackPane root;
 
 	public static String userID;
 	//for dateString converter
@@ -82,43 +82,7 @@ public class TrainerMemberInfoController extends WindowController {
 	
 	tdt4140.gr1832.app.core.TrainerMemberInfoApp app;
 	
-	//start
-	public void start(Stage stage) throws Exception {
-		//launches from the fxml-file
-		//HVORDAN SJEKKER JEG OM ANON ER TRUE HER? 
-		//HVIS DET ER TRUE VIL JEG HELLER ÅPNE ANONYMOUSTrainerMemberInfo.fxml
-		Parent root = FXMLLoader.load(getClass().getResource("TrainerMemberInfo.fxml")); //Husk å endre til tilhørende fxml fil sitt navn.
-		Scene scene = new Scene(root, 1200, 660);
-        stage.setTitle("MemberInfoView");
-        stage.setScene(scene);
-        stage.show();
-	}
-
-	@FXML
-	public void loadDialog(ActionEvent parentEvent) {
-		JFXDialogLayout content = new JFXDialogLayout();
-		content.setHeading(new Text("Logg ut bekreftelse"));
-		content.setBody(new Text("Er du sikker på at du vil logge ut?"));
-		JFXDialog dialog = new JFXDialog(root, content, JFXDialog.DialogTransition.CENTER);
-		JFXButton buttonYes = new JFXButton("Ja");
-		JFXButton buttonNo = new JFXButton("Nei");
-
-		buttonYes.setOnAction((event) -> {
-			dialog.close();
-			try {
-				NavigerTilSide("LoginScreen.fxml", parentEvent);
-				FxApp.getAS().DUMMYsetuser(null);
-			} catch (IOException e) {
-				System.out.println(e.getMessage());
-			}
-		});
-
-		buttonNo.setOnAction((event) -> {
-			dialog.close();
-		});
-		content.setActions(buttonYes, buttonNo);
-		dialog.show();
-	}
+	
 
 	@FXML
 	public void initialize() {

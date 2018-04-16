@@ -35,7 +35,7 @@ public class TrainerTrainingProgramOverviewController extends WindowController  
 	
 		
     @FXML
-    private StackPane root;
+    StackPane root;
 
     
     
@@ -53,13 +53,13 @@ public class TrainerTrainingProgramOverviewController extends WindowController  
 		ovelser.addAll(app.getExerciseList());
 		ovelseComboBox.setItems(ovelser);
 		}		
-		ovelseComboBox.setPromptText("Velg programoversikt eller se oversikt for enkeltøvelser");
+		ovelseComboBox.setPromptText("Velg programoversikt eller se oversikt for enkeltovelser");
 		
 	}
 	
 	public void update() {
 		ovelseComboBox.getItems().clear();
-		ovelseComboBox.setPromptText("Velg programoversikt eller se oversikt for enkeltøvelser");
+		ovelseComboBox.setPromptText("Velg programoversikt eller se oversikt for enkeltovelser");
 		treningsprogramBeskrivelse.setVisible(false);
 		ExerciseProgramContainer c = app.getExerciseProgramContainer(AS.getProgramCounter());
 		program.setText(c.getName());
@@ -103,53 +103,4 @@ public class TrainerTrainingProgramOverviewController extends WindowController  
 	}
 	
 	
-//		String ovelse = ovelseComboBox.getSelectionModel().getSelectedItem();
-//				
-//				if (!"Ingen ovelser tilgjengelig".equals(ovelse)){
-//					int ovelseID = -1; 
-//					for (ExerciseContainer ExerciseContainer : programApp.requestExerciseInformationFromProgramID(AS.getProgramCounter()) {
-//						if (ovelse != null && ovelse.equals(ExerciseContainer.getDescription())){
-//							ovelseID = (ExerciseContainer.getExerciseID());
-//						}
-//					}
-//					if (ovelseID != -1) {
-//						// må få brukt den ovelseID slik at vi henter riktig ParameterDescription.
-//						treningsprogramBeskrivelse.setText(ec.getParameterDescription());
-//					}
-//					
-//					//Set userInfo
-//					ovelseComboBox.setPromptText(ovelse);
-//					if 
-//					} else {
-//						messageLabel.setText("");
-//					}
-//					
-//				}	
-//			}
-	
-	@FXML
-	public void loadDialog(ActionEvent parentEvent) {
-		JFXDialogLayout content = new JFXDialogLayout();
-		content.setHeading(new Text("Logg ut bekreftelse"));
-		content.setBody(new Text("Er du sikker på at du vil logge ut?"));
-		JFXDialog dialog = new JFXDialog(root, content, JFXDialog.DialogTransition.CENTER);
-		JFXButton buttonYes = new JFXButton("Ja");
-		JFXButton buttonNo = new JFXButton("Nei");
-		
-		buttonYes.setOnAction((event) -> {
-			dialog.close();
-			try {
-				NavigerTilSide("LoginScreen.fxml", parentEvent);
-				FxApp.getAS().DUMMYsetuser(null);
-			} catch (IOException e) {
-				System.out.println(e.getMessage());
-			}
-		});
-		
-		buttonNo.setOnAction((event) -> {
-			dialog.close();
-		});
-		content.setActions(buttonYes, buttonNo);
-		dialog.show();
-	}
 }
