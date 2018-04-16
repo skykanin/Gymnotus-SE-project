@@ -17,7 +17,6 @@ import tdt4140.gr1832.app.containers.ExerciseProgramContainer;
 
 
 public class TrainerTrainingProgramOverviewApp {
-	
 	private List<ExerciseProgramContainer> containerExercisePrograms = new ArrayList<ExerciseProgramContainer>();
 	private List<ExerciseContainer> containerExercise = new ArrayList<ExerciseContainer>();
 	private String baseURI = "http://146.185.153.244:8080/api/";
@@ -34,7 +33,7 @@ public class TrainerTrainingProgramOverviewApp {
 		if(TEST) {
 			test = "[{\"programID\":1,\"name\":\"Bryst og skuldre\",\"description\":\"test for programbeskrivelse\"}]";
 		} else {
-		test = webTarget.request(MediaType.APPLICATION_JSON).get(String.class);
+			test = webTarget.request(MediaType.APPLICATION_JSON).get(String.class);
 		}
 		Gson gson = new Gson();
 		containerExercisePrograms = gson.fromJson(test, new TypeToken<List<ExerciseProgramContainer>>(){}.getType());
@@ -47,7 +46,7 @@ public class TrainerTrainingProgramOverviewApp {
 		if(TEST) {
 			test = "[{\"exerciseID\":1,\"programID\":1,\"description\":\"Benkpress\",\"sets\":5,\"repsPerSet\":8,\"pauseBetweenSets\":90,\"parameterDescription\":\"test for beskrivelse av ovelse\"}]";
 		} else {
-		test = webTarget.request(MediaType.APPLICATION_JSON).get(String.class);
+			test = webTarget.request(MediaType.APPLICATION_JSON).get(String.class);
 		}
 		Gson gson = new Gson();
 		containerExercise = gson.fromJson(test, new TypeToken<List<ExerciseContainer>>(){}.getType());
@@ -60,7 +59,6 @@ public class TrainerTrainingProgramOverviewApp {
 	public List<String> getExerciseList() {
 		List<String> ovelser = new ArrayList<>();
 		
-
 		for (ExerciseContainer excon : containerExercise ) {
 				ovelser.add(excon.getDescription());
 		}
@@ -80,18 +78,11 @@ public class TrainerTrainingProgramOverviewApp {
 		return containerExercise.get(i);
 	}
 	
-	
-	
 	public int getContainerExcerciseProgramLength() {
 		return (int)containerExercisePrograms.size();
 	}
 
-
-
 	public Object getBaseURI() {
 		return baseURI;
 	}
-
-	
-
 }

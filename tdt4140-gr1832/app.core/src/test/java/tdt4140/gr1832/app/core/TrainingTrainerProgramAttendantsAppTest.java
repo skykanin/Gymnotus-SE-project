@@ -135,7 +135,6 @@ public class TrainingTrainerProgramAttendantsAppTest {
 		Assert.assertEquals(false, testApp.userIsSharingExerciseData());
 		testApp.setUser(null); 
 		Assert.assertEquals(false, testApp.userIsSharingExerciseData());
-		
 	}
 	
 	@Test
@@ -176,12 +175,10 @@ public class TrainingTrainerProgramAttendantsAppTest {
 	
 	@Test
 	public void testCheckAndMakeAnonymous() {
-	List<ShowUserInfoContainer> users = testApp.checkAndMakeAnonymous(this.users);
-	Assert.assertEquals("Navn", users.get(0).getName());
-	Assert.assertEquals("Anonym#2", users.get(1).getName());
-	
+		List<ShowUserInfoContainer> users = testApp.checkAndMakeAnonymous(this.users);
+		Assert.assertEquals("Navn", users.get(0).getName());
+		Assert.assertEquals("Anonym#2", users.get(1).getName());
 	}
-	
 	
 	@Test
 	public void testBaseURI () {

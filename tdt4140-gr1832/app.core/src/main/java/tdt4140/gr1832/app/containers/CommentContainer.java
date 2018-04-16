@@ -7,8 +7,6 @@ public class CommentContainer {
 	String date;
 	String content;
 	
-	
-	
 	public CommentContainer(Integer commentID, Integer userID, Integer programID, String date, String content) {
 		this.commentID = commentID;
 		this.userID = userID;

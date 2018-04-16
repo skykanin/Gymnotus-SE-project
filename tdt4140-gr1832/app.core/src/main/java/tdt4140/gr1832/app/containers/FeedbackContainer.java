@@ -4,13 +4,11 @@ import java.util.Date;
 
 public class FeedbackContainer {
 	//Container for feedback from trainer to user
-	
 	int feedbackID;
 	int trainerID;
 	int userID;
 	String date;
 	String content;
-	
 	
 	public FeedbackContainer(Integer feedbackID, Integer trainerID, Integer userID, String date, String content) {
 		this.feedbackID = feedbackID;

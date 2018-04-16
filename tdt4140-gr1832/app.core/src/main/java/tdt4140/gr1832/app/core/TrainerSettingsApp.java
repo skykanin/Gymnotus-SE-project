@@ -1,24 +1,15 @@
 package tdt4140.gr1832.app.core;
 
-import java.util.HashMap;
-import java.util.Map;
 
-import javax.mail.internet.AddressException;
-import javax.mail.internet.InternetAddress;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.client.WebTarget;
-import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.MultivaluedHashMap;
 import javax.ws.rs.core.MultivaluedMap;
 import javax.ws.rs.core.Response;
 
-import com.google.gson.Gson;
-
 public class TrainerSettingsApp {
-	// HER HENTER VI BRUKERINFORMASJON
-	
 	private static String baseURI = "http://146.185.153.244:8080/api/";
 	
 	private static Response response;
@@ -38,10 +29,6 @@ public class TrainerSettingsApp {
 	public static Response getResponse() {
 		return response;
 	}
-
-	//Her starter endringen av brukerinformasjonen.
-	
-	//Returnerer true brukerinfo ble endret riktig.
 	
 	public static boolean changeUser(String username, String new_name, String new_email, String new_phone, String new_age, String new_gender) {		
 				
@@ -55,7 +42,6 @@ public class TrainerSettingsApp {
 	  formData.add("new_phone", new_phone);
 	  formData.add("new_age", new_age);
 	  formData.add("new_gender",new_gender);
-	  //formData.add("password", this.user.getPassword());
 	  response = Response.status(400).build();
 	  if(!TEST) {
 		  response = webTarget.request().post(Entity.form(formData));		  

@@ -83,10 +83,10 @@ public class TrainerDashboardApp {
 			if (name != null) {
 				usernames.add(name);
 			}
-			}
+		}
 		
 		return usernames;
-		}
+	}
 	
 	public String getIDfromName(String name) {
 		for (ShowUserInfoContainer user : containerAllUsers.getUsers()){
@@ -126,7 +126,6 @@ public class TrainerDashboardApp {
 		return dates;
 	}
 	
-	//weight
 	public List<Integer> getWeights() {
 		if (healthContainers.size()<1) {
 			return null;
@@ -141,7 +140,6 @@ public class TrainerDashboardApp {
 		return weights;
 	}
 	
-	//steps
 	public List<Integer> getSteps() {
 		if (healthContainers.size()<1) {
 			return null;
@@ -156,7 +154,6 @@ public class TrainerDashboardApp {
 		return steps;
 	}
 	
-	//restingHR
 	public List<Integer> getRestingHRs() {
 		if (healthContainers.size()<1) {
 			return null;
@@ -179,20 +176,15 @@ public class TrainerDashboardApp {
 		this.containerAllUsers = containerAllUsers;
 	}
 
-
 	public String getBaseURI() {
 		return baseURI;
 	}
-
 
 	public void setContainerUser(ShowUserInfoContainer containerUser) {
 		this.containerUser = containerUser;
 	}
 
-
 	public ShowUserInfoContainer getContainerUser() {
 		return containerUser;
 	}
-
-
 }

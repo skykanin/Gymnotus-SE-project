@@ -36,7 +36,6 @@ import tdt4140.gr1832.app.core.TrainerTrainingProgramExercisesExercisesApp;
 
 
 public class TrainerTrainingProgramExercisesExercisesController extends WindowController implements Initializable {
-    
 	@FXML
     StackPane root;
     
@@ -170,7 +169,7 @@ public class TrainerTrainingProgramExercisesExercisesController extends WindowCo
 		
 
     private void hidePageContent() {
-    		chart1.setLegendVisible(false);
+    	chart1.setLegendVisible(false);
 		chart1.setOpacity(0);
 		label1.setText("");
 		seriesMap.clear();
@@ -179,7 +178,6 @@ public class TrainerTrainingProgramExercisesExercisesController extends WindowCo
     
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		
 		root.setPickOnBounds(false);
 
 		hidePageContent();

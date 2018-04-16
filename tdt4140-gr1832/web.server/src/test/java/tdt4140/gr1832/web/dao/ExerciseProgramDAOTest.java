@@ -60,7 +60,6 @@ public class ExerciseProgramDAOTest {
 		Response response = programDAO.createExerciseProgram("new_test", "new_test");
 		Assert.assertEquals(200, response.getStatus());
 		
-		
 		programs = gson.fromJson(programDAO.getAllExercisePrograms(),  new TypeToken<List<ExerciseProgram>>(){}.getType());
 		Assert.assertEquals(2,programs.size());
 		

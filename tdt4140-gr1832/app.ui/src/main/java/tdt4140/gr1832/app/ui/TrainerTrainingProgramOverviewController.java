@@ -21,7 +21,6 @@ import tdt4140.gr1832.app.core.TrainerTrainingProgramOverviewApp;
 
 public class TrainerTrainingProgramOverviewController extends WindowController  {
 
-	
 	@FXML
 	JFXTextField program;
 	
@@ -32,26 +31,22 @@ public class TrainerTrainingProgramOverviewController extends WindowController  
 	JFXComboBox<String> ovelseComboBox;
 	
 	TrainerTrainingProgramOverviewApp app = new TrainerTrainingProgramOverviewApp();
-	
 		
     @FXML
     StackPane root;
-
-    
-    
 	
 	@FXML
 	public void initialize() {
 		root.setPickOnBounds(false);
 		if(!FxApp.TEST) {
-		treningsprogramBeskrivelse.setVisible(false);
-		app.requestExerciseProgramInformation();
-		program.setText(app.getExerciseProgramContainer(AS.getProgramCounter()).getName());
-		app.requestExerciseInformationFromProgramID(app.getExerciseProgramContainer(AS.getProgramCounter()).getProgramID());
-		ObservableList<String> ovelser = FXCollections.observableArrayList();
-		ovelser.add("Programoversikt");
-		ovelser.addAll(app.getExerciseList());
-		ovelseComboBox.setItems(ovelser);
+			treningsprogramBeskrivelse.setVisible(false);
+			app.requestExerciseProgramInformation();
+			program.setText(app.getExerciseProgramContainer(AS.getProgramCounter()).getName());
+			app.requestExerciseInformationFromProgramID(app.getExerciseProgramContainer(AS.getProgramCounter()).getProgramID());
+			ObservableList<String> ovelser = FXCollections.observableArrayList();
+			ovelser.add("Programoversikt");
+			ovelser.addAll(app.getExerciseList());
+			ovelseComboBox.setItems(ovelser);
 		}		
 		ovelseComboBox.setPromptText("Velg programoversikt eller se oversikt for enkeltovelser");
 		
@@ -72,7 +67,6 @@ public class TrainerTrainingProgramOverviewController extends WindowController  
 
 	@FXML
 	public void nextProgram() {
-		
 		if (AS.getProgramCounter() < (app.getContainerExcerciseProgramLength()-1)) {
 			AS.increaseProgramCounter();	
 		} else {
@@ -86,7 +80,7 @@ public class TrainerTrainingProgramOverviewController extends WindowController  
 		if (AS.getProgramCounter() > 0 ){
 			AS.decreaseProgramCounter();	
 		} else {
-		AS.setProgramCounter(app.getContainerExcerciseProgramLength()-1);
+			AS.setProgramCounter(app.getContainerExcerciseProgramLength()-1);
 		}
 		update();
 	}

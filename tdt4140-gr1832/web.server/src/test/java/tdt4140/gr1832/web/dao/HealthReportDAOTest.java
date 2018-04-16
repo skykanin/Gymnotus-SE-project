@@ -125,19 +125,19 @@ public class HealthReportDAOTest {
     
     @Test
     public void testGetHealthRDataReportByMonthAndID() {
-    		String json = HealthDataReportDAO.getHealthDataReportByMonthAndID(1, 0);
-    		Assert.assertNotNull(json);
-    		
-    		reports = gson.fromJson(json, new TypeToken<List<HealthDataReport>>(){}.getType());
-    		
-    		Assert.assertNotNull(reports);
-    		Assert.assertTrue(isEqual(report, reports.get(0)));
+		String json = HealthDataReportDAO.getHealthDataReportByMonthAndID(1, 0);
+		Assert.assertNotNull(json);
+		
+		reports = gson.fromJson(json, new TypeToken<List<HealthDataReport>>(){}.getType());
+		
+		Assert.assertNotNull(reports);
+		Assert.assertTrue(isEqual(report, reports.get(0)));
     }
     
     @Test
     public void getHealthDataSortedIDSortedByDateDesc() {
-    		Response response = healthDAO.createHealthData(0, "2018-02-02", 1, 1, 1, 1, 1);
-    		assertEquals(200, response.getStatus());
+    	Response response = healthDAO.createHealthData(0, "2018-02-02", 1, 1, 1, 1, 1);
+    	assertEquals(200, response.getStatus());
 		String json = HealthDataReportDAO.getHealthDataSorted(false, 0);
 		Assert.assertNotNull(json);
 		

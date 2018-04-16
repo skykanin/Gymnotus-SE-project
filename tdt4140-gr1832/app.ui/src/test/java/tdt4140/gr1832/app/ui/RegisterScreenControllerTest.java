@@ -35,7 +35,6 @@ public class RegisterScreenControllerTest extends FxAppTest {
 	    public void tearDown() {
 	    		FxApp.TEST = false;
 	    }
- 
     	
 	    @Override
 		public void start(Stage stage) throws Exception {
@@ -52,8 +51,6 @@ public class RegisterScreenControllerTest extends FxAppTest {
     	 @Test
     	    public void testValidInputFields() {
     	        final KeyCode[] testString = {KeyCode.T, KeyCode.E, KeyCode.S, KeyCode.T};
-    	        
-    	        
     	        
     	        clickOn(username).type(testString);
     	        clickOn(name).type(testString);

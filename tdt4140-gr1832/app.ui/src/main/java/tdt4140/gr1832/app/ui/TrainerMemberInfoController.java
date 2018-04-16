@@ -76,13 +76,10 @@ public class TrainerMemberInfoController extends WindowController {
 	StackPane root;
 
 	public static String userID;
-	//for dateString converter
-	String pattern = "LLL dd, yyyy";
+	String pattern = "LLL dd, yyyy"; //for dateString converter
 	DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern(pattern);
 	
 	tdt4140.gr1832.app.core.TrainerMemberInfoApp app;
-	
-	
 
 	@FXML
 	public void initialize() {
@@ -93,8 +90,7 @@ public class TrainerMemberInfoController extends WindowController {
 		app.requestUserInformation_ID(userID);
 		app.requestHealthInformation_ID(userID);
 		
-		//Disable buttons if there are noe health info
-		
+		//Disable buttons if there are no health info
 		if (app.getContainerHealth().size()<1 || (! app.getContainerUser().getShareHealthData())) {
 			lastDay.setDisable(true);
 			nextDay.setDisable(true);
@@ -132,8 +128,7 @@ public class TrainerMemberInfoController extends WindowController {
 		     @Override 
 		     public String toString(LocalDate date) {
 		         if (date != null) {
-		        	 	return dateFormatter.format(date);
-		        	 	//result = result.substring(0, 1).toUpperCase()+ result.substring(1)
+		        	 return dateFormatter.format(date);
 		         } else {
 		             return "";
 		         }
@@ -155,7 +150,6 @@ public class TrainerMemberInfoController extends WindowController {
 			
 			@Override
 			public DateCell call(DatePicker param) {
-				// TODO Auto-generated method stub
 				return new DateCell() {
 					public void updateItem(LocalDate item, boolean empty) {
 						super.updateItem(item, empty);
@@ -163,7 +157,6 @@ public class TrainerMemberInfoController extends WindowController {
 						if(checkStringDate(dateS,app.getDates())) {
 							setDisable(true);
 							setStyle("-fx-background-color: #0b88a10a");
-							//setStyle("fx")
 						} else {
 							//do nothing
 						}	
@@ -193,6 +186,7 @@ public class TrainerMemberInfoController extends WindowController {
 		}
 		datePickerField.setValue(LocalDate.parse(ii, dateFormatter));
 	}
+	
 	@FXML
 	public void datePicker() {
 		LocalDate date = datePickerField.getValue();
@@ -205,7 +199,6 @@ public class TrainerMemberInfoController extends WindowController {
 		int i = app.getDates().indexOf(dateS);
 		app.giveDateIndex(i);
 		updateHealtInfo();
-		 
 	}
 	
 	@FXML
@@ -232,6 +225,4 @@ public class TrainerMemberInfoController extends WindowController {
 		}
 		return true;
 	}
-
-
 }

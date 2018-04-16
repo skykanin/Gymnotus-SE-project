@@ -13,7 +13,6 @@ public class InfoDateComparator implements Comparator<String> {
 	DateTimeFormatter dateFormatter;
 
 	public InfoDateComparator() {
-		//Problems with DateTimeFormatter Parse
 		months.put("Jan", "01");
 		months.put("Feb", "02");
 		months.put("Mar", "03");
@@ -43,8 +42,6 @@ public class InfoDateComparator implements Comparator<String> {
 			return 0;
 		}
 	}
-	// Jan 1, 2018 -> 
-
 	
 	 public LocalDate fromString(String string) {
 		 String month = months.get(string.substring(0, 3));

@@ -26,7 +26,6 @@ import tdt4140.gr1832.app.core.TrainerTrainingProgramSeeCommentsApp;
 
 
 public class TrainerTrainingProgramSeeCommentsController extends WindowController {
-	
 	@FXML JFXListView<String> commentList;
 
 	@FXML JFXTextField overskrift;
@@ -40,29 +39,24 @@ public class TrainerTrainingProgramSeeCommentsController extends WindowControlle
     @FXML public void initialize() {
     	root.setPickOnBounds(false);
     	if (!FxApp.TEST) {
-		app.requestExerciseProgramInformation();
-		ExerciseProgramContainer c = app.getExerciseProgramContainer(AS.getProgramCounter());
-		program.setText(c.getName());
-    		
-		app.requestExerciseProgramInformation();
-					programApp.requestProgramComments(AS.getProgramCounter()+1);
-    		programApp.getCommentList();
-    		ObservableList<String> comments = FXCollections.observableArrayList();
-		for (int i =0;i<programApp.getCommentList().size();i++) {
-  
+			app.requestExerciseProgramInformation();
+			ExerciseProgramContainer c = app.getExerciseProgramContainer(AS.getProgramCounter());
+			program.setText(c.getName());
+	    		
+			app.requestExerciseProgramInformation();
+			programApp.requestProgramComments(AS.getProgramCounter()+1);
+	    	programApp.getCommentList();
+	    	ObservableList<String> comments = FXCollections.observableArrayList();
+			for (int i =0;i<programApp.getCommentList().size();i++) {
 				comments.add(programApp.getCommentList().get(i));
-		}
-		
-		commentList.setItems(comments);
+			}
+			
+			commentList.setItems(comments);
     	}
 	}
-	
 
     @FXML
     private JFXTextField program;
-    
-
-    
 
     @FXML public void update() {
 		ExerciseProgramContainer c = app.getExerciseProgramContainer(AS.getProgramCounter());
@@ -70,13 +64,11 @@ public class TrainerTrainingProgramSeeCommentsController extends WindowControlle
 		programApp.requestProgramComments(AS.getProgramCounter()+1);
 		programApp.getCommentList();
 		ObservableList<String> comments = FXCollections.observableArrayList();
-	for (int i =0;i<programApp.getCommentList().size();i++) {
-			comments.add(programApp.getCommentList().get(i));
+		for (int i =0;i<programApp.getCommentList().size();i++) {
+				comments.add(programApp.getCommentList().get(i));
+		}
+		commentList.setItems(comments);
 	}
-
-	commentList.setItems(comments);
-	}
-	
 	
 	@FXML
 	public void nextProgram() {

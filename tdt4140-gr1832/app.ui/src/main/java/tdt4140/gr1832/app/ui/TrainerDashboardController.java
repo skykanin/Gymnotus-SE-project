@@ -36,8 +36,6 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
 
 public class TrainerDashboardController extends WindowController implements Initializable {
-	
-	
 	@FXML JFXComboBox<String> memberComboBox;
     @FXML private Label Velkommen;
     @FXML Label infoText;
@@ -63,7 +61,7 @@ public class TrainerDashboardController extends WindowController implements Init
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		if (!FxApp.TEST) { 
-				app = new TrainerDashboardApp();
+			app = new TrainerDashboardApp();
 			if (FxApp.getAS().getLoggedInUser() != null) {
 				Velkommen.setText("Velkommen, " + FxApp.getAS().getLoggedInUser().getName());
 			}
@@ -91,7 +89,6 @@ public class TrainerDashboardController extends WindowController implements Init
 	}
 	
 	@SuppressWarnings({ "unchecked", "rawtypes" })
-	
 	public void handleMemberComboBox(ActionEvent actionEvent) throws IOException, ParseException {
 		if (!FxApp.TEST) {
 		String username = memberComboBox.getSelectionModel().getSelectedItem();
@@ -186,10 +183,7 @@ public class TrainerDashboardController extends WindowController implements Init
 	        stepsChart.setCreateSymbols(false);
 	        stepsChart.setAnimated(false);
 	        stepsChart.getData().add(series2);
-
-			
-		
-			
+	
 		} else if(!(app.getContainerUser().getShareHealthData())) {
 			
 			infoText.setText(username + " har valgt a ikke vise sin data, velg et nytt medlem: ");
@@ -198,7 +192,6 @@ public class TrainerDashboardController extends WindowController implements Init
 			stepsSnittTekst.setText("");
 			stepsSnittVerdi.setText("");
 			
-					
 			heartRateChart.getData().clear();
 			stepsChart.getData().clear();
 			
@@ -208,10 +201,6 @@ public class TrainerDashboardController extends WindowController implements Init
 			
 			heartRateChart.setOpacity(0);
 			stepsChart.setOpacity(0);
-			
-	     
-
-			
 		}
 		else {
 			infoText.setText(username + " har ikke registrert helsedata, velg et nytt medlem: ");
@@ -223,18 +212,14 @@ public class TrainerDashboardController extends WindowController implements Init
 			heartRateChartTitle.setText("");
 			stepsChartTitle.setText("");
 			
-			
 			heartRateChart.getData().clear();
 			stepsChart.getData().clear();
 		
-
 			heartRateChart.setOpacity(0);
 			stepsChart.setOpacity(0);
 		}
 		
 		}
-
 	}
-
 }
 

@@ -25,7 +25,6 @@ public class TrainertrainingCommentAppTest {
 	ShowUserInfoContainer userContainer2;
 	TrainerTrainingProgramGiveCommentsApp testApp;
 	
-	
 	@Before
 	public void setup() {
 		testApp.setTest(true);
@@ -99,7 +98,6 @@ public class TrainertrainingCommentAppTest {
 		Assert.assertEquals(1, testApp.getCommentId("Mar 03, 2018", "Comment1"));
 		Assert.assertEquals(-1, testApp.getCommentId("Mar 04, 2018", "C"));
 		Assert.assertEquals(-1, testApp.getCommentId("Mar 01, 2018", "Comment1"));
-		
 	}
 	
 	@Test

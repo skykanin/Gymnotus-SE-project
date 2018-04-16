@@ -21,7 +21,6 @@ import tdt4140.gr1832.app.core.TrainerSettingsApp;
 import tdt4140.gr1832.app.core.User;
  
 public class TrainerSettingsController extends WindowController {
-	
 	@FXML
 	JFXTextField nameField;
 	
@@ -101,24 +100,23 @@ public class TrainerSettingsController extends WindowController {
 		if (tlfField.getText().length() != (8)) {
 			errorMessage.setText("Telefonnummer må være et åttesifret tall");
 			valid = false;
-			}
+		}
 		
 		if (nameField.getText().length() == (0)) {
 			errorMessage.setText("Feltet for navn er blankt");
 			valid = false;
-			}
+		}
 	
 		
 		if (!(trainerApp.isValidEmailAddress(emailField.getText()))) {
 			valid = false;
 			errorMessage.setText("Ugyldig email");
-			
 		}
 		
 		if (ageField.getText().length() != (2)) {
 			valid = false;
 			errorMessage.setText("Alder må være et tosifret tall");
-			}
+		}
 		
 		for ( int i=0; i<ageField.getText().length();i++) {
 			char c= ageField.getText().charAt(i);
@@ -128,25 +126,23 @@ public class TrainerSettingsController extends WindowController {
 			}
 		}
 	    if (valid)  {
-		if(TrainerSettingsApp.changeUser(username, nameField.getText(),emailField.getText(), tlfField.getText(), ageField.getText(), gender)) {
-			FxApp.getAS().setCurrentUser(username);
-			return;
-		}
-		
-		System.out.println("Server failed to change userInfo");
+			if(TrainerSettingsApp.changeUser(username, nameField.getText(),emailField.getText(), tlfField.getText(), ageField.getText(), gender)) {
+				FxApp.getAS().setCurrentUser(username);
+				return;
+			}
+			
+			System.out.println("Server failed to change userInfo");
 	    }
 	}
 	
 	@FXML
 	private void toggleDameButton(ActionEvent event) throws IOException {
-		
 			mannButton.setSelected(false);
 			dameButton.setSelected(true);	
 	}
 	
 	@FXML
 	private void toggleMannButton(ActionEvent event) throws IOException {
-		
 			mannButton.setSelected(true);
 			dameButton.setSelected(false);
 	}
@@ -154,7 +150,6 @@ public class TrainerSettingsController extends WindowController {
 	
 	@FXML
 	public void initialize() {
-		
 		ShowUserInfoContainer user = FxApp.getAS().getLoggedInUser();
 
 		String name = user.getName();
@@ -176,17 +171,14 @@ public class TrainerSettingsController extends WindowController {
 		} else if (gender == 1) {
 			mannButton.setSelected(false);
 			dameButton.setSelected(true);
-			
 		} else if (gender == 0){
 			mannButton.setSelected(true);
 			dameButton.setSelected(false);
-		
 		}
 		
 		root.setPickOnBounds(false);
 	}
 
-	
 	@FXML
 	public void TilSlettProfil(ActionEvent event) throws Exception {               
 		NavigerTilSide("DeleteUser.fxml", event);

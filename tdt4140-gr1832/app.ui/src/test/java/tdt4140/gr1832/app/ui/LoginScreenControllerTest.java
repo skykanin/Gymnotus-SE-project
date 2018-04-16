@@ -30,7 +30,6 @@ public class LoginScreenControllerTest extends FxAppTest {
         stage.setScene(scene);
         stage.show();
     }
-
     
     @Test
     public void testValidInputFields() {
@@ -55,24 +54,6 @@ public class LoginScreenControllerTest extends FxAppTest {
         verifyThat(loginButtonID, hasText("Log inn"));
         verifyThat(registerButtonID, hasText("Registrer"));
     }
-    
-  /*
-  This test is dependent apon our database being online
-
-  @Test
-  public void testLogin() {
-      final KeyCode[] testStringNavn = {KeyCode.T, KeyCode.E, KeyCode.S, KeyCode.T, KeyCode.B, KeyCode.R, KeyCode.U, KeyCode.K, KeyCode.E, KeyCode.R};
-      final KeyCode[] testStringPassord = {KeyCode.CAPS, KeyCode.L, KeyCode.U, KeyCode.L, KeyCode.CAPS};
-      
-      clickOn(usernameFieldID).type(testStringNavn);
-      clickOn(passwordFieldID).type(testStringPassord);
-      
-      assertEquals(FxApp.getAS().getWindowName(),"LoginScreen.fxml");
-      
-      clickOn(loginButtonID);
-
-      assertEquals(FxApp.getAS().getWindowName(),"TrainerDashboard.fxml");
-  }*/
   
   @Test
   public void testNavigateToRegister() {

@@ -34,13 +34,8 @@ public class TrainerTrainingProgramExercisesProgramsAppTest {
 	List<Integer> userids = new ArrayList<>();
 	ResultContainer resCon2;
 	
-	
-	
 	@Before
-	public void setup() {
-		
-		
-		
+	public void setup() {		
 		showAllUserContainer = new ShowAllUsersContainer(); 
 		userContainer = new ShowUserInfoContainer("brukernavn", "passord", "navn1",11, 0, "email", "telefon", false, true, true, false);
 		userContainer1 = new ShowUserInfoContainer("brukernavn", "passord", "navn",11, 1, "email", "telefon", false, true, true, false);
@@ -172,9 +167,6 @@ public class TrainerTrainingProgramExercisesProgramsAppTest {
 		userContainer.setUserId("007");
 		Assert.assertEquals("-1", testapp.getIDfromName("feil"));
 		Assert.assertEquals("007", testapp.getIDfromName("navn1"));
-		
-		
-		
 	}
 	
 	@Test

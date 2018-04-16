@@ -11,7 +11,6 @@ public class TrainerSettingsAppTest {
 	@Before
 	public void setUp() {
 		testApp.setTest(true);
-		
 	}
 	
 	@Test

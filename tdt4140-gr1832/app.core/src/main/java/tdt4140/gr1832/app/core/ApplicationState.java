@@ -12,7 +12,6 @@ import com.google.gson.Gson;
 import tdt4140.gr1832.app.containers.ShowUserInfoContainer;
 
 public class ApplicationState {
-
     private final String baseURI = "http://146.185.153.244:8080/api/user/";
     private static ShowUserInfoContainer loggedInUser;
     private String window_name;

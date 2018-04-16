@@ -20,7 +20,6 @@ public class TrainerSettingsControllerTest extends FxAppTest {
     private final String TilMedlemmerID = "#TilMedlemmer";
     private final String TilTreningsprogramID = "#TilTreningsprogram";
     private final String TilInnstillingerID = "#TilInnstillinger";
-
    
     @Before
     public void setUp() {
@@ -42,45 +41,4 @@ public class TrainerSettingsControllerTest extends FxAppTest {
         stage.setScene(scene);
         stage.show();
 	}
-
-//    @Test
-//    public void verifyButtons() {
-//        verifyThat(TilDashboardID, hasText("    DASHBOARD"));
-//        verifyThat(TilTreningsprogramID, hasText("    TRENINGSPROGRAM"));
-//        verifyThat(TilMedlemmerID, hasText("    MEDLEMMER"));
-//        verifyThat(TilInnstillingerID, hasText("    INNSTILLINGER"));
-//    }
-//    
-//    @Test
-//    public void verifyNavigationDashboard() {
-//        assertEquals(FxApp.getAS().getWindowName(),"TrainerSettings.fxml");
-//        clickOn(TilDashboardID);
-//        assertEquals(FxApp.getAS().getWindowName(),"TrainerDashboard.fxml");
-//    }
-//    
-//    @Test
-//    public void verifyNavigationTrainingProgram() {
-//        assertEquals(FxApp.getAS().getWindowName(),"TrainerSettings.fxml");
-//        clickOn(TilTreningsprogramID);
-//        assertEquals(FxApp.getAS().getWindowName(),"TrainerTrainingProgramOverview.fxml");
-//    }
-//    
-//    @Test
-//    public void verifyNavigationMembers() {
-//        assertEquals(FxApp.getAS().getWindowName(),"TrainerSettings.fxml");
-//        clickOn(TilMedlemmerID);
-//        assertEquals(FxApp.getAS().getWindowName(),"TrainerMembers.fxml");
-//    }
-//    
-//    @Test
-//    public void verifyNavigationSettings() {
-//        assertEquals(FxApp.getAS().getWindowName(),"TrainerSettings.fxml");
-//        clickOn(TilInnstillingerID);
-//        assertEquals(FxApp.getAS().getWindowName(),"TrainerSettings.fxml");
-//    }
-//    
-//    @After
-//    public void tearDown() {
-//    		TrainerSettingsController.ISTEST = false;
-//    }
 }

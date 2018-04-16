@@ -100,7 +100,6 @@ public class TrainerMemberInfoApp {
 		return in;
 	}
 	
-	//Not used now
 	String convertArrayToString(String[] in ) {
 		String result = "";
 		for (int i=0; i<in.length; i++) {
@@ -182,10 +181,10 @@ public class TrainerMemberInfoApp {
 			if (name != null) {
 				usernames.add(name);
 			}
-			}
+		}
 		
 		return usernames;
-		}
+	}
 	
 	public List<ShowUserInfoContainer> getUsers() {
 		return containerAllUsers.getUsers();

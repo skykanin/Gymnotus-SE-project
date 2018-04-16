@@ -42,151 +42,139 @@ public class TrainerTrainingProgramExercisesProgramsApp {
 	}
 	
 	//START  INFORMATION ABOUT PROGRAMS
-
-		public List<ExerciseContainer> getExContainers() {
+	public List<ExerciseContainer> getExContainers() {
 		return exContainers;
 	}
+	private List<ExerciseProgramContainer> containerExercisePrograms = new ArrayList<ExerciseProgramContainer>();
 
-		private List<ExerciseProgramContainer> containerExercisePrograms = new ArrayList<ExerciseProgramContainer>();
-
-		public void requestExerciseProgramInformation() {
-			Client client = ClientBuilder.newClient();
-			WebTarget webTarget = client.target(baseURI + "exercise_program/all_programs");
-			String test = TEST ? "[{\"programID\":1,\"name\":\"Bryst og skuldre\",\"description\":\"Inneholder øvelsene benkpress, skulderpress, pushups og sidehev med hantler. Programmet er designet for deg som ikke er veldig erfaren og vil trene disse to muskelgruppene. Her vil brukeren merke fremgang raskt.\"}]" 
-					: webTarget.request(MediaType.APPLICATION_JSON).get(String.class);
-			Gson gson = new Gson();
-			containerExercisePrograms = gson.fromJson(test, new TypeToken<List<ExerciseProgramContainer>>(){}.getType());
-		}
+	public void requestExerciseProgramInformation() {
+		Client client = ClientBuilder.newClient();
+		WebTarget webTarget = client.target(baseURI + "exercise_program/all_programs");
+		String test = TEST ? "[{\"programID\":1,\"name\":\"Bryst og skuldre\",\"description\":\"Inneholder øvelsene benkpress, skulderpress, pushups og sidehev med hantler. Programmet er designet for deg som ikke er veldig erfaren og vil trene disse to muskelgruppene. Her vil brukeren merke fremgang raskt.\"}]" 
+				: webTarget.request(MediaType.APPLICATION_JSON).get(String.class);
+		Gson gson = new Gson();
+		containerExercisePrograms = gson.fromJson(test, new TypeToken<List<ExerciseProgramContainer>>(){}.getType());
+	}
 		
-		public ExerciseProgramContainer getExerciseProgramContainer(int i) {
-			return containerExercisePrograms.get(i);
-		}
-		
-		public int getContainerExcerciseProgramLength() {
-			return (int)containerExercisePrograms.size();
-		}
-
-		public void addContainerTocontainerExercisePrograms(ExerciseProgramContainer container) {
-			containerExercisePrograms.add(container);	
-		}
-		
-		public List<String> getNamesOfPrograms() {
-			requestExerciseProgramInformation();
-			List<String> navn = new ArrayList<>();
-			for (ExerciseProgramContainer epc : containerExercisePrograms) {
-				navn.add(epc.getName());
-			}
-			return navn;
-		}
-		
-		public int getProgramIDfromName(String name) {
-			for (ExerciseProgramContainer epc : containerExercisePrograms) {
-				if (epc.getName().equals(name)) {
-					return epc.getProgramID();
-				}
-			}
-			return -1;
-		}
-		
-		public List<Integer> getUserIDsOnProgram(String programName){
-			
-			
-			List<Integer> integerIDs = new ArrayList<>();
-			List<ShowUserInfoContainer> userIDs = new ArrayList<>();
-
-			Client client = ClientBuilder.newClient();
-			WebTarget webTarget = client.target(baseURI +"exercise_program/get_users?programID=" + getProgramIDfromName(programName));
-			String test = TEST ? "[{\"userID\":1,\"username\":\"testbruker\",\"name\":\"Henrik Giske Fosse\",\"email\":\"henrik@fosse.no\",\"phone\":\"23443443\",\"gender\":0,\"age\":22,\"isAnonymous\":false,\"shareExerciseData\":true,\"shareHealthData\":true,\"isTrainer\":true}]" 
-					: webTarget.request(MediaType.APPLICATION_JSON).get(String.class);
-			
-			Gson gson = new Gson();
-			userIDs = gson.fromJson(test, new TypeToken<List<ShowUserInfoContainer>>(){}.getType());
-			
-			for (ShowUserInfoContainer user : userIDs) {
-				integerIDs.add(Integer.parseInt(user.getUserID()));
-			}
-			
-			return integerIDs;
-		}
-		
+	public ExerciseProgramContainer getExerciseProgramContainer(int i) {
+		return containerExercisePrograms.get(i);
+	}
 	
+	public int getContainerExcerciseProgramLength() {
+		return (int)containerExercisePrograms.size();
+	}
+
+	public void addContainerTocontainerExercisePrograms(ExerciseProgramContainer container) {
+		containerExercisePrograms.add(container);	
+	}
+	
+	public List<String> getNamesOfPrograms() {
+		requestExerciseProgramInformation();
+		List<String> navn = new ArrayList<>();
+		for (ExerciseProgramContainer epc : containerExercisePrograms) {
+			navn.add(epc.getName());
+		}
+		return navn;
+	}
+		
+	public int getProgramIDfromName(String name) {
+		for (ExerciseProgramContainer epc : containerExercisePrograms) {
+			if (epc.getName().equals(name)) {
+				return epc.getProgramID();
+			}
+		}
+		return -1;
+	}
+		
+	public List<Integer> getUserIDsOnProgram(String programName){
+		
+		
+		List<Integer> integerIDs = new ArrayList<>();
+		List<ShowUserInfoContainer> userIDs = new ArrayList<>();
+
+		Client client = ClientBuilder.newClient();
+		WebTarget webTarget = client.target(baseURI +"exercise_program/get_users?programID=" + getProgramIDfromName(programName));
+		String test = TEST ? "[{\"userID\":1,\"username\":\"testbruker\",\"name\":\"Henrik Giske Fosse\",\"email\":\"henrik@fosse.no\",\"phone\":\"23443443\",\"gender\":0,\"age\":22,\"isAnonymous\":false,\"shareExerciseData\":true,\"shareHealthData\":true,\"isTrainer\":true}]" 
+				: webTarget.request(MediaType.APPLICATION_JSON).get(String.class);
+		
+		Gson gson = new Gson();
+		userIDs = gson.fromJson(test, new TypeToken<List<ShowUserInfoContainer>>(){}.getType());
+		
+		for (ShowUserInfoContainer user : userIDs) {
+			integerIDs.add(Integer.parseInt(user.getUserID()));
+		}
+		
+		return integerIDs;
+	}
 	//END  INFORMATION ABOUT PROGRAMS
 		
 	//START INFORMATION ABOUT EXERCISES IN PROGRAM
 		
-		public void getExercisesOnAProgram(int programID) {
-			
-			List<ExerciseContainer> exCons = new ArrayList<>();
-
-			Client client = ClientBuilder.newClient();
-			WebTarget webTarget = client.target(baseURI +"exercise/get_exercises?program_id=" + programID);
-			String test = TEST ? "[{\"exerciseID\":1,\"programID\":1,\"description\":\"Benkpress\",\"sets\":5,\"repsPerSet\":8,\"pauseBetweenSets\":90,\"parameterDescription\":\"Legg pÃ¥ vekt slik at du omtrent akkurat klarer 8 reps. FÃ¸lg instrukser om pause og sets.\"}]" 
-					: webTarget.request(MediaType.APPLICATION_JSON).get(String.class);
-			
-			Gson gson = new Gson();
-			exCons = gson.fromJson(test, new TypeToken<List<ExerciseContainer>>(){}.getType());
-			
-			exContainers = exCons;
-		}
-		
-	//HVA MED EN METODE SOM GIR RESULTATER FOR EN SPESIFIKK EXERCISE
+	public void getExercisesOnAProgram(int programID) {
+		List<ExerciseContainer> exCons = new ArrayList<>();
 	
-		public void getResultsOfExercise(int exerciseID) {
-			
-			List<ResultContainer> resCons = new ArrayList<>();
-			
-			Client client = ClientBuilder.newClient();
-			WebTarget webTarget = client.target(baseURI + "result/get_results_by_exercise?exercise_id=" + exerciseID);
-			String test = TEST ? "[{\"resultID\":30,\"userID\":1,\"exerciseID\":1,\"date\":\"Jan 10, 2018\",\"resultParameter\":70},{\"resultID\":31,\"userID\":1,\"exerciseID\":1,\"date\":\"Jan 14, 2018\",\"resultParameter\":71}]" 
-					: webTarget.request(MediaType.APPLICATION_JSON).get(String.class);
-			
-			Gson gson = new Gson();
-			resCons = gson.fromJson(test, new TypeToken<List<ResultContainer>>(){}.getType());
-			
-			if (resCons.size() < 1) {
-				resContainers = null;
-			} else {				
-				resContainers = resCons;
-			}
-			
+		Client client = ClientBuilder.newClient();
+		WebTarget webTarget = client.target(baseURI +"exercise/get_exercises?program_id=" + programID);
+		String test = TEST ? "[{\"exerciseID\":1,\"programID\":1,\"description\":\"Benkpress\",\"sets\":5,\"repsPerSet\":8,\"pauseBetweenSets\":90,\"parameterDescription\":\"Legg pÃ¥ vekt slik at du omtrent akkurat klarer 8 reps. FÃ¸lg instrukser om pause og sets.\"}]" 
+				: webTarget.request(MediaType.APPLICATION_JSON).get(String.class);
+		
+		Gson gson = new Gson();
+		exCons = gson.fromJson(test, new TypeToken<List<ExerciseContainer>>(){}.getType());
+		
+		exContainers = exCons;
+	}
+	
+	public void getResultsOfExercise(int exerciseID) {
+		
+		List<ResultContainer> resCons = new ArrayList<>();
+		
+		Client client = ClientBuilder.newClient();
+		WebTarget webTarget = client.target(baseURI + "result/get_results_by_exercise?exercise_id=" + exerciseID);
+		String test = TEST ? "[{\"resultID\":30,\"userID\":1,\"exerciseID\":1,\"date\":\"Jan 10, 2018\",\"resultParameter\":70},{\"resultID\":31,\"userID\":1,\"exerciseID\":1,\"date\":\"Jan 14, 2018\",\"resultParameter\":71}]" 
+				: webTarget.request(MediaType.APPLICATION_JSON).get(String.class);
+		
+		Gson gson = new Gson();
+		resCons = gson.fromJson(test, new TypeToken<List<ResultContainer>>(){}.getType());
+		
+		if (resCons.size() < 1) {
+			resContainers = null;
+		} else {				
+			resContainers = resCons;
 		}
+	}
+	
+	public int getSizeResultsOfExercise(int exerciseID) {
+		List<ResultContainer> resCons = new ArrayList<>();
 		
-		public int getSizeResultsOfExercise(int exerciseID) {
-			
-			List<ResultContainer> resCons = new ArrayList<>();
-			
-			Client client = ClientBuilder.newClient();
-			WebTarget webTarget = client.target(baseURI + "result/get_results_by_exercise?exercise_id=" + exerciseID);
-			String test = TEST ? "[{\"resultID\":30,\"userID\":1,\"exerciseID\":1,\"date\":\"Jan 10, 2018\",\"resultParameter\":70},{\"resultID\":31,\"userID\":1,\"exerciseID\":1,\"date\":\"Jan 14, 2018\",\"resultParameter\":71}]"
-					: webTarget.request(MediaType.APPLICATION_JSON).get(String.class);
-			
-			Gson gson = new Gson();
-			resCons = gson.fromJson(test, new TypeToken<List<ResultContainer>>(){}.getType());
-			
-			return resCons.size();
+		Client client = ClientBuilder.newClient();
+		WebTarget webTarget = client.target(baseURI + "result/get_results_by_exercise?exercise_id=" + exerciseID);
+		String test = TEST ? "[{\"resultID\":30,\"userID\":1,\"exerciseID\":1,\"date\":\"Jan 10, 2018\",\"resultParameter\":70},{\"resultID\":31,\"userID\":1,\"exerciseID\":1,\"date\":\"Jan 14, 2018\",\"resultParameter\":71}]"
+				: webTarget.request(MediaType.APPLICATION_JSON).get(String.class);
+		
+		Gson gson = new Gson();
+		resCons = gson.fromJson(test, new TypeToken<List<ResultContainer>>(){}.getType());
+		
+		return resCons.size();
+	}
+		
+	public void getResultsOfExcerciseAndUser(int exerciseID, int userID) {
+		List<ResultContainer> resCons = new ArrayList<>();
+		
+		Client client = ClientBuilder.newClient();
+		WebTarget webTarget = client.target(baseURI + "result/get_results_by_user_and_exercise?user_id="+userID+"&exercise_id="+exerciseID);
+		String test = TEST ? "[{\"resultID\":30,\"userID\":1,\"exerciseID\":1,\"date\":\"Jan 10, 2018\",\"resultParameter\":70}]" 
+				: webTarget.request(MediaType.APPLICATION_JSON).get(String.class);
+		
+		Gson gson = new Gson();
+		resCons = gson.fromJson(test, new TypeToken<List<ResultContainer>>(){}.getType());
+		
+		if (resCons.size() < 1) {
+			resContainers = null;
+		} else {				
+			resContainers = resCons;
 		}
-		
-		public void getResultsOfExcerciseAndUser(int exerciseID, int userID) {
-			
-			List<ResultContainer> resCons = new ArrayList<>();
-			
-			Client client = ClientBuilder.newClient();
-			WebTarget webTarget = client.target(baseURI + "result/get_results_by_user_and_exercise?user_id="+userID+"&exercise_id="+exerciseID);
-			String test = TEST ? "[{\"resultID\":30,\"userID\":1,\"exerciseID\":1,\"date\":\"Jan 10, 2018\",\"resultParameter\":70}]" 
-					: webTarget.request(MediaType.APPLICATION_JSON).get(String.class);
-			
-			Gson gson = new Gson();
-			resCons = gson.fromJson(test, new TypeToken<List<ResultContainer>>(){}.getType());
-			
-			
-			if (resCons.size() < 1) {
-				resContainers = null;
-			} else {				
-				resContainers = resCons;
-			}
-		}
-		
-		
+	}
+	
 	//END INFORMATION ABOUT EXERCISES IN PROGRAM
 	
 	public List<ResultContainer> getResContainers() {
@@ -212,7 +200,6 @@ public class TrainerTrainingProgramExercisesProgramsApp {
 		}
 		
 	}
-
 	
 	public void requestAllUserID() {
 		Client client = ClientBuilder.newClient();
@@ -251,7 +238,7 @@ public class TrainerTrainingProgramExercisesProgramsApp {
 		}
 		
 		return usernames;
-		}
+	}
 	
 	public String getIDfromName(String name) {
 		for (ShowUserInfoContainer user : containerAllUsers.getUsers()){

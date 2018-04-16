@@ -12,7 +12,6 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
 
 public class TrainerTrainingProgramExercisesController extends WindowController {
-	//comment
 	@FXML 
 	StackPane root;
 	

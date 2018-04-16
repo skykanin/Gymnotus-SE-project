@@ -66,7 +66,7 @@ public class ServerThread {
         context.setContextPath("/");
         server.setHandler(context);
         
-        	// This essentially joins Jersey with Jetty.
+        // This essentially joins Jersey with Jetty.
         ServletHolder serHol = context.addServlet(ServletContainer.class, "/api/*");
         serHol.setInitOrder(1);
         //Here we tell Jersey where to look for resources.
@@ -117,6 +117,5 @@ public class ServerThread {
 
 	System.out.println("[INFO] Start date: " + start);
 	System.out.println("[INFO] End date: " + end);
-        //System.in.read();
     }
 }

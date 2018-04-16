@@ -87,8 +87,6 @@ public class TrainerTrainingProgramGiveCommentsController extends WindowControll
     private ObservableList<String> progUserList = FXCollections.observableArrayList();
     private ObservableList<String> programs = FXCollections.observableArrayList();
     private ObservableList<String> users = FXCollections.observableArrayList();
-    
-    
 
     @FXML
     public void initialize() {
@@ -108,73 +106,71 @@ public class TrainerTrainingProgramGiveCommentsController extends WindowControll
     		commentTextArea.setVisible(false);
     		givenComments.setVisible(false);
     		
-    		 		
-    		}
+    	}
     }
     @FXML
     public void editComment() {
-    		String choose = givenComments.getSelectionModel().getSelectedItem();
-    		if (choose != null && choose.length() > 0) {
-    			String[] sections = choose.split(":");
-    			String[] sections2 = sections[0].split("\n");
-    			if (isProgram2) {
-    				editId = commentApp.getCommentId(sections2[1].trim(), sections[1].trim());
-    			} else {
-    				editId = commentApp.getFeedbackId(sections2[1].trim(), sections[1].trim());
-    			}
-    			changeCommentArea.setText(sections[1].trim());
-    			changeCommentField.setText(sections2[0].trim());
-    			changeCommentVisibility(true);
-    		}
-    	
-    	}
+    	String choose = givenComments.getSelectionModel().getSelectedItem();
+		if (choose != null && choose.length() > 0) {
+			String[] sections = choose.split(":");
+			String[] sections2 = sections[0].split("\n");
+			if (isProgram2) {
+				editId = commentApp.getCommentId(sections2[1].trim(), sections[1].trim());
+			} else {
+				editId = commentApp.getFeedbackId(sections2[1].trim(), sections[1].trim());
+			}
+			changeCommentArea.setText(sections[1].trim());
+			changeCommentField.setText(sections2[0].trim());
+			changeCommentVisibility(true);
+		}
+	}
     
     @FXML
     public void changeComment() {
-    		String editContent = changeCommentArea.getText();
-    		if (editContent.length() > 0) {
-    			boolean done = false;
-    			if (isProgram2) {
-    				done = commentApp.updateComment(editId, editContent.trim());
-    				this.requestAndAddComments();
-    				givenComments.setItems(commentList);
-    			} else {
-    				done = commentApp.updateFeedback(editId, editContent.trim());
-    				this.requestAndAddFeedbacks();
-    				givenComments.setItems(feedbackList);
-    			}
-    			if(done) {
-    				messageLabel2.setVisible(true);
-    				messageLabel2.setTextFill(Color.web("#000000"));
-    				messageLabel2.setText("Kommentaren er oppdatert");
-    				messageLabel.setText("");
-    			}else {
-    				messageLabel2.setVisible(true);
-    				messageLabel2.setTextFill(Color.web("#ff0000"));
-    				messageLabel2.setText("Noe gikk galt, prøv igjen senere");
-    				messageLabel.setText("");
-    				
-    			}
-    		}
-    		changeCommentVisibility(false);
+		String editContent = changeCommentArea.getText();
+		if (editContent.length() > 0) {
+			boolean done = false;
+			if (isProgram2) {
+				done = commentApp.updateComment(editId, editContent.trim());
+				this.requestAndAddComments();
+				givenComments.setItems(commentList);
+			} else {
+				done = commentApp.updateFeedback(editId, editContent.trim());
+				this.requestAndAddFeedbacks();
+				givenComments.setItems(feedbackList);
+			}
+			if(done) {
+				messageLabel2.setVisible(true);
+				messageLabel2.setTextFill(Color.web("#000000"));
+				messageLabel2.setText("Kommentaren er oppdatert");
+				messageLabel.setText("");
+			}else {
+				messageLabel2.setVisible(true);
+				messageLabel2.setTextFill(Color.web("#ff0000"));
+				messageLabel2.setText("Noe gikk galt, prøv igjen senere");
+				messageLabel.setText("");
+				
+			}
+		}
+		changeCommentVisibility(false);
     }
     
     @FXML
     public void changeCommentBack() {
-    		editId = -1;
-    		editContent = "";
-    		changeCommentVisibility(false);
+		editId = -1;
+		editContent = "";
+		changeCommentVisibility(false);
     }
     
     private void addCommentsToCommentList(List<CommentContainer> list) {
-    		commentList.clear();
-    		for (CommentContainer c : list) {
-    			commentList.add(commentApp.getProgramById(c.getProgramID())+ "\n"+c.getDate() +": "+ c.getContent());
-    		}
+		commentList.clear();
+		for (CommentContainer c : list) {
+			commentList.add(commentApp.getProgramById(c.getProgramID())+ "\n"+c.getDate() +": "+ c.getContent());
+		}
     }
     
     private void addFeedbacksToFeedbackList(List<FeedbackContainer> list) {
-    		feedbackList.clear();
+    	feedbackList.clear();
 		for (FeedbackContainer c : list) {
 			feedbackList.add(commentApp.getUserById(c.getUserID())+ "\n"+c.getDate() +": "+ c.getContent());
 		}
@@ -182,88 +178,88 @@ public class TrainerTrainingProgramGiveCommentsController extends WindowControll
     
     @FXML
     public void handleProgUserComboBox() {
-    		comboBox2.setVisible(true);
-    		String valg = progUserComboBox.getSelectionModel().getSelectedItem();
-    		if ("Program".equals(valg)) {
-    			comboBox2.setPromptText("Velg program");
-    			programs.addAll(commentApp.getProgramNames());
-    			comboBox2.setItems(programs);
-    			isProgram = true;
-    			
-    		} else if ("Medlem".equals(valg)) {
-    			comboBox2.setPromptText("Velg medlem");
-    			users.addAll(commentApp.getUserNames());
-    			comboBox2.setItems(users);
-    			isProgram = false;
-    		}
+		comboBox2.setVisible(true);
+		String valg = progUserComboBox.getSelectionModel().getSelectedItem();
+		if ("Program".equals(valg)) {
+			comboBox2.setPromptText("Velg program");
+			programs.addAll(commentApp.getProgramNames());
+			comboBox2.setItems(programs);
+			isProgram = true;
+			
+		} else if ("Medlem".equals(valg)) {
+			comboBox2.setPromptText("Velg medlem");
+			users.addAll(commentApp.getUserNames());
+			comboBox2.setItems(users);
+			isProgram = false;
+		}
     }
     @FXML
     public void handleComboBox2() {
-	    	String selected = comboBox2.getSelectionModel().getSelectedItem();
-	    	choose = selected;
-	    	commentTextArea.setVisible(true);
-	    	
-	    	if (isProgram) {
-	    		id = commentApp.getIdFromProgramName(selected);
-	    		commentTextArea.setPromptText("Skriv inn kommentar til program: " + selected );
-	    		
-	    	} else {
-	    		id = commentApp.getIdFromUsername(selected);
-	    		commentTextArea.setPromptText("Skriv inn kommentar til medlem: " + selected );
-	    	}
+    	String selected = comboBox2.getSelectionModel().getSelectedItem();
+    	choose = selected;
+    	commentTextArea.setVisible(true);
+    	
+    	if (isProgram) {
+    		id = commentApp.getIdFromProgramName(selected);
+    		commentTextArea.setPromptText("Skriv inn kommentar til program: " + selected );
+    		
+    	} else {
+    		id = commentApp.getIdFromUsername(selected);
+    		commentTextArea.setPromptText("Skriv inn kommentar til medlem: " + selected );
+    	}
     }
     
     @FXML
     public void handleProgUserComboBox2() {
-    		givenComments.setVisible(true);
-    		String valg = progUserComboBox2.getSelectionModel().getSelectedItem();
-    		if ("Program".equals(valg)) {
-    			this.addCommentsToCommentList(commentApp.getCommentsFromTrainer());
-    			givenComments.getItems().clear();
-    			givenComments.setItems(commentList);
-    			isProgram2 = true;
-    		} else if ("Medlem".equals(valg)) {
-    			this.addFeedbacksToFeedbackList(commentApp.getFeedbacksFromTrainer());
-    			givenComments.getItems().clear();
-    			givenComments.setItems(feedbackList);
-    			isProgram2 = false;
-    		}
-    		changeCommentVisibility(false);
+		givenComments.setVisible(true);
+		String valg = progUserComboBox2.getSelectionModel().getSelectedItem();
+		if ("Program".equals(valg)) {
+			this.addCommentsToCommentList(commentApp.getCommentsFromTrainer());
+			givenComments.getItems().clear();
+			givenComments.setItems(commentList);
+			isProgram2 = true;
+		} else if ("Medlem".equals(valg)) {
+			this.addFeedbacksToFeedbackList(commentApp.getFeedbacksFromTrainer());
+			givenComments.getItems().clear();
+			givenComments.setItems(feedbackList);
+			isProgram2 = false;
+		}
+		changeCommentVisibility(false);
     }
 
     
     @FXML
     public void giveComment() {
-    		String content = commentTextArea.getText();
-    		if (content.length() > 0) {
-    			if (isProgram) {
-    				if (commentApp.makeCommentToGroup(id, content)) {
-    					messageLabel2.setVisible(false);
-    					messageLabel.setTextFill(Color.web("#000000"));
-    					messageLabel.setText("Kommentaren er sendt inn for programmet " + choose);
-    					commentTextArea.setText(""); 
-    					this.requestAndAddComments();
-    					}else {
-    						messageLabel2.setVisible(false);
-    					messageLabel.setTextFill(Color.web("#ff0000"));
-    					messageLabel.setText("Noe gikk galt, prøv igjen senere.");
-    					}
-    				}
-    			 else {
-    				if (commentApp.makeFeedbackToUser(content, id)) {
-    					messageLabel.setTextFill(Color.web("#000000"));
-    					messageLabel.setText("Kommentaren er sendt inn til bruker " + choose);
-    					commentTextArea.setText("");
-    					this.requestAndAddFeedbacks();
-    					messageLabel2.setVisible(false);
-    				} else {
-    					messageLabel2.setVisible(false);
-    					messageLabel.setTextFill(Color.web("#ff0000"));
-    					messageLabel.setText("Noe gikk galt, prøv igjen senere.");
-    					}
-    			 	}
-    			}
-    		}
+		String content = commentTextArea.getText();
+		if (content.length() > 0) {
+			if (isProgram) {
+				if (commentApp.makeCommentToGroup(id, content)) {
+					messageLabel2.setVisible(false);
+					messageLabel.setTextFill(Color.web("#000000"));
+					messageLabel.setText("Kommentaren er sendt inn for programmet " + choose);
+					commentTextArea.setText(""); 
+					this.requestAndAddComments();
+					}else {
+						messageLabel2.setVisible(false);
+					messageLabel.setTextFill(Color.web("#ff0000"));
+					messageLabel.setText("Noe gikk galt, prøv igjen senere.");
+					}
+				}
+			 else {
+				if (commentApp.makeFeedbackToUser(content, id)) {
+					messageLabel.setTextFill(Color.web("#000000"));
+					messageLabel.setText("Kommentaren er sendt inn til bruker " + choose);
+					commentTextArea.setText("");
+					this.requestAndAddFeedbacks();
+					messageLabel2.setVisible(false);
+				} else {
+					messageLabel2.setVisible(false);
+					messageLabel.setTextFill(Color.web("#ff0000"));
+					messageLabel.setText("Noe gikk galt, prøv igjen senere.");
+					}
+			 	}
+			}
+		}
     
     
     
@@ -277,7 +273,7 @@ public class TrainerTrainingProgramGiveCommentsController extends WindowControll
     }
     
     private void changeCommentVisibility(boolean value) {
-    		changeCommentArea.setVisible(value);
+    	changeCommentArea.setVisible(value);
 		changeCommentField.setVisible(value);
 		commentToLabel.setVisible(value);
 		changeCommentButton.setVisible(value);
@@ -287,15 +283,12 @@ public class TrainerTrainingProgramGiveCommentsController extends WindowControll
     }
     
     private void requestAndAddFeedbacks() {
-    		commentApp.requestFeedbackGiven();
+    	commentApp.requestFeedbackGiven();
 		this.addFeedbacksToFeedbackList(commentApp.getFeedbacksFromTrainer());
     }
 
     private void requestAndAddComments() {
-    		commentApp.requestCommentGiven();
+    	commentApp.requestCommentGiven();
 		this.addCommentsToCommentList(commentApp.getCommentsFromTrainer());
     }
-
-
-
 }

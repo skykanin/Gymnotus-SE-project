@@ -1,8 +1,6 @@
 package tdt4140.gr1832.app.containers;
 
 public class ExerciseContainer {
-	
-
 	private int exerciseID;
 	private int programID;
 	private String description;

@@ -75,7 +75,6 @@ public class TrainerTrainingProgramExercisesExercisesApp {
 	}
 		
 	public void requestExerciseContainers() {
-		
 		namesOfExercises.clear();
 		
 		Client client = ClientBuilder.newClient();
@@ -153,13 +152,11 @@ public class TrainerTrainingProgramExercisesExercisesApp {
 	
 
 	//END INFORMATION ABOUT EXERCISES IN PROGRAM
-	
 	public List<ResultContainer> getResContainers() {
 		return resContainers;
 	}
 
 	public void requestUserInformation_ID(String id) {
-
 		Client client = ClientBuilder.newClient();
 		WebTarget webTarget = client.target(baseURI + "user/"+id+"/user_info_id");
 		String test = TEST ? "{\"userID\":1,\"username\":\"testbruker\",\"name\":\"Henrik Giske Fosse\",\"email\":\"henrik@fosse.no\",\"phone\":\"23443443\",\"gender\":0,\"age\":22,\"isAnonymous\":true,\"shareExerciseData\":true,\"shareHealthData\":true,\"isTrainer\":true}" 
@@ -239,7 +236,6 @@ public class TrainerTrainingProgramExercisesExercisesApp {
 	}
 
 	public List<ExerciseProgramContainer> getContainerExercisePrograms() {
-		
 		return containerExercisePrograms;
 	}
 
@@ -251,6 +247,5 @@ public class TrainerTrainingProgramExercisesExercisesApp {
 
 	public void setExContainers(List<ExerciseContainer> exCons) {
 		this.exContainers = exCons;
-		
 	}
 }

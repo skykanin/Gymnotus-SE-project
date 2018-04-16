@@ -54,7 +54,6 @@ public class TrainerDashboardAppTest {
 		Assert.assertEquals("Brukeren er anonym", user.getUsername());
 	}
 	
-	
 	@Test
 	public void testGetters() {
 		showAllUserContainer.addUserInfo(showUserInfoContainer);
@@ -78,8 +77,6 @@ public class TrainerDashboardAppTest {
 		Assert.assertEquals(Arrays.asList(60),testapp.getRestingHRs());
 		testapp.setContainerUser(showUserInfoContainer1);
 		Assert.assertEquals(showUserInfoContainer1, testapp.getContainerUser());
-		
-		
 	}
 	
 	@Test

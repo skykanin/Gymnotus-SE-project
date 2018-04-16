@@ -1,14 +1,12 @@
 package tdt4140.gr1832.app.containers;
 
 public class ShowExerciseDataContainerFromProgram {
-
 	private int resultID;
 	private int userID;
 	private int exerciseID;
 	private String date;
 	private int resultParameter;
 	private String description;
-	
 	
 	public ShowExerciseDataContainerFromProgram(int resultID, int userID, String description, int exerciseID, String date,
 			int resultParameter) {
@@ -39,6 +37,4 @@ public class ShowExerciseDataContainerFromProgram {
 	public String getDate() {
 		return date;
 	}
-	
-	
 }

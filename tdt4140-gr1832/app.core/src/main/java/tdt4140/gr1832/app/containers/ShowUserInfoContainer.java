@@ -1,15 +1,14 @@
 package tdt4140.gr1832.app.containers;
 
 public class ShowUserInfoContainer {
-
 		private String userType;
 		private String name;
 		private String username;
 		private int age;
 		private int gender;
 		private String password; 
-		private String userID; //lag metoder
-		private String email; //lag metoder
+		private String userID;
+		private String email; 
 		private String phone;
 		private boolean isAnonymous;
 		private boolean shareHealthData;
@@ -38,7 +37,7 @@ public class ShowUserInfoContainer {
 		}
 
 		public void setUserId(String id) {
-				this.userID = id;
+			this.userID = id;
 		}
 		public String getPhone() {
 			return phone;
@@ -55,10 +54,6 @@ public class ShowUserInfoContainer {
 		public String getName() {
 			return this.name;
 		}
-		
-
-	//username:
-		
 		
 		public void setUsername(String username) {
 			this.username = username;
@@ -80,24 +75,18 @@ public class ShowUserInfoContainer {
 			return this.username;
 		}
 		
-	
-		
 		public int getAge() {
 			return this.age;
 		}
-	//gender
 		
 		public int getGender() {
 			return this.gender;
 		}
-	//password:
-		
 		
 		public String getPassword() {
 			return this.password;
-			}
-	//userID
-		
+		}
+
 		public String getUserID() {
 			return this.userID;
 		
@@ -109,7 +98,6 @@ public class ShowUserInfoContainer {
 			return (this.name + this.username + this.age + this.gender + this.password);
 		}
 		
-
 		public boolean getIsAnonymous() {
 			return isAnonymous;
 		}

@@ -13,7 +13,6 @@ import tdt4140.gr1832.app.containers.ShowHealthInfoContainer;
 import tdt4140.gr1832.app.containers.ShowUserInfoContainer;
 
 public class TrainerMemberInfoAppTest extends TestCase {
-	//Serverrequests are testted elsewere
 	ShowUserInfoContainer showUserInfoContainer;
 	ShowUserInfoContainer showUserInfoContainer1;
 	ShowUserInfoContainer showUserInfoContainer2;
@@ -21,9 +20,6 @@ public class TrainerMemberInfoAppTest extends TestCase {
 	ShowAllUsersContainer showAllUserContainer; 
 	
 	TrainerMemberInfoApp testapp = new TrainerMemberInfoApp();
-	
-	
-	
 	
 	@Before
 	public void setUp() {
@@ -139,8 +135,6 @@ public class TrainerMemberInfoAppTest extends TestCase {
 		a.setShareHealthData(false);
 		Assert.assertEquals(false, a.getShareHealthData());
 		Assert.assertEquals("navnunavn00password", a.toString());
-		
-		
 	}
 	
 	@Test
@@ -191,49 +185,40 @@ public class TrainerMemberInfoAppTest extends TestCase {
 		Assert.assertEquals(60, showHealthInfoContainer.getRestingHR());
 	}
 	
-	
-	
 	@Test
 	public void testShowUserInfoContainerUsername() {
 		Assert.assertEquals("brukernavn", showUserInfoContainer.getUsername());
-	
 	}
 	@Test
 	public void testShowUserInfoContainerName() {
 		Assert.assertEquals("navn", showUserInfoContainer.getName());
-	
 	}
+	
 	@Test
 	public void testShowUserInfoContainerPassword() {
 		Assert.assertEquals("passord", showUserInfoContainer.getPassword());
-	
 	}
+	
 	@Test
 	public void testShowUserInfoContainerAge() {
 		Assert.assertEquals(11, showUserInfoContainer.getAge());
-	
-	
-	
 	}
+	
 	@Test
 	public void testShowUserInfoContainerGender() {
 		Assert.assertEquals(0, showUserInfoContainer.getGender());
 		Assert.assertEquals(1, showUserInfoContainer1.getGender());
 		Assert.assertEquals(2, showUserInfoContainer2.getGender());
-
-	
 	}
 	@Test
 	public void testShowUserInfoContainerEmail() {
 		Assert.assertEquals("email", showUserInfoContainer.getEmail());
-		
 		Assert.assertNotEquals("mail", showUserInfoContainer.getEmail());
 	
 	}
 	@Test
 	public void testShowUserInfoContainerPhone() {
 		Assert.assertEquals("telefon", showUserInfoContainer.getPhone());
-	
 	}
 	
 	@Test
@@ -258,7 +243,4 @@ public class TrainerMemberInfoAppTest extends TestCase {
 		Assert.assertTrue("Ikke spesifisert".equals(testapp.checkNull("null")));
 		Assert.assertFalse("Ikke spesifisert".equals(testapp.checkNull("12")));
 	}
-
-	
-	
 }

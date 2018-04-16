@@ -30,7 +30,6 @@ import tdt4140.gr1832.app.containers.FeedbackContainer;
 import tdt4140.gr1832.app.containers.ShowUserInfoContainer;
 
 public class TrainerTrainingProgramGiveCommentsApp {
-	
 	private Client client;
 	private WebTarget webTarget;
 	private String test;
@@ -66,7 +65,6 @@ public class TrainerTrainingProgramGiveCommentsApp {
 		this.setUpConnection("feedback/create_feedback");
 		Date date = new Date();
 		//POST
-		//user_id(int), program_id(int), content(String) og date(på format yyyy-mm-dd
 		  MultivaluedMap<String, String> formData = new MultivaluedHashMap<String, String>();
 		  formData.add("user_id", userId + "");
 		  formData.add("trainer_id", trainerId + "");

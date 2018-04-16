@@ -57,7 +57,6 @@ public class ResultDAOTest {
 		//Check if getResult worked
 		Assert.assertNotNull(result);
 		
-		
 		testNum++;
 	}
 	
@@ -109,7 +108,6 @@ public class ResultDAOTest {
 		Assert.assertEquals(1, results.size());
 		User user = results.get(0);
 		
-		//"test", "test", "test", "test@test.com", "1234", 1, 18, true, true, true, true
 		Assert.assertEquals("test", user.getName());
 		Assert.assertEquals("test", user.getUsername());
 		Assert.assertEquals("test@test.com", user.getEmail());
@@ -176,7 +174,6 @@ public class ResultDAOTest {
 		Assert.assertEquals(200, response1.getStatus());
 		
 		String json = resultDAO.getResultsByProgramUser(0, 0);
-		System.out.println(json);
 		List<Result> results = gson.fromJson(json,new TypeToken<List<Result>>(){}.getType());
 		
 		Assert.assertEquals(2, results.size());

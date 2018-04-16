@@ -1,7 +1,6 @@
 package tdt4140.gr1832.app.containers;
 
 public class ResultContainer {
-	
 	private int resultID;
 	private int userID;
 	private int exerciseID;

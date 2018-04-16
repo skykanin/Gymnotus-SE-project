@@ -26,7 +26,6 @@ public class TrainerTrainingProgramOverviewControllerTest extends FxAppTest {
     private final String TilTreningskommentarID = "#TilTreningskommentar";
     private final String TilTreningspameldteID = "#TilTreningspameldte";
 
-    
     @After
     public void tearDown() {
     		FxApp.TEST = false;
@@ -77,15 +76,7 @@ public class TrainerTrainingProgramOverviewControllerTest extends FxAppTest {
         clickOn(TilMedlemmerID);
         assertEquals("TrainerMembers.fxml", FxApp.getAS().getWindowName());
     }
-    
-//    @Test
-//    public void verifyNavigationSettings() {
-//        assertEquals("TrainerTrainingProgramOverview.fxml", FxApp.getAS().getWindowName());
-//        clickOn(TilInnstillingerID);
-//        assertEquals("TrainerSettings.fxml", FxApp.getAS().getWindowName());
-//    }
 
-    
     @Test
     public void verifyNavigationOverview() {
         assertEquals("TrainerTrainingProgramOverview.fxml", FxApp.getAS().getWindowName());

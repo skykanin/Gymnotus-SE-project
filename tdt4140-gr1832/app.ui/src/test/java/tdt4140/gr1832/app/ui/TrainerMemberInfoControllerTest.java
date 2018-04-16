@@ -20,20 +20,6 @@ import tdt4140.gr1832.app.containers.ShowUserInfoContainer;
 
 public class TrainerMemberInfoControllerTest extends FxAppTest {
 
-//    private final String TilDashboardID = "#TilDashboard";
-//    private final String TilMedlemmerID = "#TilMedlemmer";
-//    private final String TilTreningsprogramID = "#TilTreningsprogram";
-//    private final String TilInnstillingerID = "#TilInnstillinger";
-//    
-//    @Before
-//    public void setUp() {
-//    		FxApp.TEST = true;
-//    }
-//    
-//    @After
-//    public void tearDown() {
-//    		FxApp.TEST = false;
-//    } 
 	@Override
 	public void start(Stage stage) throws Exception {
 		FxApp.TEST = true;
@@ -45,58 +31,4 @@ public class TrainerMemberInfoControllerTest extends FxAppTest {
         stage.setScene(scene);
         stage.show();
 	}
-//
-//    @Test
-//    public void verifyButtons() {
-//        verifyThat(TilDashboardID, hasText("    DASHBOARD"));
-//        verifyThat(TilTreningsprogramID, hasText("    TRENINGSPROGRAM"));
-//        verifyThat(TilMedlemmerID, hasText("    MEDLEMMER"));
-//        verifyThat(TilInnstillingerID, hasText("    INNSTILLINGER"));
-//    }
-//    
-//  @Test
-//  public void verifyNavigationDashboard() {
-//      assertEquals(FxApp.getAS().getWindowName(),"TrainerMemberInfo.fxml");
-//      clickOn(TilDashboardID);
-//      assertEquals(FxApp.getAS().getWindowName(),"TrainerDashboard.fxml");
-//  }
-//  
-//  @Test
-//  public void verifyNavigationTrainingProgram() {
-//      assertEquals(FxApp.getAS().getWindowName(),"TrainerMemberInfo.fxml");
-//      clickOn(TilTreningsprogramID);
-//      assertEquals(FxApp.getAS().getWindowName(),"TrainerTrainingProgramOverview.fxml");
-//  }
-//  
-//  @Test
-//  public void verifyNavigationMembers() {
-//      assertEquals(FxApp.getAS().getWindowName(),"TrainerMemberInfo.fxml");
-//      clickOn(TilMedlemmerID);
-//      assertEquals(FxApp.getAS().getWindowName(),"TrainerMembers.fxml");
-//  }
-//  
-////  @Test
-////  public void verifyNavigationSettings() {
-////      assertEquals(FxApp.getAS().getWindowName(),"TrainerMemberInfo.fxml");
-////      clickOn(TilInnstillingerID);
-////      assertEquals(FxApp.getAS().getWindowName(),"TrainerSettings.fxml");
-////  }
-//
-//  @Test
-//  public void testFieldExist() {
-//      //Tester at feltene so skal vere der finnes
-//      Assert.assertTrue(lookup("#datePickerField").query() instanceof JFXDatePicker);
-//      Assert.assertTrue(lookup("#dateField").query() instanceof JFXTextField);
-//      Assert.assertTrue(lookup("#heightField").query() instanceof JFXTextField);
-//      Assert.assertTrue(lookup("#weightField").query() instanceof JFXTextField);
-//      Assert.assertTrue(lookup("#stepsField").query() instanceof JFXTextField);
-//      Assert.assertTrue(lookup("#restingHRField").query() instanceof JFXTextField);
-//      Assert.assertTrue(lookup("#nameField").query() instanceof JFXTextField);
-//      Assert.assertTrue(lookup("#usernameField").query() instanceof JFXTextField);
-//      Assert.assertTrue(lookup("#emailField").query() instanceof JFXTextField);
-//      Assert.assertTrue(lookup("#tlfField").query() instanceof JFXTextField);
-//      Assert.assertTrue(lookup("#genderField").query() instanceof JFXTextField);
-//      Assert.assertTrue(lookup("#datePickerField").query() instanceof JFXDatePicker);
-//      Assert.assertTrue(lookup("#ageField").query() instanceof JFXTextField);
-//  }
 }

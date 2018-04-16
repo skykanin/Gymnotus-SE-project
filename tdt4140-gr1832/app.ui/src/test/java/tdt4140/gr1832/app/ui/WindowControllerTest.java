@@ -29,7 +29,6 @@ public class WindowControllerTest extends FxAppTest {
         this.mockLogin();
     }
 
-
     public void mockLogin() {
         final String username = "mockbruker";
         final String password = "LUL";
@@ -38,11 +37,9 @@ public class WindowControllerTest extends FxAppTest {
         FxApp.getAS().setWindow("TrainerDashboard.fxml");
     }
 
-
     public void setMockUser(String username, String password) {
         mockUser = new ShowUserInfoContainer(username, password, "name", 10, 1, "mailto@ntnu.no", "123213", true, true, true, false);
         FxApp.getAS().DUMMYsetuser(mockUser);
-
     }
 
     @Test

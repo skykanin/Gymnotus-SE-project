@@ -4,10 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ShowAllUsersContainer {
-	
 	private List<ShowUserInfoContainer> users = new ArrayList<>();
-	
-	
 	
 	public void addUserInfo(ShowUserInfoContainer userInfo) {
 		users.add(userInfo);

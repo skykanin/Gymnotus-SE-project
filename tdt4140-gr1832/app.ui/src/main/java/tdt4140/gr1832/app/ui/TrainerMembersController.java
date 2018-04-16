@@ -36,22 +36,21 @@ public class TrainerMembersController extends WindowController {
 	public void initialize() {
 		root.setPickOnBounds(false);
 		if(!FxApp.TEST) {
-		app.requestAllUserID();
-		ObservableList<String> names = FXCollections.observableArrayList();
-		ObservableList<String> trainers = FXCollections.observableArrayList();
-		for (ShowUserInfoContainer c : app.getUsers()) {
-			String name = c.getName();
-			if (c.getIsTrainer()) {
-				trainers.add(name);
-			}else {
-				names.add(name);
+			app.requestAllUserID();
+			ObservableList<String> names = FXCollections.observableArrayList();
+			ObservableList<String> trainers = FXCollections.observableArrayList();
+			for (ShowUserInfoContainer c : app.getUsers()) {
+				String name = c.getName();
+				if (c.getIsTrainer()) {
+					trainers.add(name);
+				}else {
+					names.add(name);
+				}
 			}
-		}
-		trenerListe.setItems(trainers);
-		medlemsListe.setItems(names);
+			trenerListe.setItems(trainers);
+			medlemsListe.setItems(names);
 		}
 	}
-	
 	
 	@FXML
 	private void velgMedlem(ActionEvent event) throws IOException {
@@ -67,7 +66,6 @@ public class TrainerMembersController extends WindowController {
 			NavigerTilSide("TrainerMemberInfo.fxml", event, id);		
 			}
 		}
-		
 	}
 	
 	@FXML
@@ -75,19 +73,16 @@ public class TrainerMembersController extends WindowController {
 		if(FxApp.TEST) {
 			NavigerTilSide("TrainerMemberInfo.fxml", event, "1");
 		} else {
-		String preferedUser = trenerListe.getSelectionModel().getSelectedItem();
-		if (preferedUser == null) {
-			valgTFeil.setText("Du har ikke valgt trener");
-		} else {
-			valgTFeil.setText("");
-			String id = app.getIDfromName(preferedUser);
-			NavigerTilSide("TrainerMemberInfo.fxml", event, id);
-		}
+			String preferedUser = trenerListe.getSelectionModel().getSelectedItem();
+			if (preferedUser == null) {
+				valgTFeil.setText("Du har ikke valgt trener");
+			} else {
+				valgTFeil.setText("");
+				String id = app.getIDfromName(preferedUser);
+				NavigerTilSide("TrainerMemberInfo.fxml", event, id);
+			}
 		}
 	}
-	
-
-
 }
 
 

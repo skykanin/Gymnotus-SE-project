@@ -34,8 +34,6 @@ import tdt4140.gr1832.app.containers.ShowUserInfoContainer;
 import tdt4140.gr1832.app.core.TrainerTrainingProgramAttendantsApp;
 
 public class TrainerTrainingProgramAttendantsController extends WindowController {
-
-	
 	@FXML
 	Label o1Label;
 	
@@ -166,7 +164,6 @@ public class TrainerTrainingProgramAttendantsController extends WindowController
 		     public String toString(LocalDate date) {
 		         if (date != null) {
 		        	 	return dateFormatter.format(date);
-		        	 	//result = result.substring(0, 1).toUpperCase()+ result.substring(1)
 		         } else {
 		             return "";
 		         }
@@ -186,7 +183,6 @@ public class TrainerTrainingProgramAttendantsController extends WindowController
 			
 			@Override
 			public DateCell call(DatePicker param) {
-				// TODO Auto-generated method stub
 				return new DateCell() {
 					public void updateItem(LocalDate item, boolean empty) {
 						super.updateItem(item, empty);
@@ -194,7 +190,6 @@ public class TrainerTrainingProgramAttendantsController extends WindowController
 						if(checkStringDate(dateS,eDataApp.getDates())) {
 							setDisable(true);
 							setStyle("-fx-background-color: #0b88a10a");
-							//setStyle("fx")
 						} else {
 							//do nothing
 						}	
@@ -348,9 +343,7 @@ public class TrainerTrainingProgramAttendantsController extends WindowController
 		}
 		updateProgram();
 	}
-	
   
-    
     @FXML
 	public void datePicker() {
 		LocalDate date = datePickerField.getValue();
@@ -370,12 +363,12 @@ public class TrainerTrainingProgramAttendantsController extends WindowController
     
     @FXML
     public void lastDay() {
-    		if (dayCounter > 0) {
-    			dayCounter-= 1;
-    		} else {
-    			dayCounter = eDataApp.getDates().size()-1;
-    		}
-    		updateInfoFieldsOnDate(dayCounter);
+		if (dayCounter > 0) {
+			dayCounter-= 1;
+		} else {
+			dayCounter = eDataApp.getDates().size()-1;
+		}
+		updateInfoFieldsOnDate(dayCounter);
     }
     
     @FXML

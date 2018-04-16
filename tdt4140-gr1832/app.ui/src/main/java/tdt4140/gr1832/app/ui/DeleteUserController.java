@@ -43,11 +43,8 @@ public class DeleteUserController extends WindowController {
 		root.setPickOnBounds(false);
 	}
 
-	
 	@FXML
 	public void SlettProfil(ActionEvent event) throws InterruptedException, IOException {
-		
-	
         String uname = AS.getLoggedInUser().getUsername();
         String pword = Passord.getText();
         
@@ -61,17 +58,13 @@ public class DeleteUserController extends WindowController {
 		    formData.add("password", pword);
 		    Response response = webTarget.request().post(Entity.form(formData));
 		    
-		    System.out.println(formData);
-		    System.out.println(response);
-		    
 		    if (response.toString().contains("status=200, reason=OK}}")) {
 		    	NavigerTilSide("LoginScreen.fxml", event);
 				FxApp.getAS().DUMMYsetuser(null);
 		    }
 		    else {
 		    	Respons.setText("Brukeren din ble IKKE slettet");
-		    }
-			
+		    }	
         }
         else {
             Respons.setText("Ugyldig passord");
@@ -81,7 +74,5 @@ public class DeleteUserController extends WindowController {
 	@FXML
 	public void Avbryt(ActionEvent event) throws IOException {
 		NavigerTilSide("TrainerSettings.fxml", event);
-	}
-
-	
+	}	
 }

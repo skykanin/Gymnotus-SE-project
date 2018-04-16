@@ -20,7 +20,6 @@ public class TrainerTrainingProgramExercisesExercisesAppTest{
 	ShowUserInfoContainer userContainer1;
 	ShowUserInfoContainer userContainer2;
 	
-	
 	ShowAllUsersContainer showAllUserContainer; 
 	TrainerTrainingProgramExercisesExercisesApp testapp = new TrainerTrainingProgramExercisesExercisesApp();
 	List<ExerciseContainer> exCons = new ArrayList<>();
@@ -31,8 +30,6 @@ public class TrainerTrainingProgramExercisesExercisesAppTest{
 	List<ResultContainer> resCons = new ArrayList<>();
 	List<Integer> userids = new ArrayList<>();
 	ResultContainer resCon2;
-	
-	
 	
 	@Before
 	public void setup() {
@@ -90,7 +87,6 @@ public class TrainerTrainingProgramExercisesExercisesAppTest{
 	@Test
 	public void testGetResultsOfExercise() {
 		testapp.getResultsOfExercise(1);
-		System.out.println(testapp.getResContainers());
 		Assert.assertEquals(2, testapp.getResContainers().size());
 	}
 	

@@ -28,10 +28,9 @@ public class TrainerDashboardControllerTest extends FxAppTest {
     
     @Before
     public void setUp() {
-    	
-    		
+    	  		
     }
-    
+  
 	public void start(Stage stage) throws Exception {
 		FxApp.TEST = true;
 		FxApp.InitializeAS("TrainerDashboard.fxml");
@@ -72,12 +71,6 @@ public class TrainerDashboardControllerTest extends FxAppTest {
         assertEquals("TrainerMembers.fxml", FxApp.getAS().getWindowName());
     }
     
-//    @Test
-//    public void verifyNavigationSettings() {
-//        assertEquals("TrainerDashboard.fxml", FxApp.getAS().getWindowName());
-//        clickOn(TilInnstillingerID);
-//        assertEquals("TrainerSettings.fxml", FxApp.getAS().getWindowName());
-//    }
     @After
     public void tearDown() {
     	FxApp.TEST = false;

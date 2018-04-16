@@ -136,8 +136,6 @@ public class TrainerTrainingProgramAttendantsApp {
 		int counter = 0;
 		resultMap.clear();
 		while (counter < healthList.size() || counter < resultList.size()) {
-			
-			
 			//Check if there are more Healthinfo in healthList
 			if( counter < healthList.size()) {
 				ShowHealthInfoContainer healthContainer = healthList.get(counter);
@@ -350,7 +348,6 @@ public class TrainerTrainingProgramAttendantsApp {
 	}
 
 	//Helpmethods for tests
-	
 	public void addContainerHealthList(List<ShowHealthInfoContainer> hContainers) {
 		healthList.addAll(hContainers);
 	}

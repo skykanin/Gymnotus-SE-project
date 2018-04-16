@@ -13,8 +13,6 @@ public class TrainerTrainingProgramOverviewAppTest {
 	ExerciseProgramContainer container; 
 	TrainerTrainingProgramOverviewApp testapp;
 	
-	 
-	
 	@Before
 	public void setUp() {
 		testapp.setTest(true);
@@ -23,9 +21,7 @@ public class TrainerTrainingProgramOverviewAppTest {
 		testapp.requestExerciseInformationFromProgramID(1);
 		container = new ExerciseProgramContainer(11, "Overskrift", "Dette beskriver programmet");
 	}
-	
-	
-	
+
 	@Test
 	public void testContainerConstructor() {
 		Assert.assertEquals("Overskrift", container.getName());

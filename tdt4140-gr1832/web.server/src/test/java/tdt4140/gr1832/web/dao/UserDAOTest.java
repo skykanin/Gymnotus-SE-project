@@ -97,14 +97,14 @@ public class UserDAOTest {
     
     @Test
     public void testUserExists() {
-    		Response response = UserDAO.userExists("test");
-    		Assert.assertEquals(200, response.getStatus());
+		Response response = UserDAO.userExists("test");
+		Assert.assertEquals(200, response.getStatus());
     }
     
     @Test
     public void testVerifyPassword() {
-    		Response response = UserDAO.verifyPassword("test", "test");
-    		Assert.assertEquals(200, response.getStatus());
+		Response response = UserDAO.verifyPassword("test", "test");
+		Assert.assertEquals(200, response.getStatus());
     }
     
     @Test
@@ -120,21 +120,21 @@ public class UserDAOTest {
     
     @Test
     public void testUpdateUser() {
-    		Response response = userDAO.updateUser("test", "test", "new_name", "new_email", "1111", 1, 22, false, false, false, false);
-    		Assert.assertEquals(200, response.getStatus());
-    		String json = UserDAO.getUserInfoByID(0);
-    		Assert.assertNotNull(json);
-    		User updatedUser = gson.fromJson(json, User.class);
-    		
-    		Assert.assertEquals("new_name", updatedUser.getName());
-    		Assert.assertEquals("new_email", updatedUser.getEmail());
-    		Assert.assertEquals("1111", updatedUser.getPhone());
-    		Assert.assertEquals(1, (int)updatedUser.getGender());
-    		Assert.assertEquals(22, (int)updatedUser.getAge());
-    		Assert.assertFalse(updatedUser.getIsAnonymous());
-    		Assert.assertFalse(updatedUser.getIsTrainer());
-    		Assert.assertFalse(updatedUser.getShareExerciseData());
-    		Assert.assertFalse(updatedUser.getShareHealthData());
+		Response response = userDAO.updateUser("test", "test", "new_name", "new_email", "1111", 1, 22, false, false, false, false);
+		Assert.assertEquals(200, response.getStatus());
+		String json = UserDAO.getUserInfoByID(0);
+		Assert.assertNotNull(json);
+		User updatedUser = gson.fromJson(json, User.class);
+		
+		Assert.assertEquals("new_name", updatedUser.getName());
+		Assert.assertEquals("new_email", updatedUser.getEmail());
+		Assert.assertEquals("1111", updatedUser.getPhone());
+		Assert.assertEquals(1, (int)updatedUser.getGender());
+		Assert.assertEquals(22, (int)updatedUser.getAge());
+		Assert.assertFalse(updatedUser.getIsAnonymous());
+		Assert.assertFalse(updatedUser.getIsTrainer());
+		Assert.assertFalse(updatedUser.getShareExerciseData());
+		Assert.assertFalse(updatedUser.getShareHealthData());
     }
     
     @Test
@@ -142,7 +142,6 @@ public class UserDAOTest {
 		String json = UserDAO.getUserInfoByID(0);
 		Assert.assertNotNull(json);
 		
-		//User user_info = new User();
 		User user_info = gson.fromJson(json, User.class);
 		
 		Assert.assertNotNull(user_info);

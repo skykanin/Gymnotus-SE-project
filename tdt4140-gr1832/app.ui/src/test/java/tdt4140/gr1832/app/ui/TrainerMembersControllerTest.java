@@ -71,11 +71,5 @@ public class TrainerMembersControllerTest extends FxAppTest {
       clickOn(TilMedlemmerID);
       assertEquals(FxApp.getAS().getWindowName(),"TrainerMembers.fxml");
   }
-  
-//  @Test
-//  public void verifyNavigationSettings() {
-//      assertEquals(FxApp.getAS().getWindowName(),"TrainerMembers.fxml");
-//      clickOn(TilInnstillingerID);
-//      assertEquals(FxApp.getAS().getWindowName(),"TrainerSettings.fxml");
-//  }
+
 }
