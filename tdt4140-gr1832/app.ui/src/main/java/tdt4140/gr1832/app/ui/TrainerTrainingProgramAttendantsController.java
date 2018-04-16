@@ -272,7 +272,7 @@ public class TrainerTrainingProgramAttendantsController extends WindowController
 					o2Label.setText("");
 					o3Label.setText("");
 					o4Label.setText("");
-					messageLabel.setText("Ingen okter gjennomfort denne dagen");
+					messageLabel.setText("Ingen økter gjennomfort denne dagen");
 				} else {
 					setFieldVisibility(true);
 					messageLabel.setText("");

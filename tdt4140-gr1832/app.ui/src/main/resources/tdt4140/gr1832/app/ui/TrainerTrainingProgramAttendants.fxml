@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="660.0" prefWidth="1200.0" stylesheets="@styles/main.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tdt4140.gr1832.app.ui.TrainerTrainingProgramAttendantsController">
+<VBox prefHeight="660.0" prefWidth="1200.0" stylesheets="@styles/main.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tdt4140.gr1832.app.ui.TrainerTrainingProgramAttendantsController">
   <children>
     <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="451.0" prefWidth="487.0" style="-fx-background-color: #FFFFFF;" stylesheets="@styles/main.css" VBox.vgrow="ALWAYS">
       <children>
@@ -42,9 +42,9 @@
                         <Cursor fx:constant="TEXT" />
                      </cursor>
                   </Label>
-                  <JFXTextField fx:id="weightField" alignment="CENTER" editable="false" focusColor="#405aa800" layoutX="200.0" layoutY="380.0" prefWidth="170.0" />
-                  <JFXTextField fx:id="stepsField" alignment="CENTER" editable="false" focusColor="#405aa800" layoutX="200.0" layoutY="430.0" prefWidth="170.0" />
-                  <JFXTextField fx:id="restingHRField" alignment="CENTER" editable="false" focusColor="#405aa800" layoutX="200.0" layoutY="480.0" prefWidth="170.0" />
+                  <JFXTextField fx:id="weightField" alignment="CENTER" editable="false" focusColor="#405aa800" layoutX="182.0" layoutY="380.0" prefHeight="27.0" prefWidth="187.0" />
+                  <JFXTextField fx:id="stepsField" alignment="CENTER" editable="false" focusColor="#405aa800" layoutX="182.0" layoutY="430.0" prefHeight="27.0" prefWidth="187.0" />
+                  <JFXTextField fx:id="restingHRField" alignment="CENTER" editable="false" focusColor="#405aa800" layoutX="182.0" layoutY="480.0" prefHeight="27.0" prefWidth="187.0" />
                   <JFXDatePicker fx:id="datePickerField" defaultColor="#0b87a1" editable="false" layoutX="408.0" layoutY="516.0" onAction="#datePicker" />
                   <Label fx:id="ageLabel" layoutX="100.0" layoutY="280.0" text="Alder" textFill="#0b87a1">
                      <font>
@@ -56,8 +56,8 @@
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <JFXTextField fx:id="genderField" alignment="CENTER" editable="false" focusColor="#4d4d4d00" layoutX="200.0" layoutY="330.0" prefHeight="27.0" prefWidth="170.0" />
-                  <JFXTextField fx:id="ageField" alignment="CENTER" editable="false" focusColor="#4d4d4d00" layoutX="200.0" layoutY="280.0" prefHeight="27.0" prefWidth="170.0" />
+                  <JFXTextField fx:id="genderField" alignment="CENTER" editable="false" focusColor="#4d4d4d00" layoutX="182.0" layoutY="330.0" prefHeight="27.0" prefWidth="187.0" />
+                  <JFXTextField fx:id="ageField" alignment="CENTER" editable="false" focusColor="#4d4d4d00" layoutX="182.0" layoutY="280.0" prefHeight="27.0" prefWidth="187.0" />
                   <Label fx:id="o1Label" alignment="CENTER" layoutX="509.0" layoutY="280.0" prefHeight="23.0" prefWidth="187.0" style="-fx-alignment: CENTER;" text="O1" textFill="#0b87a1">
                      <font>
                         <Font size="18.0" />
@@ -175,7 +175,7 @@
                   <Font size="18.0" />
                </font>
             </JFXTextField>
-            <StackPane fx:id="root" layoutX="0.0" layoutY="0.0" prefHeight="660.0" prefWidth="1200.0" />
+            <StackPane fx:id="root" prefHeight="660.0" prefWidth="1200.0" />
       </children>
     </AnchorPane>
   </children>
