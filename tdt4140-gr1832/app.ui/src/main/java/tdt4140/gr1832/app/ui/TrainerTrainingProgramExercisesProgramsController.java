@@ -104,13 +104,13 @@ public class TrainerTrainingProgramExercisesProgramsController extends WindowCon
 		chart2.getData().clear();
 		chart3.getData().clear();
 
-		memberComboBox.getSelectionModel().clearSelection(); //FÅ memberComboBox tilbake til default
+		memberComboBox.getSelectionModel().clearSelection(); //Faa memberComboBox tilbake til default
 		
 		programName = programComboBox.getSelectionModel().getSelectedItem();
 		
 				
     		app.getExercisesOnAProgram(app.getProgramIDfromName(programName));		
-    		infoText.setText("Velg et medlem for å visualisere resultater");
+    		infoText.setText("Velg et medlem for aa visualisere resultater");
 		programInfoText.setText("Du ser resultater til programmet '" + programName + "'. Se et annet: " );
 			
 			
@@ -414,7 +414,7 @@ public class TrainerTrainingProgramExercisesProgramsController extends WindowCon
 		
 				
 		} else {
-			infoText.setText(userName + " har valgt å ikke vise treningsresultater, se nytt medlem: ");
+			infoText.setText(userName + " har valgt aa ikke vise treningsresultater, se nytt medlem: ");
 		}
 	} else {
 		//Do not perform any action
@@ -454,8 +454,8 @@ public class TrainerTrainingProgramExercisesProgramsController extends WindowCon
 		root.setPickOnBounds(false);
 
 		hidePageContent();
-		infoText.setText("Velg et medlem for å visualisere resultater");
-		programInfoText.setText("Velg et program for å visualisere resultater");
+		infoText.setText("Velg et medlem for aa visualisere resultater");
+		programInfoText.setText("Velg et program for aa visualisere resultater");
 		
 		ObservableList<String> names = FXCollections.observableArrayList();
 		for (String name : app.getNames()) {

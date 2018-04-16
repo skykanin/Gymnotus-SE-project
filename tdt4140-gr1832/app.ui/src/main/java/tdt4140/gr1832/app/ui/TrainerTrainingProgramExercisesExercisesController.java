@@ -83,7 +83,7 @@ public class TrainerTrainingProgramExercisesExercisesController extends WindowCo
 		
 		//set up variables for new plot
 	    	String exName = exerciseComboBox.getSelectionModel().getSelectedItem();
-		exInfoText.setText("Du visualiserer resultatene til '" + exName + "'. Bytt øvelse her: " );
+		exInfoText.setText("Du visualiserer resultatene til '" + exName + "'. Bytt ovelse her: " );
 		int exID = app.getIDfromExerciseName(exName);
 		app.getResultsOfExercise(exID);
 		globalDatesList = app.getDates(); 
@@ -153,7 +153,7 @@ public class TrainerTrainingProgramExercisesExercisesController extends WindowCo
 			}
 		} else {
 			hidePageContent();
-			exInfoText.setText("'" + exName + "' har ingen registrerte resultat, velg ny øvelse: ");	
+			exInfoText.setText("'" + exName + "' har ingen registrerte resultat, velg ny ovelse: ");	
 		}
 		
 		//formatting plot
@@ -184,7 +184,7 @@ public class TrainerTrainingProgramExercisesExercisesController extends WindowCo
 
 		hidePageContent();
 
-		exInfoText.setText("Velg en øvelse for å visualisere resultater:");
+		exInfoText.setText("Velg en ovelse for aa visualisere resultater:");
 		app.requestExerciseContainers();
 		exerciseComboBox.setItems(app.getNamesOfExercises());
 		
