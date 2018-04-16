@@ -391,5 +391,21 @@ public class TrainerTrainingProgramExercisesProgramsApp {
 		
 	}
 
+	public List<Integer> requestUserIDsOnExercise(int exID) {
+		List<Integer> userIDs = new ArrayList<>();
+		
+		Client client = ClientBuilder.newClient();
+		WebTarget webTarget = client.target(baseURI + "result/get_users_added_results_to_exercise?exercise_id=" + exID);
+		String test = webTarget.request(MediaType.APPLICATION_JSON).get(String.class);
+		Gson gson = new Gson();
+		List<ShowUserInfoContainer> users = gson.fromJson(test, new TypeToken<List<ShowUserInfoContainer>>(){}.getType());
+		
+		for (ShowUserInfoContainer user: users) {
+			userIDs.add(Integer.parseInt(user.getUserID()));
+		}
+		
+		return userIDs;
+	}
+
 
 }

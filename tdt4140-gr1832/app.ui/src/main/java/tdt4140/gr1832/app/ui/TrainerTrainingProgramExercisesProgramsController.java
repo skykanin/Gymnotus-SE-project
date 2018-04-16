@@ -7,7 +7,9 @@ import java.text.ParseException;
 import java.net.URL;
 import java.nio.file.attribute.UserPrincipalLookupService;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
@@ -34,6 +36,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import tdt4140.gr1832.app.comparators.InfoDateComparator;
 import tdt4140.gr1832.app.containers.ResultContainer;
 import tdt4140.gr1832.app.core.TrainerTrainingProgramExercisesProgramsApp;
 
@@ -54,20 +57,20 @@ public class TrainerTrainingProgramExercisesProgramsController extends WindowCon
 	@FXML Label label3;
 	    
 	@FXML LineChart<String,Number> chart0;
-	@FXML CategoryAxis xAxisOne;
-	@FXML NumberAxis yAxisOne;
+	@FXML CategoryAxis xAxis0;
+	@FXML NumberAxis yAxis0;
     
 	@FXML LineChart<String,Number> chart1;
-	@FXML CategoryAxis xAxisTwo;
-	@FXML NumberAxis yAxisTwo;
+	@FXML CategoryAxis xAxis1;
+	@FXML NumberAxis yAxis1;
     
 	@FXML LineChart<String,Number> chart2;
-	@FXML CategoryAxis xAxisThree;
-	@FXML NumberAxis yAxisThree;
+	@FXML CategoryAxis xAxis2;
+	@FXML NumberAxis yAxis2;
     
 	@FXML LineChart<String,Number> chart3;
-	@FXML CategoryAxis xAxisFour;
-	@FXML NumberAxis yAxisFour;
+	@FXML CategoryAxis xAxis3;
+	@FXML NumberAxis yAxis3;
      
 	TrainerTrainingProgramExercisesProgramsApp app = new TrainerTrainingProgramExercisesProgramsApp();
 	
@@ -79,6 +82,9 @@ public class TrainerTrainingProgramExercisesProgramsController extends WindowCon
 	private int globalCounter = 0;
 	private List<Integer> usersOnProgram;
 	Map<String,XYChart.Series<String, Number>> seriesMap = new HashMap<String,XYChart.Series<String, Number>>();
+
+	private List<String> globalDatesList;
+	private Map<String, List<Integer>> globalResultsMap = new HashMap<>();
 	
 	
     @FXML
@@ -108,9 +114,7 @@ public class TrainerTrainingProgramExercisesProgramsController extends WindowCon
     }
 
     private String updateSeriesMap() {
-    	
     		String name = "series" + globalCounter;
-    		
     		seriesMap.put("series" + globalCounter, new XYChart.Series<String, Number>());   		
     		globalCounter ++;
     		return name;
@@ -118,13 +122,7 @@ public class TrainerTrainingProgramExercisesProgramsController extends WindowCon
     
     @SuppressWarnings({ "unchecked", "rawtypes" })
     public void handleProgramComboBox(ActionEvent actionEvent) throws IOException, ParseException {
-    		
-    	// LAGE TIL SLIK AT FOR HVER BRUKER SOM HAR RESULTAT I PROGRAMMET, LAGES EN NY SERIE
-    	
-    	
-    	// http://<ip-addresse>:<port>/api/result/get_results_by_user_and_exercise?user_id=<user_id>&exercise_id=<exercise_id>
-    	// http://<ip-addresse>:<port>/api/exercise_program/get_users?programID=<id>
-    	
+
     	
     		chart0.getData().clear();
 		chart1.getData().clear();
@@ -135,108 +133,157 @@ public class TrainerTrainingProgramExercisesProgramsController extends WindowCon
 		
 		programName = programComboBox.getSelectionModel().getSelectedItem();
 		
-		usersOnProgram = app.getUserIDsOnProgram(programName);		
+				
     		app.getExercisesOnAProgram(app.getProgramIDfromName(programName));		
 		
-			programInfoText.setText("Du ser resultater til programmet '" + programName + "'. Se et annet: " );
-			String seriesName;
+		programInfoText.setText("Du ser resultater til programmet '" + programName + "'. Se et annet: " );
+			
+			
 	    		for (int i = 0; i < app.getExContainers().size(); i++) {
 	    				
 	    			exName = app.getExContainers().get(i).getDescription();
 	    			exID = app.getExContainers().get(i).getExerciseID();
 	    			app.getResultsOfExercise(exID);
+	    			globalDatesList = app.getDates(); 
+	    			Collections.sort(globalDatesList, new InfoDateComparator());
+	    			for (String date : globalDatesList) {
+	    				globalResultsMap.put(date, new ArrayList<>());
+	    			}
+	    			
+	    			//set up resultshashmap
+	    			for (int j = 0; j < app.requestUserIDsOnExercise(exID).size(); j++) { 
+	    					app.getResultsOfExcerciseAndUser(exID, app.requestUserIDsOnExercise(exID).get(j));
+	    				
+	    				// add real values to lists in hashmap
+	    				for (ResultContainer resCon : app.getResContainers()) {
+	    					if (globalResultsMap.get(resCon.getDate()).size() > j) {
+	    					} else {
+	    						List<Integer> temp = globalResultsMap.get(resCon.getDate());
+	    						temp.add(resCon.getResultParameter());
+	    						globalResultsMap.replace(resCon.getDate(), temp);
+	    					}
+	    				}
+
+		    			// add null-values to lists in hashmap	
+		    		    Iterator it = globalResultsMap.entrySet().iterator();
+		    		    while (it.hasNext()) {
+		    		        Map.Entry pair = (Map.Entry)it.next();
+		    		        if (((List<Integer>) pair.getValue()).size() < j+1) {
+		    		        		List<Integer> temp = globalResultsMap.get((String) pair.getKey());
+		    					temp.add(null);
+		    					globalResultsMap.replace((String) pair.getKey(), temp);
+		    		        }
+		    		    }
+		    		}
+	    			
+	    			globalDatesList = app.getDates();
+	    			XYChart.Series<String, Number> dummySeries = new XYChart.Series<String, Number>();
+	    			for (String date: globalDatesList) {
+	    				dummySeries.getData().add(new XYChart.Data(date.substring(0,date.length()-6), -1));
+	    			}	
+	    			
+	    			int maxValue = -1;
 	    			
 	    			if (app.getResContainers() != null) {
 	    	        switch (i) {
 	    	        
-    	            		case 0: 	label0.setText(exName);
+    	            		case 0: 	
+	    	            			
+	    	            			chart0.getData().add(dummySeries);
+	    	            			for (int k = 0 ; k < app.requestUserIDsOnExercise(exID).size() ;k++) {
+	    	            				String seriesName = updateSeriesMap();
+	    	        					for (String date : globalDatesList) {
+	    	        						if ((globalResultsMap.get(date).get(k)) != null){
+	    	        							seriesMap.get(seriesName).getData().add(new XYChart.Data(	date.substring(0,date.length()-6),globalResultsMap.get(date).get(k)));
+	    	        							if (globalResultsMap.get(date).get(k) > maxValue){
+	    	        								maxValue = globalResultsMap.get(date).get(k);
+	    	        							}
+	    	        						} 
+	    	        					}
+
+		    	            	        chart0.getData().add(seriesMap.get(seriesName));
+    	            				}
+	    	            			
+	    	            			label0.setText(exName);
 	    	            			chart0.setOpacity(1);
 	    	            			chart0.setCreateSymbols(false);
 	    	            			chart0.setAnimated(false);
+	    	            			yAxis0.setAutoRanging(false);
+    	            				yAxis0.setUpperBound( (int) ((maxValue*1.3)/10) *10 );
+    	            				yAxis0.setLowerBound(0);
+    	            				break;
 	    	            			
-	    	            			for (int user : usersOnProgram) {
-	    	            				
-	    	            			
-
-	    	            				app.getResultsOfExcerciseAndUser(exID, user);
-	    	            				
-	    	            				if (app.getResContainers() != null) {
-		    	            				app.requestUserInformation_ID(user+"");
-			    	            			seriesName = updateSeriesMap();
-			    	            			
-			    	            			for (int k = 0; k < app.getDates().size() ; k++) {
-			    	            				seriesMap.get(seriesName).getData().add(new XYChart.Data(app.getDates().get(k).substring(0,app.getDates().get(k).length()-6 ),app.getResults().get(k)));
-			    	            			}
-		    	            			
-			    	            		
-			    	            	        chart0.getData().add(seriesMap.get(seriesName));
-	    	            				}
-	    	            			}
-	    	            			break;
-	    	            			
-	    	        		case 1: label1.setText(exName);
+	    	        		case 1: 
+		            			chart1.getData().add(dummySeries);
+		            			for (int k = 0 ; k < app.requestUserIDsOnExercise(exID).size() ;k++) {
+	    	            				String seriesName = updateSeriesMap();
+	    	        					for (String date : globalDatesList) {
+	    	        						if ((globalResultsMap.get(date).get(k)) != null){
+	    	        							seriesMap.get(seriesName).getData().add(new XYChart.Data(	date.substring(0,date.length()-6),globalResultsMap.get(date).get(k)));
+	    	        							if (globalResultsMap.get(date).get(k) > maxValue){
+	    	        								maxValue = globalResultsMap.get(date).get(k);
+	    	        							}
+	    	        						} 
+	    	        					}
+			            	        chart1.getData().add(seriesMap.get(seriesName));
+	            				}
+		            			
+		            			
+		            			label1.setText(exName);
 		            			chart1.setOpacity(1);
 		            			chart1.setCreateSymbols(false);
 		            			chart1.setAnimated(false);
-		            			
-		            			for (int user : usersOnProgram) {
-		            				
-		            				app.getResultsOfExcerciseAndUser(exID, user);
-		            				if (app.getResContainers() != null) {
-		            				app.requestUserInformation_ID(user+"");
-				            			seriesName = updateSeriesMap();
-				            			
-				            			for (int k = 0; k < app.getDates().size() ; k++) {
-				            				seriesMap.get(seriesName).getData().add(new XYChart.Data(app.getDates().get(k).substring(0,app.getDates().get(k).length()-6 ),app.getResults().get(k)));
-				            			}
-			            			
-				            		
-				            	        chart1.getData().add(seriesMap.get(seriesName));
-		            				}
-		            			}
+		            			yAxis1.setAutoRanging(false);
+    	            				yAxis1.setUpperBound( (int) ((maxValue*1.3)/10) *10 );
+    	            				yAxis1.setLowerBound(0);
 		            			break;
-	    	            case 2: 	label2.setText(exName);
+	    	            case 2: 	
+		            			chart2.getData().add(dummySeries);
+		            			
+		            				
+	            				for (int k = 0 ; k < app.requestUserIDsOnExercise(exID).size() ;k++) {
+	    	            				String seriesName = updateSeriesMap();
+	    	        					for (String date : globalDatesList) {
+	    	        						if ((globalResultsMap.get(date).get(k)) != null){
+	    	        							seriesMap.get(seriesName).getData().add(new XYChart.Data(	date.substring(0,date.length()-6),globalResultsMap.get(date).get(k)));
+	    	        							if (globalResultsMap.get(date).get(k) > maxValue){
+	    	        								maxValue = globalResultsMap.get(date).get(k);
+	    	        							}
+	    	        						} 
+	    	        					}
+			            	        chart2.getData().add(seriesMap.get(seriesName));
+	            				}
+		            			
+		            			label2.setText(exName);
 		            			chart2.setOpacity(1);
 		            			chart2.setCreateSymbols(false);
 		            			chart2.setAnimated(false);
-		            			
-		            			for (int user : usersOnProgram) {
-		            				
-		            				app.getResultsOfExcerciseAndUser(exID, user);
-		            				if (app.getResContainers() != null) {
-			            				app.requestUserInformation_ID(user+"");
-			            				
-				            			seriesName = updateSeriesMap();
-				            			
-				            			for (int k = 0; k < app.getDates().size() ; k++) {
-				            				seriesMap.get(seriesName).getData().add(new XYChart.Data(app.getDates().get(k).substring(0,app.getDates().get(k).length()-6 ),app.getResults().get(k)));
-				            			}
-			            			
-				            		
-				            	        chart2.getData().add(seriesMap.get(seriesName));
-		            				}
-		            			}
+		            			yAxis2.setAutoRanging(false);
+		            			yAxis2.setUpperBound( (int) ((maxValue*1.3)/10) *10 );
+		            			yAxis2.setLowerBound(0);
 		            			break;
-	    	            case 3: 	label3.setText(exName);
+	    	            case 3: 	
+		            			chart3.getData().add(dummySeries);
+		            			for (int k = 0 ; k < app.requestUserIDsOnExercise(exID).size() ;k++) {
+	    	            				String seriesName = updateSeriesMap();
+	    	        					for (String date : globalDatesList) {
+	    	        						if ((globalResultsMap.get(date).get(k)) != null){
+	    	        							seriesMap.get(seriesName).getData().add(new XYChart.Data(	date.substring(0,date.length()-6),globalResultsMap.get(date).get(k)));
+	    	        							if (globalResultsMap.get(date).get(k) > maxValue){
+	    	        								maxValue = globalResultsMap.get(date).get(k);
+	    	        							}
+	    	        						} 
+	    	        					}
+				            	    chart3.getData().add(seriesMap.get(seriesName));
+	            				}
+		            			
+		            			label3.setText(exName);
 		            			chart3.setOpacity(1);
 		            			chart3.setCreateSymbols(false);
 		            			chart3.setAnimated(false);
-		            			
-		            			for (int user : usersOnProgram) {
-		            				
-		            				app.getResultsOfExcerciseAndUser(exID, user);
-		            				if (app.getResContainers() != null) {
-			            				app.requestUserInformation_ID(user+"");
-				            			seriesName = updateSeriesMap();
-				            			
-				            			for (int k = 0; k < app.getDates().size() ; k++) {
-				            				seriesMap.get(seriesName).getData().add(new XYChart.Data(app.getDates().get(k).substring(0,app.getDates().get(k).length()-6 ),app.getResults().get(k)));
-				            			}
-			            			
-				            		
-				            	        chart3.getData().add(seriesMap.get(seriesName));
-		            				}
-		            			}
+		            			yAxis3.setAutoRanging(false);
+    	            				yAxis3.setUpperBound( (int) ((maxValue*1.3)/10) *10 );
+    	            				yAxis3.setLowerBound(0);
 		            			break;
 	    	        		}
 	    			} else {

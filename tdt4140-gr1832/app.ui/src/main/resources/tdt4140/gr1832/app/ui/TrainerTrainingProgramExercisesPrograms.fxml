@@ -86,34 +86,34 @@
       </VBox>
       <LineChart id="small" fx:id="chart0" layoutX="250.0" layoutY="153.0" prefHeight="225.0" prefWidth="450.0" stylesheets="@styles/chart.css">
          <xAxis>
-            <CategoryAxis side="BOTTOM" />
+            <CategoryAxis fx:id="xAxis0" side="BOTTOM" />
          </xAxis>
          <yAxis>
-            <NumberAxis side="LEFT" />
+            <NumberAxis fx:id="yAxis0" side="LEFT" />
          </yAxis>
       </LineChart>
       <LineChart id="small" fx:id="chart1" layoutX="730.0" layoutY="153.0" prefHeight="225.0" prefWidth="450.0" stylesheets="@styles/chart.css">
          <xAxis>
-            <CategoryAxis side="BOTTOM" />
+            <CategoryAxis fx:id="xAxis1" side="BOTTOM" />
          </xAxis>
          <yAxis>
-            <NumberAxis side="LEFT" />
+            <NumberAxis fx:id="yAxis1" side="LEFT" />
          </yAxis>
       </LineChart>
       <LineChart id="small" fx:id="chart2" layoutX="250.0" layoutY="413.0" prefHeight="225.0" prefWidth="450.0" stylesheets="@styles/chart.css">
          <xAxis>
-            <CategoryAxis side="BOTTOM" />
+            <CategoryAxis fx:id="xAxis2" side="BOTTOM" />
          </xAxis>
          <yAxis>
-            <NumberAxis side="LEFT" />
+            <NumberAxis fx:id="yAxis2" side="LEFT" />
          </yAxis>
       </LineChart>
       <LineChart id="small" fx:id="chart3" layoutX="730.0" layoutY="413.0" prefHeight="225.0" prefWidth="450.0" stylesheets="@styles/chart.css">
          <xAxis>
-            <CategoryAxis side="BOTTOM" />
+            <CategoryAxis fx:id="xAxis3" side="BOTTOM" />
          </xAxis>
          <yAxis>
-            <NumberAxis side="LEFT" />
+            <NumberAxis fx:id="yAxis3" side="LEFT" />
          </yAxis>
       </LineChart>
       <Label fx:id="label0" alignment="CENTER" layoutX="400.0" layoutY="135.0" prefHeight="27.0" prefWidth="189.0" text="ov1" />
