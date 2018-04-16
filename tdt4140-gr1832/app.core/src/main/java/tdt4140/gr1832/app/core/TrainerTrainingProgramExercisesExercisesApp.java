@@ -92,7 +92,7 @@ public class TrainerTrainingProgramExercisesExercisesApp {
 	public int getIDfromExerciseName(String exName) {
 		for (ExerciseContainer exCon : exContainers) {
 			if (exCon.getDescription().equals(exName)) {
-				return exCon.getProgramID();
+				return exCon.getExerciseID();
 			}
 		}
 		return -1;

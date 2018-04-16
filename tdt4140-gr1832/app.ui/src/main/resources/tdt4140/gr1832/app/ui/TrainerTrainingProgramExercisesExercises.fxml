@@ -88,10 +88,10 @@
             </VBox>
             <LineChart id="big" fx:id="chart1" layoutX="248.0" layoutY="155.0" prefHeight="437.0" prefWidth="872.0" stylesheets="@styles/chart.css">
               <xAxis>
-                <CategoryAxis side="BOTTOM" />
+                <CategoryAxis fx:id="xAxisOne" side="BOTTOM" />
               </xAxis>
               <yAxis>
-                <NumberAxis side="LEFT" />
+                <NumberAxis fx:id="yAxisOne" side="LEFT" />
               </yAxis>
             </LineChart>
             <Label fx:id="label1" alignment="CENTER" layoutX="541.0" layoutY="118.0" prefHeight="31.0" prefWidth="265.0" text="ov1">
