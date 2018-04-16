@@ -237,11 +237,7 @@ public class TrainerDashboardController extends WindowController implements Init
 
 	}
 	
-	
-		
-	    public static void main(String[] args) {
-	        launch(args);
-	    }
+
 	@FXML
 	public void loadDialog(ActionEvent parentEvent) {
 		JFXDialogLayout content = new JFXDialogLayout();

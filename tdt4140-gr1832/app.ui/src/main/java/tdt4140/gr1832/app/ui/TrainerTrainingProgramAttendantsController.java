@@ -31,7 +31,7 @@ import javafx.scene.text.Text;
 import javafx.util.Callback;
 import javafx.util.StringConverter;
 import tdt4140.gr1832.app.containers.ShowUserInfoContainer;
-import tdt4140.gr1832.app.core.TrainingExerciseDataApp;
+import tdt4140.gr1832.app.core.TrainerTrainingProgramAttendantsApp;
 
 public class TrainerTrainingProgramAttendantsController extends WindowController {
 
@@ -128,7 +128,7 @@ public class TrainerTrainingProgramAttendantsController extends WindowController
 	String pattern = "LLL dd, yyyy";
 	DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern(pattern);
 	
-	private TrainingExerciseDataApp eDataApp;
+	private TrainerTrainingProgramAttendantsApp eDataApp;
 	
 	@FXML
 	public void initialize() {
@@ -141,7 +141,7 @@ public class TrainerTrainingProgramAttendantsController extends WindowController
 		o2Label.setText("");
 		o3Label.setText("");
 		o4Label.setText("");
-		eDataApp = new TrainingExerciseDataApp();
+		eDataApp = new TrainerTrainingProgramAttendantsApp();
 		eDataApp.TrainingExerciseDataAppSetup();
 		program.setText(eDataApp.getProgram(AS.getProgramCounter()).getName());
 		datePickerField.setPromptText("Ingen medlem valgt");

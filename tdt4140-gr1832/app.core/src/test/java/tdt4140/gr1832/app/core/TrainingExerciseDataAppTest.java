@@ -17,7 +17,7 @@ import tdt4140.gr1832.app.containers.ShowUserInfoContainer;
 
 public class TrainingExerciseDataAppTest {
 	
-	TrainingExerciseDataApp testApp;
+	TrainerTrainingProgramAttendantsApp testApp;
 	ShowExerciseDataContainerFromProgram exerciseContainer1;
 	ShowExerciseDataContainerFromProgram exerciseContainer2;
 	ShowExerciseDataContainerFromProgram exerciseContainer3;
@@ -36,7 +36,7 @@ public class TrainingExerciseDataAppTest {
 	
 	@Before
 	public void setup() {
-		testApp = new TrainingExerciseDataApp();
+		testApp = new TrainerTrainingProgramAttendantsApp();
 		testApp.setTestTrue();
 		this.users = new ArrayList<>(Arrays.asList(new ShowUserInfoContainer("1", "Passord", "Navn", 20, 0, "Email", "1234", false, true, true,false), new ShowUserInfoContainer("2", "Passord2", "Navn2", 20, 0, "Email2", "12342", true, true, true,false)));
 		this.users.get(0).setUserId("1");
