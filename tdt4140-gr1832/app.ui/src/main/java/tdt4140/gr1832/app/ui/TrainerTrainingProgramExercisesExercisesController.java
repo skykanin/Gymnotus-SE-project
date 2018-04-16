@@ -14,16 +14,12 @@ import java.util.ResourceBundle;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
-import com.jfoenix.controls.JFXDialog;
-import com.jfoenix.controls.JFXDialogLayout;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 
 import javafx.scene.layout.StackPane;
-import javafx.scene.text.Text;
-
 
 import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.LineChart;
@@ -182,7 +178,7 @@ public class TrainerTrainingProgramExercisesExercisesController extends WindowCo
 
 		hidePageContent();
 
-		exInfoText.setText("Velg en ovelse for aa visualisere resultater:");
+		exInfoText.setText("Velg en ovelse for a visualisere resultater:");
 		app.requestExerciseContainers();
 		exerciseComboBox.setItems(app.getNamesOfExercises());
 		
