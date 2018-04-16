@@ -94,7 +94,8 @@ public class TrainerTrainingProgramExercisesProgramsController extends WindowCon
     
     @SuppressWarnings({ "unchecked", "rawtypes" })
     public void handleProgramComboBox(ActionEvent actionEvent) throws IOException, ParseException {
-    	chart0.getData().clear();
+    		memberComboBox.setDisable(false);
+    		chart0.getData().clear();
 		chart1.getData().clear();
 		chart2.getData().clear();
 		chart3.getData().clear();
@@ -104,8 +105,8 @@ public class TrainerTrainingProgramExercisesProgramsController extends WindowCon
 		programName = programComboBox.getSelectionModel().getSelectedItem();
 		
 				
-    	app.getExercisesOnAProgram(app.getProgramIDfromName(programName));		
-    	infoText.setText("Velg et medlem for aa visualisere resultater");
+		app.getExercisesOnAProgram(app.getProgramIDfromName(programName));		
+		infoText.setText("Velg et medlem for a visualisere resultater");
 		programInfoText.setText("Du ser resultater til programmet '" + programName + "'. Se et annet: " );
 			
 		for (int i = 0; i < app.getExContainers().size(); i++) {
@@ -370,7 +371,7 @@ public class TrainerTrainingProgramExercisesProgramsController extends WindowCon
 			} 
 		
 		} else {
-			infoText.setText(userName + " har valgt aa ikke vise treningsresultater, se nytt medlem: ");
+			infoText.setText(userName + " har valgt a ikke vise treningsresultater, se nytt medlem: ");
 		}
 	} else {
 		//Do not perform any action
@@ -406,10 +407,10 @@ public class TrainerTrainingProgramExercisesProgramsController extends WindowCon
 		memberComboBox.setOpacity(0);
 		infoText.setOpacity(0);
 		root.setPickOnBounds(false);
-
+		memberComboBox.setDisable(true);
 		hidePageContent();
-		infoText.setText("Velg et medlem for aa visualisere resultater");
-		programInfoText.setText("Velg et program for aa visualisere resultater");
+		infoText.setText("Velg et medlem for a visualisere resultater");
+		programInfoText.setText("Velg et program for a visualisere resultater");
 		
 		ObservableList<String> names = FXCollections.observableArrayList();
 		for (String name : app.getNames()) {
@@ -425,8 +426,5 @@ public class TrainerTrainingProgramExercisesProgramsController extends WindowCon
 		programComboBox.setItems(programs);
 	}
     
-    public static void main(String[] args) {
-        launch(args);
-    }
 
 }
