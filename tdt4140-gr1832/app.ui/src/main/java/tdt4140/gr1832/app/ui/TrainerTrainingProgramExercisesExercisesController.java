@@ -38,7 +38,7 @@ import tdt4140.gr1832.app.core.TrainerTrainingProgramExercisesExercisesApp;
 public class TrainerTrainingProgramExercisesExercisesController extends WindowController implements Initializable {
     
 	@FXML
-    private StackPane root;
+    StackPane root;
     
     @FXML JFXButton tilProgram;
 	@FXML JFXComboBox<String> exerciseComboBox;
@@ -59,32 +59,6 @@ public class TrainerTrainingProgramExercisesExercisesController extends WindowCo
 	private Map<String, List<Integer>> globalResultsMap = new HashMap<>();
 	List<String> globalDatesList = new ArrayList<>();
     
-    @FXML
-    public void loadDialog(ActionEvent parentEvent) {
-        JFXDialogLayout content = new JFXDialogLayout();
-        content.setHeading(new Text("Logg ut bekreftelse"));
-        content.setBody(new Text("Er du sikker på at du vil logge ut?"));
-        JFXDialog dialog = new JFXDialog(root, content, JFXDialog.DialogTransition.CENTER);
-        JFXButton buttonYes = new JFXButton("Ja");
-        JFXButton buttonNo = new JFXButton("Nei");
-
-        buttonYes.setOnAction((event) -> {
-            dialog.close();
-            try {
-                NavigerTilSide("LoginScreen.fxml", parentEvent);
-                FxApp.getAS().DUMMYsetuser(null);
-            } catch (IOException e) {
-                System.out.println(e.getMessage());
-            }
-        });
-
-        buttonNo.setOnAction((event) -> {
-            dialog.close();
-        });
-        content.setActions(buttonYes, buttonNo);
-        dialog.show();
-    }
-    
     private String updateSeriesMap() {
     	
 		String name = "series" + globalCounter ;
@@ -94,7 +68,7 @@ public class TrainerTrainingProgramExercisesExercisesController extends WindowCo
 		return name;
     }
 
-@SuppressWarnings({ "unchecked", "rawtypes" })
+    @SuppressWarnings({ "unchecked", "rawtypes" })
 	
 	public void handleExerciseComboBox(ActionEvent actionEvent) throws IOException, ParseException {
 		
@@ -118,9 +92,20 @@ public class TrainerTrainingProgramExercisesExercisesController extends WindowCo
 			globalResultsMap.put(date, new ArrayList<>());
 		}
 		
+		List<Integer> userIDs = new ArrayList<>();
+		userIDs = app.requestUserIDsOnExercise(exID);
+		
+		for (int t=0 ; t < userIDs.size() ; t++) {
+			app.requestUserInformation_ID(userIDs.get(t)+"");
+			if (!app.getContainerUser().getShareExerciseData()) {
+				userIDs.remove(t);
+			}
+		}
+		
 		//set up resultshashmap
-		for (int i = 0; i < app.requestUserIDsOnExercise(exID).size(); i++) { 
-				app.getResultsOfExcerciseAndUser(exID, app.requestUserIDsOnExercise(exID).get(i));
+		
+		for (int i = 0; i < userIDs.size(); i++) { 
+				app.getResultsOfExcerciseAndUser(exID, userIDs.get(i));
 			
 			// add real values to lists in hashmap
 			for (ResultContainer resCon : app.getResContainers()) {
@@ -154,7 +139,7 @@ public class TrainerTrainingProgramExercisesExercisesController extends WindowCo
 		//Make xychart.series and add to chart
 		int maxValue = -1;
 		if (app.getResults() != null) {
-			for (int k = 0 ;  k < app.requestUserIDsOnExercise(exID).size(); k++ ) {
+			for (int k = 0 ;  k < userIDs.size(); k++ ) {
 				String seriesName = updateSeriesMap();
 					for (String date : globalDatesList) {
 						if ((globalResultsMap.get(date).get(k)) != null){

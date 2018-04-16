@@ -43,7 +43,7 @@ import tdt4140.gr1832.app.core.TrainerTrainingProgramExercisesProgramsApp;
 public class TrainerTrainingProgramExercisesProgramsController extends WindowController implements Initializable {
     
 	@FXML
-    private StackPane root;
+    StackPane root;
 
 	@FXML JFXComboBox<String> memberComboBox;
 	@FXML JFXComboBox<String> programComboBox;
@@ -86,32 +86,7 @@ public class TrainerTrainingProgramExercisesProgramsController extends WindowCon
 	private List<String> globalDatesList;
 	private Map<String, List<Integer>> globalResultsMap = new HashMap<>();
 	
-	
-    @FXML
-    public void loadDialog(ActionEvent parentEvent) {
-        JFXDialogLayout content = new JFXDialogLayout();
-        content.setHeading(new Text("Logg ut bekreftelse"));
-        content.setBody(new Text("Er du sikker på at du vil logge ut?"));
-        JFXDialog dialog = new JFXDialog(root, content, JFXDialog.DialogTransition.CENTER);
-        JFXButton buttonYes = new JFXButton("Ja");
-        JFXButton buttonNo = new JFXButton("Nei");
 
-        buttonYes.setOnAction((event) -> {
-            dialog.close();
-            try {
-                NavigerTilSide("LoginScreen.fxml", parentEvent);
-                FxApp.getAS().DUMMYsetuser(null);
-            } catch (IOException e) {
-                System.out.println(e.getMessage());
-            }
-        });
-
-        buttonNo.setOnAction((event) -> {
-            dialog.close();
-        });
-        content.setActions(buttonYes, buttonNo);
-        dialog.show();
-    }
 
     private String updateSeriesMap() {
     		String name = "series" + globalCounter;
@@ -150,9 +125,19 @@ public class TrainerTrainingProgramExercisesProgramsController extends WindowCon
     				globalResultsMap.put(date, new ArrayList<>());
     			}
     			
+    			List<Integer> userIDs = new ArrayList<>();
+    			userIDs = app.requestUserIDsOnExercise(exID);
+    			
+    			for (int t=0 ; t < userIDs.size() ; t++) {
+    				app.requestUserInformation_ID(userIDs.get(t)+"");
+    				if (!app.getContainerUser().getShareExerciseData()) {
+    					userIDs.remove(t);
+    				}
+    			}
+    			
     			//set up resultshashmap
-    			for (int j = 0; j < app.requestUserIDsOnExercise(exID).size(); j++) { 
-    					app.getResultsOfExcerciseAndUser(exID, app.requestUserIDsOnExercise(exID).get(j));
+    			for (int j = 0; j < userIDs.size(); j++) { 
+    					app.getResultsOfExcerciseAndUser(exID, userIDs.get(j));
     				
     				// add real values to lists in hashmap
     				for (ResultContainer resCon : app.getResContainers()) {
@@ -190,7 +175,7 @@ public class TrainerTrainingProgramExercisesProgramsController extends WindowCon
 	            		case 0: 	
 	            				yAxis0.setAutoRanging(true);
     	            			chart0.getData().add(dummySeries);
-    	            			for (int k = 0 ; k < app.requestUserIDsOnExercise(exID).size() ;k++) {
+    	            			for (int k = 0 ; k < userIDs.size() ;k++) {
     	            				String seriesName = updateSeriesMap();
     	        					for (String date : globalDatesList) {
     	        						if ((globalResultsMap.get(date).get(k)) != null){
@@ -216,7 +201,7 @@ public class TrainerTrainingProgramExercisesProgramsController extends WindowCon
     	        		case 1: 
     	        				yAxis1.setAutoRanging(true);
 	            			chart1.getData().add(dummySeries);
-	            			for (int k = 0 ; k < app.requestUserIDsOnExercise(exID).size() ;k++) {
+	            			for (int k = 0 ; k < userIDs.size() ;k++) {
     	            				String seriesName = updateSeriesMap();
     	        					for (String date : globalDatesList) {
     	        						if ((globalResultsMap.get(date).get(k)) != null){
@@ -243,7 +228,7 @@ public class TrainerTrainingProgramExercisesProgramsController extends WindowCon
 	            			chart2.getData().add(dummySeries);
 	            			
 	            				
-            				for (int k = 0 ; k < app.requestUserIDsOnExercise(exID).size() ;k++) {
+            				for (int k = 0 ; k < userIDs.size() ;k++) {
     	            				String seriesName = updateSeriesMap();
     	        					for (String date : globalDatesList) {
     	        						if ((globalResultsMap.get(date).get(k)) != null){
@@ -267,7 +252,7 @@ public class TrainerTrainingProgramExercisesProgramsController extends WindowCon
     	            case 3: 	
     	            			yAxis3.setAutoRanging(true);
 	            			chart3.getData().add(dummySeries);
-	            			for (int k = 0 ; k < app.requestUserIDsOnExercise(exID).size() ;k++) {
+	            			for (int k = 0 ; k < userIDs.size() ;k++) {
     	            				String seriesName = updateSeriesMap();
     	        					for (String date : globalDatesList) {
     	        						if ((globalResultsMap.get(date).get(k)) != null){
