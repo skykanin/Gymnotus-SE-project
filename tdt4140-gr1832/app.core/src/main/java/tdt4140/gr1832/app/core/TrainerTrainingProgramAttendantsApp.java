@@ -22,8 +22,8 @@ import tdt4140.gr1832.app.containers.ShowExerciseDataContainerFromProgram;
 import tdt4140.gr1832.app.containers.ShowHealthInfoContainer;
 import tdt4140.gr1832.app.containers.ShowUserInfoContainer;
 
-public class TrainingExerciseDataApp {
-
+public class TrainerTrainingProgramAttendantsApp {
+ 
 	public final String baseURI = "http://146.185.153.244:8080/api/";
 	
 	private ShowUserInfoContainer user;
