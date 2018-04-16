@@ -32,6 +32,11 @@ public class TrainerTrainingProgramExercisesExercisesApp {
 	
 	private List<ExerciseProgramContainer> containerExercisePrograms = new ArrayList<ExerciseProgramContainer>();
 	
+	private static boolean TEST = false;
+	public static void setTest(boolean b) {
+		TEST = b;
+	}
+	
 	//START  INFORMATION ABOUT PROGRAMS
 
 	public List<ExerciseContainer> getExContainers() {
@@ -39,10 +44,10 @@ public class TrainerTrainingProgramExercisesExercisesApp {
 	}
 
 	public void requestExerciseProgramInformation() {
-			
 		Client client = ClientBuilder.newClient();
 		WebTarget webTarget = client.target(baseURI + "exercise_program/all_programs");
-		String test = webTarget.request(MediaType.APPLICATION_JSON).get(String.class);
+		String test = TEST ? "[{\"programID\":1,\"name\":\"Bryst og skuldre\",\"description\":\"Inneholder øvelsene benkpress, skulderpress, pushups og sidehev med hantler. Programmet er designet for deg som ikke er veldig erfaren og vil trene disse to muskelgruppene. Her vil brukeren merke fremgang raskt.\"}]" 
+				: webTarget.request(MediaType.APPLICATION_JSON).get(String.class);
 		Gson gson = new Gson();
 		containerExercisePrograms = gson.fromJson(test, new TypeToken<List<ExerciseProgramContainer>>(){}.getType());
 	}
@@ -57,7 +62,8 @@ public class TrainerTrainingProgramExercisesExercisesApp {
 		
 		Client client = ClientBuilder.newClient();
 		WebTarget webTarget = client.target(baseURI + "result/get_users_added_results_to_exercise?exercise_id=" + exID);
-		String test = webTarget.request(MediaType.APPLICATION_JSON).get(String.class);
+		String test = TEST ? "[{\"userID\":37,\"username\":\"stianismar\",\"name\":\"Stian Ismar\",\"email\":\"Stismar@gmail.com\",\"phone\":\"12345678\",\"gender\":0,\"age\":17,\"isAnonymous\":true,\"shareExerciseData\":false,\"shareHealthData\":true,\"isTrainer\":false}]" 
+				: webTarget.request(MediaType.APPLICATION_JSON).get(String.class);
 		Gson gson = new Gson();
 		List<ShowUserInfoContainer> users = gson.fromJson(test, new TypeToken<List<ShowUserInfoContainer>>(){}.getType());
 		
@@ -78,7 +84,8 @@ public class TrainerTrainingProgramExercisesExercisesApp {
 		
 		for (ExerciseProgramContainer epc : containerExercisePrograms) {
 		WebTarget webTarget = client.target(baseURI + "exercise/get_exercises?program_id=" + epc.getProgramID());
-		String test = webTarget.request(MediaType.APPLICATION_JSON).get(String.class);
+		String test = TEST ? "[{\"exerciseID\":1,\"programID\":1,\"description\":\"Benkpress\",\"sets\":5,\"repsPerSet\":8,\"pauseBetweenSets\":90,\"parameterDescription\":\"Legg pÃ¥ vekt slik at du omtrent akkurat klarer 8 reps. FÃ¸lg instrukser om pause og sets.\"}]" 
+				: webTarget.request(MediaType.APPLICATION_JSON).get(String.class);
 		Gson gson = new Gson();
 		List<ExerciseContainer> exCons = gson.fromJson(test, new TypeToken<List<ExerciseContainer>>(){}.getType());
 			for (ExerciseContainer exCon : exCons) {
@@ -110,7 +117,8 @@ public class TrainerTrainingProgramExercisesExercisesApp {
 		
 		Client client = ClientBuilder.newClient();
 		WebTarget webTarget = client.target(baseURI + "result/get_results_by_exercise?exercise_id=" + exerciseID);
-		String test = webTarget.request(MediaType.APPLICATION_JSON).get(String.class);
+		String test = TEST ? "[{\"resultID\":30,\"userID\":1,\"exerciseID\":1,\"date\":\"Jan 10, 2018\",\"resultParameter\":70},{\"resultID\":31,\"userID\":1,\"exerciseID\":1,\"date\":\"Jan 14, 2018\",\"resultParameter\":71}]"
+				: webTarget.request(MediaType.APPLICATION_JSON).get(String.class);
 		
 		Gson gson = new Gson();
 		resCons = gson.fromJson(test, new TypeToken<List<ResultContainer>>(){}.getType());
@@ -129,7 +137,8 @@ public class TrainerTrainingProgramExercisesExercisesApp {
 		
 		Client client = ClientBuilder.newClient();
 		WebTarget webTarget = client.target(baseURI + "result/get_results_by_user_and_exercise?user_id="+userID+"&exercise_id="+exerciseID);
-		String test = webTarget.request(MediaType.APPLICATION_JSON).get(String.class);
+		String test = TEST ? "[{\"resultID\":30,\"userID\":1,\"exerciseID\":1,\"date\":\"Jan 10, 2018\",\"resultParameter\":70}]" 
+				: webTarget.request(MediaType.APPLICATION_JSON).get(String.class);
 		
 		Gson gson = new Gson();
 		resCons = gson.fromJson(test, new TypeToken<List<ResultContainer>>(){}.getType());
@@ -153,7 +162,8 @@ public class TrainerTrainingProgramExercisesExercisesApp {
 
 		Client client = ClientBuilder.newClient();
 		WebTarget webTarget = client.target(baseURI + "user/"+id+"/user_info_id");
-		String test = webTarget.request(MediaType.APPLICATION_JSON).get(String.class);
+		String test = TEST ? "{\"userID\":1,\"username\":\"testbruker\",\"name\":\"Henrik Giske Fosse\",\"email\":\"henrik@fosse.no\",\"phone\":\"23443443\",\"gender\":0,\"age\":22,\"isAnonymous\":true,\"shareExerciseData\":true,\"shareHealthData\":true,\"isTrainer\":true}" 
+				: webTarget.request(MediaType.APPLICATION_JSON).get(String.class);
 		Gson gson = new Gson();
 		containerUser = gson.fromJson(test, ShowUserInfoContainer.class);
 		

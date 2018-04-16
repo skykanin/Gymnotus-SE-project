@@ -36,9 +36,6 @@ public class TrainerTrainingProgramExercisesExercisesAppTest{
 	
 	@Before
 	public void setup() {
-		
-		
-		
 		showAllUserContainer = new ShowAllUsersContainer(); 
 		userContainer = new ShowUserInfoContainer("brukernavn", "passord", "navn1",11, 0, "email", "telefon", false, true, true, false);
 		userContainer1 = new ShowUserInfoContainer("brukernavn", "passord", "navn",11, 1, "email", "telefon", false, true, true, false);
@@ -58,9 +55,8 @@ public class TrainerTrainingProgramExercisesExercisesAppTest{
 		userids.add(2);
 		userids.add(3);
 		
+		testapp.setTest(true);
 		testapp.setContainerUser(userContainer);
-		
-		
 	}
 	
 	@Test
@@ -83,13 +79,41 @@ public class TrainerTrainingProgramExercisesExercisesAppTest{
 		Assert.assertEquals(Arrays.asList(10), testapp.getResults());
 		
 		showAllUserContainer.addUserInfo(userContainer);
-		
-		
-		
-		
-		
-		
-		
+	}
+	
+	@Test
+	public void testGetIDFromExerciseName() {
+		testapp.requestExerciseContainers();
+		Assert.assertEquals(1, testapp.getIDfromExerciseName("Benkpress"));
+	}
+	
+	@Test
+	public void testGetResultsOfExercise() {
+		testapp.getResultsOfExercise(1);
+		System.out.println(testapp.getResContainers());
+		Assert.assertEquals(2, testapp.getResContainers().size());
+	}
+	
+	@Test
+	public void testGetResultsOfExerciseAndUser() {
+		testapp.getResultsOfExcerciseAndUser(1, 1);
+		Assert.assertEquals(1, testapp.getResContainers().size());
+		Assert.assertEquals(30, testapp.getResContainers().get(0).getResultID());
+	}
+	
+	@Test
+	public void testRequestUser() {
+		testapp.requestUserInformation_ID("1");
+		Assert.assertEquals("1", testapp.getContainerUser().getUserID());
+		Assert.assertEquals("Anonym#1", testapp.getContainerUser().getName());
+	}
+	
+	@Test
+	public void testRequestUserIDsOnExercise() {
+		List<Integer> ids = testapp.requestUserIDsOnExercise(1);
+		Assert.assertNotNull(ids);
+		Assert.assertEquals(1, ids.size());
+		Assert.assertEquals(37, (int)ids.get(0));
 	}
 	
 	@Test

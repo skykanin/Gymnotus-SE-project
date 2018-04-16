@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import javax.naming.spi.DirStateFactory.Result;
+
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -61,6 +63,89 @@ public class TrainerTrainingProgramExercisesProgramsAppTest {
 		testapp.setContainerUser(userContainer);
 		healthContainers.add(healthContainer);
 		testapp.setHealthContainers(healthContainers);
+		testapp.setTest(true);
+	}
+	
+	@Test
+	public void testGetHeights() {
+		testapp.requestHealthInformation_ID("1");
+		List<Integer> heights = testapp.getHeights();
+		Assert.assertNotNull(heights);
+		Assert.assertEquals(1, heights.size());
+		Assert.assertEquals(187, (int)heights.get(0));
+	}
+	
+	@Test
+	public void testUserStuff() {
+		testapp.requestAllUserID();
+		List<String> names = testapp.getNames();
+		Assert.assertNotNull(names);
+		Assert.assertEquals(2, names.size());
+		Assert.assertEquals("Anonym#1", names.get(1));
+		
+		List<Integer> userIDS = testapp.requestUserIDsOnExercise(1);
+		Assert.assertNotNull(userIDS);
+		Assert.assertEquals(1, userIDS.size());
+		Assert.assertEquals(1, (int)userIDS.get(0));
+	}
+	
+	@Test
+	public void testExerciseStuff() {
+		testapp.requestExerciseProgramInformation();
+		ExerciseProgramContainer ep = testapp.getExerciseProgramContainer(0);
+		Assert.assertNotNull(ep);
+		Assert.assertEquals(1, (int)ep.getProgramID());
+		
+		testapp.addContainerTocontainerExercisePrograms(ep);
+		Assert.assertEquals(2, testapp.getContainerExcerciseProgramLength());
+		Assert.assertEquals(2, testapp.getSizeResultsOfExercise(1));
+		
+		List<String> programNames = testapp.getNamesOfPrograms();
+		Assert.assertNotNull(programNames);
+		Assert.assertEquals(1, programNames.size());
+		Assert.assertEquals("Bryst og skuldre", programNames.get(0));
+		
+		Assert.assertEquals(1, testapp.getProgramIDfromName("Bryst og skuldre"));
+	}
+	
+	@Test
+	public void testGetUserIDSOnProgram() {
+		List<Integer> ids = testapp.getUserIDsOnProgram("Bryst og skyldre");
+		Assert.assertNotNull(ids);
+		Assert.assertEquals(1, ids.size());
+		Assert.assertEquals(1, (int)ids.get(0));
+	}
+	
+	@Test
+	public void testGetExercisesOnAProgram() {
+		testapp.getExercisesOnAProgram(1);
+		List<ExerciseContainer> ec = testapp.getExContainers();
+		
+		Assert.assertNotNull(ec);
+		Assert.assertEquals(1, ec.size());
+		Assert.assertEquals(1, ec.get(0).getExerciseID());
+	}
+	
+	@Test
+	public void testGetResultsOfExerciseAndUser() {
+		testapp.getResultsOfExcerciseAndUser(1, 1);
+		List<ResultContainer> rc = testapp.getResContainers();
+		Assert.assertNotNull(rc);
+		Assert.assertEquals(1, rc.size());
+		Assert.assertEquals(30, rc.get(0).getResultID());
+	}
+	
+	@Test
+	public void testProgramStuff() {
+		testapp.getResultsOfExercise(1);
+		List<String> dates = testapp.getDatesFromList(testapp.getResContainers());
+		List<Integer> results = testapp.getResultsFromList(testapp.getResContainers());
+		
+		Assert.assertNotNull(dates);
+		Assert.assertNotNull(results);
+		Assert.assertEquals(2, dates.size());
+		Assert.assertEquals(2, results.size());
+		Assert.assertEquals(71, (int)results.get(1));
 	}
 	
 	@Test
