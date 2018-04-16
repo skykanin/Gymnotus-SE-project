@@ -42,13 +42,26 @@ public class TrainerTrainingProgramSeeCommentsApp {
 		for (CommentContainer containerComment : containerComments ) {
 			a.requestUserInformation_ID(Integer.toString(containerComment.getUserID()));
 			String n= a.getName();
-			l.add(n +", " + containerComment.getDate() + ": " + containerComment.getContent());
+			if (a.getContainerUser().getIsAnonymous()){
+				n="Anonym#" + containerComment.getUserID();
+			}
+			if(a.getContainerUser().getIsTrainer()) {
+				l.add("[TRENER] " +n +", " + containerComment.getDate() + ": " + containerComment.getContent());
+			}
+				else {
+					l.add("[BRUKER] " +n +", " + containerComment.getDate() + ": " + containerComment.getContent());
+				}
 		}
 		return l;
 	}
 
 	public Object getBaseURI() {
 		return baseURI;
+	}
+	public static void main(String[] args) {
+		TrainerTrainingProgramSeeCommentsApp t = new TrainerTrainingProgramSeeCommentsApp();
+		t.requestProgramComments(2);
+		t.getCommentList();
 	}
 
 }
