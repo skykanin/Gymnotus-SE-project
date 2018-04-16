@@ -38,7 +38,7 @@ public class TrainerTrainingProgramOverviewAppTest {
 		Assert.assertEquals("http://146.185.153.244:8080/api/", testapp.getBaseURI());
 		Assert.assertEquals("test for programbeskrivelse", testapp.getExerciseProgramContainer(0).getDescription());
 		Assert.assertEquals(1, (int) testapp.getContainerExcerciseProgramLength());
-		Assert.assertEquals("Navn: Benkpress\nAntall sett: 5\nAntall repitisjoner: 8\nPause mellom settene: 5 min\nØvelsebeskrivelse: test for beskrivelse av ovelse",testapp.getExerciseContainertoString("Benkpress"));
+		Assert.assertEquals("Navn: Benkpress\nAntall sett: 5\nAntall repetisjoner: 8\nPause mellom settene: 5 min\nOvelsebeskrivelse: test for beskrivelse av ovelse",testapp.getExerciseContainertoString("Benkpress"));
 		Assert.assertEquals("Benkpress", testapp.getExerciseContainer(0).getDescription());
 		Assert.assertEquals(Arrays.asList("Benkpress"), testapp.getExerciseList());
 		Assert.assertEquals("Ingen informasjon", testapp.getExerciseContainertoString("test"));

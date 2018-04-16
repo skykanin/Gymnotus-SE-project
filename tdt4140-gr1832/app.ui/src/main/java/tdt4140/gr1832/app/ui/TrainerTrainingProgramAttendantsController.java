@@ -85,7 +85,7 @@ public class TrainerTrainingProgramAttendantsController extends WindowController
 	JFXButton lastProgram;
 	
     @FXML
-    private StackPane root;
+    StackPane root;
 
     @FXML
 	FontAwesomeIconView programLeft;
@@ -349,32 +349,7 @@ public class TrainerTrainingProgramAttendantsController extends WindowController
 		updateProgram();
 	}
 	
-        
-    @FXML
-    public void loadDialog(ActionEvent parentEvent) {
-        JFXDialogLayout content = new JFXDialogLayout();
-        content.setHeading(new Text("Logg ut bekreftelse"));
-        content.setBody(new Text("Er du sikker på at du vil logge ut?"));
-        JFXDialog dialog = new JFXDialog(root, content, JFXDialog.DialogTransition.CENTER);
-        JFXButton buttonYes = new JFXButton("Ja");
-        JFXButton buttonNo = new JFXButton("Nei");
-
-        buttonYes.setOnAction((event) -> {
-            dialog.close();
-            try {
-                NavigerTilSide("LoginScreen.fxml", parentEvent);
-                FxApp.getAS().DUMMYsetuser(null);
-            } catch (IOException e) {
-                System.out.println(e.getMessage());
-            }
-        });
-
-        buttonNo.setOnAction((event) -> {
-            dialog.close();
-        });
-        content.setActions(buttonYes, buttonNo);
-        dialog.show();
-    }
+  
     
     @FXML
 	public void datePicker() {

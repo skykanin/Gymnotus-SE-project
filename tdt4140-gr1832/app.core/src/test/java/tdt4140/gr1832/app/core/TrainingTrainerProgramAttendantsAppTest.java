@@ -15,7 +15,7 @@ import tdt4140.gr1832.app.containers.ShowHealthInfoContainer;
 import tdt4140.gr1832.app.containers.ShowUserInfoContainer;
 
 
-public class TrainingExerciseDataAppTest {
+public class TrainingTrainerProgramAttendantsAppTest {
 	
 	TrainerTrainingProgramAttendantsApp testApp;
 	ShowExerciseDataContainerFromProgram exerciseContainer1;
@@ -116,12 +116,12 @@ public class TrainingExerciseDataAppTest {
 		Assert.assertEquals("111", testApp.getRestingHR(1));
 		Assert.assertEquals("81", testApp.getWeight(1));
 		Assert.assertEquals("33", testApp.getSteps(2));
-		Assert.assertEquals("", testApp.getRestingHR(2));
-		Assert.assertEquals("", testApp.getWeight(2));
+		Assert.assertEquals("333", testApp.getRestingHR(2));
+		Assert.assertEquals("83", testApp.getWeight(2));
 		Assert.assertEquals(Arrays.asList("mar 04, 2018","mar 1, 2018","mar 11, 2018","mar 14, 2018"),testApp.getDates());
 		Assert.assertEquals("Ikke spesifisert", testApp.getSteps(3));
-		Assert.assertEquals("", testApp.getRestingHR(3));
-		Assert.assertEquals("", testApp.getWeight(3));
+		Assert.assertEquals("Ikke spesifisert", testApp.getRestingHR(3));
+		Assert.assertEquals("Ikke spesifisert", testApp.getWeight(3));
 		testApp.setUser(new  ShowUserInfoContainer("test", "test", "test", 12, 1, "test", "test", false, false, false, false));
 		Assert.assertEquals("Kvinne", testApp.getGender());
 		testApp.setUser(new  ShowUserInfoContainer("test", "test", "test", 12, 11, "test", "test", false, false, false, false));

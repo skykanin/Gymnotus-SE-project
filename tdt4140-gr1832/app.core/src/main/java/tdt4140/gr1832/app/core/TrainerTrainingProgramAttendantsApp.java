@@ -176,6 +176,7 @@ public class TrainerTrainingProgramAttendantsApp {
 		}
 		availableDates.clear();
 		availableDates.addAll(sortedResultMap.keySet());		
+
 	}
 	
 	public String getDate(int i) {
@@ -222,11 +223,11 @@ public class TrainerTrainingProgramAttendantsApp {
 		for (Object container : liste) {
 			if (container instanceof ShowHealthInfoContainer) {
 				result="" + ((ShowHealthInfoContainer) container).getWeight();
+				if(result.equals("-1")) {
+					result = "Brukeren viser ikke helsedata";
+				}
+				return result;
 			}
-			if(result.equals("-1")) {
-				result = "Brukeren viser ikke helsedata";
-			}
-			return result;
 		}
 		return "Ikke spesifisert";
 	}
@@ -238,11 +239,11 @@ public class TrainerTrainingProgramAttendantsApp {
 		for (Object container : liste) {
 			if (container instanceof ShowHealthInfoContainer) {
 				result =  "" + ((ShowHealthInfoContainer) container).getRestingHR();
+				if(result.equals("-1")) {
+					result = "Brukeren viser ikke helsedata";
+				}
+				return result;
 			}
-			if(result.equals("-1")) {
-				result = "Brukeren viser ikke helsedata";
-			}
-			return result;
 		}
 		return "Ikke spesifisert";
 	}
