@@ -45,7 +45,7 @@ public class TrainerTrainingProgramSeeCommentsApp {
 			if (a.getContainerUser().getIsAnonymous()){
 				n="Anonym#" + containerComment.getUserID();
 			}
-			if(a.getContainerUser().getIsTrainer()) {
+			if(a.getContainerUser().getIsTrainer()) { 
 				l.add("[TRENER] " +n +", " + containerComment.getDate() + ": " + containerComment.getContent());
 			}
 				else {
